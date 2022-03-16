@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <title>Sign Up Form</title>
+    <link rel="shortcut icon" href="/assets/favicon.ico">
+    <link rel="stylesheet" href="./signup.css">
+<body>
+    <div class="signUp__container">
+        <form class="signUpForm" id="signUp">
+            <h1 class="signUpForm__title">Sign Up</h1>
+            <div class="signUpForm__input-group">
+                <input type="text" class="signUpForm__input" id = "signUp__firstName" autofocus placeholder="First Name">
+            </div>
+            <div class="signUpForm__input-group">
+                <input type="text" class="signUpForm__input" id = "signUp__lastName" autofocus placeholder="Last Name">
+            </div>
+            <div class="signUpForm__input-group">
+                <input type="text" class="signUpForm__input" id = "signUp__dateOfBirth" autofocus placeholder="Date of Birth">
+            </div>
+            <div class="signUpForm__input-group">
+                <input type="text" class="signUpForm__input" id = "signUp__phoneNumber" autofocus placeholder="Phone Number">
+            </div>
+            <div class="signUpForm__input-group">
+                <input type="text" class="signUpForm__input" id = "signUp__email" autofocus placeholder="Email Address">
+            </div>
+            <div class="signUpForm__input-group">
+                <input type="password" class="signUpForm__input" id = "signUp__password" autofocus placeholder="Password">
+            </div>
+            <div class="signUpForm__input-group">
+                <input type="password" class="signUpForm__input" id = "signUp__confirmPassword" autofocus placeholder="Confirm password">
+            </div>
+            <div class="signUpForm__message form__message--error"></div>
+            <button class="signUpForm__button" id="signUp__submitButton" type="submit">Sign Up</button>
+            <p class="signUpForm__text">
+                <a class="signUpForm__link" href="./" id="linkLogin">Already have an account? Sign in</a>
+            </p>
+        </form>
+    </div>
+    <script src="./src/signup.js"></script>
+</body>
