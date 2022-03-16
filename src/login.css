@@ -12,12 +12,11 @@ body {
     align-items: center;
     justify-content: center;
     font-size: 18px;
-    background: #4cb8a4;
-    /* background: url(./background.jpg); */
+    background: #6ec2b2;
     background-size: cover;
 }
 
-.container {
+.login__container {
     width: 400px;
     max-width: 400px;
     margin: 1rem;
@@ -27,47 +26,43 @@ body {
     background: #ffffff;
 }
 
-.container,
-.form__input,
-.form__button {
+.login__container,
+.loginForm__input,
+.loginForm__button {
     font: 500 1rem 'Quicksand', sans-serif;
 }
 
-.form--hidden {
-    display: none;
-}
-
-.form > *:first-child {
+.loginForm > *:first-child {
     margin-top: 0;
 }
 
-.form > *:last-child {
+.loginForm > *:last-child {
     margin-bottom: 0;
 }
 
-.form__title {
+.loginForm__title {
     margin-bottom: 2rem;
     text-align: center;
 }
 
-.form__message {
+.loginForm__message {
     text-align: center;
     margin-bottom: 1rem;
 }
 
-.form__message--success {
+.loginForm__message--success {
     color: var(--color-success);
 }
 
-.form__message--error {
+.loginForm__message--error {
     color: var(--color-error);
 }
 
-.form__input-group {
+.loginForm__input-group {
     margin-bottom: 1rem;
 }
 
-.form__input {
+.loginForm__input {
     display: block;
     width: 100%;
     padding: 0.75rem;
@@ -79,23 +74,23 @@ body {
     transition: background 0.2s, border-color 0.2s;
 }
 
-.form__input:focus {
+.loginForm__input:focus {
     border-color: var(--color-primary);
     background: #ffffff;
 }
 
-.form__input--error {
+.loginForm__input--error {
     color: var(--color-error);
     border-color: var(--color-error);
 }
 
-.form__input-error-message {
+.loginForm__input-error-message {
     margin-top: 0.5rem;
     font-size: 0.85rem;
     color: var(--color-error);
 }
 
-.form__button {
+.loginForm__button {
     width: 100%;
     padding: 1rem 2rem;
     font-weight: bold;
@@ -108,24 +103,24 @@ body {
     background: var(--color-primary);
 }
 
-.form__button:hover {
+.loginForm__button:hover {
     background: var(--color-primary-dark);
 }
 
-.form__button:active {
+.loginForm__button:active {
     transform: scale(0.98);
 }
 
-.form__text {
+.loginForm__text {
     text-align: center;
 }
 
-.form__link {
+.loginForm__link {
     color: var(--color-secondary);
     text-decoration: none;
     cursor: pointer;
 }
 
-.form__link:hover {
+.loginForm__link:hover {
     text-decoration: underline;
 }
