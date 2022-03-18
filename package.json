@@ -20,7 +20,8 @@
   },
   "homepage": "https://github.com/sharon-v/WebDevelopmentProject#readme",
   "dependencies": {
-    "express": "^4.17.3"
+    "express": "^4.17.3",
+    "firebase": "^9.6.9"
   },
   "devDependencies": {
     "@types/chai": "^4.3.0",
