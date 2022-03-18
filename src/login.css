@@ -1,7 +1,7 @@
 body {
     --color-primary: #4cb8a4;
     --color-primary-dark: #007f67;
-    --color-secondary: #252c6a;
+    --color-secondary: #222d92;
     --color-error: #cc3333;
     --color-success: #4bb544;
     --border-radius: 4px;
@@ -50,13 +50,6 @@ body {
     margin-bottom: 1rem;
 }
 
-.loginForm__message--success {
-    color: var(--color-success);
-}
-
-.loginForm__message--error {
-    color: var(--color-error);
-}
 
 .loginForm__input-group {
     margin-bottom: 1rem;
@@ -77,17 +70,6 @@ body {
 .loginForm__input:focus {
     border-color: var(--color-primary);
     background: #ffffff;
-}
-
-.loginForm__input--error {
-    color: var(--color-error);
-    border-color: var(--color-error);
-}
-
-.loginForm__input-error-message {
-    margin-top: 0.5rem;
-    font-size: 0.85rem;
-    color: var(--color-error);
 }
 
 .loginForm__button {
