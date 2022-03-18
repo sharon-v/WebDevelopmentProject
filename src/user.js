@@ -8,6 +8,7 @@ class User {
     }
 }
 
+/* we need to change it to a different implematation */
 class UserList {
     constructor(users = []) {
         this.list = users;
