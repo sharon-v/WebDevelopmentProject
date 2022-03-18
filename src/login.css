@@ -45,12 +45,6 @@ body {
     text-align: center;
 }
 
-.loginForm__message {
-    text-align: center;
-    margin-bottom: 1rem;
-}
-
-
 .loginForm__input-group {
     margin-bottom: 1rem;
 }
