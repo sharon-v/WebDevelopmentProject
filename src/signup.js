@@ -21,7 +21,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const signUpForm = document.querySelector("#signUp");
 
     document.querySelector("#linkLogin").addEventListener("click", e => {
-        e.preventDefault();
         //need to add implementation for transmition to login page
    
     });
@@ -48,3 +47,10 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 });
+
+const signUpForm = document.querySelector('#signUp');
+signUpForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    // get user info
+    //const email = signUpForm[]
+})
