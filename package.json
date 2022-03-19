@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "node src/main.js",
     "start": "node src/main.js",
-    "test": "mocha tests/*.spec.js --color",
+    "test": "mocha src/*.spec.js --color",
     "lint": "eslint src/* --color"
   },
   "repository": {
