@@ -17,7 +17,7 @@ function validate(){
     else{
     attempt --;// Decrementing by one.
     alert("You have left "+attempt+" attempt;");
-    // Disabling fields after 3 attempts.
+    // Disabling fields after 3 attempts..
     if( attempt == 0){
     document.getElementById("username").disabled = true;
     document.getElementById("password").disabled = true;
@@ -26,6 +26,7 @@ function validate(){
     }
     }
     }
+
 
 function setInputError(inputElement, message) {
     inputElement.classList.add("form__input--error");
