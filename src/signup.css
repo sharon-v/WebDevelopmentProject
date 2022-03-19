@@ -1,6 +1,6 @@
 body {
-    --color-primary: #009579;
-    --color-primary-dark: #007f67;
+    --color-primary: #ffb3b3;
+    --color-primary-dark: #ffb3b3;
     --color-secondary: #252c6a;
     --color-error: #cc3333;
     --color-success: #4bb544;
@@ -13,7 +13,7 @@ body {
     justify-content: center;
     font-size: 18px;
     /* background: url(./background.jpg); */
-    background: #79ecd7;
+    background: #ffe6e6;
     background-size: cover;
 }
 

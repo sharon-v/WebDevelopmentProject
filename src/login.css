@@ -1,6 +1,6 @@
 body {
-    --color-primary: #4cb8a4;
-    --color-primary-dark: #007f67;
+    --color-primary: #ffb3b3;
+    --color-primary-dark: #ffb3b3;
     --color-secondary: #222d92;
     --color-error: #cc3333;
     --color-success: #4bb544;
@@ -12,7 +12,7 @@ body {
     align-items: center;
     justify-content: center;
     font-size: 18px;
-    background: #6ec2b2;
+    background: #ffe6e6;
     background-size: cover;
 }
 
