@@ -31,4 +31,6 @@ getDocs(usersColRef).then((snapshot) => {
     console.log(users);
 }).catch( err => {
     console.log(err.message);
-})
+});
+
+// adding to collection
