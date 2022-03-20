@@ -23,7 +23,7 @@ workflows:
       # - npm install
       # - node/test
       # - npm run lint
-       - node/with-cache:
+      - node/with-cache:
           steps:
             - run: npm install
             - run: node/test
