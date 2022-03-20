@@ -7,26 +7,23 @@ function setFormMessage(formElement, type, message) {
 }
 
 function validate(){
-    var username = document.getElementById("username").value;
-    var password = document.getElementById("password").value;
+    var username = document.getElementById("login__email").value;
+    var password = document.getElementById("login__password").value;
     if ( username == "Formget" && password == "formget#123"){
     alert ("Login successfully");
-    window.location = "success.html"; // Redirecting to other page.
+    window.location = "welcom.html"; // Redirecting to other page.
     return false;
     }
-    else{
-    attempt --;// Decrementing by one.
-    alert("You have left "+attempt+" attempt;");
-    // Disabling fields after 3 attempts..
-    if( attempt == 0){
-    document.getElementById("username").disabled = true;
-    document.getElementById("password").disabled = true;
-    document.getElementById("submit").disabled = true;
-    return false;
+    else
+    alert ("failed to login, please try again");
     }
-    }
-    }
-
+const loginForm = document.querySelector('#login-form');
+loginForm.addEventListener('submit', (e)=>{
+    e.preventDefault();
+    const username = loginForm['login__email'].value;
+    const password = loginForm['login__password'].value;
+    
+})
 
 function setInputError(inputElement, message) {
     inputElement.classList.add("form__input--error");
