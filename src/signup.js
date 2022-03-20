@@ -52,18 +52,10 @@ signUpForm.addEventListener('submit', (e) => {
     // get user info
     const email = signUpForm.email.value;
     const password = signUpForm.password.value;
-    const firstName = signUpForm.
-    createUserWithEmailAndPassword(auth, user.email).then((cred) => {
-        console.log('user created inm auth');
-        // adding the user's details to users collection
-        addDoc(usersColRef, {
-            email: user.email,
-            firstName: user.firstName,
-            lastName: user.lastName,
-            id: user.id,
-            birthDate: user.birthDate,
-        }).then(() => {
-            signUpForm.reset();
-        })
-    })
-})
+    const firstName = signUpForm.getElementById("signUp__firstName").value();
+    const lastName = signUpForm.getElementById("signUp__lastName").value();
+    const phoneNumber = signUpForm.getElementById("signUp__phoneNumber").value();
+    const birthDate = signUpForm.getElementById("signUp__id").value();
+    newUser = new User(email, firstName, lastName, birthDate, phoneNumber);
+    addNewUser()
+});

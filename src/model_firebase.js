@@ -43,9 +43,12 @@ function addNewUser(user, password) {
             email: user.email,
             firstName: user.firstName,
             lastName: user.lastName,
-            id: user.id,
             birthDate: user.birthDate,
+            phoneNumber: user.phoneNumber
         }).then(() => {
+            const signUpForm = document.querySelector('#signUp');
+            alert("signup in firebase")
+            signUpForm.reset();
         })
     })
 }
