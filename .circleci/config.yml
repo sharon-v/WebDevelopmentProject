@@ -20,7 +20,14 @@ workflows:
   # For more details on extending your workflow, see the configuration docs: https://circleci.com/docs/2.0/configuration-reference/#workflows
   sample:
     jobs:
-      - node/test
+      # - npm install
+      # - node/test
+      # - npm run lint
+       - node/with-cache:
+          steps:
+            - run: npm install
+            - run: node/test
+            - run: npm run lint
       - heroku/deploy-via-git:
           force: true # this parameter instructs the push to use a force flag when pushing to the heroku remote, see: https://devcenter.heroku.com/articles/git
           requires:
