@@ -50,16 +50,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 const signUpForm = document.querySelector('#signUp');
 signUpForm.addEventListener('submit', (e) => {
-<<<<<<< HEAD
-  e.preventDefault();
-  // get user info
-  // const email = signUpForm[]
-});
-=======
     e.preventDefault();
     // get user info
     const email = signUpForm.email.value;
     const password = signUpForm.password.value;
     createNewUser(email, password);
 })
->>>>>>> 701e5cb2c2f09bb535d4d350deafc9302551377e
