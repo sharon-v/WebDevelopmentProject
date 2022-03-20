@@ -48,5 +48,14 @@ function addNewUser(user, password) {
         }).then(() => {
         })
     })
+}
 
+function loginUser(email, password) {
+    signInWithEmailAndPassword(auth, email, password).then((cred)=>{
+        // window.location = "welcom.html";
+        alert ("Login successfully");
+    })
+    .catch((err)=>{
+        console.log("failed to login, please try again");
+    })
 }
