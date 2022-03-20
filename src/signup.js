@@ -1,3 +1,5 @@
+import { createUserWithEmailAndPassword } from "firebase/auth";
+
 function setFormMessage(formElement, type, message) {
     const messageElement = formElement.querySelector(".signUpForm__message");
 
@@ -52,5 +54,7 @@ const signUpForm = document.querySelector('#signUp');
 signUpForm.addEventListener('submit', (e) => {
     e.preventDefault();
     // get user info
-    //const email = signUpForm[]
+    const email = signUpForm.email.value;
+    const password = signUpForm.password.value;
+    createNewUser(email, password);
 })

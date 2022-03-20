@@ -1,6 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import { getAnalytics } from "firebase/analytics";
-import { getAuth, createUserWithEmailAndPassword} from 'firebase/auth';
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword} from 'firebase/auth';
 import { getFirestore, collection, getDoc, getDocs} from 'firebase/firestore';
 
 // Initialize Firebase
@@ -34,3 +34,7 @@ getDocs(usersColRef).then((snapshot) => {
 });
 
 // adding to collection
+
+function addNewUser(user, password) {
+    createUserWithEmailAndPassword(auth, user.email)
+}
