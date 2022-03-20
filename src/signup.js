@@ -52,6 +52,7 @@ signUpForm.addEventListener('submit', (e) => {
     // get user info
     const email = signUpForm.email.value;
     const password = signUpForm.password.value;
+    const firstName = signUpForm.
     createUserWithEmailAndPassword(auth, user.email).then((cred) => {
         console.log('user created inm auth');
         // adding the user's details to users collection
