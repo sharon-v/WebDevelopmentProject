@@ -1,5 +1,3 @@
-import { createUserWithEmailAndPassword } from "firebase/auth";
-
 function setFormMessage(formElement, type, message) {
   const messageElement = formElement.querySelector('.signUpForm__message');
 
@@ -54,5 +52,17 @@ signUpForm.addEventListener('submit', (e) => {
     // get user info
     const email = signUpForm.email.value;
     const password = signUpForm.password.value;
-    createNewUser(email, password);
+    createUserWithEmailAndPassword(auth, user.email).then((cred) => {
+        console.log('user created inm auth');
+        // adding the user's details to users collection
+        addDoc(usersColRef, {
+            email: user.email,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            id: user.id,
+            birthDate: user.birthDate,
+        }).then(() => {
+            signUpForm.reset();
+        })
+    })
 })

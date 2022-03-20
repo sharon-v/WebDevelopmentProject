@@ -1,7 +1,7 @@
 import { initializeApp } from 'firebase/app';
 import { getAnalytics } from 'firebase/analytics';
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword} from 'firebase/auth';
-import { getFirestore, collection, getDoc, getDocs} from 'firebase/firestore';
+import { getFirestore, collection, getDoc, getDocs, addDoc} from 'firebase/firestore';
 
 // Initialize Firebase
 const firebaseApp = initializeApp({
@@ -39,8 +39,14 @@ function addNewUser(user, password) {
     createUserWithEmailAndPassword(auth, user.email).then((cred) => {
         console.log('user created inm auth');
         // adding the user's details to users collection
-        
-
+        addDoc(usersColRef, {
+            email: user.email,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            id: user.id,
+            birthDate: user.birthDate,
+        }).then(() => {
+        })
     })
 
 }
