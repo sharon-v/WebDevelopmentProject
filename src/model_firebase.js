@@ -1,7 +1,14 @@
+<<<<<<< HEAD
 import {initializeApp} from 'firebase/app';
 import {getAnalytics} from 'firebase/analytics';
 import {getAuth, createUserWithEmailAndPassword} from 'firebase/auth';
 import {getFirestore, collection, getDoc, getDocs} from 'firebase/firestore';
+=======
+import { initializeApp } from 'firebase/app';
+import { getAnalytics } from "firebase/analytics";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword} from 'firebase/auth';
+import { getFirestore, collection, getDoc, getDocs} from 'firebase/firestore';
+>>>>>>> 701e5cb2c2f09bb535d4d350deafc9302551377e
 
 // Initialize Firebase
 const firebaseApp = initializeApp({
@@ -34,3 +41,7 @@ getDocs(usersColRef).then((snapshot) => {
 });
 
 // adding to collection
+
+function addNewUser(user, password) {
+    createUserWithEmailAndPassword(auth, user.email)
+}
