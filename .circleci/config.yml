@@ -25,9 +25,9 @@ workflows:
       # - npm run lint
       - node/with-cache:
           steps:
-            - run: npm install
+            # - run: npm install
             - run: node/test
-            - run: npm run lint
+            # - run: npm run lint
       - heroku/deploy-via-git:
           force: true # this parameter instructs the push to use a force flag when pushing to the heroku remote, see: https://devcenter.heroku.com/articles/git
           requires:
