@@ -1,11 +1,28 @@
 const express = require('express');
 const port = process.env.PORT || 5000;
 const app = express();
+app.use(express.static(__dirname + "/"));
 
 
 app.get('/', (req, res)=>{
-  res.send('<h1>The web is on the air<h1>');
+  // res.send('<h1>The web is on the air<h1>');
+  res.sendFile("/nav_bar.html", { root: __dirname });
+
 });
+
+
+// app.get("/nav_bar.html", (req, res) => {
+//   res.sendFile("src/nav_bar.html", { root: __dirname });
+// });
+
+app.get("/login.html", (req, res) => {
+  res.sendFile("/login.html", { root: __dirname });
+});
+
+app.get("/signup.html", (req, res) => {
+    res.sendFile("/signup.html", { root: __dirname });
+  });
+
 
 app.listen(port, ()=>{
   console.log('server is up and runing- cheacking');
