@@ -10,6 +10,7 @@
     background: #ffb3b3;
     height: 80px;
     display: flex;
+    flex-grow: inherit;
     justify-content: center;
     align-items: center;
     font-size: 1.2rem;
