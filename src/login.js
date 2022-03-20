@@ -23,13 +23,7 @@ loginForm.addEventListener('submit', (e)=>{
     // e.preventDefault();
     const email = loginForm['login__email'].value;
     const password = loginForm['login__password'].value;
-    signInWithEmailAndPassword(auth, email, password).then((cred)=>{
-        // window.location = "welcom.html";
-        alert ("Login successfully");
-    })
-    .catch((err)=>{
-        console.log("failed to login, please try again");
-    })
+    loginUser();
 })
 
 function setInputError(inputElement, message) {
