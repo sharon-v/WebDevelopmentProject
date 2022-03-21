@@ -11,5 +11,13 @@
         "sourceType": "module"
     },
     "rules": {
+        "linebreak-style": [
+            0,
+            "error",
+            "windows"
+        ],
+        "max-len": "off",
+        "no-unused-vars": "warn",
+        "require-jsdoc": "off"
     }
 }

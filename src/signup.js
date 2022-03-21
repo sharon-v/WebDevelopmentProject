@@ -1,16 +1,31 @@
-function setFormMessage(formElement, type, message) {
-  const messageElement = formElement.querySelector('.signUpForm__message');
+/**
+ *
+ * @param {*} formElement
+ * @param {*} type
+ * @param {*} message
+ */
+// function setFormMessage(formElement, type, message) {
+//   const messageElement = formElement.querySelector('.signUpForm__message');
 
-  messageElement.textContent = message;
-  messageElement.classList.remove('signUpForm__message--success', 'signUpForm__message--error');
-  messageElement.classList.add(`signUpForm__message--${type}`);
-}
+//   messageElement.textContent = message;
+//   messageElement.classList.remove('signUpForm__message--success', 'signUpForm__message--error');
+//   messageElement.classList.add(`signUpForm__message--${type}`);
+// }
 
+/**
+ *
+ * @param {*} inputElement
+ * @param {*} message
+ */
 function setInputError(inputElement, message) {
   inputElement.classList.add('signUpForm__input--error');
   inputElement.parentElement.querySelector('.signUpForm__input-error-message').textContent = message;
 }
 
+/**
+ *
+ * @param {*} inputElement
+ */
 function clearInputError(inputElement) {
   inputElement.classList.remove('signUpForm__input--error');
   inputElement.parentElement.querySelector('.signUpForm__input-error-message').textContent = '';
@@ -29,8 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
     e.preventDefault();
 
     // Perform your AJAX/Fetch login
-    window.location.href="welcom.html";
-
+    window.location.href = 'welcom.html';
   });
 
   document.querySelectorAll('.signUpForm__input').forEach((inputElement) => {
@@ -50,14 +64,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
 const signUpForm = document.querySelector('#signUp');
 signUpForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    // get user info
-    const email = signUpForm.email.value;
-    const password = signUpForm.password.value;
-    const firstName = signUpForm.getElementById("signUp__firstName").value();
-    const lastName = signUpForm.getElementById("signUp__lastName").value();
-    const phoneNumber = signUpForm.getElementById("signUp__phoneNumber").value();
-    const birthDate = signUpForm.getElementById("signUp__id").value();
-    newUser = new User(email, firstName, lastName, birthDate, phoneNumber);
-    addNewUser()
+  e.preventDefault();
+  // get user info
+  const email = signUpForm.email.value;
+  const password = signUpForm.password.value;
+  const firstName = signUpForm.getElementById('signUp__firstName').value();
+  const lastName = signUpForm.getElementById('signUp__lastName').value();
+  const phoneNumber = signUpForm.getElementById('signUp__phoneNumber').value();
+  const birthDate = signUpForm.getElementById('signUp__id').value();
+  newUser = new User(email, firstName, lastName, birthDate, phoneNumber);
+  addNewUser(password);
 });
