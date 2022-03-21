@@ -1,12 +1,11 @@
 function setInputError(inputElement, message) {
-  inputElement.classList.add("loginForm__input--error");
-  inputElement.parentElement.querySelector(".loginForm__input-error-message").textContent = message;
+  inputElement.classList.add('loginForm__input--error');
+  inputElement.parentElement.querySelector('.loginForm__input-error-message').textContent = message;
 }
 
 function clearInputError(inputElement) {
   inputElement.classList.remove("loginForm__input--error");
-  inputElement.parentElement.querySelector(
-".loginForm__input-error-message").textContent = "";
+  inputElement.parentElement.querySelector('.loginForm__input-error-message').textContent = '';
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -17,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (loginForm['login__password'].value.length < 6) {
       setInputError(inputElement, 'password must be at least 6 characters in length');
     }
-    else{
+    else {
       // Perform your AJAX/Fetch login
       window.location.href = 'welcom.html';
     }
