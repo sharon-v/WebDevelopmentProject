@@ -122,6 +122,7 @@ body {
 
 .signUpForm__text {
     text-align: center;
+    margin-top: 10px;
 }
 
 .signUpForm__link {

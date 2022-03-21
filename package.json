@@ -2,10 +2,10 @@
   "name": "package",
   "version": "1.0.0",
   "description": "A Web Development project for the course project management",
-  "main": "main.js",
+  "main": "index.js",
   "scripts": {
-    "dev": "node src/main.js",
-    "start": "node src/main.js",
+    "dev": "node src/index.js",
+    "start": "node src/index.js",
     "test": "mocha src/*.spec.js --color",
     "lint": "eslint --ext js,jsk,html src --color"
   },

@@ -29,6 +29,8 @@ document.addEventListener('DOMContentLoaded', () => {
     e.preventDefault();
 
     // Perform your AJAX/Fetch login
+    window.location.href="welcom.html";
+
   });
 
   document.querySelectorAll('.signUpForm__input').forEach((inputElement) => {

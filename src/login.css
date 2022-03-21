@@ -96,6 +96,7 @@ body {
 
 .loginForm__text {
     text-align: center;
+    margin-top: 10px;
 }
 
 .loginForm__link {
