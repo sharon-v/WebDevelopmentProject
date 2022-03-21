@@ -16,7 +16,7 @@ orbs:
 jobs:
   install-test-and-lint:
     docker:
-      - image: cimg/node:16.14.0
+      - image: cimg/node:10
     steps:
       - checkout
       - run: 
