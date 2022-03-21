@@ -4,7 +4,7 @@ function setInputError(inputElement, message) {
 }
 
 function clearInputError(inputElement) {
-  inputElement.classList.remove("loginForm__input--error");
+  inputElement.classList.remove('loginForm__input--error');
   inputElement.parentElement.querySelector('.loginForm__input-error-message').textContent = '';
 }
 
@@ -15,8 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // check if this the condition we want - if at all
     if (loginForm['login__password'].value.length < 6) {
       setInputError(inputElement, 'password must be at least 6 characters in length');
-    }
-    else {
+    } else {
       // Perform your AJAX/Fetch login
       window.location.href = 'welcom.html';
     }
