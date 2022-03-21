@@ -1,15 +1,16 @@
 body {
     --color-primary: #ffb3b3;
     --color-primary-dark: #ffb3b3;
-    --color-secondary: #252c6a;
+    --color-secondary: #6170f7;
     --color-error: #cc3333;
     --color-success: #4bb544;
     --border-radius: 4px;
 
     margin: 0;
-    height: 100vh;
+    /* height: 100vh; */
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    /* align-items: center; */
     justify-content: center;
     font-size: 18px;
     /* background: url(./background.jpg); */
@@ -25,6 +26,9 @@ body {
     box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
     border-radius: var(--border-radius);
     background: #ffffff;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
 }
 
 .signUp__container,
