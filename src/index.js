@@ -10,5 +10,5 @@ app.get('/', (req, res)=>{
 });
 
 app.listen(port, ()=>{
-  console.log('server is up and runing- cheacking');
+  console.log('server is up and runing- checking');
 });

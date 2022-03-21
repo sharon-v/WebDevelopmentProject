@@ -1,43 +1,5 @@
-/**
- *
- * @param {*} formElement
- * @param {*} type
- * @param {*} message
- */
-// function setFormMessage(formElement, type, message) {
-//   const messageElement = formElement.querySelector('.signUpForm__message');
-
-//   messageElement.textContent = message;
-//   messageElement.classList.remove('signUpForm__message--success', 'signUpForm__message--error');
-//   messageElement.classList.add(`signUpForm__message--${type}`);
-// }
-
-/**
- *
- * @param {*} inputElement
- * @param {*} message
- */
-function setInputError(inputElement, message) {
-  inputElement.classList.add('signUpForm__input--error');
-  inputElement.parentElement.querySelector('.signUpForm__input-error-message').textContent = message;
-}
-
-/**
- *
- * @param {*} inputElement
- */
-function clearInputError(inputElement) {
-  inputElement.classList.remove('signUpForm__input--error');
-  inputElement.parentElement.querySelector('.signUpForm__input-error-message').textContent = '';
-}
-
 document.addEventListener('DOMContentLoaded', () => {
   const signUpForm = document.querySelector('#signUp');
-
-  document.querySelector('#linkLogin').addEventListener('click', (e) => {
-    // need to add implementation for transmition to login page
-
-  });
 
   // when press on sign up button
   signUpForm.addEventListener('submit', (e) => {
@@ -46,32 +8,4 @@ document.addEventListener('DOMContentLoaded', () => {
     // Perform your AJAX/Fetch login
     window.location.href = 'welcom.html';
   });
-
-  document.querySelectorAll('.signUpForm__input').forEach((inputElement) => {
-    inputElement.addEventListener('blur', (e) => {
-      // chack if this the condition we want - if at all
-      if (e.target.id === 'signUp__firstName' && e.target.value.length > 0 && e.target.value.length < 10) {
-        setInputError(inputElement, 'First name must be at least 10 characters in length');
-      }
-    });
-
-
-    inputElement.addEventListener('input', (e) => {
-      clearInputError(inputElement);
-    });
-  });
-});
-
-const signUpForm = document.querySelector('#signUp');
-signUpForm.addEventListener('submit', (e) => {
-  e.preventDefault();
-  // get user info
-  const email = signUpForm.email.value;
-  const password = signUpForm.password.value;
-  const firstName = signUpForm.getElementById('signUp__firstName').value();
-  const lastName = signUpForm.getElementById('signUp__lastName').value();
-  const phoneNumber = signUpForm.getElementById('signUp__phoneNumber').value();
-  const birthDate = signUpForm.getElementById('signUp__id').value();
-  newUser = new User(email, firstName, lastName, birthDate, phoneNumber);
-  addNewUser(password);
 });
