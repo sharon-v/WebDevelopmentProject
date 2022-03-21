@@ -12,10 +12,11 @@
         <form class="loginForm" id="login">
             <h1 class="loginForm__title">Login</h1>
             <div class="loginForm__input-group">
-                <input type="text" class="loginForm__input" id="login__email" autofocus placeholder="Email">
+                <input type="email" class="loginForm__input" id="login__email" autofocus placeholder="Email">
             </div>
             <div class="loginForm__input-group">
-                <input type="password" class="loginForm__input" id="login__password" autofocus placeholder="Password">
+                <input type="password" class="loginForm__input" id="login__password" minlength="6" autofocus placeholder="Password">
+                <div class="loginForm__input-error-message"></div>
             </div>
             <button class="loginForm__button" id="login__btn" type="submit">Login</button>
             <p class="loginForm__text">
