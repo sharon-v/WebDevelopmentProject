@@ -16,18 +16,12 @@ orbs:
 jobs:
   install-test-and-lint:
     docker:
-      - image: cimg/node:10
+      - image: cimg/node:16.14.0
     steps:
       - checkout
-      - run: 
-          name: install
-          command: npm install --save
-      - run: 
-          name: tests
-          command: npm test
-      - run: 
-          name: linter
-          command: npm run lint
+      - run: npm install --save
+      - run: npm test
+      - run: npm run lint
 
 workflows:
   # Below is the definition of your workflow.
