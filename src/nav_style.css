@@ -279,8 +279,8 @@
   
   .main__content h1 {
     font-size: 2rem;
-    background-color: #fe3b6f;
-    background-image: linear-gradient(to top, #ff087b 0%, #ed1a52 100%);
+    background-color: #98d7db;
+    background-image: linear-gradient(to top, #98d7db 0%, #98d7db 100%);
     background-size: 100%;
     background-clip: inherit;
     -webkit-background-clip: text;
@@ -293,16 +293,16 @@
   
   .main__content h2 {
     font-size: 4rem;
-    background: #ff8177; /* fallback for old browsers */
+    background: #98d7db; /* fallback for old browsers */
     background: -webkit-linear-gradient(
       to right,
-      #9114ff,
-      #da22ff
+      #98d7db,
+      #98d7db
     ); /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(
       to right,
-      #8f0eff,
-      #da22ff
+      #98d7db,
+      #98d7db
     ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     background-size: 100%;
     background-clip: inherit;
@@ -331,7 +331,6 @@
     flex-direction: column;
     justify-content: center;
     color: #fff;
-    background-image: linear-gradient(to right, #00dbde 0%, #fc00ff 100%);
   }
   
   .fa-layer-group,
@@ -339,5 +338,32 @@
     font-size: 14rem;
   }
   
+  .bedImg{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 800px;
+    width: 40%;
+    height: 100%;
+  }
   
-  
+  .home__button {
+    width: 100%;
+    padding: 1rem 2rem;
+    font-weight: bold;
+    font-size: 2rem;
+    color: #f772c4;
+    border: rgb(10, 10, 10);
+    border-radius: var(--border-radius);
+    outline: #000000;
+    cursor: pointer;
+    background: var(--color-primary);
+}
+
+.home__button:hover {
+    background: var(--color-primary-dark);
+}
+
+.home__button:active {
+    transform: scale(0.98);
+}
