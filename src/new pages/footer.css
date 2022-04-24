@@ -1,0 +1,132 @@
+.page-footer {
+    background-color: #fff;
+    padding-top: 30px;
+    text-align: center;
+}
+
+.page-footer.dark {
+    background-color: #2b2f31;
+}
+
+.page-footer .footer-copyright {
+    background-color: #fff;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    text-align: center;
+    margin-top: 50px;
+    border: 1px solid #ededed;
+}
+
+.page-footer.dark .footer-copyright {
+    background-color: #222425;
+    border-color: #222425;
+}
+
+.page-footer .footer-copyright p {
+    margin: 10px;
+    color: #7d8288;
+}
+
+.page-footer.dark .footer-copyright p {
+    color: #ccc;
+}
+
+.page-footer a {
+    color: #53595f;
+    text-decoration: none;
+}
+
+.page-footer.dark a {
+    color: #d2d1d1;
+}
+
+.page-footer a:hover,
+.page-footer a:focus {
+    text-decoration: none;
+    color: #1d2125;
+}
+
+.page-footer.dark a:hover,
+.page-footer.dark a:focus {
+    color: #fff;
+}
+
+@media (min-width: 576px) {
+    .page-footer {
+        text-align: left;
+    }
+}
+
+
+.container {
+    width: 100%;
+    padding-right: var(--bs-gutter-x, 0.75rem);
+    padding-left: var(--bs-gutter-x, 0.75rem);
+    margin-right: auto;
+    margin-left: auto;
+}
+
+@media (min-width: 576px) {
+    .container {
+        max-width: 540px;
+    }
+}
+
+@media (min-width: 768px) {
+    .container {
+        max-width: 720px;
+    }
+}
+
+@media (min-width: 992px) {
+    .container {
+        max-width: 960px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1140px;
+    }
+}
+
+@media (min-width: 1400px) {
+    .container {
+        max-width: 1320px;
+    }
+}
+
+.row {
+    --bs-gutter-x: 1.5rem;
+    --bs-gutter-y: 0;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: calc(-1*var(--bs-gutter-y));
+    margin-right: calc(-0.5*var(--bs-gutter-x));
+    margin-left: calc(-0.5*var(--bs-gutter-x));
+}
+
+.row>* {
+    flex-shrink: 0;
+    width: 100%;
+    max-width: 100%;
+    padding-right: calc(var(--bs-gutter-x)*.5);
+    padding-left: calc(var(--bs-gutter-x)*.5);
+    margin-top: var(--bs-gutter-y);
+}
+
+.col {
+    flex: 1 0 0%;
+}
+
+.row-cols-4>* {
+    flex: 0 0 auto;
+    width: 25%;
+}
+
+@media (min-width: 768px) {
+    .col-md-5 {
+        flex: 0 0 auto;
+        width: 41.66666667%;
+    }
+}
