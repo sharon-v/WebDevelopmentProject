@@ -6,7 +6,7 @@ app.use(express.static(__dirname + '/'));
 
 app.get('/', (req, res)=>{
   // res.send('<h1>The web is on the air<h1>');
-  res.sendFile('/home.html', {root: __dirname});
+  res.sendFile('/new pages/Welcome-page.html', {root: __dirname});
 });
 
 app.listen(port, ()=>{
