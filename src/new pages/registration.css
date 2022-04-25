@@ -17,20 +17,20 @@ body {
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
-h2 {
-    margin-top: 4;
+h1 {
+    margin-top: 0;
     margin-bottom: .5rem;
     font-weight: 500;
     line-height: 1.2;
 }
 
-h2 {
-    font-size: calc(1.325rem + 0.9vw);
+h1 {
+    font-size: calc(1.375rem + 1.5vw);
 }
 
 @media (min-width: 1200px) {
-    h2 {
-        font-size: 2rem;
+    h1 {
+        font-size: 2.5rem;
     }
 }
 
@@ -61,10 +61,6 @@ a:hover {
     color: #0a58ca;
 }
 
-img {
-    vertical-align: middle;
-}
-
 label {
     display: inline-block;
 }
@@ -87,6 +83,10 @@ button {
 
 button {
     text-transform: none;
+}
+
+[role=button] {
+    cursor: pointer;
 }
 
 button,
@@ -570,16 +570,8 @@ button,
     flex-direction: column !important;
 }
 
-.flex-wrap {
-    flex-wrap: wrap !important;
-}
-
 .align-items-center {
     align-items: center !important;
-}
-
-.align-self-start {
-    align-self: flex-start !important;
 }
 
 .mx-auto {
@@ -606,11 +598,6 @@ button,
 
 .text-center {
     text-align: center !important;
-}
-
-.text-primary {
-    --bs-text-opacity: 1;
-    color: rgba(var(--bs-primary-rgb), var(--bs-text-opacity)) !important;
 }
 
 .text-white {
@@ -661,16 +648,8 @@ button,
 }
 
 @media (min-width: 1400px) {
-    .d-xxl-flex {
-        display: flex !important;
-    }
-
     .justify-content-xxl-center {
         justify-content: center !important;
-    }
-
-    .align-items-xxl-end {
-        align-items: flex-end !important;
     }
 
     .align-items-xxl-center {
@@ -703,7 +682,7 @@ body {
     text-align: center;
 }
 
-.clean-block .block-heading h2 {
+.clean-block .block-heading h1 {
     margin-bottom: 1.2rem;
 }
 
@@ -853,7 +832,11 @@ body {
     content: "\f005";
 }
 
-/*! CSS Used fontfaces */
+body {
+    align-items: center;
+    justify-content: center;
+}
+
 @font-face {
     font-family: "Font Awesome 5 Free";
     font-style: normal;
