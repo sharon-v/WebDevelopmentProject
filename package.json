@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "node src/index.js",
+    "dev2": "node src/appdb.js",
     "start": "node src/index.js",
     "test": "mocha test/*.spec.js --color",
     "lint": "eslint --ext js,jsk src --color"
@@ -21,7 +22,7 @@
   "homepage": "https://github.com/sharon-v/WebDevelopmentProject#readme",
   "dependencies": {
     "express": "^4.17.3",
-    "firebase": "^9.6.9"
+    "moongose": "^1.0.0"
   },
   "devDependencies": {
     "@types/chai": "^4.3.0",
