@@ -1,5 +1,7 @@
-const {MongoClient}=require('mongodb');
-const mongoose = require("mongoose");
+//const {MongoClient}=require('mongodb');
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const { app_features } = require('moongose/models');
 
 const mongoAtlasUri =
 "mongodb+srv://chen:123@cluster0.xjbqx.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
@@ -18,12 +20,4 @@ try {
   dbConnection.once("open", () => console.log("Connected to DB!"));
 } catch (e) {
   console.log("could not connect");
-}
-
-async function listDatabases(){
-    const databasesList = await mongoose.listDatabases();
-    console.log("Databases:");
-    databasesList.databases.forEach(db => {
-        console.log('- ${db.name}');
-    })                   
 }

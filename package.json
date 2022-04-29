@@ -4,9 +4,8 @@
   "description": "A Web Development project for the course project management",
   "main": "index.js",
   "scripts": {
-    "dev": "node src/index.js",
-    "dev2": "node src/appdb.js",
-    "start": "node src/index.js",
+    "dev": "nodemon src/index.js",
+    "start": "nodemon src/index.js",
     "test": "mocha test/*.spec.js --color",
     "lint": "eslint --ext js,jsk src --color"
   },
@@ -21,8 +20,11 @@
   },
   "homepage": "https://github.com/sharon-v/WebDevelopmentProject#readme",
   "dependencies": {
+    "body-parser": "^1.20.0",
     "express": "^4.17.3",
-    "moongose": "^1.0.0"
+    "moongose": "^1.0.0",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.15"
   },
   "devDependencies": {
     "@types/chai": "^4.3.0",
