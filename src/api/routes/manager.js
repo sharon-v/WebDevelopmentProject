@@ -1,12 +1,12 @@
-module.exports = {
-    signup: (req, res) => {
-        res.status(200).json({
-            message: 'Signup'
-        })
-    },
-    login: (req, res) => {
-        res.status(200).json({
-            message: 'Login'
-        })
-    }
-}
+const express = require('express');
+const router = express.Router();
+
+const {
+    signup,
+    login
+} = require('../controllers/users');
+
+router.post('/signup', signup);
+router.post('/login', login);
+
+module.exports = router;

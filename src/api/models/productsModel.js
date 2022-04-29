@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
-const { modelName } = require('moongose/models/user_model');
+//const { modelName } = require('moongose/models/user_model');
+const Article = require('../models/productModel');
 const productSchema = new mongoose.Schema({
     productName: {
         type: String,
@@ -10,14 +11,6 @@ const productSchema = new mongoose.Schema({
         required: true
     },
     quantity: {
-        type: String,
-        required: true
-    },
-    email: {
-        type: String,
-        required: true
-    },
-    phoneNumber: {
         type: String,
         required: true
     },

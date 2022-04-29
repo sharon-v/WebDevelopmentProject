@@ -5,12 +5,14 @@ const {
     getAllProducts,
     createProduct,
     updateProduct,
-    deleteProduct
+    deleteProduct,
+    getProduct
 } = require('../controllers/products');
 
 router.get('/', getAllProducts);
 router.post('/', createProduct);
-router.patch('/:articleId', updateProduct);
-router.delete('/:articleId', deleteProduct);
+router.get('/:ProductId', getProduct);
+router.patch('/:productId', updateProduct);
+router.delete('/:productId', deleteProduct);
 
 module.exports = router;
