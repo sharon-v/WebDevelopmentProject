@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
+    />
+    <title>Catalog - Brand</title>
+    <link rel="stylesheet" href="../new pages/product-catalog.css" />
+  </head>
+
+  <body>
+    <script id="replace_with_navbar" src="../navbar.js"></script>
+
+    <!-- <nav
+      class="navbar navbar-dark navbar-expand-lg fixed-top bg-dark clean-navbar"
+      style="color: rgb(33, 37, 41)"
+    >
+      <div class="container">
+        <a
+          class="btn d-lg-flex mx-auto"
+          role="button"
+          style="
+            background: url('icon/bed-free-icon-font.svg') center / contain
+              no-repeat;
+            border-style: hidden;
+            width: 3.5vw;
+            height: 3vw;
+            padding-right: 5vw;
+          "
+          href="home-page.html"
+        ></a
+        ><a
+          class="navbar-brand link-light d-lg-flex justify-content-lg-center logo"
+          href="#"
+          style="color: var(--bs-white)"
+          ><strong>Holy Sheets</strong></a
+        ><button
+          class="navbar-toggler"
+          data-bs-toggle="collapse"
+          data-bs-target="#navcol-1"
+        >
+          <span class="visually-hidden">Toggle navigation</span
+          ><span class="navbar-toggler-icon"></span>
+        </button>
+        <div id="navcol-1" class="collapse navbar-collapse">
+          <i class="fa fa-star"></i>
+          <ul class="navbar-nav ms-auto">
+            <li
+              class="nav-item d-lg-flex justify-content-lg-start justify-content-xxl-center align-items-xxl-center"
+              style="width: initial; height: 2vw"
+            >
+              <i
+                class="fi fi-rs-home fs-2 text-white d-lg-flex align-items-lg-center"
+                data-bs-toggle="tooltip"
+                data-bs-placement="bottom"
+                title="Home"
+              ></i
+              ><a
+                class="btn mx-auto"
+                role="button"
+                data-bs-toggle="tooltip"
+                data-bs-placement="bottom"
+                style="
+                  background: url('icon/home-free-icon-font.svg') center /
+                    contain no-repeat;
+                  border-style: hidden;
+                  width: 2.1vw;
+                  height: 2.1vw;
+                "
+                title="Home"
+                href="home-page.html"
+              ></a>
+            </li>
+            <li
+              class="nav-item d-lg-flex justify-content-lg-start justify-content-xxl-center align-items-xxl-center"
+              style="width: initial; height: 2vw"
+            >
+              <i
+                class="fi fi-rs-home fs-2 text-white d-lg-flex align-items-lg-center"
+                data-bs-toggle="tooltip"
+                data-bs-placement="bottom"
+                title="Home"
+              ></i
+              ><a
+                class="btn mx-auto"
+                role="button"
+                data-bs-toggle="tooltip"
+                data-bs-placement="bottom"
+                style="
+                  background: url('icon/book-alt-free-icon-font.svg') center /
+                    contain no-repeat;
+                  border-style: hidden;
+                  width: 2.1vw;
+                  height: 2.1vw;
+                "
+                title="Catalog"
+                href="catalog-page.html"
+              ></a>
+            </li>
+            <li
+              class="nav-item d-sm-flex justify-content-lg-start justify-content-xxl-center align-items-xxl-center"
+              style="width: initial; height: 2vw"
+            >
+              <a
+                class="btn mx-auto"
+                role="button"
+                data-bs-toggle="tooltip"
+                data-bs-placement="bottom"
+                style="
+                  background: url('icon/shopping-cart-free-icon-font.svg')
+                    center / contain no-repeat;
+                  border-style: hidden;
+                  width: 2.3vw;
+                  height: 2.3vw;
+                "
+                title="Shopping Cart"
+                href="shopping-cart.html"
+              ></a
+              ><span
+                class="badge rounded-pill bg-secondary d-lg-flex justify-content-lg-center align-items-lg-center"
+                data-bs-toggle="tooltip"
+                data-bs-placement="bottom"
+                title="Items in cart"
+                style="height: 20px"
+                >42</span
+              >
+            </li>
+            <li
+              class="nav-item d-lg-flex justify-content-lg-start justify-content-xxl-center align-items-xxl-center"
+              style="width: initial; height: 2vw"
+            >
+              <i
+                class="fi fi-rs-home fs-2 text-white d-lg-flex align-items-lg-center"
+                data-bs-toggle="tooltip"
+                data-bs-placement="bottom"
+                title="Home"
+              ></i
+              ><a
+                class="btn mx-auto"
+                role="button"
+                data-bs-toggle="tooltip"
+                data-bs-placement="bottom"
+                style="
+                  background: url('icon/heart-free-icon-font.svg') center /
+                    contain no-repeat;
+                  border-style: hidden;
+                  width: 2.1vw;
+                  height: 2.1vw;
+                "
+                title="Wishlist"
+                href="wishlist.html"
+              ></a>
+            </li>
+            <li
+              class="nav-item d-lg-flex justify-content-xxl-center align-items-xxl-center"
+              style="width: initial; height: 2vw"
+            >
+              <i
+                class="fi fi-rs-home fs-2 text-white d-lg-flex align-items-lg-center"
+                data-bs-toggle="tooltip"
+                data-bs-placement="bottom"
+                title="Home"
+              ></i
+              ><a
+                class="btn mx-auto"
+                role="button"
+                data-bs-toggle="tooltip"
+                data-bs-placement="bottom"
+                style="
+                  background: url('icon/user-free-icon-font.svg') center /
+                    contain no-repeat;
+                  border-style: hidden;
+                  width: 2.1vw;
+                  height: 2.1vw;
+                "
+                title="My Account"
+                href="profile.html"
+              ></a
+              ><label
+                class="form-label"
+                style="
+                  color: var(--bs-white);
+                  margin-left: 1vw;
+                  font-size: 13px;
+                  text-align: center;
+                  margin-top: 0.5vw;
+                "
+                >Hello, &lt;User&gt;</label
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link d-lg-flex" href="login.html">LOGIN</a>
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link d-lg-flex align-items-lg-center"
+                href="registration.html"
+                >Register</a
+              >
+            </li>
+          </ul>
+        </div>
+        <a href="registration.html"></a>
+      </div>
+    </nav> -->
+    <main class="page catalog-page">
+      <section class="clean-block clean-catalog dark">
+        <div class="container">
+          <div class="block-heading">
+            <h1 style="font-size: calc(1.325rem + 0.9vw)">
+              Product Catalog<br />
+            </h1>
+          </div>
+          <ul
+            class="nav nav-tabs d-lg-flex flex-row justify-content-lg-center align-items-lg-center"
+          >
+            <li class="nav-item"></li>
+            <li class="nav-item">
+              <a class="nav-link fw-bold link-dark" href="#">All</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#" style="color: var(--bs-pink)"
+                >Cotton</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#" style="color: var(--bs-pink)"
+                >Microfiber</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#" style="color: var(--bs-pink)"
+                >Flannel</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#" style="color: var(--bs-pink)"
+                >Satin</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#" style="color: var(--bs-pink)"
+                >Jersey<br
+              /></a>
+            </li>
+            <li class="nav-item"></li>
+            <li class="nav-item">
+              <a class="nav-link mx-auto" href="#"
+                ><button
+                  class="btn btn-primary"
+                  type="button"
+                  style="
+                    background: url('icon/search (1).svg') center / contain
+                      no-repeat;
+                    width: 1.5vw;
+                    height: 1.5vw;
+                    border-style: hidden;
+                    margin-right: 10px;
+                  "
+                ></button
+                ><input
+                  class="mx-auto"
+                  type="search"
+                  name="product_catalog_search_bar"
+                  placeholder="SKU, product name"
+              /></a>
+            </li>
+          </ul>
+          <div
+            class="d-lg-flex justify-content-lg-start filters"
+            style="padding-bottom: 20px; padding-left: 30px"
+          >
+            <select
+              style="padding-left: 30px; font-size: 20px; text-align: left"
+            >
+              <option value selected>Sort by</option>
+              <option value>Lowest to Highest</option>
+              <option value>Highest to Lowest</option>
+              <option value></option>
+            </select>
+            <div></div>
+            <div></div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <div
+                class="mx-auto filter-item"
+                style="
+                  padding-top: 30px;
+                  padding-bottom: 40px;
+                  padding-left: 40px;
+                "
+              >
+                <h3
+                  style="
+                    font-weight: bold;
+                    text-decoration: underline;
+                    font-size: 20px;
+                  "
+                >
+                  Bed size
+                </h3>
+                <div class="form-check">
+                  <input
+                    id="formCheck-11"
+                    class="form-check-input"
+                    type="checkbox"
+                  /><label class="form-check-label" for="formCheck-11"
+                    >California King</label
+                  >
+                </div>
+                <div class="form-check">
+                  <input
+                    id="formCheck-12"
+                    class="form-check-input"
+                    type="checkbox"
+                  /><label class="form-check-label" for="formCheck-12"
+                    >King</label
+                  >
+                </div>
+                <div class="form-check">
+                  <input
+                    id="formCheck-13"
+                    class="form-check-input"
+                    type="checkbox"
+                  /><label class="form-check-label" for="formCheck-13"
+                    >Queen</label
+                  >
+                </div>
+                <div class="form-check">
+                  <input
+                    id="formCheck-14"
+                    class="form-check-input"
+                    type="checkbox"
+                  /><label class="form-check-label" for="formCheck-14"
+                    >Twin</label
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div
+                class="mx-auto filter-item"
+                style="
+                  padding-top: 30px;
+                  padding-bottom: 40px;
+                  padding-left: 40px;
+                "
+              >
+                <h3
+                  style="
+                    font-weight: bold;
+                    text-decoration: underline;
+                    font-size: 20px;
+                  "
+                >
+                  Fabric
+                </h3>
+                <div class="form-check">
+                  <input
+                    id="formCheck-1"
+                    class="form-check-input"
+                    type="checkbox"
+                  /><label class="form-check-label" for="formCheck-1"
+                    >Cotton</label
+                  >
+                </div>
+                <div class="form-check">
+                  <input
+                    id="formCheck-2"
+                    class="form-check-input"
+                    type="checkbox"
+                  /><label class="form-check-label" for="formCheck-2"
+                    >Microfiber</label
+                  >
+                </div>
+                <div class="form-check">
+                  <input
+                    id="formCheck-3"
+                    class="form-check-input"
+                    type="checkbox"
+                  /><label class="form-check-label" for="formCheck-3"
+                    >Flannel</label
+                  >
+                </div>
+                <div class="form-check">
+                  <input
+                    id="formCheck-4"
+                    class="form-check-input"
+                    type="checkbox"
+                  /><label class="form-check-label" for="formCheck-4"
+                    >Satin</label
+                  >
+                </div>
+                <div class="form-check">
+                  <input
+                    id="formCheck-5"
+                    class="form-check-input"
+                    type="checkbox"
+                  /><label class="form-check-label" for="formCheck-5"
+                    >Jersey</label
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div
+                class="mx-auto filter-item"
+                style="padding-top: 30px; padding-left: 40px"
+              >
+                <h3
+                  style="
+                    font-weight: bold;
+                    text-decoration: underline;
+                    font-size: 20px;
+                  "
+                >
+                  Product status
+                </h3>
+                <div class="form-check">
+                  <input
+                    id="formCheck-15"
+                    class="form-check-input"
+                    type="checkbox"
+                  /><label class="form-check-label" for="formCheck-15"
+                    >Just landed</label
+                  >
+                </div>
+                <div class="form-check">
+                  <input
+                    id="formCheck-16"
+                    class="form-check-input"
+                    type="checkbox"
+                  /><label class="form-check-label" for="formCheck-16"
+                    >On sale</label
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+          <div></div>
+          <div class="content">
+            <div class="row justify-content-center">
+              <div class="col-md-9 flex-fill">
+                <div class="products">
+                  <div class="row g-0">
+                    <div class="col-12 col-md-6 col-lg-4">
+                      <div class="clean-product-item">
+                        <div class="image">
+                          <a href="#"
+                            ><img
+                              class="img-fluid d-block mx-auto"
+                              src="sheets/1bd475a7dd51118a3db91c50d52bf519.jpg"
+                              style="width: 250px; height: 300px"
+                          /></a>
+                        </div>
+                        <div
+                          class="d-lg-flex justify-content-lg-center product-name"
+                        >
+                          <a href="#">sheets name</a>
+                        </div>
+                        <div class="about">
+                          <div class="rating">
+                            <span
+                              class="fs-4"
+                              style="color: var(--bs-red); font-size: 19.2px"
+                              ><strong>109.90</strong></span
+                            >
+                          </div>
+                          <div class="price">
+                            <h3 style="text-decoration: line-through">
+                              149.90
+                            </h3>
+                          </div>
+                        </div>
+                        <div class="d-inline-flex about">
+                          <div class="rating"></div>
+                          <div class="price"></div>
+                        </div>
+                        <button
+                          class="btn btn-primary"
+                          type="button"
+                          style="
+                            border-radius: 0px;
+                            width: 3vw;
+                            height: 3vw;
+                            border: 0px none var(--bs-white);
+                            background: url('icon/shopping-cart-add-free-icon-font (1).svg')
+                                center / cover,
+                              var(--bs-white);
+                            margin-top: 1vw;
+                            margin-bottom: 1vw;
+                          "
+                        ></button>
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4">
+                      <div class="clean-product-item">
+                        <div class="image">
+                          <a href="#"
+                            ><img
+                              class="img-fluid d-block mx-auto"
+                              src="sheets/4.jpg"
+                              style="width: 250px; height: 300px"
+                          /></a>
+                        </div>
+                        <div
+                          class="d-lg-flex justify-content-lg-center product-name"
+                        >
+                          <a href="#">sheets name</a>
+                        </div>
+                        <div class="about">
+                          <div class="rating"></div>
+                          <div class="price">
+                            <h3 style="margin-top: 0.5vw">129.90</h3>
+                          </div>
+                        </div>
+                        <button
+                          class="btn btn-primary"
+                          type="button"
+                          style="
+                            border-radius: 0px;
+                            width: 3vw;
+                            height: 3vw;
+                            border: 0px none var(--bs-white);
+                            background: url('icon/shopping-cart-add-free-icon-font (1).svg')
+                                center / cover,
+                              var(--bs-white);
+                            margin-top: 1vw;
+                            margin-bottom: 1vw;
+                          "
+                        ></button>
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4">
+                      <div class="clean-product-item">
+                        <div class="image">
+                          <a href="#"
+                            ><img
+                              class="img-fluid d-block mx-auto"
+                              src="sheets/71ZxvIGFtrL._SL1280_.jpg"
+                              style="width: 250px; height: 300px"
+                          /></a>
+                        </div>
+                        <div
+                          class="d-lg-flex justify-content-lg-center product-name"
+                        >
+                          <a href="#">sheets name</a>
+                        </div>
+                        <div class="about">
+                          <div class="rating">
+                            <span
+                              class="fs-4"
+                              style="color: var(--bs-red); font-size: 19.2px"
+                              ><strong>109.90</strong></span
+                            >
+                          </div>
+                          <div class="price">
+                            <h3 style="text-decoration: line-through">
+                              149.90
+                            </h3>
+                          </div>
+                        </div>
+                        <button
+                          class="btn btn-primary"
+                          type="button"
+                          style="
+                            border-radius: 0px;
+                            width: 3vw;
+                            height: 3vw;
+                            border: 0px none var(--bs-white);
+                            background: url('icon/shopping-cart-add-free-icon-font (1).svg')
+                                center / cover,
+                              var(--bs-white);
+                            margin-top: 1vw;
+                            margin-bottom: 1vw;
+                          "
+                        ></button>
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4">
+                      <div class="clean-product-item">
+                        <div class="image">
+                          <a href="#"
+                            ><img
+                              class="img-fluid d-block mx-auto"
+                              src="sheets/6600805A_00_W900_H1173.jpg"
+                              style="width: 250px; height: 300px"
+                          /></a>
+                        </div>
+                        <div
+                          class="d-lg-flex justify-content-lg-center product-name"
+                        >
+                          <a href="#">sheets name</a>
+                        </div>
+                        <div class="about">
+                          <div class="rating">
+                            <span
+                              class="fs-4"
+                              style="color: var(--bs-red); font-size: 19.2px"
+                              ><strong>109.90</strong></span
+                            >
+                          </div>
+                          <div class="price">
+                            <h3 style="text-decoration: line-through">
+                              169.90
+                            </h3>
+                          </div>
+                        </div>
+                        <button
+                          class="btn btn-primary"
+                          type="button"
+                          style="
+                            border-radius: 0px;
+                            width: 3vw;
+                            height: 3vw;
+                            border: 0px none var(--bs-white);
+                            background: url('icon/shopping-cart-add-free-icon-font (1).svg')
+                                center / cover,
+                              var(--bs-white);
+                            margin-top: 1vw;
+                            margin-bottom: 1vw;
+                          "
+                        ></button>
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4">
+                      <div class="clean-product-item">
+                        <div class="image">
+                          <a href="#"
+                            ><img
+                              class="img-fluid d-block mx-auto"
+                              src="sheets/a7a742e43c8cae9b647578b18a902307.jpg"
+                              style="width: 250px; height: 300px"
+                          /></a>
+                        </div>
+                        <div
+                          class="d-lg-flex justify-content-lg-center product-name"
+                        >
+                          <a href="#">sheets name</a>
+                        </div>
+                        <div class="about">
+                          <div class="rating"></div>
+                          <div class="price">
+                            <h3 style="margin-top: 0.5vw">109.90</h3>
+                          </div>
+                        </div>
+                        <button
+                          class="btn btn-primary"
+                          type="button"
+                          style="
+                            border-radius: 0px;
+                            width: 3vw;
+                            height: 3vw;
+                            border: 0px none var(--bs-white);
+                            background: url('icon/shopping-cart-add-free-icon-font (1).svg')
+                                center / cover,
+                              var(--bs-white);
+                            margin-top: 1vw;
+                            margin-bottom: 1vw;
+                          "
+                        ></button>
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4">
+                      <div class="clean-product-item">
+                        <div class="image">
+                          <a href="#"
+                            ><img
+                              class="img-fluid d-block mx-auto"
+                              src="sheets/Bedding-Set-satin-100-cotton-C502-1-5-sleeping-pillowcases-70-70-2-PCs.jpg"
+                              style="width: 250px; height: 300px"
+                          /></a>
+                        </div>
+                        <div
+                          class="d-lg-flex justify-content-lg-center product-name"
+                        >
+                          <a href="#">sheets name</a>
+                        </div>
+                        <div class="about">
+                          <div class="rating"></div>
+                          <div class="price">
+                            <h3 style="margin-top: 0.5vw">129.90</h3>
+                          </div>
+                        </div>
+                        <button
+                          class="btn btn-primary"
+                          type="button"
+                          style="
+                            border-radius: 0px;
+                            width: 3vw;
+                            height: 3vw;
+                            border: 0px none var(--bs-white);
+                            background: url('icon/shopping-cart-add-free-icon-font (1).svg')
+                                center / cover,
+                              var(--bs-white);
+                            margin-top: 1vw;
+                            margin-bottom: 1vw;
+                          "
+                        ></button>
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4">
+                      <div class="clean-product-item">
+                        <div class="image">
+                          <a href="#"
+                            ><img
+                              class="img-fluid d-block mx-auto"
+                              src="sheets/H07c3e51c66e6461ab2a133d201ddd32aV.jpg"
+                              style="width: 250px; height: 300px"
+                          /></a>
+                        </div>
+                        <div
+                          class="d-lg-flex justify-content-lg-center product-name"
+                        >
+                          <a href="#">sheets name</a>
+                        </div>
+                        <div class="about">
+                          <div class="rating"></div>
+                          <div class="price">
+                            <h3 style="margin-top: 0.5vw">139.90</h3>
+                          </div>
+                        </div>
+                        <button
+                          class="btn btn-primary"
+                          type="button"
+                          style="
+                            border-radius: 0px;
+                            width: 3vw;
+                            height: 3vw;
+                            border: 0px none var(--bs-white);
+                            background: url('icon/shopping-cart-add-free-icon-font (1).svg')
+                                center / cover,
+                              var(--bs-white);
+                            margin-top: 1vw;
+                            margin-bottom: 1vw;
+                          "
+                        ></button>
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4">
+                      <div class="clean-product-item">
+                        <div class="image">
+                          <a href="#"
+                            ><img
+                              class="img-fluid d-block mx-auto"
+                              src="sheets/s-l400.jpg"
+                              style="width: 250px; height: 300px"
+                          /></a>
+                        </div>
+                        <div
+                          class="d-lg-flex justify-content-lg-center product-name"
+                        >
+                          <a href="#">sheets name</a>
+                        </div>
+                        <div class="about">
+                          <div class="rating"></div>
+                          <div class="price">
+                            <h3 style="margin-top: 0.5vw">109.90</h3>
+                          </div>
+                        </div>
+                        <button
+                          class="btn btn-primary"
+                          type="button"
+                          style="
+                            border-radius: 0px;
+                            width: 3vw;
+                            height: 3vw;
+                            border: 0px none var(--bs-white);
+                            background: url('icon/shopping-cart-add-free-icon-font (1).svg')
+                                center / cover,
+                              var(--bs-white);
+                            margin-top: 1vw;
+                            margin-bottom: 1vw;
+                          "
+                        ></button>
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4">
+                      <div class="clean-product-item">
+                        <div class="image">
+                          <a href="#"
+                            ><img
+                              class="img-fluid d-block mx-auto"
+                              src="sheets/SJ-3-4pcs-Set-Swan-Geometric-Pattern-Blue-Comforter-Bedding-Sets-Cotton-Duvet-Cover-Set-Bed.jpg"
+                              style="width: 250px; height: 300px" /></a
+                          ><a href="#"></a>
+                        </div>
+                        <div
+                          class="d-lg-flex justify-content-lg-center product-name"
+                        >
+                          <a href="#">sheets name</a>
+                        </div>
+                        <div class="about">
+                          <div class="rating">
+                            <span
+                              class="fs-4"
+                              style="color: var(--bs-red); font-size: 19.2px"
+                              ><strong>109.90</strong></span
+                            >
+                          </div>
+                          <div class="price">
+                            <h3 style="text-decoration: line-through">
+                              119.90
+                            </h3>
+                          </div>
+                        </div>
+                        <button
+                          class="btn btn-primary"
+                          type="button"
+                          style="
+                            border-radius: 0px;
+                            width: 3vw;
+                            height: 3vw;
+                            border: 0px none var(--bs-white);
+                            background: url('icon/shopping-cart-add-free-icon-font (1).svg')
+                                center / cover,
+                              var(--bs-white);
+                            margin-top: 1vw;
+                            margin-bottom: 1vw;
+                          "
+                        ></button>
+                      </div>
+                    </div>
+                  </div>
+                  <nav>
+                    <ul class="pagination">
+                      <li class="page-item disabled">
+                        <a class="page-link" aria-label="Previous"
+                          ><span aria-hidden="true">«</span></a
+                        >
+                      </li>
+                      <li class="page-item active">
+                        <a class="page-link">1</a>
+                      </li>
+                      <li class="page-item"><a class="page-link">2</a></li>
+                      <li class="page-item"><a class="page-link">3</a></li>
+                      <li class="page-item">
+                        <a class="page-link" aria-label="Next"
+                          ><span aria-hidden="true">»</span></a
+                        >
+                      </li>
+                    </ul>
+                  </nav>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <!-- <footer class="page-footer dark" style="color: rgb(33, 37, 41)">
+      <div class="container">
+        <div class="row row-cols-4">
+          <div class="col-lg-2 text-center d-lg-flex align-items-lg-center">
+            <a class="mx-auto" href="help-center.html">Help Center</a>
+          </div>
+          <div class="col-lg-2 text-center d-lg-flex align-items-lg-center">
+            <a class="mx-auto" href="q-and-a.html">Q&amp;A</a>
+          </div>
+          <div
+            class="col-lg-2 text-center d-lg-flex align-items-center align-items-lg-center"
+          >
+            <a class="mx-auto" href="about-us.html">About Us</a>
+          </div>
+          <div class="col-lg-2 text-center d-lg-flex align-items-lg-center">
+            <a class="mx-auto" href="contact-us.html">Contact Us</a>
+          </div>
+          <div
+            class="col d-lg-flex mx-auto justify-content-lg-center align-items-lg-center"
+          >
+            <a
+              class="btn mx-auto"
+              role="button"
+              style="
+                background: url('icon/facebook-free-icon-font.svg') center /
+                  contain no-repeat;
+                border-style: hidden;
+                width: 3.5vw;
+                height: 3vw;
+              "
+              href="https://www.facebook.com/profile.php?id=100080692064900"
+            ></a
+            ><a
+              class="btn mx-auto"
+              role="button"
+              style="
+                background: url('icon/instagram-free-icon-font.svg') center /
+                  contain no-repeat;
+                border-style: hidden;
+                width: 3.5vw;
+                height: 3vw;
+              "
+              href="https://www.instagram.com/holysheets.official/"
+            ></a
+            ><img
+              class="mx-auto"
+              data-bs-toggle="tooltip"
+              data-bs-placement="bottom"
+              style="border-style: hidden; width: 3.5vw; height: 3vw"
+              src="icon/envelope-free-icon-font.svg"
+              title="holysheets.official@gmail.com"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="footer-copyright">
+        <p>© 2022 Copyright Holy Sheets</p>
+      </div>
+    </footer> -->
+    <script id="replace_with_footer" src="new pages/footer.js"></script>
+    <!-- <script src="new pages/Welcome-page.js"></script> -->
+  </body>
+</html>
