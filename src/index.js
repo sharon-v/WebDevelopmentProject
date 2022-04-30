@@ -10,9 +10,9 @@ const morgan = require('morgan');
 const { Router } = require('express');
 // **** end guide
 
-app.use(Router);
 const port = process.env.PORT || 5000;
 const app = express();
+app.use(Router);
 app.use(express.static(__dirname + '/'));
 
 // **** start guide
