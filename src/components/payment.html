@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
+    />
+    <title>Payment - Brand</title>
+    <link rel="stylesheet" href="../components/Welcome-page.css" />
+  </head>
+
+  <body>
+    <script id="replace_with_navbar" src="../components/navbar.js"></script>
+
+    <!-- <nav
+      class="navbar navbar-dark navbar-expand-lg fixed-top bg-dark clean-navbar"
+      style="color: rgb(33, 37, 41)"
+    >
+      <div class="container">
+        <a
+          class="btn d-lg-flex mx-auto"
+          role="button"
+          style="
+            background: url('icon/bed-free-icon-font.svg') center / contain
+              no-repeat;
+            border-style: hidden;
+            width: 3.5vw;
+            height: 3vw;
+            padding-right: 5vw;
+          "
+          href="home-page.html"
+        ></a
+        ><a
+          class="navbar-brand link-light d-lg-flex justify-content-lg-center logo"
+          href="#"
+          style="color: var(--bs-white)"
+          ><strong>Holy Sheets</strong></a
+        ><button
+          class="navbar-toggler"
+          data-bs-toggle="collapse"
+          data-bs-target="#navcol-1"
+        >
+          <span class="visually-hidden">Toggle navigation</span
+          ><span class="navbar-toggler-icon"></span>
+        </button>
+        <div id="navcol-1" class="collapse navbar-collapse">
+          <i class="fa fa-star"></i>
+          <ul class="navbar-nav ms-auto">
+            <li
+              class="nav-item d-lg-flex justify-content-lg-start justify-content-xxl-center align-items-xxl-center"
+              style="width: initial; height: 2vw"
+            >
+              <i
+                class="fi fi-rs-home fs-2 text-white d-lg-flex align-items-lg-center"
+                data-bs-toggle="tooltip"
+                data-bs-placement="bottom"
+                title="Home"
+              ></i
+              ><a
+                class="btn mx-auto"
+                role="button"
+                data-bs-toggle="tooltip"
+                data-bs-placement="bottom"
+                style="
+                  background: url('icon/home-free-icon-font.svg') center /
+                    contain no-repeat;
+                  border-style: hidden;
+                  width: 2.1vw;
+                  height: 2.1vw;
+                "
+                title="Home"
+                href="home-page.html"
+              ></a>
+            </li>
+            <li
+              class="nav-item d-lg-flex justify-content-lg-start justify-content-xxl-center align-items-xxl-center"
+              style="width: initial; height: 2vw"
+            >
+              <i
+                class="fi fi-rs-home fs-2 text-white d-lg-flex align-items-lg-center"
+                data-bs-toggle="tooltip"
+                data-bs-placement="bottom"
+                title="Home"
+              ></i
+              ><a
+                class="btn mx-auto"
+                role="button"
+                data-bs-toggle="tooltip"
+                data-bs-placement="bottom"
+                style="
+                  background: url('icon/book-alt-free-icon-font.svg') center /
+                    contain no-repeat;
+                  border-style: hidden;
+                  width: 2.1vw;
+                  height: 2.1vw;
+                "
+                title="Catalog"
+                href="catalog-page.html"
+              ></a>
+            </li>
+            <li
+              class="nav-item d-sm-flex justify-content-lg-start justify-content-xxl-center align-items-xxl-center"
+              style="width: initial; height: 2vw"
+            >
+              <a
+                class="btn mx-auto"
+                role="button"
+                data-bs-toggle="tooltip"
+                data-bs-placement="bottom"
+                style="
+                  background: url('icon/shopping-cart-free-icon-font.svg')
+                    center / contain no-repeat;
+                  border-style: hidden;
+                  width: 2.3vw;
+                  height: 2.3vw;
+                "
+                title="Shopping Cart"
+                href="shopping-cart.html"
+              ></a
+              ><span
+                class="badge rounded-pill bg-secondary d-lg-flex justify-content-lg-center align-items-lg-center"
+                data-bs-toggle="tooltip"
+                data-bs-placement="bottom"
+                title="Items in cart"
+                style="height: 20px"
+                >42</span
+              >
+            </li>
+            <li
+              class="nav-item d-lg-flex justify-content-lg-start justify-content-xxl-center align-items-xxl-center"
+              style="width: initial; height: 2vw"
+            >
+              <i
+                class="fi fi-rs-home fs-2 text-white d-lg-flex align-items-lg-center"
+                data-bs-toggle="tooltip"
+                data-bs-placement="bottom"
+                title="Home"
+              ></i
+              ><a
+                class="btn mx-auto"
+                role="button"
+                data-bs-toggle="tooltip"
+                data-bs-placement="bottom"
+                style="
+                  background: url('icon/heart-free-icon-font.svg') center /
+                    contain no-repeat;
+                  border-style: hidden;
+                  width: 2.1vw;
+                  height: 2.1vw;
+                "
+                title="Wishlist"
+                href="wishlist.html"
+              ></a>
+            </li>
+            <li
+              class="nav-item d-lg-flex justify-content-xxl-center align-items-xxl-center"
+              style="width: initial; height: 2vw"
+            >
+              <i
+                class="fi fi-rs-home fs-2 text-white d-lg-flex align-items-lg-center"
+                data-bs-toggle="tooltip"
+                data-bs-placement="bottom"
+                title="Home"
+              ></i
+              ><a
+                class="btn mx-auto"
+                role="button"
+                data-bs-toggle="tooltip"
+                data-bs-placement="bottom"
+                style="
+                  background: url('icon/user-free-icon-font.svg') center /
+                    contain no-repeat;
+                  border-style: hidden;
+                  width: 2.1vw;
+                  height: 2.1vw;
+                "
+                title="My Account"
+                href="profile.html"
+              ></a
+              ><label
+                class="form-label"
+                style="
+                  color: var(--bs-white);
+                  margin-left: 1vw;
+                  font-size: 13px;
+                  text-align: center;
+                  margin-top: 0.5vw;
+                "
+                >Hello, &lt;User&gt;</label
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link d-lg-flex" href="login.html">LOGIN</a>
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link d-lg-flex align-items-lg-center"
+                href="registration.html"
+                >Register</a
+              >
+            </li>
+          </ul>
+        </div>
+        <a href="registration.html"></a>
+      </div>
+    </nav> -->
+    <main class="page payment-page">
+      <section class="clean-block payment-form dark">
+        <div class="container">
+          <div class="block-heading">
+            <h1 class="text-center" style="font-size: calc(1.325rem + 0.9vw)">
+              CHECK OUT
+            </h1>
+            <div class="border-secondary">
+              <form
+                class="d-lg-flex align-items-lg-center"
+                style="border-top-color: #8f8f8f"
+              >
+                <div
+                  class="bg-white products"
+                  style="
+                    width: 600px;
+                    background: var(--bs-light);
+                    border-top-width: 1px;
+                    border-top-style: hidden;
+                  "
+                >
+                  <h3 class="title">Order Summery</h3>
+                  <div class="placeholder item"></div>
+                  <div class="col" style="width: 400px">
+                    <div class="text-start" style="margin-left: 1vw">
+                      <span style="margin-right: 1vw">Total items:</span
+                      ><span class="value">3</span>
+                    </div>
+                    <div class="text-start" style="margin-left: 1vw">
+                      <span style="margin-right: 1vw">Total price:</span
+                      ><span class="value">129.90 ₪<br /></span>
+                    </div>
+                  </div>
+                </div>
+              </form>
+              <form style="border-top-color: var(--bs-secondary)">
+                <div
+                  class="bg-light border-secondary products"
+                  style="border-color: var(--bs-secondary)"
+                >
+                  <h3 class="title">Delivery Details</h3>
+                  <input
+                    class="form-control"
+                    type="text"
+                    placeholder="First Name  *"
+                    name="payment_first_name"
+                    style="margin: 5px"
+                    required
+                  /><input
+                    class="form-control"
+                    type="text"
+                    style="margin: 5px"
+                    placeholder="Last Name  *"
+                    required
+                    name="payment_last_name"
+                  /><input
+                    class="form-control"
+                    type="text"
+                    style="margin: 5px"
+                    placeholder="Street  *"
+                    required
+                    name="payment_street"
+                  /><input
+                    class="form-control"
+                    type="text"
+                    style="margin: 5px"
+                    placeholder="Number  *"
+                    required
+                    name="payment_street_number"
+                  /><input
+                    class="form-control"
+                    type="text"
+                    style="margin: 5px"
+                    placeholder="Apartment Number"
+                    name="payment_apartment number"
+                  /><select class="form-select" style="margin: 5px">
+                    <option value selected>City *</option>
+                    <option value>Ashdod</option>
+                    <option value>Ashkelon</option>
+                    <option value>Beer Sheve</option>
+                    <option value>Haifa</option>
+                    <option value>Herzliya</option>
+                    <option value>Holon</option>
+                    <option value>Jerusalem</option>
+                    <option value>Netanya</option>
+                    <option value>Ofakim</option>
+                    <option value>Petah Tiqwa</option>
+                    <option value>Qiryat Gat</option>
+                    <option value>Ramat Gan</option>
+                    <option value>Rehovot</option>
+                    <option value>Rishon Lezion</option>
+                    <option value>Shderot</option>
+                    <option value>Tel Aviv</option>
+                    <option value>Yavne</option></select
+                  ><input
+                    class="form-control"
+                    type="text"
+                    style="margin: 5px"
+                    placeholder="Postal Code  *"
+                    name="payment_postal_code"
+                    required
+                    minlength="7"
+                    maxlength="7"
+                  /><input
+                    class="form-control"
+                    type="text"
+                    style="margin: 5px"
+                    placeholder="Phone Number*"
+                    name="payment_phone_number"
+                    required
+                    minlength="10"
+                    maxlength="10"
+                    inputmode="tel"
+                  /><input
+                    class="form-control"
+                    type="text"
+                    style="margin: 5px; height: 60px"
+                    placeholder="Notes"
+                    name="payment_notes"
+                  />
+                  <h3 class="title" style="margin-top: 4vw">Delivery Time</h3>
+                  <select class="form-select" style="margin: 3px">
+                    <option value selected>Choose date *</option>
+                    <option value>20/04/2022</option>
+                    <option value>22/04/2022</option></select
+                  ><select class="form-select" style="margin: 3px">
+                    <option value selected>Choose hours *</option>
+                    <option value>13:00 - 14:00</option>
+                    <option value>14:00 - 15:00</option>
+                  </select>
+                  <div class="placeholder item"></div>
+                </div>
+                <div
+                  class="card-details"
+                  style="border-top-color: var(--bs-secondary)"
+                >
+                  <h3 class="d-grid title">Credit Card Details</h3>
+                  <div class="row">
+                    <div class="col-sm-7" style="width: 600px">
+                      <div class="text-start mb-3">
+                        <label class="form-label" for="number_of_payments"
+                          >Number of payments</label
+                        ><select class="form-select" style="width: 200px">
+                          <optgroup label="SELECT">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                          </optgroup>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-sm-7 text-start">
+                      <div class="mb-3">
+                        <label class="form-label" for="card_owner_ID"
+                          >Card owner`s id</label
+                        ><input
+                          id="card_holder-1"
+                          class="form-control"
+                          type="text"
+                          placeholder="Card owner`s ID  *"
+                          name="card_owner`s_ID"
+                          required
+                          inputmode="numeric"
+                          minlength="9"
+                          maxlength="9"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-sm-5">
+                      <div class="text-start mb-3">
+                        <label class="form-label">Expiration date</label
+                        ><select
+                          class="form-select d-md-flex align-items-md-start"
+                          name="Month"
+                          required
+                          style="margin: 3px"
+                        >
+                          <optgroup label="MM *">
+                            <option value="12" selected>MM *</option>
+                            <option value="1">01</option>
+                            <option value="2">02</option>
+                            <option value="3">03</option>
+                            <option value="4">04</option>
+                            <option value="5">05</option>
+                            <option value="6">06</option>
+                            <option value="7">07</option>
+                            <option value="8">08</option>
+                            <option value="9">09</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                          </optgroup></select
+                        ><select
+                          class="form-select d-md-flex align-items-md-start"
+                          name="Year"
+                          required
+                          style="margin: 3px"
+                        >
+                          <optgroup label="YY *">
+                            <option value="12" selected>YY *</option>
+                            <option value="2022">2022</option>
+                            <option value="2023">2023</option>
+                            <option value="2024">2024</option>
+                            <option value="2025">2025</option>
+                            <option value="2026">2026</option>
+                            <option value="2027">2027</option>
+                            <option value="2028">2028</option>
+                            <option value="2029">2029</option>
+                            <option value="2030">2030</option>
+                          </optgroup>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-sm-8 text-start">
+                      <div class="mb-3">
+                        <label class="form-label text-start" for="card_number"
+                          >Card Number</label
+                        ><input
+                          id="card_number"
+                          class="form-control"
+                          type="text"
+                          placeholder="Card Number *"
+                          name="card_number"
+                          required
+                          minlength="16"
+                          maxlength="16"
+                          inputmode="numeric"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-sm-4 text-start">
+                      <div class="mb-3">
+                        <label class="form-label" for="cvc">CVC</label
+                        ><input
+                          id="cvc"
+                          class="form-control"
+                          type="text"
+                          placeholder="CVC *"
+                          name="cvc"
+                          required
+                          minlength="3"
+                          maxlength="3"
+                        />
+                      </div>
+                    </div>
+                    <div class="col text-start">
+                      <img src="icon/VISA.png" style="width: 50px" /><img
+                        src="icon/MASTER.png"
+                        style="width: 50px; margin: 3px"
+                      />
+                    </div>
+                    <div class="col-sm-12">
+                      <div class="mb-3">
+                        <button
+                          id="payment_pay_button"
+                          class="btn btn-primary d-block w-100"
+                          type="submit"
+                          style="
+                            border-style: hidden;
+                            background: var(--bs-gray-800);
+                          "
+                        >
+                          PAY
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <!-- <footer class="page-footer dark" style="color: rgb(33, 37, 41)">
+      <div class="container">
+        <div class="row row-cols-4">
+          <div class="col-lg-2 text-center d-lg-flex align-items-lg-center">
+            <a class="mx-auto" href="help-center.html">Help Center</a>
+          </div>
+          <div class="col-lg-2 text-center d-lg-flex align-items-lg-center">
+            <a class="mx-auto" href="q-and-a.html">Q&amp;A</a>
+          </div>
+          <div
+            class="col-lg-2 text-center d-lg-flex align-items-center align-items-lg-center"
+          >
+            <a class="mx-auto" href="about-us.html">About Us</a>
+          </div>
+          <div class="col-lg-2 text-center d-lg-flex align-items-lg-center">
+            <a class="mx-auto" href="contact-us.html">Contact Us</a>
+          </div>
+          <div
+            class="col d-lg-flex mx-auto justify-content-lg-center align-items-lg-center"
+          >
+            <a
+              class="btn mx-auto"
+              role="button"
+              style="
+                background: url('icon/facebook-free-icon-font.svg') center /
+                  contain no-repeat;
+                border-style: hidden;
+                width: 3.5vw;
+                height: 3vw;
+              "
+              href="https://www.facebook.com/profile.php?id=100080692064900"
+            ></a
+            ><a
+              class="btn mx-auto"
+              role="button"
+              style="
+                background: url('icon/instagram-free-icon-font.svg') center /
+                  contain no-repeat;
+                border-style: hidden;
+                width: 3.5vw;
+                height: 3vw;
+              "
+              href="https://www.instagram.com/holysheets.official/"
+            ></a
+            ><img
+              class="mx-auto"
+              data-bs-toggle="tooltip"
+              data-bs-placement="bottom"
+              style="border-style: hidden; width: 3.5vw; height: 3vw"
+              src="icon/envelope-free-icon-font.svg"
+              title="holysheets.official@gmail.com"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="footer-copyright">
+        <p>© 2022 Copyright Holy Sheets</p>
+      </div>
+    </footer> -->
+    <script id="replace_with_footer" src="components/footer.js"></script>
+    <!-- <script src="components/Welcome-page.js"></script> -->
+  </body>
+</html>

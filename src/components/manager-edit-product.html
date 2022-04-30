@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
+    />
+    <title>Product - Brand</title>
+    <link rel="stylesheet" href="../components/manager-edit-product.css" />
+  </head>
+
+  <body>
+    <script id="replace_with_navbar" src="../components/navbar.js"></script>
+    <!-- <nav
+      class="navbar navbar-dark navbar-expand-lg fixed-top bg-dark clean-navbar"
+      style="color: rgb(33, 37, 41)"
+    >
+      <div class="container">
+        <a
+          class="btn d-lg-flex mx-auto"
+          role="button"
+          style="
+            background: url('icon/bed-free-icon-font.svg') center / contain
+              no-repeat;
+            border-style: hidden;
+            width: 3.5vw;
+            height: 3vw;
+            padding-right: 5vw;
+          "
+          href="home-page.html"
+        ></a
+        ><a
+          class="navbar-brand link-light d-lg-flex justify-content-lg-center logo"
+          href="#"
+          style="color: var(--bs-white)"
+          ><strong>Holy Sheets</strong></a
+        ><button
+          class="navbar-toggler"
+          data-bs-toggle="collapse"
+          data-bs-target="#navcol-1"
+        >
+          <span class="visually-hidden">Toggle navigation</span
+          ><span class="navbar-toggler-icon"></span>
+        </button>
+        <div id="navcol-1" class="collapse navbar-collapse">
+          <i class="fa fa-star"></i>
+          <ul class="navbar-nav ms-auto">
+            <li
+              class="nav-item d-lg-flex justify-content-lg-start justify-content-xxl-center align-items-xxl-center"
+              style="width: initial; height: 2vw"
+            >
+              <i
+                class="fi fi-rs-home fs-2 text-white d-lg-flex align-items-lg-center"
+                data-bs-toggle="tooltip"
+                data-bs-placement="bottom"
+                title="Home"
+              ></i
+              ><a
+                class="btn mx-auto"
+                role="button"
+                data-bs-toggle="tooltip"
+                data-bs-placement="bottom"
+                style="
+                  background: url('icon/home-free-icon-font.svg') center /
+                    contain no-repeat;
+                  border-style: hidden;
+                  width: 2.1vw;
+                  height: 2.1vw;
+                "
+                title="Home"
+                href="home-page.html"
+              ></a>
+            </li>
+            <li
+              class="nav-item d-lg-flex justify-content-lg-start justify-content-xxl-center align-items-xxl-center"
+              style="width: initial; height: 2vw"
+            >
+              <i
+                class="fi fi-rs-home fs-2 text-white d-lg-flex align-items-lg-center"
+                data-bs-toggle="tooltip"
+                data-bs-placement="bottom"
+                title="Home"
+              ></i
+              ><a
+                class="btn mx-auto"
+                role="button"
+                data-bs-toggle="tooltip"
+                data-bs-placement="bottom"
+                style="
+                  background: url('icon/book-alt-free-icon-font.svg') center /
+                    contain no-repeat;
+                  border-style: hidden;
+                  width: 2.1vw;
+                  height: 2.1vw;
+                "
+                title="Catalog"
+                href="catalog-page.html"
+              ></a>
+            </li>
+            <li
+              class="nav-item d-sm-flex justify-content-lg-start justify-content-xxl-center align-items-xxl-center"
+              style="width: initial; height: 2vw"
+            >
+              <a
+                class="btn mx-auto"
+                role="button"
+                data-bs-toggle="tooltip"
+                data-bs-placement="bottom"
+                style="
+                  background: url('icon/shopping-cart-free-icon-font.svg')
+                    center / contain no-repeat;
+                  border-style: hidden;
+                  width: 2.3vw;
+                  height: 2.3vw;
+                "
+                title="Shopping Cart"
+                href="shopping-cart.html"
+              ></a
+              ><span
+                class="badge rounded-pill bg-secondary d-lg-flex justify-content-lg-center align-items-lg-center"
+                data-bs-toggle="tooltip"
+                data-bs-placement="bottom"
+                title="Items in cart"
+                style="height: 20px"
+                >42</span
+              >
+            </li>
+            <li
+              class="nav-item d-lg-flex justify-content-lg-start justify-content-xxl-center align-items-xxl-center"
+              style="width: initial; height: 2vw"
+            >
+              <i
+                class="fi fi-rs-home fs-2 text-white d-lg-flex align-items-lg-center"
+                data-bs-toggle="tooltip"
+                data-bs-placement="bottom"
+                title="Home"
+              ></i
+              ><a
+                class="btn mx-auto"
+                role="button"
+                data-bs-toggle="tooltip"
+                data-bs-placement="bottom"
+                style="
+                  background: url('icon/heart-free-icon-font.svg') center /
+                    contain no-repeat;
+                  border-style: hidden;
+                  width: 2.1vw;
+                  height: 2.1vw;
+                "
+                title="Wishlist"
+                href="wishlist.html"
+              ></a>
+            </li>
+            <li
+              class="nav-item d-lg-flex justify-content-xxl-center align-items-xxl-center"
+              style="width: initial; height: 2vw"
+            >
+              <i
+                class="fi fi-rs-home fs-2 text-white d-lg-flex align-items-lg-center"
+                data-bs-toggle="tooltip"
+                data-bs-placement="bottom"
+                title="Home"
+              ></i
+              ><a
+                class="btn mx-auto"
+                role="button"
+                data-bs-toggle="tooltip"
+                data-bs-placement="bottom"
+                style="
+                  background: url('icon/user-free-icon-font.svg') center /
+                    contain no-repeat;
+                  border-style: hidden;
+                  width: 2.1vw;
+                  height: 2.1vw;
+                "
+                title="My Account"
+                href="profile.html"
+              ></a
+              ><label
+                class="form-label"
+                style="
+                  color: var(--bs-white);
+                  margin-left: 1vw;
+                  font-size: 13px;
+                  text-align: center;
+                  margin-top: 0.5vw;
+                "
+                >Hello, &lt;User&gt;</label
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link d-lg-flex" href="login.html">LOGIN</a>
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link d-lg-flex align-items-lg-center"
+                href="registration.html"
+                >Register</a
+              >
+            </li>
+          </ul>
+        </div>
+        <a href="registration.html"></a>
+      </div>
+    </nav> -->
+    <main class="page product-page">
+      <section class="clean-block clean-product dark">
+        <div class="container" style="border-style: none">
+          <div class="block-heading">
+            <h1 style="font-size: calc(1.325rem + 0.9vw)">
+              Edit Product <br />
+            </h1>
+          </div>
+          <div class="block-content">
+            <div class="product-info">
+              <div class="row">
+                <div class="col-md-6">
+                  <div>
+                    <div
+                      id="display-image"
+                      style="
+                        width: 35vw;
+                        height: 30vw;
+                        background: url('sheets/81H1D7elmjL._AC_SL1500_.jpg')
+                          center / contain no-repeat;
+                      "
+                    ></div>
+                    <input
+                      id="image-input"
+                      type="file"
+                      accept="image/jpeg, image/png, image/jpg"
+                      style="
+                        margin-top: 2vw;
+                        margin-bottom: 2vw;
+                        margin-left: 3vw;
+                        border: 1px solid var(--bs-gray-400);
+                        width: 30vw;
+                      "
+                      data-bs-toggle="tooltip"
+                      data-bs-placement="bottom"
+                    />
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="info">
+                    <input
+                      type="text"
+                      name="edit_product_name"
+                      style="
+                        font-weight: bold;
+                        font-size: 27.5px;
+                        width: 30vw;
+                        border-width: 1px;
+                        border-color: var(--bs-gray-400);
+                      "
+                      value="Sultan Sheets"
+                    />
+                    <div class="price">
+                      <textarea
+                        name="edit_product_description"
+                        style="
+                          width: 35vw;
+                          border-width: 1px;
+                          border-color: var(--bs-gray-400);
+                          height: 10vw;
+                        "
+                        maxlength="300"
+                        required
+                      >
+Lovely royalty vintage style sheets, the bedding is hand-made from the softest silk there is.</textarea
+                      ><input
+                        type="text"
+                        name="edit_product_price"
+                        style="
+                          font-weight: bold;
+                          font-size: 22px;
+                          margin-top: 1vw;
+                          width: 30vw;
+                          border-width: 1px;
+                          border-color: var(--bs-gray-400);
+                        "
+                        placeholder="Price Here"
+                        value="139.90₪"
+                      /><input
+                        type="text"
+                        name="edit_product_sale"
+                        style="
+                          color: var(--bs-red);
+                          font-weight: bold;
+                          font-size: 24px;
+                          margin-top: 1vw;
+                          width: 30vw;
+                          border-width: 1px;
+                          border-color: var(--bs-gray-400);
+                        "
+                        placeholder="Discount - OPTIONAL"
+                        value="119.90₪"
+                      />
+                    </div>
+                  </div>
+                  <label class="form-label" style="margin-right: 1vw">SKU</label
+                  ><input
+                    type="text"
+                    value="5959"
+                    name="edit_product_sku"
+                    readonly
+                    style="width: 16.5vw; border-style: hidden"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-3">
+                <small
+                  class="form-text"
+                  style="
+                    font-weight: bold;
+                    color: var(--bs-pink);
+                    font-size: 16px;
+                  "
+                  >choose sizes:</small
+                >
+                <div style="padding-left: 3vw">
+                  <div class="form-check" style="width: 200px">
+                    <input
+                      id="formCheck-5"
+                      class="form-check-input"
+                      type="checkbox"
+                      name="edit_product_90x200"
+                    /><label class="form-check-label" for="formCheck-5"
+                      >90 x 200</label
+                    >
+                  </div>
+                  <label class="form-label d-none d-md-block" for="quantity"
+                    >Quantity</label
+                  ><input
+                    id="number-4"
+                    class="form-control quantity-input"
+                    type="number"
+                    value="12"
+                    name="product_page_quantity_90x200"
+                    style="width: 8vw"
+                  />
+                </div>
+              </div>
+              <div class="col-lg-3 d-lg-flex align-items-lg-end">
+                <div style="padding-left: 4vw">
+                  <div class="form-check" style="width: 200px">
+                    <input
+                      id="formCheck-6"
+                      class="form-check-input"
+                      type="checkbox"
+                      name="edit_product_120x200"
+                    /><label class="form-check-label" for="formCheck-6"
+                      >120 x 200</label
+                    >
+                  </div>
+                  <label class="form-label d-none d-md-block" for="quantity"
+                    >Quantity</label
+                  ><input
+                    id="number-5"
+                    class="form-control quantity-input"
+                    type="number"
+                    value="1"
+                    name="product_page_quantity_120x200"
+                    style="width: 8vw"
+                  />
+                </div>
+              </div>
+              <div
+                class="col-lg-3 d-lg-flex justify-content-lg-center align-items-lg-end"
+                style="margin-left: 2vw"
+              >
+                <div
+                  class="justify-content-lg-end align-items-lg-end"
+                  style="padding-left: 5vw"
+                >
+                  <div class="form-check" style="width: 200px">
+                    <input
+                      id="formCheck-7"
+                      class="form-check-input"
+                      type="checkbox"
+                      name="edit_product_160x200"
+                    /><label class="form-check-label" for="formCheck-7"
+                      >160 x 200</label
+                    >
+                  </div>
+                  <label class="form-label d-none d-md-block" for="quantity"
+                    >Quantity</label
+                  ><input
+                    id="number-6"
+                    class="form-control quantity-input"
+                    type="number"
+                    value="20"
+                    name="product_page_quantity_160x200"
+                    style="width: 8vw"
+                  />
+                </div>
+              </div>
+              <div class="col-lg-2 d-lg-flex align-items-lg-end">
+                <div style="margin-left: 50px; width: 100px">
+                  <div class="form-check" style="width: 200px">
+                    <input
+                      id="formCheck-8"
+                      class="form-check-input"
+                      type="checkbox"
+                      name="edit_product_180x200"
+                    /><label class="form-check-label" for="formCheck-8"
+                      >180 x 200</label
+                    >
+                  </div>
+                  <label class="form-label d-none d-md-block" for="quantity"
+                    >Quantity</label
+                  ><input
+                    id="number-7"
+                    class="form-control quantity-input"
+                    type="number"
+                    value="1"
+                    name="product_page_quantity_180x200"
+                    style="width: 8vw"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="row" style="margin-top: 2vw">
+              <div class="col">
+                <div class="row">
+                  <div
+                    class="col"
+                    style="margin-left: 0vw; padding-left: 1vw; width: 20vw"
+                  >
+                    <label
+                      class="form-label"
+                      style="
+                        color: var(--bs-pink);
+                        font-size: 16px;
+                        font-weight: bold;
+                        margin-right: 2vw;
+                      "
+                      >Add Hashtags:</label
+                    >
+                    <div class="wrapper">
+                      <input
+                        id="hashtags"
+                        type="text"
+                        autocomplete="off"
+                        placeholder="Type your hashtag and click enter"
+                        style="
+                          width: 30vw;
+                          border-width: 1px;
+                          border-color: var(--bs-gray-400);
+                        "
+                      />
+                      <div class="tag-container"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="d-lg-flex mx-auto justify-content-lg-center"
+              style="align-self: center"
+            >
+              <button
+                class="btn btn-primary"
+                type="button"
+                style="
+                  margin-top: 3vw;
+                  background: var(--bs-dark);
+                  width: 30vw;
+                  border-style: hidden;
+                "
+              >
+                Add Product
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <!-- <footer class="page-footer dark" style="color: rgb(33, 37, 41)">
+      <div class="container">
+        <div class="row row-cols-4">
+          <div class="col-lg-2 text-center d-lg-flex align-items-lg-center">
+            <a class="mx-auto" href="help-center.html">Help Center</a>
+          </div>
+          <div class="col-lg-2 text-center d-lg-flex align-items-lg-center">
+            <a class="mx-auto" href="q-and-a.html">Q&amp;A</a>
+          </div>
+          <div
+            class="col-lg-2 text-center d-lg-flex align-items-center align-items-lg-center"
+          >
+            <a class="mx-auto" href="about-us.html">About Us</a>
+          </div>
+          <div class="col-lg-2 text-center d-lg-flex align-items-lg-center">
+            <a class="mx-auto" href="contact-us.html">Contact Us</a>
+          </div>
+          <div
+            class="col d-lg-flex mx-auto justify-content-lg-center align-items-lg-center"
+          >
+            <a
+              class="btn mx-auto"
+              role="button"
+              style="
+                background: url('icon/facebook-free-icon-font.svg') center /
+                  contain no-repeat;
+                border-style: hidden;
+                width: 3.5vw;
+                height: 3vw;
+              "
+              href="https://www.facebook.com/profile.php?id=100080692064900"
+            ></a
+            ><a
+              class="btn mx-auto"
+              role="button"
+              style="
+                background: url('icon/instagram-free-icon-font.svg') center /
+                  contain no-repeat;
+                border-style: hidden;
+                width: 3.5vw;
+                height: 3vw;
+              "
+              href="https://www.instagram.com/holysheets.official/"
+            ></a
+            ><img
+              class="mx-auto"
+              data-bs-toggle="tooltip"
+              data-bs-placement="bottom"
+              style="border-style: hidden; width: 3.5vw; height: 3vw"
+              src="icon/envelope-free-icon-font.svg"
+              title="holysheets.official@gmail.com"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="footer-copyright">
+        <p>© 2022 Copyright Holy Sheets</p>
+      </div>
+    </footer> -->
+    <script id="replace_with_footer" src="components/footer.js"></script>
+    <!-- <script src="components/Welcome-page.js"></script> -->
+  </body>
+</html>
