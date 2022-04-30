@@ -12,7 +12,7 @@ const { Router } = require('express');
 
 const port = process.env.PORT || 5000;
 const app = express();
-app.use(Router);
+// app.use(Router); // line doesn't work
 app.use(express.static(__dirname + '/'));
 
 // **** start guide
