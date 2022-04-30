@@ -20,4 +20,6 @@ try {
   dbConnection.once("open", () => console.log("Connected to DB!"));
 } catch (e) {
   console.log("could not connect");
-}
+} 
+
+

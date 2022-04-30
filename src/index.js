@@ -7,6 +7,7 @@ const express = require('express');
 
 // **** start guide
 const morgan = require('morgan');
+const { Router } = require('express');
 // **** end guide
 
 const port = process.env.PORT || 5000;
@@ -82,3 +83,8 @@ try {
 } catch (e) {
   console.log('could not connect');
 }
+// הדר הוסיפה
+app.use(Router);
+app.listen(3000,()=>{
+  console.log("Server is running at port 3000");
+})
