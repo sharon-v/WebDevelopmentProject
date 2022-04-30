@@ -22,7 +22,7 @@ module.exports = {
             picture,
             size,
             discription,
-            discount, //maybe
+            discount, // maybe
         });
 
         product.save().then(() => {
