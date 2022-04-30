@@ -10,6 +10,18 @@ const productSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    picture: {
+        type: Image,
+        required: true,
+    },
+    size:{
+        type: String,
+        required: true,
+    },
+    discription:{
+        type: String,
+        required: true,
+    },
     quantity: {
         type: String,
         required: true,
@@ -18,5 +30,5 @@ const productSchema = new mongoose.Schema({
     { timestamps: true },
 );
 
-module.exports = mongoose.model('Customer', customerSchema);
+module.exports = mongoose.model('Product', productSchema);
 
