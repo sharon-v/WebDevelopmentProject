@@ -5,7 +5,7 @@ const {
     signup,
     login,
     updateManagerDetails,
-    getManagerDetails
+    getManagerDetails,
 } = require('../controllers/users');
 
 router.post('/signup', signup);

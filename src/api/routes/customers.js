@@ -3,9 +3,9 @@ const router = express.Router();
 
 const {
     signup,
-    login, 
+    login,
     updateCustomerDetails,
-    getCustomerDetails
+    getCustomerDetails,
 } = require('../controllers/users');
 
 router.post('/signup', signup);

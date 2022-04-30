@@ -1,25 +1,25 @@
 module.exports = {
     signup: (req, res) => {
         res.status(200).json({
-            message: 'Signup'
-        })
+            message: 'Signup',
+        });
     },
     login: (req, res) => {
         res.status(200).json({
-            message: 'Login'
-        })
+            message: 'Login',
+        });
     },
     updateManagerDetails: (req, res) => {
-        const managerId = req.params.managerId
+        const managerId = req.params.managerId;
 
         Manager.update({ _id: managerId }, req.body).then(() => {
             res.status(200).json({
-                message: 'Details Updated'
-            })
+                message: 'Details Updated',
+            });
         }).catch(error => {
             res.status(500).json({
-                error
-            })
+                error,
+            });
         });
     },
     getManagerDetails: (req, res) => {
@@ -27,12 +27,12 @@ module.exports = {
 
         Manager.findById(managerId).then((manager) => {
             res.status(200).json({
-                manager
-            })
+                manager,
+            });
         }).catch(error => {
             res.status(500).json({
-                error
-            })
+                error,
+            });
         });
-    }
-}
+    },
+};

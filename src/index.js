@@ -10,6 +10,7 @@ const morgan = require('morgan');
 const { Router } = require('express');
 // **** end guide
 
+app.use(Router);
 const port = process.env.PORT || 5000;
 const app = express();
 app.use(express.static(__dirname + '/'));
@@ -34,7 +35,6 @@ app.use((req, res, next) => {
 // **** end guide
 
 
-
 app.get('/', (req, res) => {
   // res.send('<h1>The web is on the air<h1>');
   res.sendFile('/new pages/Welcome-page.html', { root: __dirname });
@@ -49,27 +49,25 @@ app.use((req, res, next) => {
   const error = new Error('Not Found');
   error.status = 404;
   next(error);
-})
+});
 
 app.use((error, req, res, next) => {
   res.status(error.status || 500);
   res.json({
     error: {
-      message: error.message
-    }
-  })
-})
+      message: error.message,
+    },
+  });
+});
 // **** end guide
 
-// mongoDB connection 
-const mongoAtlasUri =
-  'mongodb+srv://chen-admin:123@cluster0.xjbqx.mongodb.net/Holy_Sheets?retryWrites=true&w=majority';
+
+const mongoAtlasUri = 'mongodb+srv://chen-admin:123@cluster0.xjbqx.mongodb.net/Holy_Sheets?retryWrites=true&w=majority'; // mongoDB connection
 
 app.use(bodyParser.urlencoded({ extended: true, limit: '1m' }));
 app.use(bodyParser.json());
 
-try {
-  // Connect to the MongoDB cluster 
+try { // Connect to the MongoDB cluster
   mongoose.connect(
     mongoAtlasUri,
     { useNewUrlParser: true, useUnifiedTopology: true },
@@ -77,14 +75,9 @@ try {
   );
   const dbConnection = mongoose.connection;
   dbConnection.on('error', (err) => {
-    console.error(err)
+    console.error(err);
   });
   dbConnection.once('open', () => console.log('Connected to DB!'));
 } catch (e) {
   console.log('could not connect');
 }
-// הדר הוסיפה
-app.use(Router);
-app.listen(3000,()=>{
-  console.log("Server is running at port 3000");
-})
