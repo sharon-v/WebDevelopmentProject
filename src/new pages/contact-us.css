@@ -16,7 +16,7 @@ body {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 h2 {
-  margin-top: 0;
+  margin-top: 4;
   margin-bottom: 0.5rem;
   font-weight: 500;
   line-height: 1.2;
@@ -202,7 +202,7 @@ button {
 .collapse:not(.show) {
   display: none;
 }
-.nav-link {
+/* .nav-link {
   display: block;
   padding: 0.5rem 1rem;
   color: #0d6efd;
@@ -329,7 +329,7 @@ button {
 }
 .navbar-dark .navbar-toggler-icon {
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
-}
+} */
 .card {
   position: relative;
   display: flex;
@@ -529,7 +529,7 @@ body {
     padding-top: 5rem;
   }
 }
-.page-footer {
+/* .page-footer {
   background-color: #fff;
   padding-top: 30px;
   text-align: center;
@@ -576,7 +576,7 @@ body {
   .page-footer {
     text-align: left;
   }
-}
+} */
 .fa {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
