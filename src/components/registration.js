@@ -35,6 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	// when press on sign up button
 	registerForm.addEventListener('submit', (e) => {
 		e.preventDefault();
+		console.log('clicked on register');
 		const fname = document.getElementById('registerfName').value;
 		const lname = document.getElementById('registerlName').value;
 		const birthdate = document.getElementById('registerDate').value;
@@ -44,14 +45,38 @@ document.addEventListener('DOMContentLoaded', () => {
 		const passwordConfirmation = document.getElementById('registerConfirmPassword').value;
 		const managerPasscode = document.getElementById('registerManagerPasscode').value;
 
+		console.log(fname);
+		console.log(lname);
+		console.log(birthdate);
+		console.log(phoneNumber);
+		console.log(email);
+		console.log(password);
+		console.log(passwordConfirmation);
+		console.log(managerPasscode);
+
 		// Perform your AJAX/Fetch login
-		window.location.href = 'welcom.html';   // ?????????????????????????????
+		// window.location.href = 'welcom.html';   // ?????????????????????????????
 	});
 });
+
+
+/* check for invalid password or password confirmation */
+function checkPassword(password, passwordConfirmation) {
+	if ([...password].length < 6) {
+		return false;
+	}
+	console.log(password);
+	console.log(passwordConfirmation);
+	// check if the passwords are equal 
+	if (password != passwordConfirmation) {
+		return false;
+	}
+	else {
+		return true;
+	}
+}
 
 /* check if the email is invalid */
 function emailIsValid(email) {
 	return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
-
-
