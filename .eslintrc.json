@@ -1,28 +1,23 @@
 {
-    "env": {
-        "browser": true,
-        "es2021": true
-    },
-    "extends": [
-        "google"
-    ],
-    "parserOptions": {
-        "ecmaVersion": "latest",
-        "sourceType": "module"
-    },
-    "rules": {
-        "linebreak-style": [
-            0,
-            "error",
-            "windows"
-        ],
-        "max-len": "off",
-        "no-unused-vars": "warn",
-        "require-jsdoc": "off",
-        "object-curly-spacing": "off",
-        "indent": "off",
-        "space-before-function-paren": "off",
-        "new-cap": "off",
-        "arrow-parens": "off"
-    }
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": ["google"],
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "rules": {
+    "linebreak-style": [0, "error", "windows"],
+    "max-len": "off",
+    "no-unused-vars": "warn",
+    "require-jsdoc": "off",
+    "object-curly-spacing": "off",
+    "indent": "off",
+    "space-before-function-paren": "off",
+    "new-cap": "off",
+    "arrow-parens": "off",
+    "comma-dangle": "off"
+  }
 }
