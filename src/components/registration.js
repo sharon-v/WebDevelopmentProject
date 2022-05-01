@@ -29,11 +29,15 @@
 // Sending data with the request
 // xhr.send(data);
 // }
+console.log('enter');
 
 document.addEventListener('DOMContentLoaded', () => {
-	const registerForm = document.querySelector('#regestraion');
+	console.log('in');
+
+	// const registerForm = document.querySelector('#regestraion');
+	var btn = document.getElementById('submit');
 	// when press on sign up button
-	registerForm.addEventListener('submit', (e) => {
+	btn.addEventListener('click', (e) => {
 		e.preventDefault();
 		console.log('clicked on register');
 		const fname = document.getElementById('registerfName').value;
@@ -44,6 +48,14 @@ document.addEventListener('DOMContentLoaded', () => {
 		const password = document.getElementById('registerPassword').value;
 		const passwordConfirmation = document.getElementById('registerConfirmPassword').value;
 		const managerPasscode = document.getElementById('registerManagerPasscode').value;
+		
+		if(checkEmail(email) == false) {
+			// write password confirmation message
+		}
+
+		if(checkPasswordConfiramtion(password, passwordConfirmation) == false) {
+			// write password confirmation message
+		}
 
 		console.log(fname);
 		console.log(lname);
@@ -61,10 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 /* check for invalid password or password confirmation */
-function checkPassword(password, passwordConfirmation) {
-	if ([...password].length < 6) {
-		return false;
-	}
+function checkPasswordConfirmation(password, passwordConfirmation) {
 	console.log(password);
 	console.log(passwordConfirmation);
 	// check if the passwords are equal 
@@ -77,6 +86,6 @@ function checkPassword(password, passwordConfirmation) {
 }
 
 /* check if the email is invalid */
-function emailIsValid(email) {
+function checkEmail(email) {
 	return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
