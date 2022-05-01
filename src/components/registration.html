@@ -1,120 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
-    />
-    <title>Register - Brand</title>
-    <link rel="stylesheet" href="registration.css" />
-  </head>
 
-  <body>
-    <script id="replace_with_navbar" src="../components/navbar.js"></script>
-    <main class="page registration-page">
-      <section class="clean-block clean-form dark">
-        <div class="container">
-          <div class="block-heading">
-            <h1 style="font-size: calc(1.325rem + 0.9vw)">Registration</h1>
-          </div>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+  <title>Register - Brand</title>
+  <link rel="stylesheet" href="registration.css" />
+</head>
+
+<body>
+  <script id="replace_with_navbar" src="../components/navbar.js"></script>
+  <main class="page registration-page">
+    <section class="clean-block clean-form dark">
+      <div class="container">
+        <div class="block-heading">
+          <h1 style="font-size: calc(1.325rem + 0.9vw)">Registration</h1>
         </div>
-        <form
-          class="text-center d-flex flex-column my-auto"
-          style="border-color: var(--bs-secondary)"
-        >
-          <input
-            id="name"
-            class="form-control item"
-            type="text"
-            placeholder="First Name"
-            required
-            inputmode="latin-name"
-            style="margin-bottom: 2vw"
-            minlength="2"
-            name="first_name"
-          /><input
-            id="name-1"
-            class="form-control item"
-            type="text"
-            placeholder="Last Name"
-            required
-            inputmode="latin-name"
-            style="margin-bottom: 2vw"
-            name="last_name"
-          /><input
-            class="form-control d-lg-flex justify-content-lg-end align-items-lg-center"
-            data-bs-toggle="tooltip"
-            data-bs-placement="bottom"
-            type="date"
-            required
-            title="Birth Date"
-            style="margin-bottom: 2vw"
-            name="birth_date"
-          /><input
-            class="form-control"
-            type="tel"
-            required
-            minlength="10"
-            maxlength="10"
-            placeholder="Phone Number"
-            style="margin-bottom: 2vw"
-            name="phone"
-          /><input
-            id="email"
-            class="form-control item"
-            type="email"
-            placeholder="Email"
-            autofocus
-            inputmode="email"
-            style="margin-bottom: 2vw"
-            name="email"
-          /><input
-            id="password"
-            class="form-control item"
-            type="password"
-            required
-            minlength="6"
-            placeholder="Password"
-            style="margin-bottom: 2vw"
-            name="password"
-          /><input
-            id="password-1"
-            class="form-control item"
-            type="password"
-            required
-            minlength="6"
-            placeholder="Authenticate Password"
-            name="confirm_password"
-            style="margin-bottom: 2vw"
-          />
-          <div class="form-check text-start" style="margin-bottom: 1vw">
-            <input
-              id="formCheck-1"
-              class="form-check-input"
-              type="checkbox"
-            /><label class="form-check-label" for="formCheck-1"
-              >Register as manager</label
-            >
-          </div>
-          <input
-            class="form-control"
-            type="text"
-            style="margin-bottom: 3vw"
-            name="dev_passcode"
-            placeholder="Enter unique developers passcode"
-          /><button
-            class="btn btn-primary btn-lg"
-            type="submit"
-            style="background: var(--bs-gray-800); border-style: hidden"
-          >
-            <strong>Sign Up</strong></button
-          ><a href="login.html"
-            ><br /><strong>Already have an account? Sign in</strong><br /><br
-          /></a>
-        </form>
-      </section>
-    </main>
-    <script id="replace_with_footer" src="footer.js"></script>
-  </body>
+      </div>
+      <form class="text-center d-flex flex-column my-auto" style="border-color: var(--bs-secondary)">
+        <input id="registerfName" class="form-control item" type="text" placeholder="First Name" required
+          inputmode="latin-name" style="margin-bottom: 2vw" minlength="2" name="first_name" /><input id="registerlName"
+          class="form-control item" type="text" placeholder="Last Name" required inputmode="latin-name"
+          style="margin-bottom: 2vw" name="last_name" /><input id="registerDate"
+          class="form-control d-lg-flex justify-content-lg-end align-items-lg-center" data-bs-toggle="tooltip"
+          data-bs-placement="bottom" type="date" required title="Birth Date" style="margin-bottom: 2vw"
+          name="birth_date" /><input id="registerPhoneNumber" class="form-control" type="tel" required minlength="10"
+          maxlength="10" placeholder="Phone Number" style="margin-bottom: 2vw" name="phone" /><input id="registerEmail"
+          class="form-control item" type="email" placeholder="Email" autofocus inputmode="email"
+          style="margin-bottom: 2vw" name="email" /><input id="registerPassword" class="form-control item"
+          type="password" required minlength="6" placeholder="Password" style="margin-bottom: 2vw"
+          name="password" /><input id="registerConfirmPassword" class="form-control item" type="password" required
+          minlength="6" placeholder="Authenticate Password" name="confirm_password" style="margin-bottom: 2vw" />
+        <div class="form-check text-start" style="margin-bottom: 1vw">
+          <input id="registerManagerCheckBox" class="form-check-input" type="checkbox" /><label class="form-check-label"
+            for="formCheck-1">Register as manager</label>
+        </div>
+        <input id="registerManagerPasscode" class="form-control" type="text" style="margin-bottom: 3vw"
+          name="dev_passcode" placeholder="Enter unique developers passcode" /><button class="btn btn-primary btn-lg"
+          type="submit" style="background: var(--bs-gray-800); border-style: hidden">
+          <strong>Sign Up</strong></button><a href="login.html"><br /><strong>Already have an account? Sign
+            in</strong><br /><br /></a>
+      </form>
+    </section>
+  </main>
+  <script id="replace_with_footer" src="footer.js"></script>
+</body>
+
 </html>
