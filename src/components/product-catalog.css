@@ -83,7 +83,7 @@ button,
 select {
   text-transform: none;
 }
-[role="button"] {
+[role='button'] {
   cursor: pointer;
 }
 select {
@@ -93,14 +93,14 @@ select:disabled {
   opacity: 1;
 }
 button,
-[type="button"] {
+[type='button'] {
   -webkit-appearance: button;
 }
 ::-moz-focus-inner {
   padding: 0;
   border-style: none;
 }
-[type="search"] {
+[type='search'] {
   outline-offset: -2px;
   -webkit-appearance: textfield;
 }
@@ -223,7 +223,7 @@ button,
   -webkit-print-color-adjust: exact;
   color-adjust: exact;
 }
-.form-check-input[type="checkbox"] {
+.form-check-input[type='checkbox'] {
   border-radius: 0.25em;
 }
 .form-check-input:active {
@@ -238,7 +238,7 @@ button,
   background-color: #0d6efd;
   border-color: #0d6efd;
 }
-.form-check-input:checked[type="checkbox"] {
+.form-check-input:checked[type='checkbox'] {
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M6 10l3 3l6-6'/%3e%3c/svg%3e");
 }
 .form-check-input:disabled {
@@ -467,7 +467,7 @@ button,
 }
 .navbar-dark .navbar-toggler-icon {
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
-} 
+}
 
 .pagination {
   display: flex;
@@ -796,8 +796,8 @@ body {
   .clean-navbar.fixed-top + .page {
     padding-top: 5rem;
   }
-} 
-.page-footer {
+}
+/* .page-footer {
   background-color: #fff;
   padding-top: 30px;
   text-align: center;
@@ -844,7 +844,7 @@ body {
   .page-footer {
     text-align: left;
   }
-}
+} */
 .fa {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
@@ -855,10 +855,10 @@ body {
   line-height: 1;
 }
 .fa-star:before {
-  content: "\f005";
+  content: '\f005';
 }
 .fa {
-  font-family: "Font Awesome 5 Free";
+  font-family: 'Font Awesome 5 Free';
 }
 .fa {
   font-weight: 900;
@@ -872,7 +872,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 .fa-star:before {
-  content: "\f005";
+  content: '\f005';
 }
 body {
   align-items: center;
@@ -880,46 +880,46 @@ body {
 }
 /*! CSS Used fontfaces */
 @font-face {
-  font-family: "Font Awesome 5 Free";
+  font-family: 'Font Awesome 5 Free';
   font-style: normal;
   font-weight: 400;
   font-display: auto;
   src: url(http://192.168.56.1:8000/fonts/fa-regular-400.eot);
   src: url(http://192.168.56.1:8000/fonts/fa-regular-400.eot#iefix)
-      format("embedded-opentype"),
-    url(http://192.168.56.1:8000/fonts/fa-regular-400.woff2) format("woff2"),
-    url(http://192.168.56.1:8000/fonts/fa-regular-400.woff) format("woff"),
-    url(http://192.168.56.1:8000/fonts/fa-regular-400.ttf) format("truetype"),
+      format('embedded-opentype'),
+    url(http://192.168.56.1:8000/fonts/fa-regular-400.woff2) format('woff2'),
+    url(http://192.168.56.1:8000/fonts/fa-regular-400.woff) format('woff'),
+    url(http://192.168.56.1:8000/fonts/fa-regular-400.ttf) format('truetype'),
     url(http://192.168.56.1:8000/fonts/fa-regular-400.svg#fontawesome)
-      format("svg");
+      format('svg');
 }
 @font-face {
-  font-family: "Font Awesome 5 Free";
+  font-family: 'Font Awesome 5 Free';
   font-style: normal;
   font-weight: 900;
   font-display: auto;
   src: url(http://192.168.56.1:8000/fonts/fa-solid-900.eot);
   src: url(http://192.168.56.1:8000/fonts/fa-solid-900.eot#iefix)
-      format("embedded-opentype"),
-    url(http://192.168.56.1:8000/fonts/fa-solid-900.woff2) format("woff2"),
-    url(http://192.168.56.1:8000/fonts/fa-solid-900.woff) format("woff"),
-    url(http://192.168.56.1:8000/fonts/fa-solid-900.ttf) format("truetype"),
+      format('embedded-opentype'),
+    url(http://192.168.56.1:8000/fonts/fa-solid-900.woff2) format('woff2'),
+    url(http://192.168.56.1:8000/fonts/fa-solid-900.woff) format('woff'),
+    url(http://192.168.56.1:8000/fonts/fa-solid-900.ttf) format('truetype'),
     url(http://192.168.56.1:8000/fonts/fa-solid-900.svg#fontawesome)
-      format("svg");
+      format('svg');
 }
 @font-face {
-  font-family: "FontAwesome";
-  src: url("http://192.168.56.1:8000/fonts/fontawesome-webfont.eot?v=4.7.0");
-  src: url("http://192.168.56.1:8000/fonts/fontawesome-webfont.eot#iefix&v=4.7.0")
-      format("embedded-opentype"),
-    url("http://192.168.56.1:8000/fonts/fontawesome-webfont.woff2?v=4.7.0")
-      format("woff2"),
-    url("http://192.168.56.1:8000/fonts/fontawesome-webfont.woff?v=4.7.0")
-      format("woff"),
-    url("http://192.168.56.1:8000/fonts/fontawesome-webfont.ttf?v=4.7.0")
-      format("truetype"),
-    url("http://192.168.56.1:8000/fonts/fontawesome-webfont.svg?v=4.7.0#fontawesomeregular")
-      format("svg");
+  font-family: 'FontAwesome';
+  src: url('http://192.168.56.1:8000/fonts/fontawesome-webfont.eot?v=4.7.0');
+  src: url('http://192.168.56.1:8000/fonts/fontawesome-webfont.eot#iefix&v=4.7.0')
+      format('embedded-opentype'),
+    url('http://192.168.56.1:8000/fonts/fontawesome-webfont.woff2?v=4.7.0')
+      format('woff2'),
+    url('http://192.168.56.1:8000/fonts/fontawesome-webfont.woff?v=4.7.0')
+      format('woff'),
+    url('http://192.168.56.1:8000/fonts/fontawesome-webfont.ttf?v=4.7.0')
+      format('truetype'),
+    url('http://192.168.56.1:8000/fonts/fontawesome-webfont.svg?v=4.7.0#fontawesomeregular')
+      format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -972,9 +972,9 @@ body {
   --bs-black-rgb: 0, 0, 0;
   --bs-body-color-rgb: 33, 37, 41;
   --bs-body-bg-rgb: 255, 255, 255;
-  --bs-font-sans-serif: "Montserrat", sans-serif;
+  --bs-font-sans-serif: 'Montserrat', sans-serif;
   --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas,
-    "Liberation Mono", "Courier New", monospace;
+    'Liberation Mono', 'Courier New', monospace;
   --bs-gradient: linear-gradient(
     180deg,
     rgba(255, 255, 255, 0.15),
