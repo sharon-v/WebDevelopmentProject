@@ -1,5 +1,6 @@
 import { fbAuth } from '../firebase/data.js';
 
+// spreads navbar to all the pages
 fetch('../components/navbar.html')
   .then((res) => res.text())
   .then((text) => {
