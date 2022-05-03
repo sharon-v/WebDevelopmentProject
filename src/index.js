@@ -64,25 +64,3 @@ app.use((error, req, res, next) => {
   });
 });
 // **** end guide
-
-const mongoAtlasUri =
-  'mongodb+srv://chen-admin:123@cluster0.xjbqx.mongodb.net/Holy_Sheets?retryWrites=true&w=majority'; // mongoDB connection
-
-app.use(bodyParser.urlencoded({ extended: true, limit: '1m' }));
-app.use(bodyParser.json());
-
-try {
-  // Connect to the MongoDB cluster
-  mongoose.connect(
-    mongoAtlasUri,
-    { useNewUrlParser: true, useUnifiedTopology: true },
-    () => console.log('Mongoose is connected')
-  );
-  const dbConnection = mongoose.connection;
-  dbConnection.on('error', (err) => {
-    console.error(err);
-  });
-  dbConnection.once('open', () => console.log('Connected to DB!'));
-} catch (e) {
-  console.log('could not connect');
-}
