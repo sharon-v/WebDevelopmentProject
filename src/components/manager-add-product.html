@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
     <meta charset="utf-8" />
     <meta
@@ -12,6 +11,7 @@
 
   <body>
     <script id="replace_with_navbar" src="../components/navbar.js"></script>
+
     <main class="page product-page">
       <section class="clean-block clean-product dark">
         <div class="container" style="border-style: none">
@@ -227,6 +227,57 @@
                 </div>
               </div>
             </div>
+            <div
+              class="row d-lg-flex justify-content-lg-start"
+              style="margin-top: 3vw"
+            >
+              <div
+                class="col-lg-3 text-start d-lg-flex justify-content-lg-start align-items-lg-center"
+              >
+                <small
+                  class="form-text"
+                  style="
+                    font-weight: bold;
+                    color: var(--bs-pink);
+                    font-size: 16px;
+                  "
+                  >product categories:</small
+                >
+              </div>
+              <div class="col-lg-3 d-lg-flex justify-content-lg-center">
+                <select>
+                  <optgroup label="Fabric">
+                    <option value="1">cotton</option>
+                    <option value="2">microfiber</option>
+                    <option value="3">flannel</option>
+                    <option value="4">satin</option>
+                    <option value="5">jersey</option>
+                  </optgroup>
+                </select>
+              </div>
+              <div
+                class="col-lg-6 text-center d-lg-flex justify-content-lg-center align-items-lg-center"
+              >
+                <div class="form-check mx-auto">
+                  <input
+                    id="formCheck-1"
+                    class="form-check-input"
+                    type="checkbox"
+                  /><label class="form-check-label" for="formCheck-1"
+                    >Just Landed</label
+                  >
+                </div>
+                <div class="form-check mx-auto">
+                  <input
+                    id="formCheck-2"
+                    class="form-check-input"
+                    type="checkbox"
+                  /><label class="form-check-label" for="formCheck-2"
+                    >On Sale</label
+                  >
+                </div>
+              </div>
+            </div>
             <div class="row" style="margin-top: 2vw">
               <div class="col">
                 <div class="row">
@@ -283,66 +334,7 @@
         </div>
       </section>
     </main>
-    <!-- <footer class="page-footer dark" style="color: rgb(33, 37, 41)">
-      <div class="container">
-        <div class="row row-cols-4">
-          <div class="col-lg-2 text-center d-lg-flex align-items-lg-center">
-            <a class="mx-auto" href="help-center.html">Help Center</a>
-          </div>
-          <div class="col-lg-2 text-center d-lg-flex align-items-lg-center">
-            <a class="mx-auto" href="q-and-a.html">Q&amp;A</a>
-          </div>
-          <div
-            class="col-lg-2 text-center d-lg-flex align-items-center align-items-lg-center"
-          >
-            <a class="mx-auto" href="about-us.html">About Us</a>
-          </div>
-          <div class="col-lg-2 text-center d-lg-flex align-items-lg-center">
-            <a class="mx-auto" href="contact-us.html">Contact Us</a>
-          </div>
-          <div
-            class="col d-lg-flex mx-auto justify-content-lg-center align-items-lg-center"
-          >
-            <a
-              class="btn mx-auto"
-              role="button"
-              style="
-                background: url('icon/facebook-free-icon-font.svg') center /
-                  contain no-repeat;
-                border-style: hidden;
-                width: 3.5vw;
-                height: 3vw;
-              "
-              href="https://www.facebook.com/profile.php?id=100080692064900"
-            ></a
-            ><a
-              class="btn mx-auto"
-              role="button"
-              style="
-                background: url('icon/instagram-free-icon-font.svg') center /
-                  contain no-repeat;
-                border-style: hidden;
-                width: 3.5vw;
-                height: 3vw;
-              "
-              href="https://www.instagram.com/holysheets.official/"
-            ></a
-            ><img
-              class="mx-auto"
-              data-bs-toggle="tooltip"
-              data-bs-placement="bottom"
-              style="border-style: hidden; width: 3.5vw; height: 3vw"
-              src="icon/envelope-free-icon-font.svg"
-              title="holysheets.official@gmail.com"
-            />
-          </div>
-        </div>
-      </div>
-      <div class="footer-copyright">
-        <p>© 2022 Copyright Holy Sheets</p>
-      </div>
-    </footer> -->
-    <script src="components/manager-add-or-edit-product.js"></script>
-    <script id="replace_with_footer" src="footer.js"></script>
+    <script id="replace_with_footer" src="components/footer.js"></script>
+    <script src="../components/manager-add-or-edit-product.js"></script>
   </body>
 </html>
