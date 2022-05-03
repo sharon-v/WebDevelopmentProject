@@ -279,6 +279,11 @@ button,
   opacity: 0.5;
 }
 
+.errormsg{
+  color: #dc3545;
+  text-align: center;
+}
+
 .btn {
   display: inline-block;
   font-weight: 400;

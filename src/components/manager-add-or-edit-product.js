@@ -25,15 +25,15 @@ input.addEventListener('keyup', () => {
 });
 
 /* code fo displaying picture in add/edit new product page */
-const imageInput = document.querySelector('#imageInput');
+const image_input = document.querySelector('#image-input');
 
-imageInput.addEventListener('change', function () {
+image_input.addEventListener('change', function () {
   const reader = new FileReader();
   reader.addEventListener('load', () => {
-    const uploadedImage = reader.result;
+    const uploaded_image = reader.result;
     document.querySelector(
-      '#displayImage'
-    ).style.backgroundImage = `url(${uploadedImage})`;
+      '#display-image'
+    ).style.backgroundImage = `url(${uploaded_image})`;
   });
-  reader.readAsDataURL(files[0]);
+  reader.readAsDataURL(this.files[0]);
 });
