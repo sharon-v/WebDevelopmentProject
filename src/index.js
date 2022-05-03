@@ -1,21 +1,18 @@
-// for mongoDB
-// const {MongoClient} =require('mongodb');
-const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 
 const express = require('express');
 
-// **** start guide
+// ** start guide
 const morgan = require('morgan');
 const { Router } = require('express');
-// **** end guide
+// ** end guide
 
 const port = process.env.PORT || 5000;
 const app = express();
 // app.use(Router); // line doesn't work
 app.use(express.static(__dirname + '/'));
 
-// **** start guide
+// ** start guide
 app.use(morgan('dev'));
 
 app.use(express.json());
@@ -37,7 +34,7 @@ app.use((req, res, next) => {
   }
   next();
 });
-// **** end guide
+// ** end guide
 
 app.get('/', (req, res) => {
   // res.send('<h1>The web is on the air<h1>');
@@ -48,7 +45,7 @@ app.listen(port, () => {
   console.log('server is up and runing- checking');
 });
 
-// **** start guide
+// ** start guide
 app.use((req, res, next) => {
   const error = new Error('Not Found');
   error.status = 404;
@@ -63,4 +60,4 @@ app.use((error, req, res, next) => {
     },
   });
 });
-// **** end guide
+// ** end guide
