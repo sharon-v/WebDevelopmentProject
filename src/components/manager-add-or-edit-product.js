@@ -1,4 +1,3 @@
-/* code for hashtags in add/edit new product page- */
 const hashtagArray = [];
 let t;
 

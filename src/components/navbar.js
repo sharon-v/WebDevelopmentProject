@@ -25,7 +25,7 @@ fbAuth.onAuthStateChanged((user) => {
     // User is signed out
     document.getElementById('nav_home_btn').style.visibility = 'hidden';
     document.getElementById('nav_catalog_btn').style.visibility = 'hidden';
-    document.getElementById('nav_catalog_btn').style.visibility = 'hidden';
+    document.getElementById('nav_cart_and_badge').style.visibility = 'hidden';
     document.getElementById('nav_wishlist_btn').style.visibility = 'hidden';
     document.getElementById('nav_profile_btn').style.visibility = 'hidden';
     document.getElementById('nav_logout_btn').style.visibility = 'hidden';

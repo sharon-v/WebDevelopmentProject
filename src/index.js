@@ -1,23 +1,30 @@
-const bodyParser = require('body-parser');
+import bodyParser from 'body-parser';
 
-const express = require('express');
+import express from 'express';
+import { json, urlencoded } from 'express';
+
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
 
 // ** start guide
-const morgan = require('morgan');
-const { Router } = require('express');
+import morgan from 'morgan';
+import { Router } from 'express';
 // ** end guide
 
 const port = process.env.PORT || 5000;
 const app = express();
 // app.use(Router); // line doesn't work
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
 app.use(express.static(__dirname + '/'));
+// app.use('/public', express.static('/'));
 
 // ** start guide
 app.use(morgan('dev'));
 
-app.use(express.json());
+app.use(json());
 app.use(
-  express.urlencoded({
+  urlencoded({
     extended: true,
   })
 );
@@ -36,10 +43,17 @@ app.use((req, res, next) => {
 });
 // ** end guide
 
+// original
 app.get('/', (req, res) => {
   // res.send('<h1>The web is on the air<h1>');
   res.sendFile('/components/welcome-page.html', { root: __dirname });
 });
+
+// test
+// app.get('/', (req, res) => {
+//   // res.send('<h1>The web is on the air<h1>');
+//   res.sendFile(__dirname + '/src/components/welcome-page.html');
+// });
 
 app.listen(port, () => {
   console.log('server is up and runing- checking');
