@@ -16,11 +16,17 @@ firebase.initializeApp(state.firebaseConfig);
 
 // Set database variable
 var database = firebase.firestore();
-var prod = database.collection('products');
-var customers = database.collection('customers');
-var manager = database.collection('manager');
+var dbProducts = database.collection('products');
+var dbCustomers = database.collection('customers');
+var dbManager = database.collection('manager');
+var dbDeveloperPasscode = database.collection('developerPasscode');
 var fbAuth = firebase.auth();
-export { fbAuth as fbAuth };
-export { prod as dbProducts };
-export { customers as dbCustomers };
-export { manager as dbManager };
+export {
+    fbAuth
+}
+export {
+    dbProducts,
+    dbCustomers,
+    dbManager,
+    dbDeveloperPasscode,
+};

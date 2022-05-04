@@ -1,4 +1,4 @@
-import { fbAuth, dbCustomers, dbManager } from '../firebase/data.js'
+import { fbAuth, dbCustomers, dbManager, dbDeveloperPasscode } from '../firebase/data.js'
 
 console.log('enter');
 
@@ -11,6 +11,8 @@ document.addEventListener('DOMContentLoaded', () => {
 	btn.addEventListener('click', (e) => {
 		e.preventDefault();  // IMPORTANT! so the db functions could work, DO NOT REMOVE
 		console.log('clicked on register');
+
+		// getting the registration details from the html
 		const fname = document.getElementById('registerfName').value;
 		const lname = document.getElementById('registerlName').value;
 		const birthdate = document.getElementById('registerDate').value;
@@ -19,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		const password = document.getElementById('registerPassword').value;
 		const passwordConfirmation = document.getElementById('registerConfirmPassword').value;
 		const managerPasscode = document.getElementById('registerManagerPasscode').value;
-		const isCbChecked = document.getElementById('registerManagerCheckBox').isCbChecked;
+		const isCbChecked = document.getElementById('registerManagerCheckBox').checked;
 
 		// writing data collected for testing
 		console.log(fname);
@@ -32,13 +34,14 @@ document.addEventListener('DOMContentLoaded', () => {
 		console.log(managerPasscode);
 
 		if (isCbChecked) {
+			console.log('cb is checked');
 			managerSignUp(fname, lname, birthdate, phoneNumber, email, password, passwordConfirmation, managerPasscode);
 		}
 		else {
 			customerSignUp(fname, lname, birthdate, phoneNumber, email, password, passwordConfirmation);
 		}
 
-		// forgot password - reseting with firebasse 
+		// forgot password - reseting with firebasse!!!!! 
 		// fbAuth.sendPasswordResetEmail(email)
 		// 	.then(() => {
 		// 		// Password reset email sent!
@@ -68,7 +71,6 @@ function checkPasswordConfirmation(password, passwordConfirmation) {
 
 function customerSignUp(fname, lname, birthdate, phoneNumber, email, password, passwordConfirmation) {
 	if (checkPasswordConfirmation(password, passwordConfirmation)) {
-
 		fbAuth
 			.createUserWithEmailAndPassword(email, password)
 			.then((userCredential) => {
@@ -101,20 +103,42 @@ function customerSignUp(fname, lname, birthdate, phoneNumber, email, password, p
 }
 
 function managerSignUp(fname, lname, birthdate, phoneNumber, email, password, passwordConfirmation, managerPasscode) {
+	console.log('in manager sign up');
 	// check if a manager already signed up to our website
 	dbManager.get().then(function (querySnapshot) {
-		if (querySnapshot.empty) {
+		if (!querySnapshot.empty) {
 			alert('A manager is already signed up to the website');
 			return;
 		}
+		else {
+			if (!checkPasswordConfirmation(password, passwordConfirmation)) {
+				return;
+			}
+			// checking developer passcode
+			var x = '';
+			dbDeveloperPasscode.get().then((querySnapshot) => {
+				querySnapshot.forEach((doc) => {
+					x = doc.data();
+				});
+				console.log('developer passcode:', x.passcode, String(x).length);
+				console.log('manager passcode:', managerPasscode);
+				console.log('manager passcode length:', String(managerPasscode).length);
+				if (String(managerPasscode) === String(x)) {
+					// if (String(managerPasscode).localeCompare(String(x)) != 0) {  // doesn't 
+					console.log('error in matching developer passcode');
+					alert('developer passcode is not correct')
+				}
+				else {
+					// creating the manager user in the DB
+					addManagerToTheDb(fname, lname, birthdate, phoneNumber, email, password)
+				}
+			});
+		}
 	});
+}
 
-	if (!checkPasswordConfirmation(password, passwordConfirmation)) {
-		return;
-	}
-
-	// check if the developer passcode match
-
+function addManagerToTheDb(fname, lname, birthdate, phoneNumber, email, password) {
+	// creating the manager user in the DB
 	fbAuth
 		.createUserWithEmailAndPassword(email, password)
 		.then((userCredential) => {
@@ -144,3 +168,15 @@ function managerSignUp(fname, lname, birthdate, phoneNumber, email, password, pa
 			alert(errorMessage);
 		});
 }
+
+function compareSrings(a, b) {
+
+}
+	// code from arkadi
+	// dbDeveloperPasscode.get().then((querySnapshot) => {
+	// 	querySnapshot.forEach((doc) => {
+	// 		data.push(doc.data());
+	// 	});
+	// 	console.log(data);
+	// 	init();
+	// });
