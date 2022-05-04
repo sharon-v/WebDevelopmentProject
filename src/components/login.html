@@ -2,57 +2,56 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
-    <title>Login - Brand</title>
-    <link rel="stylesheet" href="../components/login.css" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+  <title>Login - Brand</title>
+  <link rel="stylesheet" href="../components/login.css" />
 </head>
 
 <body>
-    <script type="module" id="replace_with_navbar" src="../components/navbar.js">
-    </script>
-    <main class="page login-page">
-        <section class="clean-block clean-form dark">
-            <div class="container">
-                <div class="block-heading">
-                    <h1 style="font-size: calc(1.325rem + 0.9vw)">Log In<br /></h1>
-                </div>
-                <form class="text-secondary border-secondary d-flex flex-column">
-                    <div class="mb-3"></div>
-                    <div class="mb-3">
-                        <input id="loginEmail" class="form-control" type="email" name="login_email" placeholder="Email" />
-                    </div>
-                    <input id="loginPassword" class="form-control item" type="password" required minlength="6" placeholder="Password" name="login_password" />
-                    <div id="errorMsg" class="errormsg" style="margin-bottom: 1vw">
-                        <strong>Error</strong></div>
-                    <button id="loginBtn" class="btn btn-primary btn-lg" type="submit" style="
+  <script type="module" id="replace_with_navbar" src="../components/navbar.js">
+  </script>
+  <main class="page login-page">
+    <section class="clean-block clean-form dark">
+      <div class="container">
+        <div class="block-heading">
+          <h1 style="font-size: calc(1.325rem + 0.9vw)">Log In<br /></h1>
+        </div>
+        <form class="text-secondary border-secondary d-flex flex-column">
+          <div class="mb-3"></div>
+          <div class="mb-3">
+            <input id="loginEmail" class="form-control" type="email" name="login_email" placeholder="Email" />
+          </div>
+          <input id="loginPassword" class="form-control item" type="password" required minlength="6"
+            placeholder="Password" name="login_password" />
+          <button id="loginBtn" class="btn btn-primary btn-lg" type="submit" style="
                 background: var(--bs-gray-800);
                 border-style: hidden;
                 border-top-style: hidden;
               ">
             <strong>log in</strong>
           </button>
-                    <!-- create new page with email submit to change password -->
-                    <a class="d-lg-flex justify-content-lg-center align-items-lg-center" href="#">
-                        <br /><strong>Forgot password?</strong><br />
-                    </a>
-                    <a class="d-lg-flex justify-content-lg-center align-items-lg-center" href="registration.html">
-                        <br /><strong>Don&#39;t have an account yet? Create
+          <!-- create new page with email submit to change password -->
+          <a class="d-lg-flex justify-content-lg-center align-items-lg-center" href="#">
+            <br /><strong>Forgot password?</strong><br />
+          </a>
+          <a class="d-lg-flex justify-content-lg-center align-items-lg-center" href="registration.html">
+            <br /><strong>Don&#39;t have an account yet? Create
               Account</strong><br />
-                    </a>
-                </form>
-            </div>
-        </section>
-    </main>
-    <script type="module" id="replace_with_footer" src="footer.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js">
-    </script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js">
-    </script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js">
-    </script>
-    <script type="module" src="login.js"></script>
-    <!-- <script src="components/Welcome-page.js"></script> -->
+          </a>
+        </form>
+      </div>
+    </section>
+  </main>
+  <script type="module" id="replace_with_footer" src="footer.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js">
+  </script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js">
+  </script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js">
+  </script>
+  <script type="module" src="login.js"></script>
+  <!-- <script src="components/Welcome-page.js"></script> -->
 </body>
 
 </html>
