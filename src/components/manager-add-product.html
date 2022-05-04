@@ -1,96 +1,64 @@
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
-    />
-    <title>Product - Brand</title>
-    <link rel="stylesheet" href="../components/manager-add-product.css" />
-  </head>
 
-  <body>
-    <script id="replace_with_navbar" src="../components/navbar.js"></script>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+  <title>Product - Brand</title>
+  <link rel="stylesheet" href="../components/manager-add-product.css" />
+</head>
 
-    <main class="page product-page">
-      <section class="clean-block clean-product dark">
-        <div class="container" style="border-style: none">
-          <div class="block-heading">
-            <h1 style="font-size: calc(1.325rem + 0.9vw)">
-              Add New Product <br />
-            </h1>
-          </div>
-          <div class="block-content">
-            <div class="product-info">
-              <div class="row">
-                <div class="col-md-6">
-                  <div>
-                    <div
-                      id="display-image"
-                      style="
+<body>
+  <script type="module" id="replace_with_navbar" src="../components/navbar.js"></script>
+
+  <main class="page product-page">
+    <section class="clean-block clean-product dark">
+      <div class="container" style="border-style: none">
+        <div class="block-heading">
+          <h1 style="font-size: calc(1.325rem + 0.9vw)">
+            Add New Product <br />
+          </h1>
+        </div>
+        <div class="block-content">
+          <div class="product-info">
+            <div class="row">
+              <div class="col-md-6">
+                <div>
+                  <div id="display-image" style="
                         background: url('../assets/images/photo\ \(2\).png')
                           center / contain no-repeat;
-                      "
-                    ></div>
-                    <input
-                      id="image-input"
-                      type="file"
-                      accept="image/jpeg, image/png, image/jpg"
-                      style="
+                      "></div>
+                  <input id="image-input" type="file" accept="image/jpeg, image/png, image/jpg" style="
                         margin-top: 2vw;
                         margin-bottom: 2vw;
                         margin-left: 3vw;
                         border: 1px solid var(--bs-gray-400);
                         width: 30vw;
-                      "
-                      data-bs-toggle="tooltip"
-                      data-bs-placement="bottom"
-                    />
-                  </div>
+                      " data-bs-toggle="tooltip" data-bs-placement="bottom" />
                 </div>
-                <div class="col-md-6">
-                  <div class="info">
-                    <input
-                      type="text"
-                      name="edit_product_name"
-                      style="
+              </div>
+              <div class="col-md-6">
+                <div class="info">
+                  <input type="text" name="edit_product_name" style="
                         font-weight: bold;
                         font-size: 27.5px;
                         width: 30vw;
                         border-width: 1px;
                         border-color: var(--bs-gray-400);
-                      "
-                      placeholder="Sheets Name Here"
-                    />
-                    <div class="price">
-                      <textarea
-                        name="edit_product_description"
-                        placeholder="Description Here"
-                        style="
+                      " placeholder="Sheets Name Here" />
+                  <div class="price">
+                    <textarea name="edit_product_description" placeholder="Description Here" style="
                           width: 35vw;
                           border-width: 1px;
                           border-color: var(--bs-gray-400);
                           height: 10vw;
-                        "
-                        maxlength="300"
-                        required
-                      ></textarea
-                      ><input
-                        type="text"
-                        name="edit_product_price"
-                        style="
+                        " maxlength="300" required></textarea><input type="text" name="edit_product_price" style="
                           font-weight: bold;
                           font-size: 22px;
                           margin-top: 1vw;
                           width: 30vw;
                           border-width: 1px;
                           border-color: var(--bs-gray-400);
-                        "
-                        placeholder="Price Here"
-                      /><input
-                        type="text"
-                        name="edit_product_sale"
-                        style="
+                        " placeholder="Price Here" /><input type="text" name="edit_product_sale" style="
                           color: var(--bs-red);
                           font-weight: bold;
                           font-size: 24px;
@@ -98,243 +66,137 @@
                           width: 30vw;
                           border-width: 1px;
                           border-color: var(--bs-gray-400);
-                        "
-                        placeholder="Discount - OPTIONAL"
-                      />
-                    </div>
+                        " placeholder="Discount - OPTIONAL" />
                   </div>
-                  <label class="form-label" style="margin-right: 1vw">SKU</label
-                  ><input
-                    type="text"
-                    value="5959"
-                    name="edit_product_sku"
-                    readonly
-                    style="width: 16.5vw; border-style: hidden"
-                  />
                 </div>
+                <label class="form-label" style="margin-right: 1vw">SKU</label><input type="text" value="5959"
+                  name="edit_product_sku" readonly style="width: 16.5vw; border-style: hidden" />
               </div>
             </div>
-            <div class="row">
-              <div class="col-lg-3">
-                <small
-                  class="form-text"
-                  style="
+          </div>
+          <div class="row">
+            <div class="col-lg-3">
+              <small class="form-text" style="
                     font-weight: bold;
                     color: var(--bs-pink);
                     font-size: 16px;
-                  "
-                  >choose sizes:</small
-                >
-                <div style="padding-left: 3vw">
-                  <div class="form-check" style="width: 200px">
-                    <input
-                      id="formCheck-5"
-                      class="form-check-input"
-                      type="checkbox"
-                      name="edit_product_90x200"
-                    /><label class="form-check-label" for="formCheck-5"
-                      >90 x 200</label
-                    >
-                  </div>
-                  <label class="form-label d-none d-md-block" for="quantity"
-                    >Quantity</label
-                  ><input
-                    id="number-4"
-                    class="form-control quantity-input"
-                    type="number"
-                    value="1"
-                    name="product_page_quantity_90x200"
-                    style="width: 8vw"
-                  />
+                  ">choose sizes:</small>
+              <div style="padding-left: 3vw">
+                <div class="form-check" style="width: 200px">
+                  <input id="formCheck-5" class="form-check-input" type="checkbox" name="edit_product_90x200" /><label
+                    class="form-check-label" for="formCheck-5">90 x 200</label>
                 </div>
-              </div>
-              <div class="col-lg-3 d-lg-flex align-items-lg-end">
-                <div style="padding-left: 4vw">
-                  <div class="form-check" style="width: 200px">
-                    <input
-                      id="formCheck-6"
-                      class="form-check-input"
-                      type="checkbox"
-                      name="edit_product_120x200"
-                    /><label class="form-check-label" for="formCheck-6"
-                      >120 x 200</label
-                    >
-                  </div>
-                  <label class="form-label d-none d-md-block" for="quantity"
-                    >Quantity</label
-                  ><input
-                    id="number-5"
-                    class="form-control quantity-input"
-                    type="number"
-                    value="1"
-                    name="product_page_quantity_120x200"
-                    style="width: 8vw"
-                  />
-                </div>
-              </div>
-              <div
-                class="col-lg-3 d-lg-flex justify-content-lg-center align-items-lg-end"
-                style="margin-left: 2vw"
-              >
-                <div
-                  class="justify-content-lg-end align-items-lg-end"
-                  style="padding-left: 5vw"
-                >
-                  <div class="form-check" style="width: 200px">
-                    <input
-                      id="formCheck-7"
-                      class="form-check-input"
-                      type="checkbox"
-                      name="edit_product_160x200"
-                    /><label class="form-check-label" for="formCheck-7"
-                      >160 x 200</label
-                    >
-                  </div>
-                  <label class="form-label d-none d-md-block" for="quantity"
-                    >Quantity</label
-                  ><input
-                    id="number-6"
-                    class="form-control quantity-input"
-                    type="number"
-                    value="1"
-                    name="product_page_quantity_160x200"
-                    style="width: 8vw"
-                  />
-                </div>
-              </div>
-              <div class="col-lg-2 d-lg-flex align-items-lg-end">
-                <div style="margin-left: 50px; width: 100px">
-                  <div class="form-check" style="width: 200px">
-                    <input
-                      id="formCheck-8"
-                      class="form-check-input"
-                      type="checkbox"
-                      name="edit_product_180x200"
-                    /><label class="form-check-label" for="formCheck-8"
-                      >180 x 200</label
-                    >
-                  </div>
-                  <label class="form-label d-none d-md-block" for="quantity"
-                    >Quantity</label
-                  ><input
-                    id="number-7"
-                    class="form-control quantity-input"
-                    type="number"
-                    value="1"
-                    name="product_page_quantity_180x200"
-                    style="width: 8vw"
-                  />
-                </div>
+                <label class="form-label d-none d-md-block" for="quantity">Quantity</label><input id="number-4"
+                  class="form-control quantity-input" type="number" value="1" name="product_page_quantity_90x200"
+                  style="width: 8vw" />
               </div>
             </div>
-            <div
-              class="row d-lg-flex justify-content-lg-start"
-              style="margin-top: 3vw"
-            >
-              <div
-                class="col-lg-3 text-start d-lg-flex justify-content-lg-start align-items-lg-center"
-              >
-                <small
-                  class="form-text"
-                  style="
+            <div class="col-lg-3 d-lg-flex align-items-lg-end">
+              <div style="padding-left: 4vw">
+                <div class="form-check" style="width: 200px">
+                  <input id="formCheck-6" class="form-check-input" type="checkbox" name="edit_product_120x200" /><label
+                    class="form-check-label" for="formCheck-6">120 x 200</label>
+                </div>
+                <label class="form-label d-none d-md-block" for="quantity">Quantity</label><input id="number-5"
+                  class="form-control quantity-input" type="number" value="1" name="product_page_quantity_120x200"
+                  style="width: 8vw" />
+              </div>
+            </div>
+            <div class="col-lg-3 d-lg-flex justify-content-lg-center align-items-lg-end" style="margin-left: 2vw">
+              <div class="justify-content-lg-end align-items-lg-end" style="padding-left: 5vw">
+                <div class="form-check" style="width: 200px">
+                  <input id="formCheck-7" class="form-check-input" type="checkbox" name="edit_product_160x200" /><label
+                    class="form-check-label" for="formCheck-7">160 x 200</label>
+                </div>
+                <label class="form-label d-none d-md-block" for="quantity">Quantity</label><input id="number-6"
+                  class="form-control quantity-input" type="number" value="1" name="product_page_quantity_160x200"
+                  style="width: 8vw" />
+              </div>
+            </div>
+            <div class="col-lg-2 d-lg-flex align-items-lg-end">
+              <div style="margin-left: 50px; width: 100px">
+                <div class="form-check" style="width: 200px">
+                  <input id="formCheck-8" class="form-check-input" type="checkbox" name="edit_product_180x200" /><label
+                    class="form-check-label" for="formCheck-8">180 x 200</label>
+                </div>
+                <label class="form-label d-none d-md-block" for="quantity">Quantity</label><input id="number-7"
+                  class="form-control quantity-input" type="number" value="1" name="product_page_quantity_180x200"
+                  style="width: 8vw" />
+              </div>
+            </div>
+          </div>
+          <div class="row d-lg-flex justify-content-lg-start" style="margin-top: 3vw">
+            <div class="col-lg-3 text-start d-lg-flex justify-content-lg-start align-items-lg-center">
+              <small class="form-text" style="
                     font-weight: bold;
                     color: var(--bs-pink);
                     font-size: 16px;
-                  "
-                  >product categories:</small
-                >
+                  ">product categories:</small>
+            </div>
+            <div class="col-lg-3 d-lg-flex justify-content-lg-center">
+              <select>
+                <optgroup label="Fabric">
+                  <option value="1">cotton</option>
+                  <option value="2">microfiber</option>
+                  <option value="3">flannel</option>
+                  <option value="4">satin</option>
+                  <option value="5">jersey</option>
+                </optgroup>
+              </select>
+            </div>
+            <div class="col-lg-6 text-center d-lg-flex justify-content-lg-center align-items-lg-center">
+              <div class="form-check mx-auto">
+                <input id="formCheck-1" class="form-check-input" type="checkbox" /><label class="form-check-label"
+                  for="formCheck-1">Just Landed</label>
               </div>
-              <div class="col-lg-3 d-lg-flex justify-content-lg-center">
-                <select>
-                  <optgroup label="Fabric">
-                    <option value="1">cotton</option>
-                    <option value="2">microfiber</option>
-                    <option value="3">flannel</option>
-                    <option value="4">satin</option>
-                    <option value="5">jersey</option>
-                  </optgroup>
-                </select>
-              </div>
-              <div
-                class="col-lg-6 text-center d-lg-flex justify-content-lg-center align-items-lg-center"
-              >
-                <div class="form-check mx-auto">
-                  <input
-                    id="formCheck-1"
-                    class="form-check-input"
-                    type="checkbox"
-                  /><label class="form-check-label" for="formCheck-1"
-                    >Just Landed</label
-                  >
-                </div>
-                <div class="form-check mx-auto">
-                  <input
-                    id="formCheck-2"
-                    class="form-check-input"
-                    type="checkbox"
-                  /><label class="form-check-label" for="formCheck-2"
-                    >On Sale</label
-                  >
-                </div>
+              <div class="form-check mx-auto">
+                <input id="formCheck-2" class="form-check-input" type="checkbox" /><label class="form-check-label"
+                  for="formCheck-2">On Sale</label>
               </div>
             </div>
-            <div class="row" style="margin-top: 2vw">
-              <div class="col">
-                <div class="row">
-                  <div
-                    class="col"
-                    style="margin-left: 0vw; padding-left: 1vw; width: 20vw"
-                  >
-                    <label
-                      class="form-label"
-                      style="
+          </div>
+          <div class="row" style="margin-top: 2vw">
+            <div class="col">
+              <div class="row">
+                <div class="col" style="margin-left: 0vw; padding-left: 1vw; width: 20vw">
+                  <label class="form-label" style="
                         color: var(--bs-pink);
                         font-size: 16px;
                         font-weight: bold;
                         margin-right: 2vw;
-                      "
-                      >Add Hashtags:</label
-                    >
-                    <div class="wrapper">
-                      <input
-                        id="hashtags"
-                        type="text"
-                        autocomplete="off"
-                        placeholder="Type your hashtag and click enter"
-                        style="
+                      ">Add Hashtags:</label>
+                  <div class="wrapper">
+                    <input id="hashtags" type="text" autocomplete="off" placeholder="Type your hashtag and click enter"
+                      style="
                           width: 30vw;
                           border-width: 1px;
                           border-color: var(--bs-gray-400);
-                        "
-                      />
-                      <div class="tag-container"></div>
-                    </div>
+                        " />
+                    <div class="tag-container"></div>
                   </div>
                 </div>
               </div>
             </div>
-            <div
-              class="d-lg-flex mx-auto justify-content-lg-center"
-              style="align-self: center"
-            >
-              <button
-                class="btn btn-primary"
-                type="button"
-                style="
+          </div>
+          <div class="d-lg-flex mx-auto justify-content-lg-center" style="align-self: center">
+            <button class="btn btn-primary" type="button" style="
                   margin-top: 3vw;
                   background: var(--bs-dark);
                   width: 30vw;
                   border-style: hidden;
-                "
-              >
-                Add Product
-              </button>
-            </div>
+                ">
+              Add Product
+            </button>
           </div>
         </div>
-      </section>
-    </main>
-    <script id="replace_with_footer" src="components/footer.js"></script>
-    <script src="../components/manager-add-or-edit-product.js"></script>
-  </body>
+      </div>
+    </section>
+  </main>
+  <script id="replace_with_footer" src="components/footer.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+  <script type="module" src="../components/manager-add-or-edit-product.js"></script>
+</body>
+
 </html>
