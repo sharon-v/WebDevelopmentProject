@@ -1,175 +1,114 @@
-<!DOCTYPE html>
-<html lang="en">
-  <html>
-    <head>
-      <meta charset="utf-8" />
-      <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
-      />
-      <title>Shopping Cart - Brand</title>
-      <link rel="stylesheet" href="../components/manager-delivery-times.css" />
-    </head>
+<html>
 
-    <body>
-      <script id="replace_with_navbar" src="../components/navbar.js"></script>
-      <main class="page shopping-cart-page">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+    <title>Shopping Cart - Brand</title>
+    <link rel="stylesheet" href="../components/manager-delivery-times.css" />
+</head>
+
+<body>
+    <script type="module" id="replace_with_navbar" src="../components/navbar.js"></script>
+
+    <main class="page shopping-cart-page">
         <section class="bg-light clean-block clean-cart dark">
-          <div class="container">
-            <div class="block-heading">
-              <h1 style="font-size: calc(1.325rem + 0.9vw)">Manager Zone</h1>
-              <ul
-                class="nav nav-tabs d-lg-flex flex-row justify-content-lg-center align-items-lg-center"
-              >
-                <li class="nav-item"></li>
-                <li class="nav-item">
-                  <a
-                    class="nav-link"
-                    href="manager-manage-items.html"
-                    style="color: var(--bs-pink)"
-                    >Manage items</a
-                  >
-                </li>
-                <li class="nav-item">
-                  <a
-                    class="nav-link"
-                    href="manager-manage-orders.html"
-                    style="color: var(--bs-pink)"
-                    >Manage orders</a
-                  >
-                </li>
-                <li class="nav-item">
-                  <a
-                    class="nav-link"
-                    href="manager-manage-update-delivery-times.html"
-                    style="font-weight: bold; color: var(--bs-dark)"
-                    >Update delivery times</a
-                  >
-                </li>
-                <li class="nav-item">
-                  <a
-                    class="nav-link"
-                    href="dashboard.html"
-                    style="color: var(--bs-pink)"
-                    >Statistical Information</a
-                  >
-                </li>
-                <li class="nav-item"></li>
-                <li class="nav-item"></li>
-                <li class="nav-item"></li>
-                <li class="nav-item"></li>
-              </ul>
-            </div>
-            <div
-              class="align-content-center mx-auto content"
-              style="width: 50vw; padding-bottom: 2vw; padding-top: 2vw"
-            >
-              <div class="row">
-                <div class="col d-lg-flex justify-content-lg-center">
-                  <span>Select Date: </span
-                  ><input
-                    type="date"
-                    style="margin-left: 20px"
-                    name="update_times_date"
-                  />
-                </div>
-              </div>
-              <div class="row">
-                <div
-                  class="col d-lg-flex mx-auto"
-                  style="margin-top: 20px; padding-left: 16vw"
+            <div class="container">
+                <div class="block-heading">
+                    <h1 style="font-size: calc(1.325rem + 0.9vw)">Manager Zone</h1>
+                    <ul class="nav nav-tabs d-lg-flex flex-row justify-content-lg-center align-items-lg-center">
+                        <li class="nav-item"></li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="manager-manage-items.html" style="color: var(--bs-pink)">Manage items</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="manager-manage-orders.html" style="color: var(--bs-pink)">Manage orders</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="manager-delivery-times.html" style="font-weight: bold; color: var(--bs-dark)">Update delivery times</a
                 >
-                  <span style="margin-right: 1vw; /*padding-left: 3vw;*/"
-                    >Select Hours: </span
-                  ><select style="margin-left: 10px">
-                    <option value selected>SELECT</option>
-                    <option value>08:00 - 10:00</option>
-                    <option value>10:00 - 12:00</option>
-                    <option value>12:00 - 14:00</option>
-                    <option value>14:00 - 16:00</option>
-                    <option value>16:00 - 18:00</option>
-                  </select>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="manager-statistics.html" style="color: var(--bs-pink)">Statistical Information</a>
+                        </li>
+                        <li class="nav-item"></li>
+                        <li class="nav-item"></li>
+                        <li class="nav-item"></li>
+                        <li class="nav-item"></li>
+                    </ul>
+                </div>
+                <div class="align-content-center mx-auto content" style="width: 50vw; padding-bottom: 2vw; padding-top: 2vw">
+                    <div class="row">
+                        <div class="col d-lg-flex justify-content-lg-center">
+                            <span>Select Date: </span><input type="date" style="margin-left: 20px" name="update_times_date" />
+                        </div>
+                    </div>
+                    <div class="row d-lg-flex my-auto justify-content-lg-center">
+                        <div class="col">
+                            <label class="col-form-label text-center d-lg-flex justify-content-lg-center" style="margin-top: 2vw">Choose unavailable hours:</label
+                >
+              </div>
+            </div>
+            <div class="row d-lg-flex my-auto justify-content-lg-center" style="margin-top: 1vw">
+              <div class="col-lg-4 text-center" style="margin-top: 1vw">
+                <div class="form-check">
+                  <input id="formCheck-6" class="form-check-input" type="checkbox" /><label
+                    class="form-check-label"
+                    for="formCheck-6"
+                    >08:00 - 10:00</label
+                  >
+                </div>
+                <div class="form-check">
+                  <input id="formCheck-7" class="form-check-input" type="checkbox" /><label
+                    class="form-check-label"
+                    for="formCheck-7"
+                    >10:00 - 12:00</label
+                  >
+                </div>
+                <div class="form-check">
+                  <input id="formCheck-8" class="form-check-input" type="checkbox" /><label
+                    class="form-check-label"
+                    for="formCheck-8"
+                    >12:00 - 14:00</label
+                  >
+                </div>
+                <div class="form-check">
+                  <input id="formCheck-9" class="form-check-input" type="checkbox" /><label
+                    class="form-check-label"
+                    for="formCheck-9"
+                    >14:00 - 16:00</label
+                  >
+                </div>
+                <div class="form-check">
+                  <input id="formCheck-10" class="form-check-input" type="checkbox" /><label
+                    class="form-check-label"
+                    for="formCheck-10"
+                    >16:00 - 18:00</label
+                  >
                 </div>
               </div>
-              <button
-                class="btn btn-primary text-center d-inline-flex d-lg-flex align-self-center mx-auto justify-content-lg-center"
-                type="button"
-                style="
-                  color: var(--bs-white);
-                  background: var(--bs-gray-800);
-                  margin-top: 3vw;
-                  border-style: hidden;
-                  border-color: var(--bs-pink);
-                  width: 20vw;
-                "
-              >
-                Save Changes
-              </button>
             </div>
-          </div>
-        </section>
-      </main>
-      <!-- <footer class="page-footer dark" style="color: rgb(33, 37, 41)">
-        <div class="container">
-          <div class="row row-cols-4">
-            <div class="col-lg-2 text-center d-lg-flex align-items-lg-center">
-              <a class="mx-auto" href="help-center.html">Help Center</a>
-            </div>
-            <div class="col-lg-2 text-center d-lg-flex align-items-lg-center">
-              <a class="mx-auto" href="q-and-a.html">Q&amp;A</a>
-            </div>
-            <div
-              class="col-lg-2 text-center d-lg-flex align-items-center align-items-lg-center"
+            <button
+              class="btn btn-primary text-center d-inline-flex d-lg-flex align-self-center mx-auto justify-content-lg-center"
+              type="button"
+              style="
+                color: var(--bs-white);
+                background: var(--bs-gray-800);
+                margin-top: 3vw;
+                border-style: hidden;
+                border-color: var(--bs-pink);
+                width: 20vw;
+              "
             >
-              <a class="mx-auto" href="about-us.html">About Us</a>
-            </div>
-            <div class="col-lg-2 text-center d-lg-flex align-items-lg-center">
-              <a class="mx-auto" href="contact-us.html">Contact Us</a>
-            </div>
-            <div
-              class="col d-lg-flex mx-auto justify-content-lg-center align-items-lg-center"
-            >
-              <a
-                class="btn mx-auto"
-                role="button"
-                style="
-                  background: url('icon/facebook-free-icon-font.svg') center /
-                    contain no-repeat;
-                  border-style: hidden;
-                  width: 3.5vw;
-                  height: 3vw;
-                "
-                href="https://www.facebook.com/profile.php?id=100080692064900"
-              ></a
-              ><a
-                class="btn mx-auto"
-                role="button"
-                style="
-                  background: url('icon/instagram-free-icon-font.svg') center /
-                    contain no-repeat;
-                  border-style: hidden;
-                  width: 3.5vw;
-                  height: 3vw;
-                "
-                href="https://www.instagram.com/holysheets.official/"
-              ></a
-              ><img
-                class="mx-auto"
-                data-bs-toggle="tooltip"
-                data-bs-placement="bottom"
-                style="border-style: hidden; width: 3.5vw; height: 3vw"
-                src="icon/envelope-free-icon-font.svg"
-                title="holysheets.official@gmail.com"
-              />
-            </div>
+              Save Changes
+            </button>
           </div>
         </div>
-        <div class="footer-copyright">
-          <p>© 2022 Copyright Holy Sheets</p>
-        </div>
-      </footer> -->
-      <script id="replace_with_footer" src="components/footer.js"></script>
-      <!-- <script src="components/Welcome-page.js"></script> -->
-    </body>
-  </html>
+      </section>
+    </main>
+    <script type="module" id="replace_with_footer" src="footer.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
+  </body>
 </html>
