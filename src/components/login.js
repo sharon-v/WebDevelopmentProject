@@ -14,7 +14,6 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log(password);
         login(email, password);
     });
-
 });
 
 function login(email, password) {
