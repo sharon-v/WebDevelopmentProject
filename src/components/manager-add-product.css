@@ -469,10 +469,11 @@ textarea {
     list-style: none;
 } */
 
-.navbar-nav .nav-link {
+
+/* .navbar-nav .nav-link {
     padding-right: 0;
     padding-left: 0;
-}
+} */
 
 
 /* .navbar-collapse {
@@ -517,7 +518,8 @@ textarea {
     background-size: 100%;
 } */
 
-@media (min-width: 992px) {
+
+/* @media (min-width: 992px) {
     .navbar-expand-lg {
         flex-wrap: nowrap;
         justify-content: flex-start;
@@ -536,7 +538,7 @@ textarea {
     .navbar-expand-lg .navbar-toggler {
         display: none;
     }
-}
+} */
 
 
 /* .navbar-dark .navbar-brand {
@@ -548,14 +550,16 @@ textarea {
     color: #fff;
 } */
 
-.navbar-dark .navbar-nav .nav-link {
-    color: rgba(255, 255, 255, 0.55);
-}
 
-.navbar-dark .navbar-nav .nav-link:hover,
+/* .navbar-dark .navbar-nav .nav-link {
+    color: rgba(255, 255, 255, 0.55);
+} */
+
+
+/* .navbar-dark .navbar-nav .nav-link:hover,
 .navbar-dark .navbar-nav .nav-link:focus {
     color: rgba(255, 255, 255, 0.75);
-}
+} */
 
 
 /* .navbar-dark .navbar-toggler {
@@ -774,13 +778,14 @@ body {
 
 /* .clean-navbar.fixed-top {
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
-}
+} */
 
 .clean-navbar .navbar-nav .nav-item {
     padding-right: 2rem;
 }
 
-.clean-navbar .logo {
+
+/* .clean-navbar .logo {
     font-size: 1.5rem;
 }
 
@@ -797,66 +802,6 @@ body {
         padding-top: 5rem;
     }
 }
-
-
-/* .page-footer {
-    background-color: #fff;
-    padding-top: 30px;
-    text-align: center;
-}
-
-.page-footer.dark {
-    background-color: #2b2f31;
-}
-
-.page-footer .footer-copyright {
-    background-color: #fff;
-    padding-top: 3px;
-    padding-bottom: 3px;
-    text-align: center;
-    margin-top: 50px;
-    border: 1px solid #ededed;
-}
-
-.page-footer.dark .footer-copyright {
-    background-color: #222425;
-    border-color: #222425;
-}
-
-.page-footer .footer-copyright p {
-    margin: 10px;
-    color: #7d8288;
-}
-
-.page-footer.dark .footer-copyright p {
-    color: #ccc;
-}
-
-.page-footer a {
-    color: #53595f;
-    text-decoration: none;
-}
-
-.page-footer.dark a {
-    color: #d2d1d1;
-}
-
-.page-footer a:hover,
-.page-footer a:focus {
-    text-decoration: none;
-    color: #1d2125;
-}
-
-.page-footer.dark a:hover,
-.page-footer.dark a:focus {
-    color: #fff;
-}
-
-@media (min-width: 576px) {
-    .page-footer {
-        text-align: left;
-    }
-} */
 
 .fa {
     -moz-osx-font-smoothing: grayscale;
