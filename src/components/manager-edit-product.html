@@ -37,11 +37,12 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="info">
-                                    <input type="text" name="edit_product_name" readonly style="font-weight: bold; font-size: 27.5px; width: 30vw; border-style: none" value="Sultan Sheets" />
+                                    <input id="edit_sheets_name" type="text" name="edit_product_name" readonly style="font-weight: bold; font-size: 27.5px; width: 30vw; border-style: none" value="Sultan Sheets" />
                                     <div class="price">
-                                        <textarea name="edit_product_description" style="width: 35vw; border-width: 1px; border-color: var(--bs-gray-400); height: 10vw" maxlength="300" required>
+                                        <textarea id="edit_sheets_description" name="edit_product_description" style="width: 35vw; border-width: 1px; border-color: var(--bs-gray-400); height: 10vw" maxlength="300" required>
 Lovely royalty vintage style sheets, the bedding is hand-made from the softest silk there is.</textarea
                       ><input
+                        id="edit_sheets_price"
                         type="text"
                         name="edit_product_price"
                         style="
@@ -55,6 +56,7 @@ Lovely royalty vintage style sheets, the bedding is hand-made from the softest s
                         placeholder="Price Here"
                         value="139.90₪"
                       /><input
+                        id= "edit_sheets_sale"
                         type="text"
                         name="edit_product_sale"
                         style="
@@ -72,14 +74,14 @@ Lovely royalty vintage style sheets, the bedding is hand-made from the softest s
                     </div>
                   </div>
                   <label class="form-label" style="margin-right: 1vw">SKU</label
-                  ><input type="text" value="5959" name="edit_product_sku" readonly style="width: 16.5vw; border-style: hidden" />
+                  ><input id = "edit_sheets_sku" type="text" value="5959" name="edit_product_sku" readonly style="width: 16.5vw; border-style: hidden" />
                 </div>
               </div>
             </div>
             <div class="row">
               <div class="col-lg-3">
                 <small class="form-text" style="font-weight: bold; color: var(--bs-pink); font-size: 16px">choose sizes:</small>
-                <div class="text-center" style="/*padding-left: 3vw;*/">
+                <div class="text-center">
                   <label class="form-label d-none d-md-block" for="quantity" style="margin-top: 1vw">90 x 200</label
                   ><label class="form-label d-none d-md-block" for="quantity">Quantity</label
                   ><input
@@ -108,7 +110,6 @@ Lovely royalty vintage style sheets, the bedding is hand-made from the softest s
               </div>
               <div
                 class="col-lg-3 text-start d-lg-flex justify-content-lg-start align-items-lg-end"
-                style="/*margin-left: 2vw;*/"
               >
                 <div class="text-start justify-content-lg-end align-items-lg-end" style="padding-left: 5vw">
                   <label class="form-label d-none d-md-block" for="quantity">160 x 200</label
@@ -145,7 +146,7 @@ Lovely royalty vintage style sheets, the bedding is hand-made from the softest s
                 >
               </div>
               <div class="col-lg-3 d-lg-flex justify-content-lg-center">
-                <select>
+                <select id="fabric_sheets">
                   <optgroup label="Fabric">
                     <option value="1">cotton</option>
                     <option value="2">microfiber</option>
@@ -189,5 +190,7 @@ Lovely royalty vintage style sheets, the bedding is hand-made from the softest s
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
+    <script type="module" src="../components/manager-edit-product.js"></script>
   </body>
 </html>

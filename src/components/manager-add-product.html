@@ -33,7 +33,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="info">
-                                    <input type="text" name="edit_product_name" style="
+                                    <input id="add_sheets_name" type="text" name="edit_product_name" style="
                         font-weight: bold;
                         font-size: 27.5px;
                         width: 30vw;
@@ -41,8 +41,9 @@
                         border-color: var(--bs-gray-400);
                       " placeholder="Sheets Name Here" />
                                     <div class="price">
-                                        <textarea name="edit_product_description" placeholder="Description Here" style="width: 35vw; border-width: 1px; border-color: var(--bs-gray-400); height: 10vw" maxlength="300" required></textarea
+                                        <textarea id="add_sheets_description" name="edit_product_description" placeholder="Description Here" style="width: 35vw; border-width: 1px; border-color: var(--bs-gray-400); height: 10vw" maxlength="300" required></textarea
                       ><input
+                        id="add_sheets_price"
                         type="text"
                         name="edit_product_price"
                         style="
@@ -55,6 +56,7 @@
                         "
                         placeholder="Price Here"
                       /><input
+                        id = "add_sheets_sale"
                         type="text"
                         name="edit_product_sale"
                         style="
@@ -76,11 +78,11 @@
             <div class="row">
               <div class="col-lg-3">
                 <small class="form-text" style="font-weight: bold; color: var(--bs-pink); font-size: 16px">choose sizes:</small>
-                <div class="text-center" style="/*padding-left: 3vw;*/">
+                <div class="text-center" >
                   <label class="form-label d-none d-md-block" for="quantity" style="margin-top: 1vw">90 x 200</label
                   ><label class="form-label d-none d-md-block" for="quantity">Quantity</label
                   ><input
-                    id="number-1"
+                    id="quantity_90x200"
                     class="mx-auto form-control quantity-input"
                     type="number"
                     value="12"
@@ -94,7 +96,7 @@
                   <label class="form-label d-none d-md-block" for="quantity">120 x 200</label
                   ><label class="form-label d-none d-md-block" for="quantity">Quantity</label
                   ><input
-                    id="number-2"
+                    id="quantity_120x200"
                     class="form-control quantity-input"
                     type="number"
                     value="1"
@@ -105,13 +107,12 @@
               </div>
               <div
                 class="col-lg-3 text-start d-lg-flex justify-content-lg-start align-items-lg-end"
-                style="/*margin-left: 2vw;*/"
               >
                 <div class="text-start justify-content-lg-end align-items-lg-end" style="padding-left: 5vw">
                   <label class="form-label d-none d-md-block" for="quantity">160 x 200</label
                   ><label class="form-label d-none d-md-block" for="quantity">Quantity</label
                   ><input
-                    id="number-3"
+                    id="quantity_160x200"
                     class="form-control quantity-input"
                     type="number"
                     value="20"
@@ -125,7 +126,7 @@
                   <label class="form-label d-none d-md-block" for="quantity">180 x 200</label
                   ><label class="form-label d-none d-md-block" for="quantity">Quantity</label
                   ><input
-                    id="number-8"
+                    id="quantity_180x200"
                     class="form-control quantity-input"
                     type="number"
                     value="1"
@@ -142,7 +143,7 @@
                 >
               </div>
               <div class="col-lg-3 d-lg-flex justify-content-lg-center">
-                <select>
+                <select id="add_fabric_select">
                   <optgroup label="Fabric">
                     <option value="1">cotton</option>
                     <option value="2">microfiber</option>
@@ -172,6 +173,7 @@
             <div class="d-lg-flex mx-auto justify-content-lg-center" style="align-self: center">
               <button
                 class="btn btn-primary"
+                id = "add_product"
                 type="button"
                 style="margin-top: 3vw; background: var(--bs-dark); width: 30vw; border-style: hidden"
               >
@@ -186,5 +188,7 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
+    <script type="module" src="../components/manager-add-product.js"></script>
   </body>
 </html>
