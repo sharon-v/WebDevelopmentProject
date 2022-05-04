@@ -41,18 +41,6 @@ document.addEventListener('DOMContentLoaded', () => {
       customerSignUp(fname, lname, birthdate, phoneNumber, email, password, passwordConfirmation);
     }
 
-    // forgot password - reseting with firebasse!!!!! 
-    // fbAuth.sendPasswordResetEmail(email)
-    // 	.then(() => {
-    // 		// Password reset email sent!
-    // 		// ..
-    // 	})
-    // 	.catch((error) => {
-    // 		var errorCode = error.code;
-    // 		var errorMessage = error.message;
-    // 		// ..
-    // 	});
-
   });
 });
 
@@ -172,11 +160,3 @@ function addManagerToTheDb(fname, lname, birthdate, phoneNumber, email, password
 function compareSrings(a, b) {
 
 }
-	// code from arkadi
-	// dbDeveloperPasscode.get().then((querySnapshot) => {
-	// 	querySnapshot.forEach((doc) => {
-	// 		data.push(doc.data());
-	// 	});
-	// 	console.log(data);
-	// 	init();
-	// });
