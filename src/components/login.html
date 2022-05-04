@@ -19,12 +19,12 @@
         <form class="text-secondary border-secondary d-flex flex-column">
           <div class="mb-3"></div>
           <div class="mb-3">
-            <input class="form-control" type="email" name="login_email" placeholder="Email" />
+            <input id="loginEmail" class="form-control" type="email" name="login_email" placeholder="Email" />
           </div>
-          <input id="password-1" class="form-control item" type="password" required minlength="6" placeholder="Password"
-            name="login_password" />
+          <input id="loginPassword" class="form-control item" type="password" required minlength="6"
+            placeholder="Password" name="login_password" />
           <div id="errorMsg" class="errormsg" style="margin-bottom: 1vw"><strong>Error</strong></div>
-          <button class="btn btn-primary btn-lg" type="submit" style="
+          <button id="loginBtn" class="btn btn-primary btn-lg" type="submit" style="
                 background: var(--bs-gray-800);
                 border-style: hidden;
                 border-top-style: hidden;
