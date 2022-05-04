@@ -9,111 +9,124 @@
 </head>
 
 <body id="page-top">
-    <script type="module" id="replace_with_navbar" src="../components/navbar.js">
-    </script>
+    <script type="module" id="replace_with_navbar" src="../components/navbar.js"></script>
     <div id="wrapper">
         <div id="content-wrapper" class="d-flex flex-column">
             <div id="content">
                 <div class="container-fluid">
-                    <h3 class="text-center text-dark mb-4" style="margin-top: 5vw; font-size: calc(1.325rem + 0.9vw)"> Profile
-                    </h3>
-                    <div style="margin-left: 9vw;">
-                        <a href="user-orders.html"><button class="btn btn-primary"
-                type="button" style="
-                    color: var(--bs-pink);
-                    background: var(--bs-white);
-                    border-color: var(--bs-pink);
-                    "> View My Orders  </button></a>
+                    <h3 class="text-center text-dark mb-4" style="margin-top: 5vw; font-size: calc(1.325rem + 0.9vw)">Profile</h3>
+                    <div style="margin-left: 6vw">
+                        <a href="#"><button
+                  class="btn btn-primary"
+                  type="button"
+                  style="color: var(--bs-pink); background: var(--bs-white); border-color: var(--bs-pink)"
+                >
+                  Manager Zone
+                </button></a
+              >
+              <a href="user-orders.html"
+                ><button
+                  class="btn btn-primary"
+                  type="button"
+                  style="color: var(--bs-pink); background: var(--bs-white); border-color: var(--bs-pink); margin-left: 1vw"
+                >
+                  View My Orders 
+                </button></a
+              >
+            </div>
+
+            <div class="row d-lg-flex justify-content-lg-center mb-3" style="margin-top: 20px">
+              <div class="col-lg-8">
+                <div class="row">
+                  <div class="col">
+                    <div class="card shadow mb-3">
+                      <div class="card-body">
+                        <form>
+                          <div class="row">
+                            <div class="col">
+                              <div class="mb-3">
+                                <label class="form-label" for="first_name"><strong>First Name</strong></label
+                                ><input
+                                  id="first_name"
+                                  class="form-control"
+                                  type="text"
+                                  name="profile_first_name"
+                                  value="Israel"
+                                  placeholder="First name here"
+                                />
+                              </div>
+                            </div>
+                            <div class="col">
+                              <div class="mb-3">
+                                <label class="form-label" for="last_name"><strong>Last Name</strong></label
+                                ><input
+                                  id="last_name"
+                                  class="form-control"
+                                  type="text"
+                                  name="profile_last_name"
+                                  value="Israeli"
+                                  placeholder="Last name here"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col">
+                              <div class="mb-3">
+                                <label class="form-label" for="first_name"><strong>Date of Birth</strong></label
+                                ><input
+                                  id="first_name-1"
+                                  class="form-control"
+                                  type="text"
+                                  name="profile_date_of_birth"
+                                  value="13/05/1992"
+                                  readonly
+                                />
+                              </div>
+                            </div>
+                            <div class="col">
+                              <div class="mb-3">
+                                <label class="form-label" for="last_name"><strong>Phone Number</strong><br /></label
+                                ><input
+                                  class="form-control"
+                                  type="tel"
+                                  placeholder="Phone number here"
+                                  name="phone_number"
+                                  value="050-0000000"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col">
+                              <div class="mb-3">
+                                <label class="form-label" for="username"><strong>Email</strong></label
+                                ><input
+                                  id="username"
+                                  class="form-control"
+                                  type="text"
+                                  name="profile_email"
+                                  value="IsraelIsraeli@gmail.com"
+                                  readonly
+                                />
+                              </div>
+                            </div>
+                            <div class="col">
+                              <div class="mb-3">
+                                <label class="form-label" for="email"><strong>Password</strong></label
+                                ><input id="email" class="form-control" type="email" name="email" value="*********" readonly />
+                              </div>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
                     </div>
-                    <div class="row d-lg-flex justify-content-lg-center mb-3" style="margin-top: 20px">
-                        <div class="col-lg-8">
-                            <div class="row mb-3 d-none">
-                                <div class="col">
-                                    <div class="card textwhite bg-primary text-white shadow">
-                                        <div class="card-body">
-                                            <div class="row mb-2">
-                                                <div class="col">
-                                                    <p class="m-0">Peformance</p>
-                                                    <p class="m-0"><strong>65.2%</strong></p>
-                                                </div>
-                                                <div class="col-auto">
-                                                    <i class="fas fa-rocket fa-2x"></i>
-                                                </div>
-                                            </div>
-                                            <p class="text-white-50 small m-0">
-                                                <i class="fas fa-arrow-up"></i> 5% since last month </p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="card textwhite bg-success text-white shadow">
-                                        <div class="card-body">
-                                            <div class="row mb-2">
-                                                <div class="col">
-                                                    <p class="m-0">Peformance</p>
-                                                    <p class="m-0"><strong>65.2%</strong></p>
-                                                </div>
-                                                <div class="col-auto">
-                                                    <i class="fas fa-rocket fa-2x"></i>
-                                                </div>
-                                            </div>
-                                            <p class="text-white-50 small m-0">
-                                                <i class="fas fa-arrow-up"></i> 5% since last month </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col">
-                                    <div class="card shadow mb-3">
-                                        <div class="card-body">
-                                            <form>
-                                                <div class="row">
-                                                    <div class="col">
-                                                        <div class="mb-3">
-                                                            <label class="form-label" for="first_name"><strong>First
-                                  Name</strong></label><input id="first_name" class="form-control" type="text" name="profile_first_name" value="Israel" placeholder="First name here" />
-                                                        </div>
-                                                    </div>
-                                                    <div class="col">
-                                                        <div class="mb-3">
-                                                            <label class="form-label" for="last_name"><strong>Last
-                                  Name</strong></label><input id="last_name" class="form-control" type="text" name="profile_last_name" value="Israeli" placeholder="Last name here" />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col">
-                                                        <div class="mb-3">
-                                                            <label class="form-label" for="first_name"><strong>Date of
-                                  Birth</strong></label><input id="first_name-1" class="form-control" type="text" name="profile_date_of_birth" value="13/05/1992" readonly />
-                                                        </div>
-                                                    </div>
-                                                    <div class="col">
-                                                        <div class="mb-3">
-                                                            <label class="form-label" for="last_name"><strong>Phone
-                                  Number</strong><br /></label><input class="form-control" type="tel" placeholder="Phone number here" name="phone_number" value="050-0000000" />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col">
-                                                        <div class="mb-3">
-                                                            <label class="form-label" for="username"><strong>Email</strong></label><input id="username" class="form-control" type="text" name="profile_email" value="IsraelIsraeli@gmail.com" readonly />
-                                                        </div>
-                                                    </div>
-                                                    <div class="col">
-                                                        <div class="mb-3">
-                                                            <label class="form-label" for="email"><strong>Password</strong></label><input id="email" class="form-control" type="email" name="email" value="*********" readonly />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <button class="btn btn-primary" type="button" style="
+                  </div>
+                </div>
+                <button
+                  class="btn btn-primary"
+                  type="button"
+                  style="
                     color: var(--bs-white);
                     background: var(--bs-gray-dark);
                     border-style: hidden;
@@ -122,15 +135,20 @@
                     margin-left: 17vw;
                     margin-bottom: 3vw;
                     width: 30vw;
-                  "> Save Changes </button>
-                        </div>
-                    </div>
-                </div>
+                  "
+                >
+                  Save Changes
+                </button>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
     </div>
-    <script type="module" id="replace_with_footer" src="footer.js"></script>
+    <script type="module" id="replace_with_footer" src="../components/footer.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
     <!-- <script src="components/welcome-page.js"></script> -->
-</body>
-
+  </body>
 </html>
