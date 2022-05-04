@@ -1,15 +1,11 @@
-import {dbOrders, dbCustomers } from '../firebase/data.js'
+import {fbAuth, dbOrders, dbCustomers } from '../firebase/data.js'
 
 
 var counter = 0;
 var currentuser;
 
 fbAuth.onAuthStateChanged((user) => {
-    currentuser = user.email;
-
-});
-
-dbOrders.where("buyerEmail", "==", currentuser)
+    dbOrders.where("buyerEmail", "==",  user.email)
     .get()
     .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
@@ -30,6 +26,10 @@ dbOrders.where("buyerEmail", "==", currentuser)
         console.log("Error getting documents: ", error);
     });
 
+});
+
+
+
 function editElement(orderNumber, date, buyerEmail, totalAmount){
     let ele = document.querySelector('#product')
     ele = changeValues(ele,orderNumber, date, buyerEmail, totalAmount)
@@ -42,6 +42,7 @@ function changeValues(element, orderNumber, date, buyerEmail, totalAmount){
     let orderDate = element.querySelector('#orderDate');
     orderDate.innerHTML = new Intl.DateTimeFormat('en-GB').format(date.toDate());
     let buyerName = element.querySelector('#buyerName');
+    
     //get user name by email
     dbCustomers.where("email", "==", buyerEmail).get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
