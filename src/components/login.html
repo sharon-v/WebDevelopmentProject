@@ -1,68 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
-    />
-    <title>Login - Brand</title>
-    <link rel="stylesheet" href="../components/login.css" />
-  </head>
 
-  <body>
-    <script id="replace_with_navbar" src="../components/navbar.js"></script>
-    <main class="page login-page">
-      <section class="clean-block clean-form dark">
-        <div class="container">
-          <div class="block-heading">
-            <h1 style="font-size: calc(1.325rem + 0.9vw)">Log In<br /></h1>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+  <title>Login - Brand</title>
+  <link rel="stylesheet" href="../components/login.css" />
+</head>
+
+<body>
+  <script type="module" id="replace_with_navbar" src="../components/navbar.js"></script>
+  <main class="page login-page">
+    <section class="clean-block clean-form dark">
+      <div class="container">
+        <div class="block-heading">
+          <h1 style="font-size: calc(1.325rem + 0.9vw)">Log In<br /></h1>
+        </div>
+        <form class="text-secondary border-secondary d-flex flex-column">
+          <div class="mb-3"></div>
+          <div class="mb-3">
+            <input class="form-control" type="email" name="login_email" placeholder="Email" />
           </div>
-          <form class="text-secondary border-secondary d-flex flex-column">
-            <div class="mb-3"></div>
-            <div class="mb-3">
-              <input
-                class="form-control"
-                type="email"
-                name="login_email"
-                placeholder="Email"
-              />
-            </div>
-            <input
-              id="password-1"
-              class="form-control item"
-              type="password"
-              required
-              minlength="6"
-              placeholder="Password"
-              name="login_password"
-            />
-            <div id = "errorMsg" class="errormsg" style="margin-bottom: 1vw"><strong>Error</strong></div>
-            <button
-              class="btn btn-primary btn-lg"
-              type="submit"
-              style="
+          <input id="password-1" class="form-control item" type="password" required minlength="6" placeholder="Password"
+            name="login_password" />
+          <div id="errorMsg" class="errormsg" style="margin-bottom: 1vw"><strong>Error</strong></div>
+          <button class="btn btn-primary btn-lg" type="submit" style="
                 background: var(--bs-gray-800);
                 border-style: hidden;
                 border-top-style: hidden;
-              "
-            >
-              <strong>log in</strong>
-            </button>
-            <a
-              class="d-lg-flex justify-content-lg-center align-items-lg-center"
-              href="registration.html"
-            >
-              <br /><strong
-                >Don&#39;t have an account yet? Create Account</strong
-              ><br />
-              <br /><br />
-            </a>
-          </form>
-        </div>
-      </section>
-    </main>
-    <!-- <footer class="page-footer dark" style="color: rgb(33, 37, 41);">
+              ">
+            <strong>log in</strong>
+          </button>
+          <a class="d-lg-flex justify-content-lg-center align-items-lg-center" href="registration.html">
+            <br /><strong>Don&#39;t have an account yet? Create Account</strong><br />
+            <br /><br />
+          </a>
+        </form>
+      </div>
+    </section>
+  </main>
+  <!-- <footer class="page-footer dark" style="color: rgb(33, 37, 41);">
         <div class="container">
             <div class="row row-cols-4">
                 <div class="col text-center d-lg-flex align-items-lg-center"><a class="mx-auto"
@@ -85,7 +62,12 @@
             <p>© 2022 Copyright Holy Sheets</p>
         </div>
     </footer> -->
-    <script id="replace_with_footer" src="footer.js"></script>
-    <!-- <script src="components/Welcome-page.js"></script> -->
-  </body>
+  <script type="module" id="replace_with_footer" src="footer.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+  <script type="module" src="login.js"></script>
+  <!-- <script src="components/Welcome-page.js"></script> -->
+</body>
+
 </html>

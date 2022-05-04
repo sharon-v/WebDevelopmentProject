@@ -20,13 +20,15 @@ var dbProducts = database.collection('products');
 var dbCustomers = database.collection('customers');
 var dbManager = database.collection('manager');
 var dbDeveloperPasscode = database.collection('developerPasscode');
+var dbOrders = database.collection('orders');
+
 var fbAuth = firebase.auth();
+
 export {
-    fbAuth
-}
-export {
+    fbAuth,
     dbProducts,
     dbCustomers,
     dbManager,
     dbDeveloperPasscode,
+    dbOrders,
 };
