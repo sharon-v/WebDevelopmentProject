@@ -1,32 +1,40 @@
 import {fbAuth, dbOrders, dbCustomers } from '../firebase/data.js'
 
-
+document.querySelector('#spinner').style.visibility='visible';
 var counter = 0;
+
 
 dbOrders.get().then((querySnapshot) => {
     querySnapshot.forEach((doc) => {
-        // doc.data() is never undefined for query doc snapshots
         counter = counter + 1;
-        // doc.data() is never undefin  ed for query doc snapshots
-        if(counter == 1)
-            editElement(doc.id, doc.data().purchaseDate, doc.data().buyerEmail , doc.data().totalAmount);
+        if(counter == 1){
+            editElement(doc.id, doc.data().purchaseDate, doc.data().buyerEmail , doc.data().totalAmount, doc.data().orderStatus);
+            document.querySelector('#product').style.visibility='visible';
+        }
         else
-            addElement(doc.id, doc.data().purchaseDate, doc.data().buyerEmail , doc.data().totalAmount);
+            addElement(doc.id, doc.data().purchaseDate, doc.data().buyerEmail , doc.data().totalAmount, doc.data().orderStatus);
     });
+    // document.querySelector('#product').style.visibility='visible';
     if(counter == 0)
     {
         //delete the first element if there is no orders
         deleteFirst();
     }
+    document.querySelector('#spinner').remove();
+
+
 });
 
 
-function editElement(orderNumber, date, buyerEmail, totalAmount){
+
+
+
+function editElement(orderNumber, date, buyerEmail, totalAmount, orderStatus){
     let ele = document.querySelector('#product')
-    ele = changeValues(ele,orderNumber, date, buyerEmail, totalAmount)
+    ele = changeValues(ele,orderNumber, date, buyerEmail, totalAmount, orderStatus)
 }
 
-function changeValues(element, orderNumber, date, buyerEmail, totalAmount){
+function changeValues(element, orderNumber, date, buyerEmail, totalAmount, orderStatus){
     console.log(orderNumber);
     console.log(date);
     console.log(buyerEmail);
@@ -61,11 +69,15 @@ function changeValues(element, orderNumber, date, buyerEmail, totalAmount){
     else{
         selectOp.disabled = true;
     }
+    console.log(orderStatus);
+    const options = Array.from(selectOp.options);
+    const optionToSelect = options.find(item => item.text === orderStatus);
+    selectOp.value = optionToSelect.value;
+
     selectOp.addEventListener('change', () => {
-        if(selectOp.options[ selectOp.selectedIndex ].value == 2){
-            //needs to update the order status
-        }
+        updateOrderStatus(selectOp.options[ selectOp.selectedIndex ].value, orderNumber);
     })
+
     var orderPage = element.querySelector('#orderPage');
     orderPage.addEventListener('click', () => {
         sessionStorage.setItem('orderNumber', orderNumber); //moving parameters to order summery page
@@ -74,10 +86,10 @@ function changeValues(element, orderNumber, date, buyerEmail, totalAmount){
     return element;
 }
 
-function addElement (orderNumber, date, buyerEmail, totalAmount) {
+function addElement (orderNumber, date, buyerEmail, totalAmount, orderStatus) {
     let ele = document.querySelector('#product')
     let newElement = ele.cloneNode(true);
-    newElement = changeValues(newElement, orderNumber, date, buyerEmail, totalAmount )
+    newElement = changeValues(newElement, orderNumber, date, buyerEmail, totalAmount, orderStatus)
     let currentDiv = document.getElementById("orders_list");
     currentDiv.appendChild(newElement);
 }
@@ -90,4 +102,14 @@ function deleteFirst(){
     par.style="color: var(--bs-pink) ;text-align:center"
     let currentDiv = document.getElementById("products_list");
     currentDiv.appendChild(par);
+}
+
+function updateOrderStatus(value, orderId){  
+    var doc = dbOrders.doc(orderId);
+    if(value == 1){
+        doc.update({"orderStatus" : 'Aprroved'});
+    }
+    else if (value == 2){
+        doc.update({"orderStatus" : 'Canceled'});
+    }
 }

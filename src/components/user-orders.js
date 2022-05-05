@@ -1,5 +1,6 @@
 import {fbAuth, dbOrders, dbCustomers } from '../firebase/data.js'
 
+document.querySelector('#spinner').style.visibility='visible';
 
 var counter = 0;
 var currentuser;
@@ -12,15 +13,16 @@ fbAuth.onAuthStateChanged((user) => {
             counter = counter + 1;
             // doc.data() is never undefin  ed for query doc snapshots
             if(counter == 1)
-                editElement(doc.id, doc.data().purchaseDate, doc.data().buyerEmail , doc.data().totalAmount);
+                editElement(doc.id, doc.data().purchaseDate, doc.data().buyerEmail , doc.data().totalAmount, doc.data().orderStatus);
             else
-                addElement(doc.id, doc.data().purchaseDate, doc.data().buyerEmail , doc.data().totalAmount);
+                addElement(doc.id, doc.data().purchaseDate, doc.data().buyerEmail , doc.data().totalAmount, doc.data().orderStatus);
         });
         if(counter == 0)
         {
             //delete the first element if there is no orders
             deleteFirst();
         }
+        document.querySelector('#spinner').remove();
     })
     .catch((error) => {
         console.log("Error getting documents: ", error);
@@ -29,13 +31,12 @@ fbAuth.onAuthStateChanged((user) => {
 });
 
 
-
-function editElement(orderNumber, date, buyerEmail, totalAmount){
+function editElement(orderNumber, date, buyerEmail, totalAmount, orderStatus){
     let ele = document.querySelector('#product')
-    ele = changeValues(ele,orderNumber, date, buyerEmail, totalAmount)
+    ele = changeValues(ele,orderNumber, date, buyerEmail, totalAmount, orderStatus)
 }
 
-function changeValues(element, orderNumber, date, buyerEmail, totalAmount){
+function changeValues(element, orderNumber, date, buyerEmail, totalAmount, orderStatus){
     element.removeAttribute('hidden')
     let Number = element.querySelector('#orderNumber');
     Number.innerHTML = orderNumber;
@@ -55,7 +56,9 @@ function changeValues(element, orderNumber, date, buyerEmail, totalAmount){
 
     let amount = element.querySelector('#totalAmount');
     amount.innerHTML = totalAmount.toFixed(2);
-    // let currentTime = Date.now();
+
+    let status = element.querySelector('#orderStatus');
+    status.innerHTML = orderStatus;
 
     let differ = Date.now() - date.toDate() ;
     let Difference_In_hours =Math.ceil(differ / (1000 * 3600 * 24));
@@ -88,10 +91,10 @@ function changeValues(element, orderNumber, date, buyerEmail, totalAmount){
     return element;
 }
 
-function addElement (orderNumber, date, buyerEmail, totalAmount) {
+function addElement (orderNumber, date, buyerEmail, totalAmount, orderStatus) {
     let ele = document.querySelector('#product')
     let newElement = ele.cloneNode(true);
-    newElement = changeValues(newElement, orderNumber, date, buyerEmail, totalAmount )
+    newElement = changeValues(newElement, orderNumber, date, buyerEmail, totalAmount, orderStatus )
     let currentDiv = document.getElementById("products_list");
 
     currentDiv.appendChild(newElement);

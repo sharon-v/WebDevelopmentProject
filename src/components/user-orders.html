@@ -27,6 +27,7 @@
             My Profile
           </button>
           </a>
+      <div id="spinner" class="loader"></div>
         <div id="list"
           class="container d-lg-flex justify-content-lg-center"
           style="margin-top: 1vw; border-top: 1px solid var(--bs-gray-300)">
@@ -55,6 +56,10 @@
                     <div class="d-lg-flex justify-content-lg-start">
                       <span style="margin-right: 1vw">Total amount :<br /></span
                       ><span id="totalAmount" class="value">129.90 ₪<br /></span>
+                    </div>
+                    <div class="d-lg-flex justify-content-lg-start">
+                      <span style="margin-right: 1vw">Order Status:<br /></span
+                      ><span id = "orderStatus" class="value">Approved<br /></span>
                     </div>
                   </div>
                 </div>
@@ -98,6 +103,7 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script> 
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
     <script type="module" src="../components/user-orders.js"></script>
   </body>
 </html>
