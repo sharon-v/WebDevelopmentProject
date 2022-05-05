@@ -61,6 +61,11 @@ function changeValues(element, orderNumber, date, buyerEmail, totalAmount){
     else{
         selectOp.disabled = true;
     }
+    selectOp.addEventListener('change', () => {
+        if(selectOp.options[ selectOp.selectedIndex ].value == 2){
+            //needs to update the order status
+        }
+    })
     var orderPage = element.querySelector('#orderPage');
     orderPage.addEventListener('click', () => {
         sessionStorage.setItem('orderNumber', orderNumber); //moving parameters to order summery page
