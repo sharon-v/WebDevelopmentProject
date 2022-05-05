@@ -1,17 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
-    />
-    <title>Shopping Cart - Brand</title>
-    <link rel="stylesheet" href="../components/shopping-cart.css" />
-  </head>
-  <body>
-    <script id="replace_with_navbar" src="../components/navbar.js"></script>
-    <!-- <nav
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+  <title>Shopping Cart - Brand</title>
+  <link rel="stylesheet" href="../components/shopping-cart.css" />
+</head>
+
+<body>
+  <script type="module" id="replace_with_navbar" src="../components/navbar.js"></script>
+  <!-- <nav
       class="navbar navbar-dark navbar-expand-lg fixed-top bg-dark clean-navbar"
       style="color: rgb(33, 37, 41)"
     >
@@ -203,212 +202,147 @@
         <a href="registration.html"></a>
       </div>
     </nav> -->
-    <main class="page shopping-cart-page">
-      <section class="clean-block clean-cart dark">
-        <div class="container d-xxl-flex my-auto">
-          <div class="block-heading">
-            <h1 style="font-size: calc(1.325rem + 0.9vw)">
-              Shopping Cart<br />
-            </h1>
-          </div>
-          <button
-            class="btn btn-primary"
-            data-bs-toggle="tooltip"
-            data-bs-placement="bottom"
-            type="reset"
-            style="
+  <main class="page shopping-cart-page">
+    <section class="clean-block clean-cart dark">
+      <div class="container d-xxl-flex my-auto">
+        <div class="block-heading">
+          <h1 style="font-size: calc(1.325rem + 0.9vw)">
+            Shopping Cart<br />
+          </h1>
+        </div>
+        <button class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="bottom" type="reset" style="
               background: url('../assets/icons/trash-free-icon-font.svg') center /
                 contain no-repeat;
               width: 3vw;
               height: 3vw;
               border-style: hidden;
               margin-bottom: 2vw;
-            "
-            title="Reset Shopping Cart">
-          </button>
-          <div class="d-xxl-inline-flex content">
-            <div class="row g-0 d-flex">
-              <div class="col-md-12 col-lg-8">
-                <div class="items">
-                  <div class="product">
-                    <div class="row justify-content-center align-items-center">
-                      <div class="col">
-                        <img
-                          src="../assets/images/sheets/bce8bb35-8b70-40f4-b265-a8695a27ba6d.077446c4ec7c4fbd1c64b3503b7301e9.jpeg"
-                          style="width: 10vw; height: 10vw"/>
-                      </div>
-                      <div class="col-md-5 text-start product-info">
-                        <a
-                          class="product-name"
-                          href="#"
-                          style="color: var(--bs-gray-800)"
-                          >sheets name</a>
-                        <div class="product-specs">
-                          <div>
-                            <span style="margin-right: 1vw">Bed Size: </span
-                            ><span class="value">90x200</span>
-                          </div>
-                          <div>
-                            <span style="margin-right: 1vw">SKU: </span
-                            ><span class="value">5959</span>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-6 col-md-2 quantity">
-                        <label
-                          class="form-label d-none d-md-block"
-                          for="quantity"
-                          >Quantity</label
-                        ><input
-                          id="number"
-                          class="form-control quantity-input"
-                          type="number"
-                          value="1"
-                        />
-                      </div>
-                      <div class="col-6 col-md-2 price"><span>120₪</span></div>
+            " title="Reset Shopping Cart">
+        </button>
+        <div class="d-xxl-inline-flex content">
+          <div class="row g-0 d-flex">
+            <div class="col-md-12 col-lg-8">
+              <div class="items">
+                <div class="product">
+                  <div class="row justify-content-center align-items-center">
+                    <div class="col">
+                      <img
+                        src="../assets/images/sheets/bce8bb35-8b70-40f4-b265-a8695a27ba6d.077446c4ec7c4fbd1c64b3503b7301e9.jpeg"
+                        style="width: 10vw; height: 10vw" />
                     </div>
-                  </div>
-                  <div class="product">
-                    <div class="row justify-content-center align-items-center">
-                      <div class="col">
-                        <img
-                          src="../assets/images/sheets/bed-linen-500x500.jpg"
-                          style="width: 10vw; height: 10vw"
-                        />
-                      </div>
-                      <div class="col-md-5 text-start product-info">
-                        <a
-                          class="product-name"
-                          href="#"
-                          style="color: var(--bs-gray-800)"
-                          >sheets name</a
-                        >
-                        <div class="product-specs">
-                          <div>
-                            <span style="margin-right: 1vw">Bed Size: </span
-                            ><span class="value">90x200</span>
-                          </div>
-                          <div>
-                            <span style="margin-right: 1vw">SKU: </span
-                            ><span class="value">5959</span>
-                          </div>
+                    <div class="col-md-5 text-start product-info">
+                      <a class="product-name" href="#" style="color: var(--bs-gray-800)">sheets name</a>
+                      <div class="product-specs">
+                        <div>
+                          <span style="margin-right: 1vw">Bed Size: </span><span class="value">90x200</span>
                         </div>
-                      </div>
-                      <div class="col-6 col-md-2 quantity">
-                        <label
-                          class="form-label d-none d-md-block"
-                          for="quantity"
-                          >Quantity</label
-                        ><input
-                          id="number"
-                          class="form-control quantity-input"
-                          type="number"
-                          value="1"
-                        />
-                      </div>
-                      <div
-                        class="col-6 col-md-2 d-lg-flex justify-content-lg-end align-items-lg-end price"
-                      >
-                        <span>120₪</span>
+                        <div>
+                          <span style="margin-right: 1vw">SKU: </span><span class="value">5959</span>
+                        </div>
                       </div>
                     </div>
+                    <div class="col-6 col-md-2 quantity">
+                      <label class="form-label d-none d-md-block" for="quantity">Quantity</label><input id="number"
+                        class="form-control quantity-input" type="number" value="1" />
+                    </div>
+                    <div class="col-6 col-md-2 price"><span>120₪</span></div>
                   </div>
-                  <div class="product">
-                    <div class="row justify-content-center align-items-center">
-                      <div class="col">
-                        <img
-                          src="../assets/images/sheets/71ZxvIGFtrL._SL1280_.jpg"
-                          style="width: 10vw; height: 10vw"
-                        />
-                      </div>
-                      <div class="col-md-5 text-start product-info">
-                        <a
-                          class="product-name"
-                          href="#"
-                          style="color: var(--bs-gray-800)"
-                          >sheets name</a
-                        >
-                        <div class="product-specs">
-                          <div>
-                            <span style="margin-right: 1vw">Bed Size: </span
-                            ><span class="value">90x200</span>
-                          </div>
-                          <div>
-                            <span style="margin-right: 1vw">SKU: </span
-                            ><span class="value">5959</span>
-                          </div>
+                </div>
+                <div class="product">
+                  <div class="row justify-content-center align-items-center">
+                    <div class="col">
+                      <img src="../assets/images/sheets/bed-linen-500x500.jpg" style="width: 10vw; height: 10vw" />
+                    </div>
+                    <div class="col-md-5 text-start product-info">
+                      <a class="product-name" href="#" style="color: var(--bs-gray-800)">sheets name</a>
+                      <div class="product-specs">
+                        <div>
+                          <span style="margin-right: 1vw">Bed Size: </span><span class="value">90x200</span>
+                        </div>
+                        <div>
+                          <span style="margin-right: 1vw">SKU: </span><span class="value">5959</span>
                         </div>
                       </div>
-                      <div class="col-6 col-md-2 quantity">
-                        <label
-                          class="form-label d-none d-md-block"
-                          for="quantity"
-                          >Quantity</label
-                        ><input
-                          id="number"
-                          class="form-control quantity-input"
-                          type="number"
-                          value="1"
-                        />
+                    </div>
+                    <div class="col-6 col-md-2 quantity">
+                      <label class="form-label d-none d-md-block" for="quantity">Quantity</label><input id="number"
+                        class="form-control quantity-input" type="number" value="1" />
+                    </div>
+                    <div class="col-6 col-md-2 d-lg-flex justify-content-lg-end align-items-lg-end price">
+                      <span>120₪</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="product">
+                  <div class="row justify-content-center align-items-center">
+                    <div class="col">
+                      <img src="../assets/images/sheets/71ZxvIGFtrL._SL1280_.jpg" style="width: 10vw; height: 10vw" />
+                    </div>
+                    <div class="col-md-5 text-start product-info">
+                      <a class="product-name" href="#" style="color: var(--bs-gray-800)">sheets name</a>
+                      <div class="product-specs">
+                        <div>
+                          <span style="margin-right: 1vw">Bed Size: </span><span class="value">90x200</span>
+                        </div>
+                        <div>
+                          <span style="margin-right: 1vw">SKU: </span><span class="value">5959</span>
+                        </div>
                       </div>
-                      <div
-                        class="col-6 col-md-2 d-lg-flex justify-content-lg-end align-items-lg-end price"
-                      >
-                        <span>120₪</span>
-                      </div>
+                    </div>
+                    <div class="col-6 col-md-2 quantity">
+                      <label class="form-label d-none d-md-block" for="quantity">Quantity</label><input id="number"
+                        class="form-control quantity-input" type="number" value="1" />
+                    </div>
+                    <div class="col-6 col-md-2 d-lg-flex justify-content-lg-end align-items-lg-end price">
+                      <span>120₪</span>
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="col-md-12 col-lg-4">
-                <div class="summary">
-                  <h3 style="color: var(--bs-gray-800); font-weight: bold">
-                    Summary
-                  </h3>
-                  <h4>
-                    <span class="text">Subtotal</span
-                    ><span class="price">360₪</span>
-                  </h4>
-                  <h4>
-                    <span class="text">Discount</span
-                    ><span class="price">0₪</span>
-                  </h4>
-                  <h4>
-                    <span class="text">Shipping</span
-                    ><span class="price">0₪</span>
-                  </h4>
-                  <h4
-                    style="
+            </div>
+            <div class="col-md-12 col-lg-4">
+              <div class="summary">
+                <h3 style="color: var(--bs-gray-800); font-weight: bold">
+                  Summary
+                </h3>
+                <h4>
+                  <span class="text">Subtotal</span><span class="price">360₪</span>
+                </h4>
+                <h4>
+                  <span class="text">Discount</span><span class="price">0₪</span>
+                </h4>
+                <h4>
+                  <span class="text">Shipping</span><span class="price">0₪</span>
+                </h4>
+                <h4 style="
                       color: var(--bs-pink);
                       font-size: 26px;
                       font-weight: bold;
-                    "
-                  >
-                    <span class="text" style="font-weight: bold">Total</span
-                    ><span class="price" style="font-weight: bold"
-                      ><strong>360₪</strong></span
-                    >
-                  </h4>
-                  <button
-                    class="btn btn-primary btn-lg d-block w-100"
-                    type="button"
-                    style="
+                    ">
+                  <span class="text" style="font-weight: bold">Total</span><span class="price"
+                    style="font-weight: bold"><strong>360₪</strong></span>
+                </h4>
+                <button class="btn btn-primary btn-lg d-block w-100" type="button" style="
                       color: var(--bs-light);
                       background: var(--bs-gray-800);
                       border-style: hidden;
-                    "
-                  >
-                    Checkout
-                  </button>
-                </div>
+                    ">
+                  Checkout
+                </button>
               </div>
             </div>
           </div>
         </div>
-      </section>
-    </main>
-    <script id="replace_with_footer" src="../components/footer.js"></script>
-    <!-- <script src="components/welcome-page.js"></script> -->
-  </body>
+      </div>
+    </section>
+  </main>
+  <script type="module" id="replace_with_footer" src="../components/footer.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
+  <script type="module" src="shopping-cart.js"></script>
+  <!-- <script src="components/welcome-page.js"></script> -->
+</body>
+
 </html>

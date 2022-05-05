@@ -79,7 +79,10 @@ function customerSignUp(fname, lname, birthdate, phoneNumber, email, password, p
           .catch((error) => {
             // success in saving the user to Auth but failed to save him in the collection
             // so we need to delete user from authentication
-            console.error('Error writing document: ', error);
+            console.error('Error in adding the user to customers collection: ', error);
+            var errorMessage = error.message;
+            alert(errorMessage);
+            deleteUserFromAuth(user);
           });
       })
       .catch((error) => {
@@ -114,7 +117,7 @@ function managerSignUp(fname, lname, birthdate, phoneNumber, email, password, pa
         if (String(managerPasscode) === String(x)) {
           // if (String(managerPasscode).localeCompare(String(x)) != 0) {  // doesn't 
           console.log('error in matching developer passcode');
-          alert('developer passcode is not correct')
+          alert('developer passcode is not correct');
         }
         else {
           // creating the manager user in the DB
@@ -148,6 +151,9 @@ function addManagerToTheDb(fname, lname, birthdate, phoneNumber, email, password
           // success in saving the user to Auth but failed to save him in the collection
           // so we need to delete user from authentication
           console.error('Error writing document: ', error);
+          var errorMessage = error.message;
+          alert(errorMessage);
+          deleteUserFromAuth(user);
         });
     })
     .catch((error) => {
@@ -159,4 +165,14 @@ function addManagerToTheDb(fname, lname, birthdate, phoneNumber, email, password
 
 function compareSrings(a, b) {
 
+}
+
+function deleteUserFromAuth(user) {
+  user.delete().then(() => {
+    // User deleted.
+    console.log('user deleted from the auth');
+  }).catch((error) => {
+    // An error ocurred
+    console.log('failed to deleted the user from auth:', error.message);
+  });
 }
