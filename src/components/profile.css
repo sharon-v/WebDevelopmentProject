@@ -79,11 +79,11 @@ button {
 button {
   text-transform: none;
 }
-[role="button"] {
+[role='button'] {
   cursor: pointer;
 }
 button,
-[type="button"] {
+[type='button'] {
   -webkit-appearance: button;
 }
 ::-moz-focus-inner {
@@ -233,8 +233,7 @@ button,
 .input-group .btn:focus {
   z-index: 3;
 }
-.input-group:not(.has-validation)
-  > :not(:last-child):not(.dropdown-toggle):not(.dropdown-menu) {
+.input-group:not(.has-validation) > :not(:last-child):not(.dropdown-toggle):not(.dropdown-menu) {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
 }
@@ -334,7 +333,7 @@ button,
   display: inline-block;
   margin-left: 0.255em;
   vertical-align: 0.255em;
-  content: "";
+  content: '';
   border-top: 0.3em solid;
   border-right: 0.3em solid transparent;
   border-bottom: 0;
@@ -716,31 +715,19 @@ button,
 }
 .bg-primary {
   --bs-bg-opacity: 1;
-  background-color: rgba(
-    var(--bs-primary-rgb),
-    var(--bs-bg-opacity)
-  ) !important;
+  background-color: rgba(var(--bs-primary-rgb), var(--bs-bg-opacity)) !important;
 }
 .bg-secondary {
   --bs-bg-opacity: 1;
-  background-color: rgba(
-    var(--bs-secondary-rgb),
-    var(--bs-bg-opacity)
-  ) !important;
+  background-color: rgba(var(--bs-secondary-rgb), var(--bs-bg-opacity)) !important;
 }
 .bg-success {
   --bs-bg-opacity: 1;
-  background-color: rgba(
-    var(--bs-success-rgb),
-    var(--bs-bg-opacity)
-  ) !important;
+  background-color: rgba(var(--bs-success-rgb), var(--bs-bg-opacity)) !important;
 }
 .bg-warning {
   --bs-bg-opacity: 1;
-  background-color: rgba(
-    var(--bs-warning-rgb),
-    var(--bs-bg-opacity)
-  ) !important;
+  background-color: rgba(var(--bs-warning-rgb), var(--bs-bg-opacity)) !important;
 }
 .bg-danger {
   --bs-bg-opacity: 1;
@@ -772,7 +759,7 @@ button,
     display: block !important;
   }
   .d-sm-flex {
-    display: flex !important;
+    display: flex;
   }
   .d-sm-none {
     display: none !important;
@@ -795,7 +782,7 @@ button,
     display: inline !important;
   }
   .d-lg-flex {
-    display: flex !important;
+    display: flex;
   }
   .justify-content-lg-start {
     justify-content: flex-start !important;
@@ -916,50 +903,47 @@ body {
   width: 1.25em;
 }
 .fa-arrow-up:before {
-  content: "\f062";
+  content: '\f062';
 }
 .fa-bars:before {
-  content: "\f0c9";
+  content: '\f0c9';
 }
 .fa-bell:before {
-  content: "\f0f3";
+  content: '\f0f3';
 }
 .fa-cogs:before {
-  content: "\f085";
+  content: '\f085';
 }
 .fa-donate:before {
-  content: "\f4b9";
+  content: '\f4b9';
 }
 .fa-envelope:before {
-  content: "\f0e0";
+  content: '\f0e0';
 }
 .fa-exclamation-triangle:before {
-  content: "\f071";
+  content: '\f071';
 }
 .fa-file-alt:before {
-  content: "\f15c";
+  content: '\f15c';
 }
 .fa-list:before {
-  content: "\f03a";
+  content: '\f03a';
 }
 .fa-rocket:before {
-  content: "\f135";
+  content: '\f135';
 }
 .fa-search:before {
-  content: "\f002";
+  content: '\f002';
 }
 .fa-sign-out-alt:before {
-  content: "\f2f5";
-}
-.fa-star:before {
-  content: "\f005";
+  content: '\f2f5';
 }
 .fa-user:before {
-  content: "\f007";
+  content: '\f007';
 }
 .fa,
 .fas {
-  font-family: "Font Awesome 5 Free";
+  font-family: 'Font Awesome 5 Free';
 }
 .fa,
 .fas {
@@ -981,86 +965,38 @@ body {
   text-align: center;
 }
 .fa-search:before {
-  content: "\f002";
-}
-.fa-star:before {
-  content: "\f005";
+  content: '\f002';
 }
 .fa-user:before {
-  content: "\f007";
+  content: '\f007';
 }
 .fa-list:before {
-  content: "\f03a";
+  content: '\f03a';
 }
 .fa-arrow-up:before {
-  content: "\f062";
+  content: '\f062';
 }
 .fa-exclamation-triangle:before {
-  content: "\f071";
+  content: '\f071';
 }
 .fa-cogs:before {
-  content: "\f085";
+  content: '\f085';
 }
 .fa-bell:before {
-  content: "\f0f3";
+  content: '\f0f3';
 }
 .fa-bars:before {
-  content: "\f0c9";
+  content: '\f0c9';
 }
 .fa-envelope:before {
-  content: "\f0e0";
+  content: '\f0e0';
 }
 .fa-rocket:before {
-  content: "\f135";
+  content: '\f135';
 }
 body {
   align-items: center;
   justify-content: center;
-}
-/*! CSS Used fontfaces */
-@font-face {
-  font-family: "Font Awesome 5 Free";
-  font-style: normal;
-  font-weight: 400;
-  font-display: auto;
-  src: url(http://192.168.56.1:8000/fonts/fa-regular-400.eot);
-  src: url(http://192.168.56.1:8000/fonts/fa-regular-400.eot#iefix)
-      format("embedded-opentype"),
-    url(http://192.168.56.1:8000/fonts/fa-regular-400.woff2) format("woff2"),
-    url(http://192.168.56.1:8000/fonts/fa-regular-400.woff) format("woff"),
-    url(http://192.168.56.1:8000/fonts/fa-regular-400.ttf) format("truetype"),
-    url(http://192.168.56.1:8000/fonts/fa-regular-400.svg#fontawesome)
-      format("svg");
-}
-@font-face {
-  font-family: "Font Awesome 5 Free";
-  font-style: normal;
-  font-weight: 900;
-  font-display: auto;
-  src: url(http://192.168.56.1:8000/fonts/fa-solid-900.eot);
-  src: url(http://192.168.56.1:8000/fonts/fa-solid-900.eot#iefix)
-      format("embedded-opentype"),
-    url(http://192.168.56.1:8000/fonts/fa-solid-900.woff2) format("woff2"),
-    url(http://192.168.56.1:8000/fonts/fa-solid-900.woff) format("woff"),
-    url(http://192.168.56.1:8000/fonts/fa-solid-900.ttf) format("truetype"),
-    url(http://192.168.56.1:8000/fonts/fa-solid-900.svg#fontawesome)
-      format("svg");
-}
-@font-face {
-  font-family: "FontAwesome";
-  src: url("http://192.168.56.1:8000/fonts/fontawesome-webfont.eot?v=4.7.0");
-  src: url("http://192.168.56.1:8000/fonts/fontawesome-webfont.eot#iefix&v=4.7.0")
-      format("embedded-opentype"),
-    url("http://192.168.56.1:8000/fonts/fontawesome-webfont.woff2?v=4.7.0")
-      format("woff2"),
-    url("http://192.168.56.1:8000/fonts/fontawesome-webfont.woff?v=4.7.0")
-      format("woff"),
-    url("http://192.168.56.1:8000/fonts/fontawesome-webfont.ttf?v=4.7.0")
-      format("truetype"),
-    url("http://192.168.56.1:8000/fonts/fontawesome-webfont.svg?v=4.7.0#fontawesomeregular")
-      format("svg");
-  font-weight: normal;
-  font-style: normal;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -1112,14 +1048,10 @@ body {
   --bs-black-rgb: 0, 0, 0;
   --bs-body-color-rgb: 33, 37, 41;
   --bs-body-bg-rgb: 255, 255, 255;
-  --bs-font-sans-serif: "Montserrat", sans-serif;
-  --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas,
-    "Liberation Mono", "Courier New", monospace;
-  --bs-gradient: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.15),
-    rgba(255, 255, 255, 0)
-  );
+  --bs-font-sans-serif: 'Montserrat', sans-serif;
+  --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New',
+    monospace;
+  --bs-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
   --bs-body-font-family: var(--bs-font-sans-serif);
   --bs-body-font-size: 1rem;
   --bs-body-font-weight: 400;

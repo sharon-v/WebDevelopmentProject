@@ -1,89 +1,127 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
     <title>Shopping Cart - Brand</title>
     <link rel="stylesheet" href="../components/manager-manage-orders.css" />
-</head>
+  </head>
 
-<body>
+  <body>
     <script type="module" id="replace_with_navbar" src="../components/navbar.js"></script>
     <main class="page shopping-cart-page">
-        <section class="clean-block clean-cart dark">
-            <div class="container" style="width: 80vw">
-                <div class="block-heading">
-                    <h1 style="font-size: calc(1.325rem + 0.9vw)">Manager Zone</h1>
-                    <ul class="nav nav-tabs d-lg-flex flex-row align-items-lg-center" style="width: 75vw">
-                        <li class="nav-item">
-                            <a class="nav-link" href="../components/profile.html" style="color: var(--bs-pink)">Profile </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="../components/manager-manage-items.html" style="color: var(--bs-pink)">Manage items </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="../components/manager-manage-orders.html" style="font-weight: bold; color: var(--bs-dark)">Manage orders</a>
+      <section class="clean-block clean-cart dark">
+        <div class="container" style="width: 80vw">
+          <div class="block-heading">
+            <h1 style="font-size: calc(1.325rem + 0.9vw)">Manager Zone</h1>
+            <ul class="nav nav-tabs d-lg-flex flex-row align-items-lg-center" style="width: 75vw">
+              <li class="nav-item">
+                <a class="nav-link" href="../components/profile.html" style="color: var(--bs-pink)"
+                  >Profile </a
+                >
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="../components/manager-delivery-times.html" style="color: var(--bs-pink)">Update delivery times</a>
+                <a
+                  class="nav-link"
+                  href="../components/manager-manage-items.html"
+                  style="color: var(--bs-pink)"
+                  >Manage items </a
+                >
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="../components/manager-statistics.html" style="color: var(--bs-pink)">Statistical Information</a>
+                <a
+                  class="nav-link"
+                  href="../components/manager-manage-orders.html"
+                  style="font-weight: bold; color: var(--bs-dark)"
+                  >Manage orders</a
+                >
               </li>
-                        <li class="nav-item"></li>
-                        <li class="nav-item"></li>
-                        <li class="nav-item"></li>
-                        <li class="nav-item">
-                            <a class="nav-link d-lg-flex mx-auto align-items-lg-center" href="#"><button
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  href="../components/manager-delivery-times.html"
+                  style="color: var(--bs-pink)"
+                  >Update delivery times</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  href="../components/manager-statistics.html"
+                  style="color: var(--bs-pink)"
+                  >Statistical Information</a
+                >
+              </li>
+              <li class="nav-item"></li>
+              <li class="nav-item"></li>
+              <li class="nav-item"></li>
+              <li class="nav-item">
+                <a class="nav-link d-lg-flex mx-auto align-items-lg-center" href="#"
+                  ><button
                     class="btn btn-primary"
                     type="button"
                     style="
-                      background: url('../assets/icons/search\ \(1\).svg') center / contain no-repeat;
+                      background: url('../assets/icons/search\ \(1\).svg') center / contain
+                        no-repeat;
                       width: 1.5vw;
                       height: 1.5vw;
                       border-style: hidden;
                       margin-right: 10px;
                     "
                   ></button
-                  ><input class="mx-auto" type="search" name="manage_orders_search_bar" placeholder="Order number"
+                  ><input
+                    class="mx-auto"
+                    type="search"
+                    name="manage_orders_search_bar"
+                    placeholder="Order number"
                 /></a>
-                        </li>
-                    </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div id="orders_list" class="container d-lg-flex justify-content-lg-center">
+          <div id="product" class="bg-white items" style="width: 60vw">
+            <div class="product">
+              <div
+                class="row d-lg-flex justify-content-lg-center align-items-lg-center"
+                style="box-shadow: 0px 0px 6px 0px rgb(185, 191, 198)"
+              >
+                <div class="col-lg-6">
+                  <div style="padding-top: 10px; padding-bottom: 10px">
+                    <div class="d-lg-flex justify-content-lg-start">
+                      <span style="margin-right: 1vw">Order Number:<br /></span
+                      ><span id="orderNumber" class="value">1111<br /></span>
+                    </div>
+                    <div class="d-lg-flex justify-content-lg-start">
+                      <span style="margin-right: 1vw">Date :<br /></span
+                      ><span id="orderDate" class="value">31/03/2022<br /></span>
+                    </div>
+                    <div class="d-lg-flex justify-content-lg-start">
+                      <span style="margin-right: 1vw">Send to:<br /></span
+                      ><span id="buyerName" class="value">Israel Israeli<br /></span>
+                    </div>
+                    <div class="d-lg-flex justify-content-lg-start">
+                      <span style="margin-right: 1vw">Total amount :<br /></span
+                      ><span id="orderAmount" class="value">129.90 ₪<br /></span>
+                    </div>
+                  </div>
                 </div>
-            </div>
-            <div id="orders_list" class="container d-lg-flex justify-content-lg-center">
-                <div id = "product" class="bg-white items" style="width: 60vw">
-                    <div class="product">
-                        <div class="row d-lg-flex justify-content-lg-center align-items-lg-center" style="box-shadow: 0px 0px 6px 0px rgb(185, 191, 198)">
-                            <div class="col-lg-6">
-                                <div style="padding-top: 10px; padding-bottom: 10px">
-                                    <div class="d-lg-flex justify-content-lg-start">
-                                        <span style="margin-right: 1vw">Order Number:<br /></span><span id="orderNumber" class="value">1111<br /></span>
-                                    </div>
-                                    <div class="d-lg-flex justify-content-lg-start">
-                                        <span style="margin-right: 1vw">Date :<br /></span><span id="orderDate" class="value">31/03/2022<br /></span>
-                                    </div>
-                                    <div class="d-lg-flex justify-content-lg-start">
-                                        <span style="margin-right: 1vw">Send to:<br /></span><span id="buyerName" class="value">Israel Israeli<br /></span>
-                                    </div>
-                                    <div class="d-lg-flex justify-content-lg-start">
-                                        <span style="margin-right: 1vw">Total amount :<br /></span><span id="orderAmount" class="value">129.90 ₪<br /></span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6" style="padding-left: 2vw">
-                                <div class="d-lg-flex mx-auto" style="margin-top: 1vw; padding-left: 3vw">
-                                    <label class="form-label d-lg-flex justify-content-lg-center align-items-lg-end" style="margin-right: 2vw">Order Status:</label
-                    ><select id= "selectOp">
-                      <optgroup label="Order status">Order status
+                <div class="col-lg-6" style="padding-left: 2vw">
+                  <div class="d-lg-flex mx-auto" style="margin-top: 1vw; padding-left: 3vw">
+                    <label
+                      class="form-label d-lg-flex justify-content-lg-center align-items-lg-end"
+                      style="margin-right: 2vw"
+                      >Order Status:</label
+                    ><select id="selectOp">
+                      <optgroup label="Order status">
+                        Order status
                         <option id="aprroved" value="1">Aprroved</option>
                         <option id="canceled" value="2">Canceled</option>
                       </optgroup>
                     </select>
                   </div>
                   <button
-                    id = "orderPage"
+                    id="orderPage"
                     class="btn btn-primary"
                     type="button"
                     style="
@@ -109,6 +147,6 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
-    <script type = "module" src="components/manager-manage-orders.js"></script>
+    <script type="module" src="../components/manager-manage-orders.js"></script>
   </body>
 </html>

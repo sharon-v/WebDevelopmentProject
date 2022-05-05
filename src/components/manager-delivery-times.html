@@ -1,50 +1,70 @@
 <html>
-
-<head>
+  <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
     <title>Shopping Cart - Brand</title>
     <link rel="stylesheet" href="../components/manager-delivery-times.css" />
-</head>
+  </head>
 
-<body>
+  <body>
     <script type="module" id="replace_with_navbar" src="../components/navbar.js"></script>
 
     <main class="page shopping-cart-page">
-        <section class="bg-light clean-block clean-cart dark">
-            <div class="container">
-                <div class="block-heading">
-                    <h1 style="font-size: calc(1.325rem + 0.9vw)">Manager Zone</h1>
-                    <ul class="nav nav-tabs d-lg-flex flex-row justify-content-lg-center align-items-lg-center">
-                        <li class="nav-item"></li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="manager-manage-items.html" style="color: var(--bs-pink)">Manage items</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="manager-manage-orders.html" style="color: var(--bs-pink)">Manage orders</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="manager-delivery-times.html" style="font-weight: bold; color: var(--bs-dark)">Update delivery times</a
+      <section class="bg-light clean-block clean-cart dark">
+        <div class="container" style="text-align: center">
+          <div class="block-heading">
+            <h1 style="font-size: calc(1.325rem + 0.9vw)">Manager Zone</h1>
+            <ul
+              class="nav nav-tabs d-lg-flex flex-row justify-content-lg-center align-items-lg-center"
+            >
+              <li class="nav-item">
+                <a class="nav-link" href="profile.html" style="color: var(--bs-pink)">Profile</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="manager-manage-items.html" style="color: var(--bs-pink)"
+                  >Manage items</a
                 >
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="manager-statistics.html" style="color: var(--bs-pink)">Statistical Information</a>
-                        </li>
-                        <li class="nav-item"></li>
-                        <li class="nav-item"></li>
-                        <li class="nav-item"></li>
-                        <li class="nav-item"></li>
-                    </ul>
-                </div>
-                <div class="align-content-center mx-auto content" style="width: 50vw; padding-bottom: 2vw; padding-top: 2vw">
-                    <div class="row">
-                        <div class="col d-lg-flex justify-content-lg-center">
-                            <span>Select Date: </span><input type="date" style="margin-left: 20px" name="update_times_date" />
-                        </div>
-                    </div>
-                    <div class="row d-lg-flex my-auto justify-content-lg-center">
-                        <div class="col">
-                            <label class="col-form-label text-center d-lg-flex justify-content-lg-center" style="margin-top: 2vw">Choose unavailable hours:</label
+                <a class="nav-link" href="manager-manage-orders.html" style="color: var(--bs-pink)"
+                  >Manage orders</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  href="manager-delivery-times.html"
+                  style="font-weight: bold; color: var(--bs-dark)"
+                  >Update delivery times</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="manager-statistics.html" style="color: var(--bs-pink)"
+                  >Statistical Information</a
+                >
+              </li>
+              <li class="nav-item"></li>
+              <li class="nav-item"></li>
+              <li class="nav-item"></li>
+              <li class="nav-item"></li>
+            </ul>
+          </div>
+          <div
+            class="align-content-center mx-auto content"
+            style="width: 50vw; padding-bottom: 2vw; padding-top: 2vw"
+          >
+            <div class="row">
+              <div class="col d-lg-flex justify-content-lg-center">
+                <span>Select Date: </span
+                ><input type="date" style="margin-left: 20px" name="update_times_date" />
+              </div>
+            </div>
+            <div class="row d-lg-flex my-auto justify-content-lg-center">
+              <div class="col">
+                <label
+                  class="col-form-label text-center d-lg-flex justify-content-lg-center"
+                  style="margin-top: 2vw"
+                  >Choose unavailable hours:</label
                 >
               </div>
             </div>

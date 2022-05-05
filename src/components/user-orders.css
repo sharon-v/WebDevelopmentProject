@@ -71,11 +71,11 @@ button {
 button {
   text-transform: none;
 }
-[role="button"] {
+[role='button'] {
   cursor: pointer;
 }
 button,
-[type="button"] {
+[type='button'] {
   -webkit-appearance: button;
 }
 ::-moz-focus-inner {
@@ -422,10 +422,7 @@ button,
 }
 .bg-secondary {
   --bs-bg-opacity: 1;
-  background-color: rgba(
-    var(--bs-secondary-rgb),
-    var(--bs-bg-opacity)
-  ) !important;
+  background-color: rgba(var(--bs-secondary-rgb), var(--bs-bg-opacity)) !important;
 }
 .bg-dark {
   --bs-bg-opacity: 1;
@@ -443,12 +440,12 @@ button,
 }
 @media (min-width: 576px) {
   .d-sm-flex {
-    display: flex !important;
+    display: flex;
   }
 }
 @media (min-width: 992px) {
   .d-lg-flex {
-    display: flex !important;
+    display: flex;
   }
   .justify-content-lg-start {
     justify-content: flex-start !important;
@@ -603,10 +600,10 @@ body {
   line-height: 1;
 }
 .fa-star:before {
-  content: "\f005";
+  content: '\f005';
 }
 .fa {
-  font-family: "Font Awesome 5 Free";
+  font-family: 'Font Awesome 5 Free';
 }
 .fa {
   font-weight: 900;
@@ -620,7 +617,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 .fa-star:before {
-  content: "\f005";
+  content: '\f005';
 }
 body {
   align-items: center;
@@ -628,46 +625,39 @@ body {
 }
 /*! CSS Used fontfaces */
 @font-face {
-  font-family: "Font Awesome 5 Free";
+  font-family: 'Font Awesome 5 Free';
   font-style: normal;
   font-weight: 400;
   font-display: auto;
   src: url(http://192.168.56.1:8000/fonts/fa-regular-400.eot);
-  src: url(http://192.168.56.1:8000/fonts/fa-regular-400.eot#iefix)
-      format("embedded-opentype"),
-    url(http://192.168.56.1:8000/fonts/fa-regular-400.woff2) format("woff2"),
-    url(http://192.168.56.1:8000/fonts/fa-regular-400.woff) format("woff"),
-    url(http://192.168.56.1:8000/fonts/fa-regular-400.ttf) format("truetype"),
-    url(http://192.168.56.1:8000/fonts/fa-regular-400.svg#fontawesome)
-      format("svg");
+  src: url(http://192.168.56.1:8000/fonts/fa-regular-400.eot#iefix) format('embedded-opentype'),
+    url(http://192.168.56.1:8000/fonts/fa-regular-400.woff2) format('woff2'),
+    url(http://192.168.56.1:8000/fonts/fa-regular-400.woff) format('woff'),
+    url(http://192.168.56.1:8000/fonts/fa-regular-400.ttf) format('truetype'),
+    url(http://192.168.56.1:8000/fonts/fa-regular-400.svg#fontawesome) format('svg');
 }
 @font-face {
-  font-family: "Font Awesome 5 Free";
+  font-family: 'Font Awesome 5 Free';
   font-style: normal;
   font-weight: 900;
   font-display: auto;
   src: url(http://192.168.56.1:8000/fonts/fa-solid-900.eot);
-  src: url(http://192.168.56.1:8000/fonts/fa-solid-900.eot#iefix)
-      format("embedded-opentype"),
-    url(http://192.168.56.1:8000/fonts/fa-solid-900.woff2) format("woff2"),
-    url(http://192.168.56.1:8000/fonts/fa-solid-900.woff) format("woff"),
-    url(http://192.168.56.1:8000/fonts/fa-solid-900.ttf) format("truetype"),
-    url(http://192.168.56.1:8000/fonts/fa-solid-900.svg#fontawesome)
-      format("svg");
+  src: url(http://192.168.56.1:8000/fonts/fa-solid-900.eot#iefix) format('embedded-opentype'),
+    url(http://192.168.56.1:8000/fonts/fa-solid-900.woff2) format('woff2'),
+    url(http://192.168.56.1:8000/fonts/fa-solid-900.woff) format('woff'),
+    url(http://192.168.56.1:8000/fonts/fa-solid-900.ttf) format('truetype'),
+    url(http://192.168.56.1:8000/fonts/fa-solid-900.svg#fontawesome) format('svg');
 }
 @font-face {
-  font-family: "FontAwesome";
-  src: url("http://192.168.56.1:8000/fonts/fontawesome-webfont.eot?v=4.7.0");
-  src: url("http://192.168.56.1:8000/fonts/fontawesome-webfont.eot#iefix&v=4.7.0")
-      format("embedded-opentype"),
-    url("http://192.168.56.1:8000/fonts/fontawesome-webfont.woff2?v=4.7.0")
-      format("woff2"),
-    url("http://192.168.56.1:8000/fonts/fontawesome-webfont.woff?v=4.7.0")
-      format("woff"),
-    url("http://192.168.56.1:8000/fonts/fontawesome-webfont.ttf?v=4.7.0")
-      format("truetype"),
-    url("http://192.168.56.1:8000/fonts/fontawesome-webfont.svg?v=4.7.0#fontawesomeregular")
-      format("svg");
+  font-family: 'FontAwesome';
+  src: url('http://192.168.56.1:8000/fonts/fontawesome-webfont.eot?v=4.7.0');
+  src: url('http://192.168.56.1:8000/fonts/fontawesome-webfont.eot#iefix&v=4.7.0')
+      format('embedded-opentype'),
+    url('http://192.168.56.1:8000/fonts/fontawesome-webfont.woff2?v=4.7.0') format('woff2'),
+    url('http://192.168.56.1:8000/fonts/fontawesome-webfont.woff?v=4.7.0') format('woff'),
+    url('http://192.168.56.1:8000/fonts/fontawesome-webfont.ttf?v=4.7.0') format('truetype'),
+    url('http://192.168.56.1:8000/fonts/fontawesome-webfont.svg?v=4.7.0#fontawesomeregular')
+      format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -721,14 +711,10 @@ body {
   --bs-black-rgb: 0, 0, 0;
   --bs-body-color-rgb: 33, 37, 41;
   --bs-body-bg-rgb: 255, 255, 255;
-  --bs-font-sans-serif: "Montserrat", sans-serif;
-  --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas,
-    "Liberation Mono", "Courier New", monospace;
-  --bs-gradient: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.15),
-    rgba(255, 255, 255, 0)
-  );
+  --bs-font-sans-serif: 'Montserrat', sans-serif;
+  --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New',
+    monospace;
+  --bs-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
   --bs-body-font-family: var(--bs-font-sans-serif);
   --bs-body-font-size: 1rem;
   --bs-body-font-weight: 400;

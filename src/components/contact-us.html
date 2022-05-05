@@ -3,24 +3,18 @@
   <html>
     <head>
       <meta charset="utf-8" />
-      <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
-      />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
       <title>Contact Us - Brand</title>
       <link rel="stylesheet" href="../components/contact-us.css" />
     </head>
     <body>
-      <script id="replace_with_navbar" src="../components/navbar.js"></script>
+      <script type="module" id="replace_with_navbar" src="../components/navbar.js"></script>
       <main class="page contact-us-page">
         <section class="clean-block clean-form dark">
           <div class="container">
             <div class="block-heading">
               <h2>Contact Us</h2>
-              <p>
-                Please stay in touch through our social media or contact us via
-                email.
-              </p>
+              <p>Please stay in touch through our social media or contact us via email.</p>
             </div>
             <section class="position-relative py-4 py-xl-5">
               <div class="card">
@@ -28,17 +22,14 @@
                   class="card-body d-lg-flex my-auto justify-content-lg-center align-items-lg-center"
                 >
                   <div class="col-md-6 col-lg-4 col-xl-4">
-                    <label
-                      class="form-label"
-                      style="font-weight: bold; color: var(--bs-pink)"
+                    <label class="form-label" style="font-weight: bold; color: var(--bs-pink)"
                       >Our Facebook page:</label
                     >
                     <a
                       class="btn d-lg-flex mx-auto"
                       role="button"
                       style="
-                        background: url('../assets/icons/facebook.svg') center /
-                          contain no-repeat;
+                        background: url('../assets/icons/facebook.svg') center / contain no-repeat;
                         border-style: hidden;
                         width: 3.5vw;
                         height: 3vw;
@@ -49,17 +40,14 @@
                     </a>
                   </div>
                   <div class="col-md-6 col-lg-4 col-xl-4">
-                    <label
-                      class="form-label"
-                      style="font-weight: bold; color: var(--bs-pink)"
+                    <label class="form-label" style="font-weight: bold; color: var(--bs-pink)"
                       >Our instagram page:</label
                     >
                     <a
                       class="btn d-lg-flex mx-auto"
                       role="button"
                       style="
-                        background: url('../assets/icons/instagram.svg') center /
-                          contain no-repeat;
+                        background: url('../assets/icons/instagram.svg') center / contain no-repeat;
                         border-style: hidden;
                         width: 3.5vw;
                         height: 3vw;
@@ -70,16 +58,13 @@
                     </a>
                   </div>
                   <div class="col-md-6 col-lg-4 col-xl-4">
-                    <label
-                      class="form-label"
-                      style="font-weight: bold; color: var(--bs-pink)"
+                    <label class="form-label" style="font-weight: bold; color: var(--bs-pink)"
                       >Our Email address:</label
                     >
                     <img
                       class="d-lg-flex mx-auto"
                       style="
-                        background: url('../assets/icons/envelope.svg') center /
-                          containno-repeat;
+                        background: url('../assets/icons/envelope.svg') center / containno-repeat;
                         border-style: hidden;
                         width: 3.5vw;
                         height: 3vw;
@@ -97,7 +82,12 @@
           </div>
         </section>
       </main>
-      <script id="replace_with_footer" src="footer.js"></script>
+      <script type="module" id="replace_with_footer" src="footer.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
+
       <!-- <script src="components/Welcome-page.js"></script> -->
     </body>
   </html>
