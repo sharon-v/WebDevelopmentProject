@@ -145,7 +145,7 @@ function addManagerToTheDb(fname, lname, birthdate, phoneNumber, email, password
       })
         .then(() => {
           console.log('Document successfully written!');
-          location.replace('home-page.html');   // redirect the user to the home page
+          location.replace('manager-manage-items.html');   // redirect the user to the home page
         })
         .catch((error) => {
           // success in saving the user to Auth but failed to save him in the collection

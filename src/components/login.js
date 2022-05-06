@@ -53,7 +53,7 @@ function checkUserConnected(user) {
           .then((doc) => {
             if (doc.exists) {
               console.log('The customer', user.email, 'is connnected');
-              location.replace('../components/home-page.html');
+              location.replace('home-page.html');
             }
             else {
               // failed to identify user
