@@ -1,34 +1,41 @@
 import {fbAuth, dbOrders, dbCustomers } from '../firebase/data.js'
 
-document.querySelector('#spinner').style.visibility='visible';
+const spinner = document.querySelector('#spinner');
+spinner.style.visibility='visible';
 
 var counter = 0;
 var currentuser;
 
-fbAuth.onAuthStateChanged((user) => {
-    dbOrders.where("buyerEmail", "==",  user.email)
-    .get()
-    .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-            counter = counter + 1;
-            // doc.data() is never undefin  ed for query doc snapshots
-            if(counter == 1)
-                editElement(doc.id, doc.data().purchaseDate, doc.data().buyerEmail , doc.data().totalAmount, doc.data().orderStatus);
-            else
-                addElement(doc.id, doc.data().purchaseDate, doc.data().buyerEmail , doc.data().totalAmount, doc.data().orderStatus);
-        });
-        if(counter == 0)
-        {
-            //delete the first element if there is no orders
-            deleteFirst();
-        }
-        document.querySelector('#spinner').remove();
-    })
-    .catch((error) => {
-        console.log("Error getting documents: ", error);
-    });
+initialization();
 
-});
+function initialization(){
+    fbAuth.onAuthStateChanged((user) => {
+        dbOrders.where("buyerEmail", "==",  user.email)
+        .get()
+        .then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                counter = counter + 1;
+                // doc.data() is never undefin  ed for query doc snapshots
+                if(counter == 1)
+                    editElement(doc.id, doc.data().purchaseDate, doc.data().buyerEmail , doc.data().totalAmount, doc.data().orderStatus);
+                else
+                    addElement(doc.id, doc.data().purchaseDate, doc.data().buyerEmail , doc.data().totalAmount, doc.data().orderStatus);
+            });
+            if(counter == 0)
+            {
+                //delete the first element if there is no orders
+                deleteFirst();
+                spinner.style.display = 'none';
+
+            }
+        })
+        .catch((error) => {
+            console.log("Error getting documents: ", error);
+        });
+    
+    });
+    
+}
 
 
 function editElement(orderNumber, date, buyerEmail, totalAmount, orderStatus){
@@ -74,7 +81,8 @@ function changeValues(element, orderNumber, date, buyerEmail, totalAmount, order
              dbOrders.doc(orderNumber).delete().then(() => {
                 console.log("Document successfully deleted!");
                 //reloaded the page
-                location.replace('../components/user-orders.html');
+                // location.replace('../components/user-orders.html');
+                initialization();
             }).catch((error) => {
                 console.error("Error removing document: ", error);
             });
