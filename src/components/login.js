@@ -67,7 +67,7 @@ function login(email, password) {
       if (isManager == 1) {
         location.replace('manager-manage-item.html');
       } else if (isManager == 0) {
-        location.replace('home-page.html');
+        location.replace('../components/home-page.html');
       } else {
         location.replace('login.html');
       }

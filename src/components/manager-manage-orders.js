@@ -1,45 +1,75 @@
 import {fbAuth, dbOrders, dbCustomers } from '../firebase/data.js'
 
 document.querySelector('#spinner').style.visibility='visible';
-var counter = 0;
 
-
-dbOrders.get().then((querySnapshot) => {
-    querySnapshot.forEach((doc) => {
-        counter = counter + 1;
-        if(counter == 1){
-            editElement(doc.id, doc.data().purchaseDate, doc.data().buyerEmail , doc.data().totalAmount, doc.data().orderStatus);
-            document.querySelector('#product').style.visibility='visible';
+initialization();
+function initialization(){
+    dbOrders.get().then((querySnapshot) => {
+        var counter = 0;
+        querySnapshot.forEach((doc) => {
+            counter = counter + 1;
+            if(counter == 1){
+                editElement(doc.id, doc.data().purchaseDate, doc.data().buyerEmail , doc.data().totalAmount, doc.data().orderStatus);
+                document.querySelector('#product').style.visibility='visible';
+            }
+            else{
+                addElement(doc.id, doc.data().purchaseDate, doc.data().buyerEmail , doc.data().totalAmount, doc.data().orderStatus);
+                document.querySelector('#product').style.visibility='visible';
+            }
+        });
+        if(counter == 0)
+        {
+            //delete the first element if there is no orders
+            deleteFirst();
         }
-        else
-            addElement(doc.id, doc.data().purchaseDate, doc.data().buyerEmail , doc.data().totalAmount, doc.data().orderStatus);
+        document.querySelector('#spinner').style.display = 'none';
     });
-    // document.querySelector('#product').style.visibility='visible';
-    if(counter == 0)
-    {
-        //delete the first element if there is no orders
-        deleteFirst();
+}
+
+
+var searchButtton = document.querySelector('#searchButton');
+var searchInput = document.querySelector('#searchInput');
+searchButtton.addEventListener('click', () => {
+    filterByOrderId();
+})
+
+searchInput.addEventListener('keypress', function (e) {
+    if (e.key === 'Enter') {
+      // code for enter
+      filterByOrderId();
+
     }
-    document.querySelector('#spinner').remove();
-
-
 });
 
-
-
+function filterByOrderId(){
+    document.querySelector('#spinner').style.display='inline';
+    if (searchInput.value.length > 0){
+        var container = document.querySelector('#orders_list');
+        removeAllChildNodes(container);
+        dbOrders.doc(searchInput.value).get().then((doc) => {
+            if (doc.exists){
+                editElement(doc.id, doc.data().purchaseDate, doc.data().buyerEmail , doc.data().totalAmount, doc.data().orderStatus);
+                document.querySelector('#spinner').style.display = 'none';
+            } else {
+              console.log("No such document!");
+            }}).catch((error) => {
+              console.log("Error getting document:", error);
+            });
+    }
+    else{
+        document.querySelector('#spinner').style.visibility='visible';
+        initialization();
+    }
+}
 
 
 function editElement(orderNumber, date, buyerEmail, totalAmount, orderStatus){
     let ele = document.querySelector('#product')
     ele = changeValues(ele,orderNumber, date, buyerEmail, totalAmount, orderStatus)
+    ele.style.visibility="visible";
 }
 
 function changeValues(element, orderNumber, date, buyerEmail, totalAmount, orderStatus){
-    console.log(orderNumber);
-    console.log(date);
-    console.log(buyerEmail);
-    console.log(totalAmount);
-
     element.removeAttribute('hidden')
     let Number = element.querySelector('#orderNumber');
     Number.innerHTML = orderNumber;
@@ -92,6 +122,7 @@ function addElement (orderNumber, date, buyerEmail, totalAmount, orderStatus) {
     newElement = changeValues(newElement, orderNumber, date, buyerEmail, totalAmount, orderStatus)
     let currentDiv = document.getElementById("orders_list");
     currentDiv.appendChild(newElement);
+    newElement.style.visibility="visible"; 
 }
       
 function deleteFirst(){
@@ -105,11 +136,22 @@ function deleteFirst(){
 }
 
 function updateOrderStatus(value, orderId){  
-    var doc = dbOrders.doc(orderId);
+    var order = dbOrders.doc(orderId);
     if(value == 1){
-        doc.update({"orderStatus" : 'Aprroved'});
+        order.update({"orderStatus" : 'Aprroved'});
     }
     else if (value == 2){
-        doc.update({"orderStatus" : 'Canceled'});
+        order.update({"orderStatus" : 'Canceled'});
     }
+}
+
+function removeAllChildNodes(parent) {
+    if( parent.children.length > 1)
+    {
+        for(var i = 0; i < parent.children.length ; i++) {
+            parent.children[i].remove();
+        }
+    }
+
+
 }
