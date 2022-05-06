@@ -491,15 +491,15 @@ button,
 .rounded-pill {
   border-radius: 50rem !important;
 }
-/* @media (min-width: 576px) {
+@media (min-width: 576px) {
   .d-sm-flex {
-    display: flex !important;
+    display: flex;
   }
-} */
+}
 @media (min-width: 992px) {
-  /* .d-lg-flex {
-    display: flex !important;
-  } */
+  .d-lg-flex {
+    display: flex;
+  }
   .justify-content-lg-start {
     justify-content: flex-start !important;
   }
