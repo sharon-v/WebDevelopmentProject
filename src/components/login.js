@@ -16,6 +16,22 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+function login(email, password) {
+  fbAuth
+    .signInWithEmailAndPassword(email, password)
+    .then((userCredential) => {
+      // Signed in
+      var user = userCredential.user;
+      console.log('success, ', user.email);
+      checkUserConnected(user);
+    })
+    .catch((error) => {
+      console.log('fail to login');
+      let errorMessage = error.message;
+      alert(errorMessage);
+    });
+}
+
 function checkUserConnected(user) {
   // return 0 if a customer is connected and 1 if a manager is connected
   // return -1 if reading the user from collection failed.
@@ -27,7 +43,7 @@ function checkUserConnected(user) {
     .then((doc) => {
       if (doc.exists) {
         console.log('The manager', user.email, 'is connnected');
-        return 1;
+        location.replace('manager-manage-items.html');
       }
       // check if the user is a customer
       else {
@@ -37,44 +53,33 @@ function checkUserConnected(user) {
           .then((doc) => {
             if (doc.exists) {
               console.log('The customer', user.email, 'is connnected');
-
-              return 0;
-            } else {
-              return -1; // failed to identify user
+              location.replace('../components/home-page.html');
+            }
+            else {
+              // failed to identify user
+              alert('failed to identify user');
+              signOutUser();
             }
           })
           .catch((error) => {
-            console.log('failed to read from customers collection:', error);
-            return -1; // failed to identify user
+            console.log('failed to read from customers collection:', error.message);
+            alert(error.message);
           });
       }
     })
     .catch((error) => {
-      console.log('failed to read from manager collection:', error);
-      return -1;
+      console.log('failed to read from manager collection:', error.message);
+      alert(error.message);
     });
 }
 
-function login(email, password) {
+function signOutUser() {
   fbAuth
-    .signInWithEmailAndPassword(email, password)
-    .then((userCredential) => {
-      // Signed in
-      var user = userCredential.user;
-      console.log('success, ', user.email);
-      var isManager = checkUserConnected(user);
-      console.log('is manager = ', isManager);
-      if (isManager == 1) {
-        location.replace('manager-manage-item.html');
-      } else if (isManager == 0) {
-        location.replace('../components/home-page.html');
-      } else {
-        location.replace('login.html');
-      }
+    .signOut()
+    .then(() => {
+
     })
     .catch((error) => {
-      console.log('fail');
-      var errorMessage = error.message;
-      alert(errorMessage);
+      console.log('Logout err: ', error);
     });
 }

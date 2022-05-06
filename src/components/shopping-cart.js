@@ -1,13 +1,14 @@
-import { fbAuth, dbShppo } from '../firebase/data.js'
+import { fbAuth, dbShppoppingCart, dbProducts } from '../firebase/data.js'
 
 var counter = 0;
 var currentuser;
 
 fbAuth.onAuthStateChanged((user) => {
-    dbOrders.where("buyerEmail", "==", user.email)
+    dbOrders.where("customerEmail", "==", user.email)
         .get()
         .then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
+
                 counter = counter + 1;
                 // doc.data() is never undefin  ed for query doc snapshots
                 if (counter == 1)
@@ -103,5 +104,10 @@ function deleteFirst() {
     par.style = "color: var(--bs-pink) ;text-align:center"
     let currentDiv = document.getElementById("products_list");
     currentDiv.appendChild(par);
+}
+
+
+function presentShoppingCart() {
+
 }
 
