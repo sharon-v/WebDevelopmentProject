@@ -66,41 +66,36 @@ function changeValues(Pname, description, price, size90x200, size120x200, size16
     console.log(fabric);
 
     element.removeAttribute('hidden')
-    let Number = element.querySelector('#orderNumber');
-    Number.innerHTML = orderNumber;
-    let orderDate = element.querySelector('#orderDate');
-    orderDate.innerHTML = new Intl.DateTimeFormat('en-GB').format(date.toDate());
-    let buyerName = element.querySelector('#buyerName');
+   
+    let Pname = element.querySelector('#productName');
+    Pname.innerHTML = Pname;
+
+    let bedSize = element.querySelector('#bedSize');
+    Pname.innerHTML = bedSize;
+
+    let price = element.querySelector('#productPrice');
+    price.innerHTML = price;
+    
+    let quantity = element.querySelector('#quantity');
+    quantity.innerHTML = quantity;
     
     //get product by sku
-    dbProducts.where("sku", "==", sku).get().then((querySnapshot) => {
+    dbProducts.where("Pname", "==", Pname).get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
-            sku.innerHTML = String(doc.data().Pname);
+            Pname.innerHTML = String(doc.data().Pname);
         });
     })
     .catch((error) => {
         console.log("Error getting documents: ", error);
     });
 
-    let amount = element.querySelector('#orderAmount');
-    amount.innerHTML = totalAmount.toFixed(2);
-    let selectOp = element.querySelector('#selectOp');
-    let currentTime = Date.now();
-    let differ = Date.now() - date.toDate() ;
-    let Difference_In_hours =Math.ceil(differ / (1000 * 3600 * 24));
-    if (Difference_In_hours > 1){
-        selectOp.disabled = false;
-    }
-    else{
-        selectOp.disabled = true;
-    }
     selectOp.addEventListener('change', () => {
         if(selectOp.options[ selectOp.selectedIndex ].value == 2){
             //needs to update the order status
         }
     })
-    var orderPage = element.querySelector('#orderPage');
-    orderPage.addEventListener('click', () => {
+    var productPage = element.querySelector('#productPage');
+    productPage.addEventListener('click', () => {
         sessionStorage.setItem('orderNumber', orderNumber); //moving parameters to order summery page
         location.replace('../components/order-summary.html');
     })

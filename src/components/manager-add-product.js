@@ -27,8 +27,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const size160x200 = document.getElementById('quantity_160x200').value;
         const size180x200 = document.getElementById('quantity_180x200').value;
         const fabric = document.getElementById('add_fabric_select').value;
-        const isJustLandedCbChecked = document.getElementById('formCheck-1').isCbChecked;
-        const isOnSaleCbChecked = document.getElementById('formCheck-2').isCbChecked;
+        const isJustLandedCbChecked = document.getElementById('formCheck-1').checked;
+        const isOnSaleCbChecked = document.getElementById('formCheck-2').checked;
 
         const storgeRef = storageRef.child(Pname + '.jpg');
         const ImagesRef = storageRef.child('images/' + Pname + '.jpg');
@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log(isJustLandedCbChecked);
         console.log(isOnSaleCbChecked);
         console.log(fabric);
-        console.log(ImagesRef);
+        console.log(storgeRef);
 
         addProduct(
             Pname,
@@ -58,57 +58,46 @@ document.addEventListener('DOMContentLoaded', () => {
             isJustLandedCbChecked,
             isOnSaleCbChecked,
             fabric,
-            ImagesRef
+            storgeRef
         );
     });
 });
 
-function addProduct(
-    Pname,
-    description,
-    price,
-    sale,
-    size90x200,
-    size120x200,
-    size160x200,
-    size180x200,
-    isJustLandedCbChecked,
+function addProduct( Pname, description, price, sale, size90x200, size120x200, size160x200, size180x200, isJustLandedCbChecked,isOnSaleCbChecked, fabric, storgeRef) {
+    var sku = new Date().getTime();
+    dbProducts.get().then((snap) => {
+      sku = snap.size+1 + sku; 
+      console.log('size '+ sku);
+      writeProductToDB(Pname, description, price, sale, size90x200, size120x200, size160x200, size180x200, isJustLandedCbChecked,isOnSaleCbChecked, fabric, storgeRef,sku);
+      
+    });
+}
+
+function writeProductToDB(Pname, description, price, sale, size90x200, size120x200, size160x200, size180x200, isJustLandedCbChecked,isOnSaleCbChecked, fabric, storgeRef, sku){
+  dbProducts.doc(Pname).set({
+    Pname: Pname,
+    description: description,
+    price: price,
+    sale: sale,
+    size90x200: size90x200,
+    size120x200: size120x200,
+    size160x200: size160x200,
+    size180x200: size180x200,
+    isJustLandedCbChecked: isJustLandedCbChecked,
     isOnSaleCbChecked,
-    fabric,
-    ImagesRef
-) {
-    var sku;
-    dbProducts
-        .doc(Pname)
-        .set({
-            sku: dbProducts
-                .collection('...')
-                .get()
-                .then((snap) => {
-                    size = snap.size; // will return the collection size
-                }),
-            Pname: Pname,
-            description: description,
-            price: price,
-            sale: sale,
-            size90x200: size90x200,
-            size120x200: size120x200,
-            size160x200: size160x200,
-            size180x200: size180x200,
-            isJustLandedCbChecked: isJustLandedCbChecked,
-            isOnSaleCbChecked,
-            isOnSaleCbChecked,
-            fabric: fabric,
-            ImagesRef: ImagesRef,
-        })
-        .then(() => {
-            console.log('Document successfully');
-            location.replace('manager-manage-items.html');
-        })
-        .catch((error) => {
-            console.error('Error writing document: ', error);
-            console.log('fail');
-            var errorMessage = error.message;
-            alert(errorMessage);
-        });
+    isOnSaleCbChecked,
+    fabric: fabric,
+    sku: sku
+    //storgeRef: storgeRef
+})
+.then(() => {
+    console.log('Document successfully added');
+    location.replace('../components/manager-manage-items.html');
+})
+.catch((error) => {
+    console.error('Error writing document: ', error);
+    console.log('fail');
+    var errorMessage = error.message;
+    alert(errorMessage);
+});
 }
