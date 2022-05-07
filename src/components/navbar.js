@@ -119,10 +119,10 @@ function addEventListenersToNavBarButtons(isManager) {
   });
 
   // function to send user to right profile page -> profile icon
-  const nav_profile_btn = document.getElementById('nav_bed_btn');
+  const nav_profile_btn = document.getElementById('nav_profile_btn');
   nav_profile_btn.addEventListener('click', () => {
-    if (isManager == 0) {
-      location.replace('../components/manager-manage-items.html'); // redirect a disconnected user to the home page
+    if (isManager == 1) {
+      location.replace('manager-manage-items.html'); // redirect a disconnected user to the home page
     } else {
       location.replace('profile.html'); // redirect a connected user to the home page
     }
