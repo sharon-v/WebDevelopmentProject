@@ -26,13 +26,12 @@ function initialization(){
                 //delete the first element if there is no orders
                 deleteFirst();
                 spinner.style.display = 'none';
-
             }
         })
         .catch((error) => {
             console.log("Error getting documents: ", error);
         });
-    
+        spinner.style.display = 'none';
     });
     
 }
@@ -62,7 +61,7 @@ function changeValues(element, orderNumber, date, buyerEmail, totalAmount, order
     });
 
     let amount = element.querySelector('#totalAmount');
-    amount.innerHTML = totalAmount.toFixed(2);
+    amount.innerHTML = parseInt(totalAmount).toFixed(2);
 
     let status = element.querySelector('#orderStatus');
     status.innerHTML = orderStatus;
