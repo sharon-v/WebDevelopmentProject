@@ -3,7 +3,7 @@ import { dbProducts, storageRef } from '../firebase/data.js';
 /* code fo displaying picture in add/edit new product page */
 const image_input = document.querySelector('#image-input');
 
-image_input.addEventListener('change', function() {
+image_input.addEventListener('change', function () {
     const reader = new FileReader();
     reader.addEventListener('load', () => {
         const uploaded_image = reader.result;
@@ -30,8 +30,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const isJustLandedCbChecked = document.getElementById('formCheck-1').checked;
         const isOnSaleCbChecked = document.getElementById('formCheck-2').checked;
 
-        const storgeRef = storageRef.child(Pname + '.jpg');
-        const ImagesRef = storageRef.child('images/' + Pname + '.jpg');
 
         console.log(Pname);
         console.log(description);
@@ -44,7 +42,6 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log(isJustLandedCbChecked);
         console.log(isOnSaleCbChecked);
         console.log(fabric);
-        console.log(storgeRef);
 
         addProduct(
             Pname,
@@ -57,47 +54,65 @@ document.addEventListener('DOMContentLoaded', () => {
             size180x200,
             isJustLandedCbChecked,
             isOnSaleCbChecked,
-            fabric,
-            storgeRef
+            fabric
         );
     });
 });
 
-function addProduct( Pname, description, price, sale, size90x200, size120x200, size160x200, size180x200, isJustLandedCbChecked,isOnSaleCbChecked, fabric, storgeRef) {
+function uploadImage(Pname, description, price, sale, size90x200, size120x200, size160x200, size180x200, isJustLandedCbChecked, isOnSaleCbChecked, fabric, sku) {
+    const ref = firebase.storage().ref();
+    const file = document.querySelector("#image-input").files[0];
+    const name = 'images/' + Pname + '.jpg' + file.name;
+    const metadata = {
+        contentType: file.type
+    };
+    const task = ref.child(name).put(file, metadata);
+    task
+        .then(snapshot => snapshot.ref.getDownloadURL())
+        .then(url => {
+            console.log(url);
+            const image = document.querySelector("#image-input")
+            image.src = url;
+            writeProductToDB(Pname, description, price, sale, size90x200, size120x200, size160x200, size180x200, isJustLandedCbChecked, isOnSaleCbChecked, fabric, sku, url);
+        })
+        .catch(console.error);
+}
+
+function addProduct(Pname, description, price, sale, size90x200, size120x200, size160x200, size180x200, isJustLandedCbChecked, isOnSaleCbChecked, fabric) {
     var sku = new Date().getTime();
     dbProducts.get().then((snap) => {
-      sku = snap.size+1 + sku; 
-      console.log('size '+ sku);
-      writeProductToDB(Pname, description, price, sale, size90x200, size120x200, size160x200, size180x200, isJustLandedCbChecked,isOnSaleCbChecked, fabric, storgeRef,sku);
-      
+        sku = snap.size + 1 + sku;
+        console.log('size ' + sku);
+        uploadImage(Pname, description, price, sale, size90x200, size120x200, size160x200, size180x200, isJustLandedCbChecked, isOnSaleCbChecked, fabric, sku);
+
     });
 }
 
-function writeProductToDB(Pname, description, price, sale, size90x200, size120x200, size160x200, size180x200, isJustLandedCbChecked,isOnSaleCbChecked, fabric, storgeRef, sku){
-  dbProducts.doc(Pname).set({
-    Pname: Pname,
-    description: description,
-    price: price,
-    sale: sale,
-    size90x200: size90x200,
-    size120x200: size120x200,
-    size160x200: size160x200,
-    size180x200: size180x200,
-    isJustLandedCbChecked: isJustLandedCbChecked,
-    isOnSaleCbChecked,
-    isOnSaleCbChecked,
-    fabric: fabric,
-    sku: sku
-    //storgeRef: storgeRef
-})
-.then(() => {
-    console.log('Document successfully added');
-    location.replace('../components/manager-manage-items.html');
-})
-.catch((error) => {
-    console.error('Error writing document: ', error);
-    console.log('fail');
-    var errorMessage = error.message;
-    alert(errorMessage);
-});
+function writeProductToDB(Pname, description, price, sale, size90x200, size120x200, size160x200, size180x200, isJustLandedCbChecked, isOnSaleCbChecked, fabric, sku, url) {
+    dbProducts.doc(Pname).set({
+        Pname: Pname,
+        description: description,
+        price: price,
+        sale: sale,
+        size90x200: size90x200,
+        size120x200: size120x200,
+        size160x200: size160x200,
+        size180x200: size180x200,
+        isJustLandedCbChecked: isJustLandedCbChecked,
+        isOnSaleCbChecked,
+        isOnSaleCbChecked,
+        fabric: fabric,
+        sku: sku,
+        imageUrl: url
+    }).then(() => {
+        console.log('Document successfully added');
+        location.replace('../components/manager-manage-items.html');
+    })
+        .catch((error) => {
+            console.error('Error writing document: ', error);
+            console.log('fail');
+            var errorMessage = error.message;
+            alert(errorMessage);
+        });
+
 }
