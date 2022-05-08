@@ -2,75 +2,57 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
-    <title>Shopping Cart - Brand</title>
-    <link rel="stylesheet" href="../components/manager-manage-items.css" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+  <title>Shopping Cart - Brand</title>
+  <link rel="stylesheet" href="../components/manager-manage-items.css" />
 </head>
 
 <body>
-    <script type="module" id="replace_with_navbar" src="../components/navbar.js"></script>
-    <main class="page shopping-cart-page">
-        <section class="clean-block clean-cart dark">
-            <div class="container">
-                <div class="block-heading">
-                    <h1 style="font-size: calc(1.325rem + 0.9vw)">Manager Zone</h1>
-                    <ul class="nav nav-tabs d-lg-flex flex-row justify-content-lg-center align-items-lg-center">
-                        <li class="nav-item">
-                            <a class="nav-link" href="profile.html" style="color: var(--bs-pink)">Profile</a
-                >
-              </li>
-              <li class="nav-item">
-                <a class="nav-link fw-bold link-dark" href="manager-manage-items.html" style="font-weight: bold; color: var(--bs-dark)">Manage items</a
-                >
-              </li>
-              <li class="nav-item">
-                <a
-                  class="nav-link"
-                  href="manager-manage-orders.html"
-                  style="color: var(--bs-pink)"
-                  >Manage orders</a
-                >
-              </li>
-              <li class="nav-item">
-                <a
-                  class="nav-link"
-                  href="manager-delivery-times.html"
-                  style="color: var(--bs-pink)"
-                  >Update delivery times</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="manager-statistics.html" style="color: var(--bs-pink)">Statistical Information</a
-                >
-              </li>
-              <li class="nav-item"></li>
-              <li class="nav-item"></li>
-              <li class="nav-item"></li>
-              <li class="nav-item">
-                <a class="nav-link mx-auto" href="#"
-                  ><button
-                    class="btn btn-primary"
-                    type="button"
-                    style="
+  <script type="module" id="replace_with_navbar" src="../components/navbar.js"></script>
+  <main class="page shopping-cart-page">
+    <section class="clean-block clean-cart dark">
+      <div class="container">
+        <div class="block-heading">
+          <h1 style="font-size: calc(1.325rem + 0.9vw)">Manager Zone</h1>
+          <ul class="nav nav-tabs d-lg-flex flex-row justify-content-lg-center align-items-lg-center">
+            <li class="nav-item">
+              <a class="nav-link" href="profile.html" style="color: var(--bs-pink)">Profile</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link fw-bold link-dark" href="manager-manage-items.html"
+                style="font-weight: bold; color: var(--bs-dark)">Manage items</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="manager-manage-orders.html" style="color: var(--bs-pink)">Manage orders</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="manager-delivery-times.html" style="color: var(--bs-pink)">Update delivery
+                times</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="manager-statistics.html" style="color: var(--bs-pink)">Statistical
+                Information</a>
+            </li>
+            <li class="nav-item"></li>
+            <li class="nav-item"></li>
+            <li class="nav-item"></li>
+            <li class="nav-item">
+              <a class="nav-link mx-auto" href="#"><button id="searchButton" class="btn btn-primary" type="button"
+                  style="
                       background: url('../assets/icons/search\ \(1\).svg') center /
                         contain no-repeat;
                       width: 1.5vw;
                       height: 1.5vw;
                       border-style: hidden;
                       margin-right: 10px;
-                    "
-                  ></button
-                  ><input
-                    class="mx-auto"
-                    type="search"
-                    name="product_catalog_search_bar"
-                    placeholder="SKU, product name"
-                /></a>
-                        </li>
-                    </ul>
-                    <a class="mx-auto" href="#"></a>
-                </div>
-                <a href="../components/manager-add-product.html" <button class="btn btn-primary" type="button" style="
+                    "></button><input id="searchInput" class="mx-auto" type="search" name="product_catalog_search_bar"
+                  placeholder="SKU, product name" /></a>
+            </li>
+          </ul>
+          <a class="mx-auto" href="#"></a>
+        </div>
+        <a href="../components/manager-add-product.html"><button class="btn btn-primary" type="button" style="
               margin-bottom: 1vw;
               color: var(--bs-pink);
               background: var(--bs-white);
@@ -78,195 +60,42 @@
             ">
             Add new product
           </button></a>
-                <div class="content">
-                    <div class="row g-0">
-                        <div class="col d-lg-flex justify-content-lg-center">
-                            <div class="align-items-center align-content-center align-self-center my-auto items" style="width: 75vw">
-                                <div class="row justify-content-center align-items-center" style="
+        <div id="spinner" class="loader"></div>
+        <div class="content">
+          <div class="row g-0">
+            <div class="col d-lg-flex justify-content-lg-center">
+              <div id="products_list" class="align-items-center align-content-center align-self-center my-auto items"
+                style="width: 75vw">
+                <div id="product" class="row justify-content-center align-items-center" style="
                       margin-bottom: 2vw;
                       margin-top: 1vw;
                       box-shadow: 0px 0px 6px 0px rgb(185, 191, 198);
                     ">
-                                    <div class="col-md-3 col-lg-3">
-                                        <div class="product-image">
-                                            <img class="img-fluid d-block mx-auto image" src="../assets/images/sheets/3b0bb51a523f11ae8944156daef9c2c0.jpg" />
-                                        </div>
-                                    </div>
-                                    <div class="col-md-5 product-info">
-                                        <a class="product-name" style="color: var(--bs-gray-800)">sheets name</a
-                      >
-                      <div class="product-specs">
-                        <div>
-                          <span>Bed Size: </span
-                          ><span class="value">160x200</span>
-                        </div>
-                        <div>
-                          <span>Unit Price: </span
-                          ><span class="value">129.90</span>
-                        </div>
-                      </div>
-                      <div>
-                        <span>Quantity: </span><span class="value">2</span>
-                      </div>
-                    </div>
-                    <div
-                      class="col-6 col-md-2 d-lg-flex justify-content-lg-center quantity"
-                    >
-                      <button
-                        id='editButton'
-                        class="btn btn-primary"
-                        type="button"
-                        style="
-                          width: 3vw;
-                          height: 3vw;
-                          background: url('../assets/icons/pencil-free-icon-font.svg')
-                              center / cover,
-                            var(--bs-white);
-                          margin-top: 1vw;
-                          margin-bottom: 1vw;
-                          margin-left: 1vw;
-                          margin-right: 1vw;
-                          border: 0px none var(--bs-gray-900);
-                        "
-                      ></button
-                      ><button
-                        id='deleteButton'
-                        class="btn btn-primary"
-                        type="button"
-                        style="
-                          border-radius: 0px;
-                          width: 3vw;
-                          height: 3vw;
-                          border: 0px none var(--bs-white);
-                          background: url('../assets/icons/trash-free-icon-font.svg')
-                              center / cover,
-                            var(--bs-white);
-                          margin-top: 1vw;
-                          margin-bottom: 1vw;
-                          margin-left: 1vw;
-                          margin-right: 1vw;
-                        "
-                      ></button>
+                  <div class="col-md-3 col-lg-3">
+                    <div class="product-image">
+                      <img class="img-fluid d-block mx-auto image"
+                        src="../assets/images/sheets/3b0bb51a523f11ae8944156daef9c2c0.jpg" />
                     </div>
                   </div>
-                  <div
-                    class="row justify-content-center align-items-center"
-                    style="
-                      margin-bottom: 2vw;
-                      margin-top: 1vw;
-                      box-shadow: 0px 0px 6px 0px rgb(185, 191, 198);
-                    "
-                  >
-                    <div class="col-md-3 col-lg-3">
-                      <div class="product-image">
-                        <img
-                          class="img-fluid d-block mx-auto image"
-                          src="../assets/images/sheets/42-Bedding-Set-Black-Duvet-Cover-Sets-White-King-Queen-Size-Gold-Quilt-Gray-Comforter-Covers.jpg"
-                        />
-                      </div>
-                    </div>
-                    <div class="col-md-5 product-info">
-                      <a
-                        class="product-name"
-                        style="color: var(--bs-gray-800)"
-                        >sheets name</a
-                      >
-                      <div class="product-specs">
-                        <div>
-                          <span>Bed Size: </span
-                          ><span class="value">160x200</span>
-                        </div>
-                        <div>
-                          <span>Unit Price: </span
-                          ><span class="value">129.90</span>
-                        </div>
-                      </div>
+                  <div class="col-md-5 product-info">
+                    <a id="Pname" class="product-name" href="#" style="color: var(--bs-gray-800)">sheets name</a>
+                    <div class="product-specs">
+                      <!-- <div>
+                        <span>Bed Size: </span><span id="bedSize" class="value">160x200</span>
+                      </div> -->
                       <div>
-                        <span>Quantity: </span><span class="value">2</span>
+                        <span>Unit Price: </span><span id="price" class="value">129.90</span>
                       </div>
+                      <!-- <div>
+                        <span>Sale Price: </span><span id="sale" class="value">100.00</span>
+                      </div> -->
                     </div>
-                    <div
-                      class="col-6 col-md-2 d-lg-flex justify-content-lg-center quantity"
-                    >
-                      <button
-                        class="btn btn-primary"
-                        type="button"
-                        style="
-                          width: 3vw;
-                          height: 3vw;
-                          background: url('../assets/icons/pencil-free-icon-font.svg')
-                              center / cover,
-                            var(--bs-white);
-                          margin-top: 1vw;
-                          margin-bottom: 1vw;
-                          margin-left: 1vw;
-                          margin-right: 1vw;
-                          border: 0px none var(--bs-gray-900);
-                        "
-                      ></button
-                      ><button
-                        class="btn btn-primary"
-                        type="button"
-                        style="
-                          border-radius: 0px;
-                          width: 3vw;
-                          height: 3vw;
-                          border: 0px none var(--bs-white);
-                          background: url('../assets/icons/trash-free-icon-font.svg')
-                              center / cover,
-                            var(--bs-white);
-                          margin-top: 1vw;
-                          margin-bottom: 1vw;
-                          margin-left: 1vw;
-                          margin-right: 1vw;
-                        "
-                      ></button>
+                    <div>
+                      <span>SKU: </span><span id="sku" class="value">2</span>
                     </div>
                   </div>
-                  <div
-                    class="row justify-content-center align-items-center"
-                    style="
-                      margin-bottom: 2vw;
-                      margin-top: 1vw;
-                      box-shadow: 0px 0px 6px 0px rgb(185, 191, 198);
-                    "
-                  >
-                    <div class="col-md-3 col-lg-3">
-                      <div class="product-image">
-                        <img
-                          class="img-fluid d-block mx-auto image"
-                          src="../assets/images/sheets/H07c3e51c66e6461ab2a133d201ddd32aV.jpg"
-                        />
-                      </div>
-                    </div>
-                    <div class="col-md-5 product-info">
-                      <a
-                        class="product-name"
-                        style="color: var(--bs-gray-800)"
-                        >sheets name</a
-                      >
-                      <div class="product-specs">
-                        <div>
-                          <span>Bed Size: </span
-                          ><span class="value">160x200</span>
-                        </div>
-                        <div>
-                          <span>Unit Price: </span
-                          ><span class="value">129.90</span>
-                        </div>
-                      </div>
-                      <div>
-                        <span>Quantity: </span><span class="value">2</span>
-                      </div>
-                    </div>
-                    <div
-                      class="col-6 col-md-2 d-lg-flex justify-content-lg-center quantity"
-                    >
-                      <button
-                        id = 'editButton'
-                        class="btn btn-primary"
-                        type="button"
-                        style="
+                  <div class="col-6 col-md-2 d-lg-flex justify-content-lg-center quantity">
+                    <button id='editButton' class="btn btn-primary" type="button" style="
                           width: 3vw;
                           height: 3vw;
                           background: url('../assets/icons/pencil-free-icon-font.svg')
@@ -277,13 +106,7 @@
                           margin-left: 1vw;
                           margin-right: 1vw;
                           border: 0px none var(--bs-gray-900);
-                        "
-                      ></button
-                      ><button
-                        id = 'deleteButton'
-                        class="btn btn-primary"
-                        type="button"
-                        style="
+                        "></button><button id='deleteButton' class="btn btn-primary" type="button" style="
                           border-radius: 0px;
                           width: 3vw;
                           height: 3vw;
@@ -295,22 +118,21 @@
                           margin-bottom: 1vw;
                           margin-left: 1vw;
                           margin-right: 1vw;
-                        "
-                      ></button>
-                    </div>
+                        "></button>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </section>
-    </main>
+    </section>
+  </main>
   <script type="module" id="replace_with_footer" src="../components/footer.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
-    <!-- <script src="components/welcome-page.js"></script> -->
-  </body>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
+  <script type="module" src="../components/manager-manage-items.js"></script>
+</body>
+
 </html>

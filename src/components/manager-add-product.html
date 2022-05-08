@@ -1,95 +1,65 @@
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
-    <title>Product - Brand</title>
-    <link rel="stylesheet" href="../components/manager-add-product.css" />
-  </head>
+l>
 
-  <body>
-    <script type="module" id="replace_with_navbar" src="../components/navbar.js"></script>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+  <title>Product - Brand</title>
+  <link rel="stylesheet" href="../components/manager-add-product.css" />
+</head>
 
-    <main class="page product-page">
-      <section class="clean-block clean-product dark">
-        <div class="container" style="border-style: none">
-          <div class="block-heading">
-            <h1 style="font-size: calc(1.325rem + 0.9vw)">Add New Product <br /></h1>
-          </div>
-          <div class="block-content">
-            <div class="product-info">
-              <div class="row">
-                <div class="col-md-6">
-                  <div>
-                    <div
-                      id="display-image"
-                      style="
+<body>
+  <script type="module" id="replace_with_navbar" src="../components/navbar.js"></script>
+
+  <main class="page product-page">
+    <section class="clean-block clean-product dark">
+      <div class="container" style="border-style: none">
+        <div class="block-heading">
+          <h1 style="font-size: calc(1.325rem + 0.9vw)">Add New Product <br /></h1>
+        </div>
+        <div class="block-content">
+          <div class="product-info">
+            <div class="row">
+              <div class="col-md-6">
+                <div>
+                  <div id="display-image" style="
                         background: url('../assets/images/photo\ \(2\).png') center / contain
                           no-repeat;
-                      "
-                    ></div>
-                    <input
-                      id="image-input"
-                      type="file"
-                      accept="image/jpeg, image/png, image/jpg"
-                      style="
+                      "></div>
+                  <input id="image-input" type="file" accept="image/jpeg, image/png, image/jpg" style="
                         margin-top: 2vw;
                         margin-bottom: 2vw;
                         margin-left: 3vw;
                         border: 1px solid var(--bs-gray-400);
                         width: 30vw;
-                      "
-                      data-bs-toggle="tooltip"
-                      data-bs-placement="bottom"
-                    />
-                  </div>
+                      " data-bs-toggle="tooltip" data-bs-placement="bottom" />
                 </div>
-                <div class="col-md-6">
-                  <div class="info">
-                    <input
-                      id="add_sheets_name"
-                      type="text"
-                      name="edit_product_name"
-                      style="
+              </div>
+              <div class="col-md-6">
+                <div class="info">
+                  <input id="add_sheets_name" type="text" name="edit_product_name" style="
                         font-weight: bold;
                         font-size: 27.5px;
                         width: 30vw;
                         border-width: 1px;
                         border-color: var(--bs-gray-400);
-                      "
-                      placeholder="Sheets Name Here"
-                    />
-                    <div class="price">
-                      <textarea
-                        id="add_sheets_description"
-                        name="edit_product_description"
-                        placeholder="Description Here"
-                        style="
+                      " placeholder="Sheets Name Here" />
+                  <div class="price">
+                    <textarea id="add_sheets_description" name="edit_product_description" placeholder="Description Here"
+                      style="
                           width: 35vw;
                           border-width: 1px;
                           border-color: var(--bs-gray-400);
                           height: 10vw;
-                        "
-                        maxlength="300"
-                        required
-                      ></textarea
-                      ><input
-                        id="add_sheets_price"
-                        type="text"
-                        name="edit_product_price"
-                        style="
+                        " maxlength="300" required></textarea><input id="add_sheets_price" type="text"
+                      name="edit_product_price" style="
                           font-weight: bold;
                           font-size: 22px;
                           margin-top: 1vw;
                           width: 30vw;
                           border-width: 1px;
                           border-color: var(--bs-gray-400);
-                        "
-                        placeholder="Price Here"
-                      /><input
-                        id="add_sheets_sale"
-                        type="text"
-                        name="edit_product_sale"
-                        style="
+                        " placeholder="Price Here" /><input id="add_sheets_sale" type="text" name="edit_product_sale"
+                      style="
                           color: var(--bs-red);
                           font-weight: bold;
                           font-size: 24px;
@@ -97,148 +67,95 @@
                           width: 30vw;
                           border-width: 1px;
                           border-color: var(--bs-gray-400);
-                        "
-                        placeholder="Discount - OPTIONAL"
-                      />
-                    </div>
+                        " placeholder="Discount - OPTIONAL" />
                   </div>
                 </div>
               </div>
             </div>
-            <div class="row">
-              <div class="col-lg-3">
-                <small
-                  class="form-text"
-                  style="font-weight: bold; color: var(--bs-pink); font-size: 16px"
-                  >choose sizes:</small
-                >
-                <div class="text-center">
-                  <label class="form-label d-none d-md-block" for="quantity" style="margin-top: 1vw"
-                    >90 x 200</label
-                  ><label class="form-label d-none d-md-block" for="quantity">Quantity</label
-                  ><input
-                    id="quantity_90x200"
-                    class="mx-auto form-control quantity-input"
-                    type="number"
-                    value="12"
-                    name="product_page_quantity_90x200"
-                    style="width: 8vw"
-                    min="0"
-                  />
-                </div>
-              </div>
-              <div class="col-lg-3 d-lg-flex align-items-lg-end">
-                <div class="text-center" style="padding-left: 4vw">
-                  <label class="form-label d-none d-md-block" for="quantity">120 x 200</label
-                  ><label class="form-label d-none d-md-block" for="quantity">Quantity</label
-                  ><input
-                    id="quantity_120x200"
-                    class="form-control quantity-input"
-                    type="number"
-                    value="1"
-                    name="product_page_quantity_120x200"
-                    style="width: 8vw"
-                    min="0"
-                  />
-                </div>
-              </div>
-              <div
-                class="col-lg-3 text-start d-lg-flex justify-content-lg-start align-items-lg-end"
-              >
-                <div class="text-center" style="padding-left: 5vw">
-                  <label class="form-label d-none d-md-block" for="quantity">160 x 200</label
-                  ><label class="form-label d-none d-md-block" for="quantity">Quantity</label
-                  ><input
-                    id="quantity_160x200"
-                    class="form-control quantity-input"
-                    type="number"
-                    value="20"
-                    name="product_page_quantity_160x200"
-                    style="width: 8vw"
-                    min="0"
-                  />
-                </div>
-              </div>
-              <div class="col-lg-3 d-lg-flex align-items-lg-end">
-                <div class="text-center" style="margin-left: 50px; width: 100px">
-                  <label class="form-label d-none d-md-block" for="quantity">180 x 200</label
-                  ><label class="form-label d-none d-md-block" for="quantity">Quantity</label
-                  ><input
-                    id="quantity_180x200"
-                    class="form-control quantity-input"
-                    type="number"
-                    value="1"
-                    name="product_page_quantity_180x200"
-                    style="width: 8vw"
-                    min="0"
-                  />
-                </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-3">
+              <small class="form-text" style="font-weight: bold; color: var(--bs-pink); font-size: 16px">choose
+                sizes:</small>
+              <div class="text-center">
+                <label class="form-label d-none d-md-block" for="quantity" style="margin-top: 1vw">90 x
+                  200</label><label class="form-label d-none d-md-block" for="quantity">Quantity</label><input
+                  id="quantity_90x200" class="mx-auto form-control quantity-input" type="number" value="12"
+                  name="product_page_quantity_90x200" style="width: 8vw" />
               </div>
             </div>
-            <div class="row d-lg-flex justify-content-lg-start" style="margin-top: 3vw">
-              <div
-                class="col-lg-3 text-start d-lg-flex justify-content-lg-start align-items-lg-center"
-              >
-                <small
-                  class="form-text"
-                  style="font-weight: bold; color: var(--bs-pink); font-size: 16px"
-                  >product categories:</small
-                >
-              </div>
-              <div class="col-lg-3 d-lg-flex justify-content-lg-center">
-                <select id="add_fabric_select">
-                  <optgroup label="Fabric">
-                    <option value="1">cotton</option>
-                    <option value="2">microfiber</option>
-                    <option value="3">flannel</option>
-                    <option value="4">satin</option>
-                    <option value="5">jersey</option>
-                  </optgroup>
-                </select>
-              </div>
-              <div
-                class="col-lg-6 text-center d-lg-flex justify-content-lg-center align-items-lg-center"
-              >
-                <div class="form-check mx-auto">
-                  <input id="formCheck-1" class="form-check-input" type="checkbox" /><label
-                    class="form-check-label"
-                    for="formCheck-1"
-                    >Just Landed</label
-                  >
-                </div>
-                <div class="form-check mx-auto">
-                  <input id="formCheck-2" class="form-check-input" type="checkbox" /><label
-                    class="form-check-label"
-                    for="formCheck-2"
-                    >Few Left</label
-                  >
-                </div>
+            <div class="col-lg-3 d-lg-flex align-items-lg-end">
+              <div class="text-center" style="padding-left: 4vw">
+                <label class="form-label d-none d-md-block" for="quantity">120 x 200</label><label
+                  class="form-label d-none d-md-block" for="quantity">Quantity</label><input id="quantity_120x200"
+                  class="form-control quantity-input" type="number" value="1" name="product_page_quantity_120x200"
+                  style="width: 8vw" />
               </div>
             </div>
-            <div class="d-lg-flex mx-auto justify-content-lg-center" style="align-self: center">
-              <button
-                class="btn btn-primary"
-                id="add_product"
-                type="button"
-                style="
+            <div class="col-lg-3 text-start d-lg-flex justify-content-lg-start align-items-lg-end">
+              <div class="text-center" style="padding-left: 5vw">
+                <label class="form-label d-none d-md-block" for="quantity">160 x 200</label><label
+                  class="form-label d-none d-md-block" for="quantity">Quantity</label><input id="quantity_160x200"
+                  class="form-control quantity-input" type="number" value="20" name="product_page_quantity_160x200"
+                  style="width: 8vw" />
+              </div>
+            </div>
+            <div class="col-lg-3 d-lg-flex align-items-lg-end">
+              <div class="text-center" style="margin-left: 50px; width: 100px">
+                <label class="form-label d-none d-md-block" for="quantity">180 x 200</label><label
+                  class="form-label d-none d-md-block" for="quantity">Quantity</label><input id="quantity_180x200"
+                  class="form-control quantity-input" type="number" value="1" name="product_page_quantity_180x200"
+                  style="width: 8vw" />
+              </div>
+            </div>
+          </div>
+          <div class="row d-lg-flex justify-content-lg-start" style="margin-top: 3vw">
+            <div class="col-lg-3 text-start d-lg-flex justify-content-lg-start align-items-lg-center">
+              <small class="form-text" style="font-weight: bold; color: var(--bs-pink); font-size: 16px">product
+                categories:</small>
+            </div>
+            <div class="col-lg-3 d-lg-flex justify-content-lg-center">
+              <select id="add_fabric_select">
+                <optgroup label="Fabric">
+                  <option value="1">cotton</option>
+                  <option value="2">microfiber</option>
+                  <option value="3">flannel</option>
+                  <option value="4">satin</option>
+                  <option value="5">jersey</option>
+                </optgroup>
+              </select>
+            </div>
+            <div class="col-lg-6 text-center d-lg-flex justify-content-lg-center align-items-lg-center">
+              <div class="form-check mx-auto">
+                <input id="formCheck-1" class="form-check-input" type="checkbox" /><label class="form-check-label"
+                  for="formCheck-1">Just Landed</label>
+              </div>
+              <div class="form-check mx-auto">
+                <input id="formCheck-2" class="form-check-input" type="checkbox" /><label class="form-check-label"
+                  for="formCheck-2">Few Left</label>
+              </div>
+            </div>
+          </div>
+          <div class="d-lg-flex mx-auto justify-content-lg-center" style="align-self: center">
+            <button class="btn btn-primary" id="add_product" type="button" style="
                   margin-top: 3vw;
                   background: var(--bs-dark);
                   width: 30vw;
                   border-style: hidden;
-                "
-              >
-                Add Product
-              </button>
-            </div>
+                ">
+              Add Product
+            </button>
           </div>
         </div>
-      </section>
-    </main>
-    <script type="module" id="replace_with_footer" src="footer.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
-    <script type="module" src="../components/manager-add-product.js"></script>
-  </body>
+      </div>
+    </section>
+  </main>
+  <script type="module" id="replace_with_footer" src="../components/footer.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
+  <script type="module" src="../components/manager-add-product.js"></script>
+</body>
+
 </html>
