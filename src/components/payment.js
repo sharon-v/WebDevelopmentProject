@@ -1,5 +1,4 @@
 import {fbAuth,dbOrders, dbshoppingCart,dbOrdersTimes} from '../firebase/data.js'
-
 initialization();
 
 function initialization(){
@@ -96,8 +95,8 @@ var btn = document.getElementById('payment_pay_button');
             dbshoppingCart.doc(user.email).get().then((doc) => {
                 productsList = doc.data().productList;
                 console.log(productsList);
-                const now = new Date(Date.now())
-                dbOrders.doc(fname + String(now)).set({
+                const now = new Date(Date.now()).getTime();
+                dbOrders.doc(fname + now).set({
                     buyerEmail: user.email,
                     orderStatus: "Aprroved",
                     purchaseDate: now,
@@ -119,7 +118,7 @@ var btn = document.getElementById('payment_pay_button');
                 })
                 .then(() => {
                     console.log("Document successfully written!");
-                    sessionStorage.setItem('orderNumber', fname + String(now)); //moving parameters to order summery page
+                    sessionStorage.setItem('orderNumber', fname + now); //moving parameters to order summery page
                     location.replace('../components/order-summary.html');
                 })
                 .catch((error) => {
@@ -176,6 +175,14 @@ function checkData(fname, lname, street, streetNumber, postalCode, city, orderDa
     if(expirationYear.value == 0){
         alert('plaese pick a expiration year from the list');
         return false;
+    }
+    const now = new Date(Date.now());
+    if(expirationYear.value == now.getFullYear())
+    {
+        if((now.getMonth() +1) > parseInt(expirationMonth.value)){
+            alert('The expiration date that you enter is invalid');
+            return false;
+        }
     }
     if(cardNumber.length != 16){
         alert('You enter invalid card number');
