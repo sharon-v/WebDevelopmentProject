@@ -35,7 +35,7 @@ export {
     dbManager,
     dbDeveloperPasscode,
     dbOrders,
-    dbshoppingCart,
+    dbShoppingCart,
     dbWishList,
     dbOrdersTimes,
     storageRef,

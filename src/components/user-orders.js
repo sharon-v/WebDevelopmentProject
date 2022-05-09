@@ -118,13 +118,6 @@ function deleteFirst(){
 
 function removeAllChildNodes(parent) {
     document.getElementById('spinner').style.display='inline';
-    // if( parent.children.length > 1)
-    // {
-    //     for(var i = 0; i < parent.children.length ; i++) {
-    //         console.log("delete");
-    //         parent.children[i].remove();
-    //     }
-    // }
     while(parent.children.length > 1){
         console.log("delete");
         parent.removeChild(parent.lastChild);

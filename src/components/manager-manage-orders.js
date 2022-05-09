@@ -1,4 +1,4 @@
-import {fbAuth, dbOrders, dbCustomers } from '../firebase/data.js'
+import {dbOrders, dbCustomers } from '../firebase/data.js'
 
 document.querySelector('#spinner').style.visibility='visible';
 
@@ -44,19 +44,26 @@ searchInput.addEventListener('keypress', function (e) {
 function filterByOrderId(){
     document.querySelector('#spinner').style.display='inline';
     if (searchInput.value.length > 0){
-        var container = document.querySelector('#orders_list');
+        const container = document.querySelector('#orders_list');
         removeAllChildNodes(container);
         dbOrders.doc(searchInput.value).get().then((doc) => {
             if (doc.exists){
                 editElement(doc.id, doc.data().purchaseDate, doc.data().buyerEmail , doc.data().totalAmount, doc.data().orderStatus);
                 document.querySelector('#spinner').style.display = 'none';
-            } else {
-              console.log("No such document!");
-            }}).catch((error) => {
-              console.log("Error getting document:", error);
-            });
+            } else 
+            {
+                container.lastElementChild.style.display = "none";
+                document.querySelector('#noOrderMessage').style.display = "inline";
+                document.querySelector('#spinner').style.display = 'none';
+                console.log("No such document!");
+            }
+        }).catch((error) => {
+            console.log("Error getting document:", error);
+        });
     }
     else{
+        document.querySelector('#orders_list').lastElementChild.style.display = "inline";
+        document.querySelector('#noOrderMessage').style.display = "none";
         document.querySelector('#spinner').style.visibility='visible';
         initialization();
     }
@@ -67,6 +74,15 @@ function editElement(orderNumber, date, buyerEmail, totalAmount, orderStatus){
     let ele = document.querySelector('#product')
     ele = changeValues(ele,orderNumber, date, buyerEmail, totalAmount, orderStatus)
     ele.style.visibility="visible";
+}
+
+function addElement (orderNumber, date, buyerEmail, totalAmount, orderStatus) {
+    let ele = document.querySelector('#product')
+    let newElement = ele.cloneNode(true);
+    newElement = changeValues(newElement, orderNumber, date, buyerEmail, totalAmount, orderStatus)
+    let currentDiv = document.getElementById("orders_list");
+    currentDiv.appendChild(newElement);
+    newElement.style.visibility="visible"; 
 }
 
 function changeValues(element, orderNumber, date, buyerEmail, totalAmount, orderStatus){
@@ -115,15 +131,6 @@ function changeValues(element, orderNumber, date, buyerEmail, totalAmount, order
     })
     return element;
 }
-
-function addElement (orderNumber, date, buyerEmail, totalAmount, orderStatus) {
-    let ele = document.querySelector('#product')
-    let newElement = ele.cloneNode(true);
-    newElement = changeValues(newElement, orderNumber, date, buyerEmail, totalAmount, orderStatus)
-    let currentDiv = document.getElementById("orders_list");
-    currentDiv.appendChild(newElement);
-    newElement.style.visibility="visible"; 
-}
       
 function deleteFirst(){
     let elem = document.getElementById("product");
@@ -134,6 +141,7 @@ function deleteFirst(){
     let currentDiv = document.getElementById("products_list");
     currentDiv.appendChild(par);
 }
+
 
 function updateOrderStatus(value, orderId){  
     var order = dbOrders.doc(orderId);
@@ -146,10 +154,8 @@ function updateOrderStatus(value, orderId){
 }
 
 function removeAllChildNodes(parent) {
-    if( parent.children.length > 1)
-    {
-        for(var i = 0; i < parent.children.length ; i++) {
-            parent.children[i].remove();
-        }
+    while(parent.children.length > 2){
+        console.log("delete");
+        parent.removeChild(parent.lastChild);
     }
 }

@@ -1,4 +1,4 @@
-import {fbAuth,dbOrders, dbshoppingCart,dbOrdersTimes} from '../firebase/data.js'
+import {fbAuth,dbOrders, dbShoppingCart,dbOrdersTimes, dbProducts} from '../firebase/data.js'
 initialization();
 
 function initialization(){
@@ -8,11 +8,14 @@ function initialization(){
     const items = document.getElementById('totalItems');
 
     fbAuth.onAuthStateChanged((user) => {
-        dbshoppingCart.doc(user.email).get().then((querySnapshot) => {
+        dbShoppingCart.doc(user.email).get().then((querySnapshot) => {
             var userShoppingCart = querySnapshot.data().productList;
             for(var i = 0; i< userShoppingCart.length; ++i){
+                ////////////
+                
+                ////////////
                 totalItems = totalItems + userShoppingCart[i].quantity;
-                totalAmount = totalItems + userShoppingCart[i].price
+                totalAmount = totalItems + userShoppingCart[i].price;
             }
             items.innerHTML = totalItems;
             amount.innerHTML = totalAmount + '₪';
@@ -92,7 +95,7 @@ var btn = document.getElementById('payment_pay_button');
         fbAuth.onAuthStateChanged((user) => {
             // Add a new document in collection "orders"
             let productsList;
-            dbshoppingCart.doc(user.email).get().then((doc) => {
+            dbShoppingCart.doc(user.email).get().then((doc) => {
                 productsList = doc.data().productList;
                 console.log(productsList);
                 const now = new Date(Date.now()).getTime();
