@@ -25,7 +25,7 @@ var dbShoppingCart = database.collection('shoppingCart');
 var dbOrdersTimes = database.collection('ordersTimes');
 var dbWishList = database.collection('wishList');
 
-var storageRef = firebase.storage().ref();
+var storage = firebase.storage();
 var fbAuth = firebase.auth();
 
 export {
@@ -38,5 +38,5 @@ export {
     dbShoppingCart,
     dbWishList,
     dbOrdersTimes,
-    storageRef,
+    storage,
 };

@@ -1,4 +1,4 @@
-import { dbProducts, storageRef } from '../firebase/data.js';
+import { dbProducts, storage } from '../firebase/data.js';
 
 /* code fo displaying picture in add/edit new product page */
 const image_input = document.querySelector('#image-input');
@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log(fabric);
 
 
-        if (allRitgh(Pname,
+        if (CheckingRestrictions(Pname,
             description,
             price,
             sale,
@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-function allRitgh(Pname, description, price, sale, size90x200, size120x200, size160x200, size180x200, ImageRef) {
+function CheckingRestrictions(Pname, description, price, sale, size90x200, size120x200, size160x200, size180x200, ImageRef) {
     dbProducts.doc(Pname).get().then((doc) => {
         console.log('hey');
         if (doc.exists) {
@@ -103,9 +103,10 @@ function allRitgh(Pname, description, price, sale, size90x200, size120x200, size
                 alert("You must enter product Image");
                 return false;
             }
-            return true;
+
         }
     });
+    return true;
 }
 
 

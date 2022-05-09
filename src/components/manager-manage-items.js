@@ -9,12 +9,12 @@ function initialization() {
         querySnapshot.forEach((doc) => {
             counter = counter + 1;
             if (counter == 1) {
-                editElement(doc.data().url, doc.data().Pname, doc.data().price, doc.data().sale, doc.data().sku);
+                editElement(doc.data().imageUrl, doc.data().Pname, doc.data().price, doc.data().sale, doc.data().sku);
                 // console.log("edit " + doc.data().price);
                 document.querySelector('#product').style.visibility = 'visible';
             }
             else {
-                addElement(doc.data().url, doc.data().Pname, doc.data().price, doc.data().sale, doc.data().sku);
+                addElement(doc.data().imageUrl, doc.data().Pname, doc.data().price, doc.data().sale, doc.data().sku);
                 // console.log("add " + doc.data().price);
                 document.querySelector('#product').style.visibility = 'visible';
             }
@@ -48,7 +48,7 @@ function filterByProductId() {
         removeAllChildNodes(container);
         dbProducts.doc(searchInput.value).get().then((doc) => {
             if (doc.exists) {
-                editElement(doc.data().url, doc.data().Pname, doc.data().price, doc.data().sale, doc.data().sku);
+                editElement(doc.data().imageUrl, doc.data().Pname, doc.data().price, doc.data().sale, doc.data().sku);
                 document.querySelector('#spinner').style.display = 'none';
             } else {
                 console.log("No such document!");
@@ -91,23 +91,29 @@ function changeValues(element, url, Pname, proPrice, pSale, psku) {
     // imageProd.src = url;
 
 
-    const editProduct = document.getElementById('editButton');
+    const editProduct = element.querySelector('#editButton');
     editProduct.addEventListener('click', () => {
         sessionStorage.setItem('Pname', Pname);
         location.replace('../components/manager-edit-product.html');
-    })
-    const deleteProduct = document.getElementById('deleteButton');
+    });
+
+    const deleteProduct = element.querySelector('#deleteButton');
     deleteProduct.addEventListener('click', () => {
-        console.log("hey1");
         dbProducts.doc(Pname).delete().then(() => {
             console.log("Document successfully deleted!");
             removeAllChildNodes(document.getElementById("products_list"));
-            //reloaded the page
+            // try to delete image from storage
+            storage.doc(Pname + '.jpg').delete().then(() => {
+                console.log("Image successfully deleted!");
+            }).catch((error) => {
+                console.error("Error removing document: ", error);
+            });
             initialization();
         }).catch((error) => {
             console.error("Error removing document: ", error);
         });
-    })
+    });
+
     return element;
 }
 
