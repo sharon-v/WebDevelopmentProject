@@ -3,7 +3,7 @@ import { dbProducts } from '../firebase/data.js';
 /* code to displaying picture in add/edit new product page */
 const image_input = document.querySelector('#image-input');
 
-image_input.addEventListener('change', function() {
+image_input.addEventListener('change', function () {
     const reader = new FileReader();
     reader.addEventListener('load', () => {
         const uploaded_image = reader.result;
@@ -32,72 +32,59 @@ document.addEventListener('DOMContentLoaded', () => {
         const size180x200 = document.getElementById('quantity_180x200').value;
         const fabric = document.getElementById('fabric_sheets').value;
         const isJustLandedCbChecked = document.getElementById('formCheck-1').isCbChecked;
-        const isOnSaleCbChecked = document.getElementById('formCheck-2').isCbChecked;
-        //add picture
+        const isFewLeftCbChecked = document.getElementById('formCheck-2').isCbChecked;
 
-        console.log(Pname);
-        console.log(description);
-        console.log(price);
-        console.log(sale);
-        console.log(sku);
-        console.log(size90x200);
-        console.log(size120x200);
-        console.log(size160x200);
-        console.log(size180x200);
-        console.log(isJustLandedCbChecked);
-        console.log(isOnSaleCbChecked);
-        console.log(fabric);
+        // changeValues(Pname, description, price, sale, sku, size90x200, size120x200, size160x200, size180x200, fabric, isJustLandedCbChecked, isFewLeftCbChecked);
     });
 });
 
+document.querySelector('#spinner').style.visibility = 'visible';
 
-function changeValues(Pname, description, price, size90x200, size120x200, size160x200, size180x200, isJustLandedCbChecked,isOnSaleCbChecked, fabric, ImagesRef, sale){
-    console.log(Pname);
-    console.log(description);
-    console.log(price);
-    console.log(sale);
-    console.log(sku);
-    console.log(size90x200);
-    console.log(size120x200);
-    console.log(size160x200);
-    console.log(size180x200);
-    console.log(isJustLandedCbChecked);
-    console.log(isOnSaleCbChecked);
-    console.log(fabric);
-
-    element.removeAttribute('hidden')
-   
-    let Pname = element.querySelector('#productName');
-    Pname.innerHTML = Pname;
-
-    let bedSize = element.querySelector('#bedSize');
-    Pname.innerHTML = bedSize;
-
-    let price = element.querySelector('#productPrice');
-    price.innerHTML = price;
-    
-    let quantity = element.querySelector('#quantity');
-    quantity.innerHTML = quantity;
-    
-    //get product by sku
-    dbProducts.where("Pname", "==", Pname).get().then((querySnapshot) => {
+initialization();
+function initialization() {
+    var prodName = sessionStorage.getItem('Pname');
+    dbProducts.where("Pname", "==", prodName).get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
-            Pname.innerHTML = String(doc.data().Pname);
+            editElement(doc.data().Pname, doc.data().description, doc.data().price, doc.data().sale, doc.data().sku, doc.data().size90x200, doc.data().size120x200, doc.data().size160x200, doc.data().size180x200, doc.data().fabric, doc.data().isJustLandedCbChecked, doc.data().isFewLeftCbChecked);
         });
     })
-    .catch((error) => {
-        console.log("Error getting documents: ", error);
-    });
+        .catch((error) => {
+            console.log("Error getting documents: ", error);
+        });
+}
 
-    selectOp.addEventListener('change', () => {
-        if(selectOp.options[ selectOp.selectedIndex ].value == 2){
-            //needs to update the order status
-        }
-    })
-    var productPage = element.querySelector('#productPage');
-    productPage.addEventListener('click', () => {
-        sessionStorage.setItem('orderNumber', orderNumber); //moving parameters to order summery page
-        location.replace('../components/order-summary.html');
-    })
+function editElement(Pname, description, price, sale, sku, size90x200, size120x200, size160x200, size180x200, fabric, isJustLandedCbChecked, isFewLeftCbChecked) {
+    let ele = document.querySelector('#product')
+    ele = changeValues(ele, Pname, description, price, sale, sku, size90x200, size120x200, size160x200, size180x200, fabric, isJustLandedCbChecked, isFewLeftCbChecked)
+    ele.style.visibility = "visible";
+}
+
+function changeValues(Pname, description, price, sale, sku, size90x200, size120x200, size160x200, size180x200, fabric, isJustLandedCbChecked, isFewLeftCbChecked) {
+    element.removeAttribute('hidden')
+    let Proname = element.querySelector('#edit_sheets_name');
+    Proname.innerHTML = Pname;
+    let Prodescription = element.querySelector('#edit_sheets_description');
+    Prodescription.innerHTML = description;
+    let proprice = element.querySelector('#edit_sheets_price');
+    proprice.innerHTML = price;
+    let sale = element.querySelector('#edit_sheets_sale');
+    sale.innerHTML = sale;
+    let sku = element.querySelector('#edit_sheets_sku');
+    sku.innerHTML = sku;
+    let prosize90x200 = element.querySelector('#quantity_90x200');
+    prosize90x200.innerHTML = size90x200;
+    let prosize120x200 = element.querySelector('#quantity_120x200');
+    prosize120x200.innerHTML = size120x200;
+    let prosize160x200 = element.querySelector('#quantity_160x200');
+    prosize160x200.innerHTML = size160x200;
+    let prosize180x200 = element.querySelector('#quantity_180x200');
+    prosize180x200.innerHTML = size180x200;
+
+
+    // let imageProd = element.querySelector('#imageProd');
+    // imageProd.src = url;
+
     return element;
 }
+
+
