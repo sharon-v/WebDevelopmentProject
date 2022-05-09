@@ -6,24 +6,36 @@ function initialization(){
     let totalAmount = 0;
     const amount = document.getElementById('totalPrice');
     const items = document.getElementById('totalItems');
-
     fbAuth.onAuthStateChanged((user) => {
         dbShoppingCart.doc(user.email).get().then((querySnapshot) => {
-            var userShoppingCart = querySnapshot.data().productList;
+            let userShoppingCart = querySnapshot.data().productList;
+            userShoppingCart.push(''); // makes the initialization of the fields to be latest
             for(var i = 0; i< userShoppingCart.length; ++i){
-                ////////////
-                
-                ////////////
-                totalItems = totalItems + userShoppingCart[i].quantity;
-                totalAmount = totalItems + userShoppingCart[i].price;
+                const x = userShoppingCart[i].quantity;
+                dbProducts.doc(userShoppingCart[i].productId).get().then((pro) =>{
+                    if (pro.exists){
+                        totalItems = totalItems + x;
+                        if(pro.data().sale == "")
+                        {
+                            totalAmount = totalItems + parseInt(pro.data().price);
+                        }
+                        else
+                        {
+                            totalAmount = totalItems + parseInt(pro.data().sale);
+                        }
+                    }
+                    else
+                    {
+                        items.innerHTML = totalItems;
+                        amount.innerHTML = totalAmount + '₪';
+                        document.getElementById('mainElement').style.display='inline';
+                        document.getElementById('spinner').style.display='none';
+                        console.log("No such document!");
+                    }
+                })
             }
-            items.innerHTML = totalItems;
-            amount.innerHTML = totalAmount + '₪';
-            document.getElementById('mainElement').style.display='inline';
-            document.getElementById('spinner').style.display='none';
         })
     })
-
     dbOrdersTimes.get().then((querySnapshot) => {
         var counter = 0;
         querySnapshot.forEach((doc) => {
@@ -46,7 +58,7 @@ date.addEventListener('change', (e) => {
     //deleting the old hours
     while (hours.children.length > 1) {
         hours.removeChild(hours.lastChild);
-      }
+    }
     dbOrdersTimes.doc(date.options[date.selectedIndex].text).get().then((querySnapshot) => {
         for(let index = 0; index < querySnapshot.data().hours.length; ++index){
             var opt = document.createElement('option');
@@ -121,6 +133,12 @@ var btn = document.getElementById('payment_pay_button');
                 })
                 .then(() => {
                     console.log("Document successfully written!");
+                    //delete the user document from the shopping cart db
+                    dbShoppingCart.doc(user.email).delete().then(() => {
+                        console.log("Document successfully deleted!");
+                    }).catch((error) => {
+                        console.error("Error removing document: ", error);
+                    });
                     sessionStorage.setItem('orderNumber', fname + now); //moving parameters to order summery page
                     location.replace('../components/order-summary.html');
                 })
