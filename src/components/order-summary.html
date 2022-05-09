@@ -1,19 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
-    <title>WebSite</title>
+    <title>Order Summary Page</title>
     <link rel="stylesheet" href="../components/order-summary.css" />
   </head>
 
   <body>
-    <script
-      type="module"
-      id="replace_with_navbar"
-      type="module"
-      src="../components/navbar.js"
-    ></script>
+    <script type="module" id="replace_with_navbar" src="../components/navbar.js"></script>
+
     <main class="page shopping-cart-page">
       <section class="clean-block clean-cart dark">
         <div class="container">
@@ -31,7 +26,7 @@
                       <div class="row justify-content-center align-items-center">
                         <div class="col-lg-3">
                           <img
-                            src="../assets/images/sheets/bce8bb35-8b70-40f4-b265-a8695a27ba6d.077446c4ec7c4fbd1c64b3503b7301e9.jpeg"
+                            src="sheets/bce8bb35-8b70-40f4-b265-a8695a27ba6d.077446c4ec7c4fbd1c64b3503b7301e9.jpeg"
                             style="width: 10vw; height: 10vw"
                           />
                         </div>
@@ -40,76 +35,114 @@
                             >sheets name</a
                           >
                           <div class="product-specs">
-                            <div><span>Bed Size: </span><span class="value">160x200</span></div>
+                            <div><span>SKU: </span><span class="value">1265</span></div>
                             <div><span>Unit Price: </span><span class="value">129.90</span></div>
                             <div><span>Quantity: </span><span class="value">2</span></div>
                           </div>
                         </div>
-                        <div class="col-6 col-md-2 col-lg-3 price">
-                          <span>120₪</span>
-                        </div>
+                        <div class="col-6 col-md-2 col-lg-3 price"><span>120₪</span></div>
                       </div>
                     </div>
                   </div>
-                  <div class="product">
-                    <div class="row justify-content-center align-items-center">
-                      <div class="col-md-3">
-                        <div class="product-image" style="width: 10vw; height: 10vw">
-                          <img
-                            src="../assets/images/sheets/bed-linen-500x500.jpg"
-                            style="width: 10vw; height: 10vw"
-                          />
-                        </div>
-                      </div>
-                      <div class="col-md-5 product-info">
-                        <a class="product-name" href="#" style="color: var(--bs-gray-800)"
-                          >sheets name</a
-                        >
-                        <div class="product-specs">
-                          <div><span>Bed Size: </span><span class="value">160x200</span></div>
-                          <div><span>Unit Price: </span><span class="value">129.90</span></div>
-                          <div><span>Quantity: </span><span class="value">2</span></div>
-                        </div>
-                      </div>
-                      <div class="col-6 col-md-2 col-lg-3 price">
-                        <span>120₪</span>
-                      </div>
-                    </div>
+                </div>
+                <div
+                  class="text-start"
+                  style="
+                    padding-left: 6vw;
+                    padding-bottom: 2vw;
+                    padding-right: 6vw;
+                    padding-top: 1.5vw;
+                    border-top: 1px outset var(--bs-gray-400);
+                  "
+                >
+                  <h3
+                    class="text-center"
+                    style="color: var(--bs-gray-800); font-weight: bold; font-size: 20px"
+                  >
+                    Order details
+                  </h3>
+                  <div class="col">
+                    <h4
+                      style="
+                        margin-top: 1vw;
+                        padding-top: 1vw;
+                        border-top: 1px outset var(--bs-gray-400);
+                      "
+                    >
+                      <span class="text" style="margin-right: 2vw; font-size: 15px"
+                        ><strong>Full Name</strong></span
+                      ><span class="price" style="font-size: 15px">Israel Israeli</span>
+                    </h4>
                   </div>
-                  <div class="product">
-                    <div class="row justify-content-center align-items-center">
-                      <div class="col-md-3">
-                        <div class="product-image" style="width: 10vw; height: 10vw">
-                          <img
-                            src="../assets/images/sheets/71ZxvIGFtrL._SL1280_.jpg"
-                            style="width: 10vw; height: 10vw"
-                          />
-                        </div>
-                      </div>
-                      <div class="col-md-5 product-info">
-                        <a class="product-name" href="#" style="color: var(--bs-gray-800)"
-                          >sheets name</a
-                        >
-                        <div class="product-specs">
-                          <div><span>Bed Size: </span><span class="value">160x200</span></div>
-                          <div><span>Unit Price: </span><span class="value">129.90</span></div>
-                          <div><span>Quantity: </span><span class="value">2</span></div>
-                        </div>
-                      </div>
-                      <div class="col-6 col-md-2 col-lg-3 price">
-                        <span>120₪</span>
-                      </div>
-                    </div>
+                  <div class="col">
+                    <h4>
+                      <span
+                        class="text"
+                        style="margin-right: 2vw; font-size: 15px; font-weight: bold"
+                        >Address</span
+                      ><span class="price" style="font-size: 15px">shderot 1/30, Ashdod</span>
+                    </h4>
+                  </div>
+                  <div class="col">
+                    <h4>
+                      <span
+                        class="text"
+                        style="margin-right: 2vw; font-size: 15px; font-weight: bold"
+                        >Postal code</span
+                      ><span class="price" style="font-size: 15px">7707789</span>
+                    </h4>
+                  </div>
+                  <div class="col">
+                    <h4>
+                      <span
+                        class="text"
+                        style="margin-right: 2vw; font-size: 15px; font-weight: bold"
+                        >Phone number</span
+                      ><span class="price" style="font-size: 15px">0521234567</span>
+                    </h4>
+                  </div>
+                  <div class="col">
+                    <h4>
+                      <span
+                        class="text"
+                        style="margin-right: 2vw; font-size: 15px; font-weight: bold"
+                        >Shipping Date</span
+                      ><span class="price" style="font-size: 15px">12/05/2022</span>
+                    </h4>
+                  </div>
+                  <div class="col">
+                    <h4>
+                      <span
+                        class="text"
+                        style="margin-right: 2vw; font-size: 15px; font-weight: bold"
+                        >Shipping Hours</span
+                      ><span class="price" style="font-size: 15px">12:00-14:00</span>
+                    </h4>
+                  </div>
+                  <div class="col">
+                    <h4>
+                      <span
+                        class="text"
+                        style="margin-right: 2vw; font-size: 15px; font-weight: bold"
+                        >Notes</span
+                      ><span class="price" style="font-size: 15px">Please call befor arriving</span>
+                    </h4>
                   </div>
                 </div>
               </div>
               <div class="col-md-12 col-lg-4">
                 <div class="summary">
                   <h3 style="color: var(--bs-gray-800); font-weight: bold">Summary</h3>
-                  <h4><span class="text">Total quantity</span><span class="price">5</span></h4>
-                  <h4><span class="text">Shipping</span><span class="price">0₪</span></h4>
+                  <h4>
+                    <span class="text" style="margin-left: -14px">Subtotal</span
+                    ><span class="price">779.40₪</span>
+                  </h4>
+                  <h4>
+                    <span class="text" style="margin-left: -14px">Shipping</span
+                    ><span class="price">0₪</span>
+                  </h4>
                   <h4 style="color: var(--bs-pink); font-weight: bold; font-size: 26px">
-                    <span class="text" style="font-weight: bold">Total</span
+                    <span class="text" style="font-weight: bold; margin-left: -14px">Total</span
                     ><span class="price" style="font-weight: bold">360₪</span>
                   </h4>
                 </div>
@@ -119,7 +152,7 @@
         </div>
       </section>
     </main>
-    <script type="module" id="replace_with_footer" type="module" src="footer.js"></script>
+    <script type="module" id="replace_with_footer" src="footer.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
