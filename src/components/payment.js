@@ -8,31 +8,48 @@ function initialization(){
     const items = document.getElementById('totalItems');
     fbAuth.onAuthStateChanged((user) => {
         dbShoppingCart.doc(user.email).get().then((querySnapshot) => {
-            let userShoppingCart = querySnapshot.data().productList;
-            userShoppingCart.push(''); // makes the initialization of the fields to be latest
-            for(var i = 0; i< userShoppingCart.length; ++i){
-                const x = userShoppingCart[i].quantity;
-                dbProducts.doc(userShoppingCart[i].productId).get().then((pro) =>{
-                    if (pro.exists){
-                        totalItems = totalItems + x;
-                        if(pro.data().sale == "")
-                        {
-                            totalAmount = totalItems + parseInt(pro.data().price);
+            if(querySnapshot.exists)
+            {
+                let userShoppingCart = querySnapshot.data().productList;
+                userShoppingCart.push(''); // makes the initialization of the fields to be latest
+                for(var i = 0; i< userShoppingCart.length; ++i){
+                    const x = userShoppingCart[i].quantity;
+                    dbProducts.doc(userShoppingCart[i].productId).get().then((pro) =>{
+                        if (pro.exists){
+                            totalItems = totalItems + x;
+                            if(pro.data().sale == "")
+                            {
+                                totalAmount = totalAmount + (parseInt(pro.data().price)*x);
+                            }
+                            else
+                            {
+                                totalAmount = totalAmount + (parseInt(pro.data().sale)*x);
+                            }
                         }
                         else
                         {
-                            totalAmount = totalItems + parseInt(pro.data().sale);
+                            items.innerHTML = totalItems;
+                            amount.innerHTML = totalAmount + '₪';
+                            document.getElementById('mainElement').style.display='inline';
+                            document.getElementById('spinner').style.display='none';
+                            console.log("in shopping cart list -payment page - No such document!");
                         }
-                    }
-                    else
-                    {
-                        items.innerHTML = totalItems;
-                        amount.innerHTML = totalAmount + '₪';
-                        document.getElementById('mainElement').style.display='inline';
-                        document.getElementById('spinner').style.display='none';
-                        console.log("No such document!");
-                    }
-                })
+                    })
+                }
+            }
+            else
+            {
+                
+                let par = document.createElement("h2");
+                par.innerHTML = "Your shopping cart is empty :("
+                par.style="color: var(--bs-pink) ;text-align:center"
+                let currentDiv = document.getElementById("mainElement");
+                let elem = currentDiv.querySelector("#child");
+                elem.remove();
+                currentDiv.appendChild(par);
+                document.getElementById('mainElement').style.display='inline';
+                document.getElementById('spinner').style.display='none';
+
             }
         })
     })
@@ -109,7 +126,6 @@ var btn = document.getElementById('payment_pay_button');
             let productsList;
             dbShoppingCart.doc(user.email).get().then((doc) => {
                 productsList = doc.data().productList;
-                console.log(productsList);
                 const now = new Date(Date.now()).getTime();
                 dbOrders.doc(fname + now).set({
                     buyerEmail: user.email,
