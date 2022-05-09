@@ -176,3 +176,12 @@ function deleteUserFromAuth(user) {
     console.log('failed to deleted the user from auth:', error.message);
   });
 }
+
+
+function createShopingCart() {
+
+}
+
+function createWishList() {
+
+}

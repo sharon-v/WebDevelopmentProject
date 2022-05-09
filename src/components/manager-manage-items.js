@@ -1,25 +1,25 @@
-import {dbProducts } from '../firebase/data.js'
+import { dbProducts } from '../firebase/data.js'
 
-document.querySelector('#spinner').style.visibility='visible';
+document.querySelector('#spinner').style.visibility = 'visible';
 
 initialization();
-function initialization(){
+function initialization() {
     dbProducts.get().then((querySnapshot) => {
         var counter = 0;
         querySnapshot.forEach((doc) => {
             counter = counter + 1;
-            if(counter == 1){
-                editElement(doc.id, doc.data().purchaseDate, doc.data().Pname ,doc.data().bedSize, doc.data().price, doc.data().quantity);
-                document.querySelector('#product').style.visibility='visible';
+            if (counter == 1) {
+                editElement(doc.data().Pname, doc.data().price, doc.data().sku);
+                console.log("edit " + doc.data().price);
+                document.querySelector('#product').style.visibility = 'visible';
             }
-            else{
-                addElement(doc.id, doc.data().purchaseDate, doc.data().Pname ,doc.data().bedSize, doc.data().price, doc.data().quantity);
-                document.querySelector('#product').style.visibility='visible';
+            else {
+                addElement(doc.data().Pname, doc.data().price, doc.data().sku);
+                console.log("add " + doc.data().price);
+                document.querySelector('#product').style.visibility = 'visible';
             }
         });
-        if(counter == 0)
-        {
-            //delete the first element if there is no orders
+        if (counter == 0) {
             deleteFirst();
         }
         document.querySelector('#spinner').style.display = 'none';
@@ -35,85 +35,81 @@ searchButtton.addEventListener('click', () => {
 
 searchInput.addEventListener('keypress', function (e) {
     if (e.key === 'Enter') {
-      // code for enter
-      filterByProductId();
+        // code for enter
+        filterByProductId();
 
     }
 });
 
-function filterByProductId(){
-    document.querySelector('#spinner').style.display='inline';
-    if (searchInput.value.length > 0){
-        var container = document.querySelector('#orders_list');
+function filterByProductId() {
+    document.querySelector('#spinner').style.display = 'inline';
+    if (searchInput.value.length > 0) {
+        var container = document.querySelector('#products_list');
         removeAllChildNodes(container);
         dbProducts.doc(searchInput.value).get().then((doc) => {
-            if (doc.exists){
-                editElement(doc.id, doc.data().purchaseDate, doc.data().Pname ,doc.data().bedSize, doc.data().price, doc.data().quantity);
+            if (doc.exists) {
+                editElement(doc.data().Pname, doc.data().price, doc.data().sku);
                 document.querySelector('#spinner').style.display = 'none';
             } else {
-              console.log("No such document!");
-            }}).catch((error) => {
-              console.log("Error getting document:", error);
-            });
+                console.log("No such document!");
+            }
+        }).catch((error) => {
+            console.log("Error getting document:", error);
+        });
     }
-    else{
-        document.querySelector('#spinner').style.visibility='visible';
+    else {
+        document.querySelector('#spinner').style.visibility = 'visible';
         initialization();
     }
 }
 
 
-function editElement(Pname ,bedSize, price, quantity){
+function editElement(Pname, price, sku) {
     let ele = document.querySelector('#product')
-    ele = changeValues(ele, Pname ,bedSize, price, quantity)
-    ele.style.visibility="visible";
+    ele = changeValues(ele, Pname, price, sku)
+    ele.style.visibility = "visible";
 }
 
-function changeValues(element, Pname ,bedSize, price, quantity){
+function changeValues(element, Pname, proPrice, psku) {
     element.removeAttribute('hidden')
-    let Pname = element.querySelector('#productName');
-    Pname.innerHTML = Pname;
-    let bedSize = element.querySelector('#bedSize');
-    bedSize.innerHTML = bedSize;
+    let Proname = element.querySelector('#Pname');
+    Proname.innerHTML = Pname;
     let price = element.querySelector('#price');
-    price.innerHTML = price;
-    let quantity = element.querySelector('#quantity');
-    quantity.innerHTML = quantity;
+    price.innerHTML = proPrice;
+    let sku = element.querySelector('#sku');
+    sku.innerHTML = psku;
 
-
-    // var editProduct = element.querySelector('#editButton');
     const editProduct = document.getElementById('editButton');
-    // const size180x200 = document.getElementById('quantity_180x200');
     editProduct.addEventListener('click', () => {
-        sessionStorage.setItem('Pname', Pname); //moving parameters to order summery page
+        sessionStorage.setItem('Pname', Pname);
         location.replace('../components/manager-edit-product.html');
     })
     return element;
 }
 
-function addElement (Pname ,bedSize, price, quantity) {
+function addElement(Pname, price, sku) {
+    console.log("add element " + price);
     let ele = document.querySelector('#product')
     let newElement = ele.cloneNode(true);
-    newElement = changeValues(newElement, Pname ,bedSize, price, quantity)
+    newElement = changeValues(newElement, Pname, price, sku)
     let currentDiv = document.getElementById("products_list");
     currentDiv.appendChild(newElement);
-    newElement.style.visibility="visible"; 
+    newElement.style.visibility = "visible";
 }
-      
-function deleteFirst(){
+
+function deleteFirst() {
     let elem = document.getElementById("product");
     elem.remove();
     let par = document.createElement("h2");
-    par.innerHTML = "No orders have been made :("
-    par.style="color: var(--bs-pink) ;text-align:center"
+    par.innerHTML = "No products :("
+    par.style = "color: var(--bs-pink) ;text-align:center"
     let currentDiv = document.getElementById("products_list");
     currentDiv.appendChild(par);
 }
 
 function removeAllChildNodes(parent) {
-    if( parent.children.length > 1)
-    {
-        for(var i = 0; i < parent.children.length ; i++) {
+    if (parent.children.length > 1) {
+        for (var i = 0; i < parent.children.length; i++) {
             parent.children[i].remove();
         }
     }
