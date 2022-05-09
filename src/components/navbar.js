@@ -1,4 +1,4 @@
-import { fbAuth, dbCustomers, dbManager } from '../firebase/data.js';
+import {fbAuth, dbCustomers, dbManager, dbshoppingCart} from '../firebase/data.js';
 
 fetch('../components/navbar.html')
     .then((res) => res.text())
@@ -69,6 +69,7 @@ function checkUserConnected(user) {
         .then((doc) => {
             if (doc.exists) {
                 ManagerNavbar();
+                document.getElementById("helloMessage").innerHTML= "Hello, " + doc.data().fname;
                 console.log('The manager', user.email, 'is connnected');
                 addEventListenersToNavBarButtons(1);
                 return 1;
@@ -80,7 +81,8 @@ function checkUserConnected(user) {
                     .get()
                     .then((doc) => {
                         if (doc.exists) {
-                            CustomerNavbar();
+                            CustomerNavbar(user.email);
+                            document.getElementById("helloMessage").innerHTML= "Hello, " + doc.data().fname;
                             console.log('The customer', user.email, 'is connnected');
                             addEventListenersToNavBarButtons(0);
                             return 0;
@@ -137,7 +139,7 @@ function ManagerNavbar() {
     document.getElementById('nav_item_logout').style.display = 'block';
 }
 
-function CustomerNavbar() {
+function CustomerNavbar(email) {
     // login and logout already hidden
     document.getElementById('nav_item_home').style.display = 'block';
     document.getElementById('nav_item_catalog').style.display = 'block';
@@ -145,6 +147,23 @@ function CustomerNavbar() {
     document.getElementById('nav_item_wishlist').style.display = 'block';
     document.getElementById('nav_item_profile').style.display = 'block';
     document.getElementById('nav_item_logout').style.display = 'block';
+    dbshoppingCart.doc(email).get().then((doc) => {
+        if (doc.exists) {
+            var productQuantity = doc.data().productList.length;
+           if(productQuantity != 0)
+           {
+               document.getElementById('nav_cart_badge').innerHTML = productQuantity;
+           }
+           else{
+               document.getElementById('nav_cart_badge').style.display = 'none';
+           }
+        
+
+        } else {
+            document.getElementById('nav_cart_badge').style.display = 'none';
+        }
+    })
+
 }
 
 function NoUserConnectedNavbar() {

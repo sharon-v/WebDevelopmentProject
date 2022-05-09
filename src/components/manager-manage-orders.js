@@ -74,7 +74,7 @@ function changeValues(element, orderNumber, date, buyerEmail, totalAmount, order
     let Number = element.querySelector('#orderNumber');
     Number.innerHTML = orderNumber;
     let orderDate = element.querySelector('#orderDate');
-    orderDate.innerHTML = new Intl.DateTimeFormat('en-GB').format(date.toDate());
+    orderDate.innerHTML = new Intl.DateTimeFormat('en-GB').format(date);
     let buyerName = element.querySelector('#buyerName');
     
     //get user name by email
@@ -91,7 +91,7 @@ function changeValues(element, orderNumber, date, buyerEmail, totalAmount, order
     amount.innerHTML = parseInt(totalAmount).toFixed(2);
     let selectOp = element.querySelector('#selectOp');
     let currentTime = Date.now();
-    let differ = Date.now() - date.toDate() ;
+    let differ = Date.now() - date ;
     let Difference_In_hours =Math.ceil(differ / (1000 * 3600 * 24));
     if (Difference_In_hours > 1){
         selectOp.disabled = false;
@@ -152,6 +152,4 @@ function removeAllChildNodes(parent) {
             parent.children[i].remove();
         }
     }
-
-
 }

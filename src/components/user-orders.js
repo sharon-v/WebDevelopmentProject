@@ -3,7 +3,6 @@ import {fbAuth, dbOrders, dbCustomers } from '../firebase/data.js'
 const spinner = document.querySelector('#spinner');
 spinner.style.visibility='visible';
 
-var counter = 0;
 var currentuser;
 
 initialization();
@@ -13,9 +12,9 @@ function initialization(){
         dbOrders.where("buyerEmail", "==",  user.email)
         .get()
         .then((querySnapshot) => {
+            var counter = 0;
             querySnapshot.forEach((doc) => {
                 counter = counter + 1;
-                // doc.data() is never undefin  ed for query doc snapshots
                 if(counter == 1)
                     editElement(doc.id, doc.data().purchaseDate, doc.data().buyerEmail , doc.data().totalAmount, doc.data().orderStatus);
                 else
@@ -47,7 +46,7 @@ function changeValues(element, orderNumber, date, buyerEmail, totalAmount, order
     let Number = element.querySelector('#orderNumber');
     Number.innerHTML = orderNumber;
     let orderDate = element.querySelector('#orderDate');
-    orderDate.innerHTML = new Intl.DateTimeFormat('en-GB').format(date.toDate());
+    orderDate.innerHTML = new Intl.DateTimeFormat('en-GB').format(date);
     let buyerName = element.querySelector('#buyerName');
     
     //get user name by email
@@ -66,7 +65,7 @@ function changeValues(element, orderNumber, date, buyerEmail, totalAmount, order
     let status = element.querySelector('#orderStatus');
     status.innerHTML = orderStatus;
 
-    let differ = Date.now() - date.toDate() ;
+    let differ = Date.now() - date ;
     let Difference_In_hours =Math.ceil(differ / (1000 * 3600 * 24));
     var cancleBtn = element.querySelector('#cancelOrderBtn');
     if (Difference_In_hours > 1){
@@ -79,8 +78,8 @@ function changeValues(element, orderNumber, date, buyerEmail, totalAmount, order
              console.log(orderNumber)
              dbOrders.doc(orderNumber).delete().then(() => {
                 console.log("Document successfully deleted!");
+                removeAllChildNodes(document.getElementById("products_list"));
                 //reloaded the page
-                // location.replace('../components/user-orders.html');
                 initialization();
             }).catch((error) => {
                 console.error("Error removing document: ", error);
@@ -117,3 +116,17 @@ function deleteFirst(){
     currentDiv.appendChild(par);
 }
 
+function removeAllChildNodes(parent) {
+    document.getElementById('spinner').style.display='inline';
+    // if( parent.children.length > 1)
+    // {
+    //     for(var i = 0; i < parent.children.length ; i++) {
+    //         console.log("delete");
+    //         parent.children[i].remove();
+    //     }
+    // }
+    while(parent.children.length > 1){
+        console.log("delete");
+        parent.removeChild(parent.lastChild);
+    }
+}
