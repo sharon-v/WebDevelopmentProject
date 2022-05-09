@@ -28,7 +28,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const size180x200 = document.getElementById('quantity_180x200').value;
         const fabric = document.getElementById('add_fabric_select').value;
         const isJustLandedCbChecked = document.getElementById('formCheck-1').checked;
-        const isOnSaleCbChecked = document.getElementById('formCheck-2').checked;
+        const isFewLeftCbChecked = document.getElementById('formCheck-2').checked;
+        const ImageRef = document.getElementById('image-input').value;
 
 
         console.log(Pname);
@@ -40,11 +41,11 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log(size160x200);
         console.log(size180x200);
         console.log(isJustLandedCbChecked);
-        console.log(isOnSaleCbChecked);
+        console.log(isFewLeftCbChecked);
         console.log(fabric);
 
-        addProduct(
-            Pname,
+
+        if (allRitgh(Pname,
             description,
             price,
             sale,
@@ -52,14 +53,52 @@ document.addEventListener('DOMContentLoaded', () => {
             size120x200,
             size160x200,
             size180x200,
-            isJustLandedCbChecked,
-            isOnSaleCbChecked,
-            fabric
-        );
+            ImageRef) == true)
+            addProduct(
+                Pname,
+                description,
+                price,
+                sale,
+                size90x200,
+                size120x200,
+                size160x200,
+                size180x200,
+                isJustLandedCbChecked,
+                isFewLeftCbChecked,
+                fabric
+            );
     });
 });
 
-function uploadImage(Pname, description, price, sale, size90x200, size120x200, size160x200, size180x200, isJustLandedCbChecked, isOnSaleCbChecked, fabric, sku) {
+function allRitgh(Pname, description, price, sale, size90x200, size120x200, size160x200, size180x200, ImageRef) {
+    if (Pname.length == 0) {
+        alert("You must enter product name");
+        return false;
+    }
+    if (description.length == 0) {
+        alert("You must enter product description");
+        return false;
+    }
+    if (price.length == 0 || price < 0) {
+        alert("You must enter product price larger than zero");
+        return false;
+    }
+    if (sale < 0 || sale > price) {
+        alert("The discount price must be smaller than the original price, and larger than zero");
+        return false;
+    }
+    if (size90x200 < 0 || size120x200 < 0 || size160x200 < 0 || size180x200 < 0) {
+        alert("You must enter quantity larger than zero");
+        return false;
+    }
+    if (ImageRef.length == 0) {
+        alert("You must enter product Image");
+        return false;
+    }
+    return true;
+}
+
+function uploadImage(Pname, description, price, sale, size90x200, size120x200, size160x200, size180x200, isJustLandedCbChecked, isFewLeftCbChecked, fabric, sku) {
     const ref = firebase.storage().ref();
     const file = document.querySelector("#image-input").files[0];
     const name = 'images/' + Pname + '.jpg' + file.name;
@@ -73,22 +112,22 @@ function uploadImage(Pname, description, price, sale, size90x200, size120x200, s
             console.log(url);
             const image = document.querySelector("#image-input")
             image.src = url;
-            writeProductToDB(Pname, description, price, sale, size90x200, size120x200, size160x200, size180x200, isJustLandedCbChecked, isOnSaleCbChecked, fabric, sku, url);
+            writeProductToDB(Pname, description, price, sale, size90x200, size120x200, size160x200, size180x200, isJustLandedCbChecked, isFewLeftCbChecked, fabric, sku, url);
         })
         .catch(console.error);
 }
 
-function addProduct(Pname, description, price, sale, size90x200, size120x200, size160x200, size180x200, isJustLandedCbChecked, isOnSaleCbChecked, fabric) {
+function addProduct(Pname, description, price, sale, size90x200, size120x200, size160x200, size180x200, isJustLandedCbChecked, isFewLeftCbChecked, fabric) {
     var sku = new Date().getTime();
     dbProducts.get().then((snap) => {
         sku = snap.size + 1 + sku;
         console.log('size ' + sku);
-        uploadImage(Pname, description, price, sale, size90x200, size120x200, size160x200, size180x200, isJustLandedCbChecked, isOnSaleCbChecked, fabric, sku);
+        uploadImage(Pname, description, price, sale, size90x200, size120x200, size160x200, size180x200, isJustLandedCbChecked, isFewLeftCbChecked, fabric, sku);
 
     });
 }
 
-function writeProductToDB(Pname, description, price, sale, size90x200, size120x200, size160x200, size180x200, isJustLandedCbChecked, isOnSaleCbChecked, fabric, sku, url) {
+function writeProductToDB(Pname, description, price, sale, size90x200, size120x200, size160x200, size180x200, isJustLandedCbChecked, isFewLeftCbChecked, fabric, sku, url) {
     dbProducts.doc(Pname).set({
         Pname: Pname,
         description: description,
@@ -99,8 +138,7 @@ function writeProductToDB(Pname, description, price, sale, size90x200, size120x2
         size160x200: size160x200,
         size180x200: size180x200,
         isJustLandedCbChecked: isJustLandedCbChecked,
-        isOnSaleCbChecked,
-        isOnSaleCbChecked,
+        isFewLeftCbChecked: isFewLeftCbChecked,
         fabric: fabric,
         sku: sku,
         imageUrl: url
