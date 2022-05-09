@@ -291,7 +291,7 @@
                     </div>
                     <div class="col-6 col-md-2 quantity">
                       <label class="form-label d-none d-md-block" for="quantity">Quantity</label><input id="number"
-                        class="form-control quantity-input" type="number" value="1" />
+                        class="form-control quantity-input" type="number" min="0" value="2" />
                     </div>
                     <div class="col-6 col-md-2 d-lg-flex justify-content-lg-end align-items-lg-end price">
                       <span>120₪</span>
@@ -306,13 +306,13 @@
                   Summary
                 </h3>
                 <h4>
-                  <span class="text">Subtotal</span><span class="price">360₪</span>
+                  <span class="text">Subtotal</span><span id="subTotal" class="price">0₪</span>
                 </h4>
                 <h4>
-                  <span class="text">Discount</span><span class="price">0₪</span>
+                  <span class="text">Discount</span><span id="discount" class="price">0₪</span>
                 </h4>
                 <h4>
-                  <span class="text">Shipping</span><span class="price">0₪</span>
+                  <span class="text">Shipping</span><span id="shipping" class="price">0₪</span>
                 </h4>
                 <h4 style="
                       color: var(--bs-pink);

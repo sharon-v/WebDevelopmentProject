@@ -1,4 +1,4 @@
-import { fbAuth, dbCustomers, dbManager, dbDeveloperPasscode } from '../firebase/data.js'
+import { fbAuth, dbCustomers, dbManager, dbDeveloperPasscode, dbWishList, dbShoppingCart } from '../firebase/data.js'
 
 console.log('enter');
 
@@ -178,10 +178,11 @@ function deleteUserFromAuth(user) {
 }
 
 
-function createShopingCart() {
 
-}
 
-function createWishList() {
 
+
+function checkPhoneNumber(phoneNumber) {
+  return true;
+  return false;
 }

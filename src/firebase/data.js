@@ -21,8 +21,9 @@ var dbCustomers = database.collection('customers');
 var dbManager = database.collection('manager');
 var dbDeveloperPasscode = database.collection('developerPasscode');
 var dbOrders = database.collection('orders');
-var dbshoppingCart = database.collection('shoppingCart');
+var dbShoppingCart = database.collection('shoppingCart');
 var dbOrdersTimes = database.collection('ordersTimes');
+var dbWishList = database.collection('wishList');
 
 var storageRef = firebase.storage().ref();
 var fbAuth = firebase.auth();
@@ -35,6 +36,7 @@ export {
     dbDeveloperPasscode,
     dbOrders,
     dbshoppingCart,
+    dbWishList,
     dbOrdersTimes,
     storageRef,
 };
