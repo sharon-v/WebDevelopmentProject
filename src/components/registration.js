@@ -1,4 +1,4 @@
-import { fbAuth, dbCustomers, dbManager, dbDeveloperPasscode, dbWishList, dbShoppingCart } from '../firebase/data.js'
+import { fbAuth, dbCustomers, dbManager, dbDeveloperPasscode } from '../firebase/data.js'
 
 console.log('enter');
 
@@ -33,6 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log(passwordConfirmation);
     console.log(managerPasscode);
 
+
     if (isCbChecked) {
       console.log('cb is checked');
       managerSignUp(fname, lname, birthdate, phoneNumber, email, password, passwordConfirmation, managerPasscode);
@@ -58,6 +59,9 @@ function checkPasswordConfirmation(password, passwordConfirmation) {
 }
 
 function customerSignUp(fname, lname, birthdate, phoneNumber, email, password, passwordConfirmation) {
+  if (!checkPhoneNumber(phoneNumber)) {
+    return;
+  }
   if (checkPasswordConfirmation(password, passwordConfirmation)) {
     fbAuth
       .createUserWithEmailAndPassword(email, password)
@@ -103,6 +107,9 @@ function managerSignUp(fname, lname, birthdate, phoneNumber, email, password, pa
     }
     else {
       if (!checkPasswordConfirmation(password, passwordConfirmation)) {
+        return;
+      }
+      if (!checkPhoneNumber(phoneNumber)) {
         return;
       }
       // checking developer passcode
@@ -163,9 +170,6 @@ function addManagerToTheDb(fname, lname, birthdate, phoneNumber, email, password
     });
 }
 
-function compareSrings(a, b) {
-
-}
 
 function deleteUserFromAuth(user) {
   user.delete().then(() => {
@@ -177,12 +181,12 @@ function deleteUserFromAuth(user) {
   });
 }
 
-
-
-
-
-
 function checkPhoneNumber(phoneNumber) {
-  return true;
-  return false;
+  if (/^[0-9]+$/.test(phoneNumber)) {
+    return true;
+  }
+  else {
+    alert('phone number should contain digits only');
+    return false;
+  }
 }
