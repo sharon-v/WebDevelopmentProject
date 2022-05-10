@@ -58,6 +58,7 @@ function initialization(name, url, description, price, sale, sku, FewLeftCbCheck
         document.querySelector('#justLanded').style.display = 'none';
     if(parseInt(size90x200) == 0  && parseInt(size120x200) == 0 && parseInt(size160x200) == 0 && parseInt(size180x200) == 0){
         document.querySelector('#outOfStock').style.display = 'inline';
+        document.querySelector('#fewLeft').style.display = 'none';
         document.querySelector('#addToCartBtn').disabled = true;
         document.querySelector('#bedSizeOptions').disabled = true;
         document.querySelector('#quantity').disabled = true;
