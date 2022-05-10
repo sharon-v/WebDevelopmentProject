@@ -68,11 +68,6 @@ function changeValues(element, urlName, Pname, proPrice, pSale, psku) {
     element.removeAttribute('hidden');
     let Proname = element.querySelector('#Pname');
     Proname.innerHTML = Pname;
-    Proname.addEventListener('click', () => {
-        sessionStorage.setItem('Pname', Pname);
-        location.replace('../components/product-page.html');
-    });
-
     let price = element.querySelector('#price');
     price.innerHTML = proPrice.toFixed(2) + "₪";
     let sale = element.querySelector('#sale');
