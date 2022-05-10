@@ -74,13 +74,19 @@ filterBtn.addEventListener('click', (e) => {
 });
 
 function filterByFabric() {
-  let query = dbProducts.where("categoryType", "==", categoryTypeOption)
-    .where("categoryServer", "==", categoryServerOption);
-  if (categoryPriceOption == "high") {
-    query = query.orderBy('price', 'desc');
-  } else {
-    query = query.orderBy('price');
+  var ans;
+  if (document.querySelector('#cotton_cb').isChecked()) {
+
   }
+
+
+  let query = dbProducts.where()
+    .where("categoryServer", "==", categoryServerOption);
+  // if (categoryPriceOption == "high") {
+  //   query = query.orderBy('price', 'desc');
+  // } else {
+  //   query = query.orderBy('price');
+  // }
   query
     .get()
     .then(function (querySnapshot) {
