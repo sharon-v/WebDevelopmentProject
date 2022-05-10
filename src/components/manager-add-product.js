@@ -23,9 +23,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const description = document.getElementById('add_sheets_description').value;
         const price = parseFloat(document.getElementById('add_sheets_price').value);
         var sale = document.getElementById('add_sheets_sale').value;
-        if(sale != "")
+        if (sale != "")
             sale = parseFloat(sale);
-        else{
+        else {
             sale = 0;
         }
         const size90x200 = document.getElementById('quantity_90x200').value;
@@ -50,8 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log(isFewLeftCbChecked);
         console.log(fabric);
 
-
-        if (CheckingRestrictions(Pname,
+        CheckingRestrictions(Pname,
             description,
             price,
             sale,
@@ -59,7 +58,46 @@ document.addEventListener('DOMContentLoaded', () => {
             size120x200,
             size160x200,
             size180x200,
-            ImageRef) == true)
+            ImageRef, isJustLandedCbChecked, isFewLeftCbChecked,
+            fabric);
+    });
+});
+
+function CheckingRestrictions(Pname, description, price, sale, size90x200, size120x200, size160x200, size180x200, ImageRef, isJustLandedCbChecked, isFewLeftCbChecked, fabric) {
+    dbProducts.doc(Pname).get().then((doc) => {
+        if (doc.exists) {
+            alert("This name is alredy exist");
+            return;
+        }
+        else {
+            if (Pname.length == 0) {
+                alert("You must enter product name");
+                return;
+            }
+            if (description.length == 0) {
+                alert("You must enter product description");
+                return;
+            }
+            if (price.length == 0 || price < 0) {
+                alert("You must enter product price larger than zero");
+                return;
+            }
+            if (sale < 0 || sale > price) {
+                alert("The discount price must be smaller than the original price, and larger than zero");
+                return;
+            }
+            if (onlyNumbers(size90x200) == false || onlyNumbers(size120x200) == false || onlyNumbers(size160x200) == false || onlyNumbers(size180x200) == false) {
+                alert("You must enter integer quantity");
+                return;
+            }
+            if (size90x200 < 0 || size120x200 < 0 || size160x200 < 0 || size180x200 < 0) {
+                alert("You must enter quantity larger than zero");
+                return;
+            }
+            if (ImageRef.length == 0) {
+                alert("You must enter product Image");
+                return;
+            }
             addProduct(
                 Pname,
                 description,
@@ -73,45 +111,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 isFewLeftCbChecked,
                 fabric
             );
-    });
-});
+        }
 
-function CheckingRestrictions(Pname, description, price, sale, size90x200, size120x200, size160x200, size180x200, ImageRef) {
-    dbProducts.doc(Pname).get().then((doc) => {
-        console.log('hey');
-        if (doc.exists) {
-            alert("This name is alredy exist");
-            return false;
-        }
-        else {
-            if (Pname.length == 0) {
-                alert("You must enter product name");
-                return false;
-            }
-            if (description.length == 0) {
-                alert("You must enter product description");
-                return false;
-            }
-            if (price.length == 0 || price < 0) {
-                alert("You must enter product price larger than zero");
-                return false;
-            }
-            if (sale < 0 || sale > price) {
-                alert("The discount price must be smaller than the original price, and larger than zero");
-                return false;
-            }
-            if (size90x200 < 0 || size120x200 < 0 || size160x200 < 0 || size180x200 < 0) {
-                alert("You must enter quantity larger than zero");
-                return false;
-            }
-            if (ImageRef.length == 0) {
-                alert("You must enter product Image");
-                return false;
-            }
-        }
     });
-    return true;
+
 }
+function onlyNumbers(str) {
+    return /^[0-9]+$/.test(str);
+}
+
 
 
 function uploadImage(Pname, description, price, sale, size90x200, size120x200, size160x200, size180x200, isJustLandedCbChecked, isFewLeftCbChecked, fabric, sku) {
