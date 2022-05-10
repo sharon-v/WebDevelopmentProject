@@ -4,24 +4,25 @@ const spinner = document.querySelector('#spinner');
 spinner.style.visibility='visible';
 
 var orderNumber = sessionStorage.getItem('orderNumber');
-
+console.log(orderNumber);
 dbOrders.doc(orderNumber).get().then((doc) => {
     if (doc.exists){
         var productList = doc.data().productsList;
         productList.push("");
         for(let i = 0 ; i < productList.length ; ++i)
         {
-            console.log(productList[i].productId);
-            dbProducts.doc(productList[i].productId).get().then((pro) =>{
+            console.log(productList[i].productName);
+            dbProducts.doc(productList[i].productName).get().then((pro) =>{
                 if (pro.exists)
                 {
                     if(i == 0)
                     {
-                        editElement(pro.id, pro.data().sku, productList[i].price, productList[i].quantity, pro.data().imageUrl);
+
+                        editElement(pro.id, pro.data().sku, pro.data().price, productList[i].quantity, pro.data().imageUrl);
                     }
                     else
                     {
-                        addElement(pro.id, pro.data().sku, productList[i].price, productList[i].quantity, pro.data().imageUrl);
+                        addElement(pro.id, pro.data().sku, pro.data().price, productList[i].quantity, pro.data().imageUrl);
                     }
                     editOrderDetails(doc.data().firstName, doc.data().lastName, doc.data().street, doc.data().streetNumber, doc.data().apartmentNumber, doc.data().city
                         , doc.data().postalCode, doc.data().phoneNumber, doc.data().shippingDate, doc.data().shippingHours, doc.data().notes);
@@ -30,6 +31,7 @@ dbOrders.doc(orderNumber).get().then((doc) => {
                 {
                     editOrderSummary(doc.data().totalItems, doc.data().totalAmount);
                     spinner.style.display = 'none';
+                    console.log("product not found");
                 }
             })
         }
@@ -55,12 +57,13 @@ function changeValues(element, Name, SKU, price, quantity, url){
     let sku = element.querySelector('#productSKU');
     sku.innerHTML = SKU;
     let productPrice = element.querySelector('#productPrice');
-    productPrice.innerHTML = price + '₪';
+    productPrice.innerHTML = price.toFixed(2) + '₪';
     let productQuantity = element.querySelector('#productQuantity');
     productQuantity.innerHTML = quantity;
     let totalProductPrice = element.querySelector('#totalProductPrice');
-    totalProductPrice.innerHTML = (price*quantity) +'₪';
-    //TODO: add image ref
+    totalProductPrice.innerHTML = (price*quantity).toFixed(2) +'₪';
+    let productImg = element.querySelector('#productImg');
+    productImg.src = url;
     return element;
 }
 

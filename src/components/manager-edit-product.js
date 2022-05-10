@@ -1,55 +1,75 @@
-import { dbProducts } from '../firebase/data.js';
+import { dbProducts, storage } from '../firebase/data.js';
 
-/* code to displaying picture in add/edit new product page */
-const image_input = document.querySelector('#image-input');
+var productName = sessionStorage.getItem('Pname');
+console.log(productName);
 
-image_input.addEventListener('change', function () {
-    const reader = new FileReader();
-    reader.addEventListener('load', () => {
-        const uploaded_image = reader.result;
-        document.querySelector('#display-image').style.backgroundImage = `url(${uploaded_image})`;
-    });
-    reader.readAsDataURL(this.files[0]);
+dbProducts.doc(productName).get().then((doc) => {
+    if (doc.exists)
+    {
+       insertData(doc.id, doc.data().description, doc.data().price, doc.data().sale, doc.data().sku, doc.data().imageUrl, doc.data().size90x200,
+       doc.data().size120x200, doc.data().size160x200, doc.data().size180x200, doc.data().fabric, doc.data().isFewLeftCbChecked, doc.data().isJustLandedCbChecked);
+    }
+    else 
+    {   
+        alert("Cannot find the wanted product");
+        console.log("No such document!");
+    }
 });
-/* end - code to displaying picture in add/edit new product page */
 
-console.log('enter');
-// אני חושבת שעדיף אותם גלובלי
-const Pname = document.getElementById('edit_sheets_name').value;
-const description = document.getElementById('edit_sheets_description').value;
-const price = document.getElementById('edit_sheets_price').value;
-const sale = document.getElementById('edit_sheets_sale').value;
-const size90x200 = document.getElementById('quantity_90x200').value;
-const size120x200 = document.getElementById('quantity_120x200').value;
-const size160x200 = document.getElementById('quantity_160x200').value;
-const size180x200 = document.getElementById('quantity_180x200').value;
-const fabric = document.getElementById('fabric_sheets').value;
-const isJustLandedCbChecked = document.getElementById('formCheck-1').isCbChecked;
-const isFewLeftCbChecked = document.getElementById('formCheck-2').isCbChecked;
-const ImageRef = document.getElementById('image-input').value;
+
+
+function insertData(name, description, price, sale, sku, imageUrl, size90x200, size120x200, size160x200, size180x200, fabric, isFewLeftCbChecked, isJustLandedCbChecked)
+{
+    document.getElementById('edit_sheets_name').value = name;
+    document.getElementById('edit_sheets_description').innerHTML=description;
+    document.getElementById('edit_sheets_price').value = price.toFixed(2);
+    document.getElementById('edit_sheets_sale').value=sale;
+    document.getElementById('edit_sheets_sku').value=sku;
+    document.getElementById('quantity_90x200').value=size90x200;
+    document.getElementById('quantity_120x200').value=size120x200;
+    document.getElementById('quantity_160x200').value=size160x200;
+    document.getElementById('quantity_180x200').value=size180x200;
+    document.getElementById('fabric_sheets').value=fabric;
+    document.getElementById('justLanded').checked = isJustLandedCbChecked;
+    document.getElementById('fewLeft').checked = isFewLeftCbChecked;
+    document.getElementById('display-image').src = imageUrl;
+    document.querySelector('#form').removeAttribute('hidden');
+    document.querySelector('#spinner').style.display = 'none';
+
+}
+
 //needed
 function uploadImage(Pname, description, price, sale, size90x200, size120x200, size160x200, size180x200, isJustLandedCbChecked, isFewLeftCbChecked, fabric) {
-    const ref = firebase.storage().ref();
+    const ref = storage.ref();
     const file = document.querySelector("#image-input").files[0];
-    const name = 'images/' + Pname + '.jpg';
-    const metadata = {
-        contentType: file.type
-    };
-    const task = ref.child(name).put(file, metadata);
-    task
-        .then(snapshot => snapshot.ref.getDownloadURL())
-        .then(url => {
-            console.log(url);
-            const image = document.querySelector("#image-input")
-            image.src = url;
-            setProductOnDB(Pname, description, price, sale, size90x200, size120x200, size160x200, size180x200, isJustLandedCbChecked, isFewLeftCbChecked, fabric, url);
-        })
-        .catch(console.error);
+    console.log(file);
+    console.log(file != undefined);
+    if(file != undefined)
+    {
+        const name = 'images/' + Pname + '.jpg';
+        const metadata = {
+            contentType: file.type
+        };
+        const task = ref.child(name).put(file, metadata);
+        task
+            .then(snapshot => snapshot.ref.getDownloadURL())
+            .then(url => {
+                console.log(url);
+                const image = document.querySelector("#image-input");
+                image.src = url;
+                setProductOnDB(Pname, description, price, sale, size90x200, size120x200, size160x200, size180x200, isJustLandedCbChecked, isFewLeftCbChecked, fabric, url);
+            })
+            .catch(console.error);
+    }
+    else{
+        setProductOnDB(Pname, description, price, sale, size90x200, size120x200, size160x200, size180x200, isJustLandedCbChecked, isFewLeftCbChecked, fabric, null);
+    }
 }
 
 // not finish need to set the info not create new in db
 function setProductOnDB(Pname, description, price, sale, size90x200, size120x200, size160x200, size180x200, isJustLandedCbChecked, isFewLeftCbChecked, fabric, url) {
-    dbProducts.doc(Pname).set({
+   
+    dbProducts.doc(Pname).update({
         Pname: Pname,
         description: description,
         price: price,
@@ -61,10 +81,26 @@ function setProductOnDB(Pname, description, price, sale, size90x200, size120x200
         isJustLandedCbChecked: isJustLandedCbChecked,
         isFewLeftCbChecked: isFewLeftCbChecked,
         fabric: fabric,
-        imageUrl: url
     }).then(() => {
-        console.log('Document successfully added');
-        location.replace('../components/manager-manage-items.html');
+        if(url != null)
+        {
+            dbProducts.doc(Pname).update({
+                imageUrl: url
+            }).then(() => {
+                console.log('Document successfully added');
+                location.replace('../components/manager-manage-items.html');
+            })
+            .catch((error) => {
+                console.error('Error writing document: ', error);
+                console.log('fail');
+                var errorMessage = error.message;
+                alert(errorMessage);
+            });
+        }
+        else{
+            console.log('Document successfully added');
+            location.replace('../components/manager-manage-items.html');
+        }
     })
         .catch((error) => {
             console.error('Error writing document: ', error);
@@ -72,18 +108,14 @@ function setProductOnDB(Pname, description, price, sale, size90x200, size120x200
             var errorMessage = error.message;
             alert(errorMessage);
         });
+    
 
 }
 
 // finish
-function CheckingRestrictions(Pname, description, price, sale, size90x200, size120x200, size160x200, size180x200, ImageRef) {
+function CheckingRestrictions(Pname, description, price, sale, size90x200, size120x200, size160x200, size180x200) {
     dbProducts.doc(Pname).get().then((doc) => {
-        console.log('hey');
         if (doc.exists) {
-            alert("This name is alredy exist");
-            return false;
-        }
-        else {
             if (Pname.length == 0) {
                 alert("You must enter product name");
                 return false;
@@ -104,11 +136,10 @@ function CheckingRestrictions(Pname, description, price, sale, size90x200, size1
                 alert("You must enter quantity larger than zero");
                 return false;
             }
-            if (ImageRef.length == 0) {
-                alert("You must enter product Image");
-                return false;
-            }
-
+        }
+        else {
+            alert("The product isnt in the list");
+            
         }
     });
     return true;
@@ -116,61 +147,43 @@ function CheckingRestrictions(Pname, description, price, sale, size90x200, size1
 
 //finish
 document.addEventListener('DOMContentLoaded', () => {
-    var btn = document.getElementById('addProd');
+    var btn = document.getElementById('saveProd');
     btn.addEventListener('click', (e) => {
+        document.querySelector('#spinner').style.display = 'inline';
+
         e.preventDefault();
-        if (CheckingRestrictions(Pname, description, price, sale, size90x200, size120x200, size160x200, size180x200, ImageRef) == true)
+        var Pname = document.getElementById('edit_sheets_name').value;
+        var description = document.getElementById('edit_sheets_description').value;
+        var price =  parseFloat(document.getElementById('edit_sheets_price').value);
+        var sale = document.getElementById('edit_sheets_sale').value;
+        if(sale != "")
+            sale = parseFloat(sale);
+        var size90x200 = document.getElementById('quantity_90x200').value;
+        var size120x200 = document.getElementById('quantity_120x200').value;
+        var size160x200 = document.getElementById('quantity_160x200').value;
+        var size180x200 = document.getElementById('quantity_180x200').value;
+        var fabric = document.getElementById('fabric_sheets').value;
+        var isJustLandedCbChecked = document.getElementById('justLanded').checked;
+        var isFewLeftCbChecked = document.getElementById('fewLeft').checked;
+        const ImageRef = document.getElementById('image-input').value;
+        if (CheckingRestrictions(Pname, description, price, sale, size90x200, size120x200, size160x200, size180x200) == true)
             uploadImage(Pname, description, price, sale, size90x200, size120x200, size160x200, size180x200, isJustLandedCbChecked, isFewLeftCbChecked, fabric)
-    });
+        document.querySelector('#spinner').style.display = 'none';
+
+        });
 });
 
-document.querySelector('#spinner').style.visibility = 'visible';
-// dont knoe of need
-initialization();
-function initialization() {
-    var prodName = sessionStorage.getItem('Pname');
-    dbProducts.where("Pname", "==", prodName).get().then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-            editElement(doc.data().Pname, doc.data().description, doc.data().price, doc.data().sale, doc.data().sku, doc.data().size90x200, doc.data().size120x200, doc.data().size160x200, doc.data().size180x200, doc.data().fabric, doc.data().isJustLandedCbChecked, doc.data().isFewLeftCbChecked);
-        });
-    })
-        .catch((error) => {
-            console.log("Error getting documents: ", error);
-        });
-}
-
-function editElement(Pname, description, price, sale, sku, size90x200, size120x200, size160x200, size180x200, fabric, isJustLandedCbChecked, isFewLeftCbChecked) {
-    let ele = document.querySelector('#product')
-    ele = changeValues(ele, Pname, description, price, sale, sku, size90x200, size120x200, size160x200, size180x200, fabric, isJustLandedCbChecked, isFewLeftCbChecked)
-    ele.style.visibility = "visible";
-}
-// not finish
-function changeValues(Pname, description, price, sale, sku, size90x200, size120x200, size160x200, size180x200, fabric, isJustLandedCbChecked, isFewLeftCbChecked) {
-    element.removeAttribute('hidden')
-    let Proname = element.querySelector('#edit_sheets_name');
-    Proname.innerHTML = Pname;
-    let Prodescription = element.querySelector('#edit_sheets_description');
-    Prodescription.innerHTML = description;
-    let proprice = element.querySelector('#edit_sheets_price');
-    proprice.innerHTML = price;
-    let sale = element.querySelector('#edit_sheets_sale');
-    sale.innerHTML = sale;
-    let sku = element.querySelector('#edit_sheets_sku');
-    sku.innerHTML = sku;
-    let prosize90x200 = element.querySelector('#quantity_90x200');
-    prosize90x200.innerHTML = size90x200;
-    let prosize120x200 = element.querySelector('#quantity_120x200');
-    prosize120x200.innerHTML = size120x200;
-    let prosize160x200 = element.querySelector('#quantity_160x200');
-    prosize160x200.innerHTML = size160x200;
-    let prosize180x200 = element.querySelector('#quantity_180x200');
-    prosize180x200.innerHTML = size180x200;
 
 
-    // let imageProd = element.querySelector('#imageProd');
-    // imageProd.src = url;
 
-    return element;
-}
+const image_input = document.querySelector('#image-input');
 
-
+image_input.addEventListener('change', function () {
+    const reader = new FileReader();
+    reader.addEventListener('load', () => {
+        const uploaded_image = reader.result;
+        console.log(uploaded_image);
+        document.querySelector('#display-image').src = uploaded_image ;
+    });
+    reader.readAsDataURL(this.files[0]);
+});

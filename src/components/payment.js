@@ -14,22 +14,24 @@ function initialization(){
                 userShoppingCart.push(''); // makes the initialization of the fields to be latest
                 for(var i = 0; i< userShoppingCart.length; ++i){
                     const x = userShoppingCart[i].quantity;
-                    dbProducts.doc(userShoppingCart[i].productId).get().then((pro) =>{
+                    dbProducts.doc(userShoppingCart[i].productName).get().then((pro) =>{
                         if (pro.exists){
                             totalItems = totalItems + x;
                             if(pro.data().sale == "")
                             {
-                                totalAmount = totalAmount + (parseInt(pro.data().price)*x);
+                                console.log(pro.data().price);
+
+                                totalAmount = totalAmount + (pro.data().price*x);
                             }
                             else
                             {
-                                totalAmount = totalAmount + (parseInt(pro.data().sale)*x);
+                                totalAmount = totalAmount + (pro.data().sale*x);
                             }
                         }
                         else
                         {
                             items.innerHTML = totalItems;
-                            amount.innerHTML = totalAmount + '₪';
+                            amount.innerHTML = totalAmount.toFixed(2) + '₪';
                             document.getElementById('mainElement').style.display='inline';
                             document.getElementById('spinner').style.display='none';
                             console.log("in shopping cart list -payment page - No such document!");
@@ -76,7 +78,7 @@ date.addEventListener('change', (e) => {
         hours.removeChild(hours.lastChild);
     }
     dbOrdersTimes.doc(date.options[date.selectedIndex].text).get().then((querySnapshot) => {
-        if(doc.exists)
+        if(querySnapshot.exists)
         {
             for(let index = 0; index < querySnapshot.data().hours.length; ++index)
             {
@@ -154,13 +156,13 @@ var btn = document.getElementById('payment_pay_button');
                 .then(() => {
                     console.log("Document successfully written!");
                     //delete the user document from the shopping cart db
+                    sessionStorage.setItem('orderNumber', fname + now); //moving parameters to order summery page
                     dbShoppingCart.doc(user.email).delete().then(() => {
                         console.log("Document successfully deleted!");
                     }).catch((error) => {
                         alert("cannot delete the user from the shopping cart");
                         console.error("Error removing document: ", error);
                     });
-                    sessionStorage.setItem('orderNumber', fname + now); //moving parameters to order summery page
                     location.replace('../components/order-summary.html');
                 })
                 .catch((error) => {

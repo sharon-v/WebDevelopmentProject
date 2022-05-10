@@ -1,6 +1,6 @@
 import { dbProducts, storage } from '../firebase/data.js';
 
-/* code fo displaying picture in add/edit new product page */
+// const spinner = document.querySelector('#spinner');
 const image_input = document.querySelector('#image-input');
 
 image_input.addEventListener('change', function () {
@@ -21,8 +21,10 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log('clicked on Add product');
         const Pname = document.getElementById('add_sheets_name').value;
         const description = document.getElementById('add_sheets_description').value;
-        const price = document.getElementById('add_sheets_price').value;
-        const sale = document.getElementById('add_sheets_sale').value;
+        const price = parseFloat(document.getElementById('add_sheets_price').value);
+        var sale = document.getElementById('add_sheets_sale').value;
+        if(sale != "")
+            sale = parseFloat(sale);
         const size90x200 = document.getElementById('quantity_90x200').value;
         const size120x200 = document.getElementById('quantity_120x200').value;
         const size160x200 = document.getElementById('quantity_160x200').value;
@@ -103,7 +105,6 @@ function CheckingRestrictions(Pname, description, price, sale, size90x200, size1
                 alert("You must enter product Image");
                 return false;
             }
-
         }
     });
     return true;
@@ -111,10 +112,10 @@ function CheckingRestrictions(Pname, description, price, sale, size90x200, size1
 
 
 function uploadImage(Pname, description, price, sale, size90x200, size120x200, size160x200, size180x200, isJustLandedCbChecked, isFewLeftCbChecked, fabric, sku) {
-    const ref = firebase.storage().ref();
+    const ref = storage.ref();
     const file = document.querySelector("#image-input").files[0];
     const name = 'images/' + Pname + '.jpg';
-
+    // spinner.style.display='inline';
     const metadata = {
         contentType: file.type
     };
@@ -125,6 +126,7 @@ function uploadImage(Pname, description, price, sale, size90x200, size120x200, s
             console.log(url);
             const image = document.querySelector("#image-input")
             image.src = url;
+            // spinner.style.display = 'none';
             writeProductToDB(Pname, description, price, sale, size90x200, size120x200, size160x200, size180x200, isJustLandedCbChecked, isFewLeftCbChecked, fabric, sku, url);
         })
         .catch(console.error);
@@ -136,11 +138,12 @@ function addProduct(Pname, description, price, sale, size90x200, size120x200, si
         sku = snap.size + 1 + sku;
         console.log('size ' + sku);
         uploadImage(Pname, description, price, sale, size90x200, size120x200, size160x200, size180x200, isJustLandedCbChecked, isFewLeftCbChecked, fabric, sku);
-
     });
 }
 
 function writeProductToDB(Pname, description, price, sale, size90x200, size120x200, size160x200, size180x200, isJustLandedCbChecked, isFewLeftCbChecked, fabric, sku, url) {
+    // spinner.style.display='inline';
+
     dbProducts.doc(Pname).set({
         Pname: Pname,
         description: description,
@@ -156,6 +159,7 @@ function writeProductToDB(Pname, description, price, sale, size90x200, size120x2
         sku: sku,
         imageUrl: url
     }).then(() => {
+        // spinner.style.display = 'none';
         console.log('Document successfully added');
         location.replace('../components/manager-manage-items.html');
     })

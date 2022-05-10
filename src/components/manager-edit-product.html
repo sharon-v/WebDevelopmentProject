@@ -9,24 +9,22 @@
 
 <body>
   <script type="module" id="replace_with_navbar" src="../components/navbar.js"></script>
-
   <main class="page product-page">
     <section class="clean-block clean-product dark">
       <div class="container" style="border-style: none">
         <div class="block-heading">
           <h1 style="font-size: calc(1.325rem + 0.9vw)">Edit Product <br /></h1>
         </div>
-        <div class="block-content">
+        <div id="spinner" class="loader"></div>
+        <div hidden id="form" class="block-content">
           <div class="product-info">
             <div class="row">
               <div class="col-md-6">
                 <div>
-                  <div id="display-image" style="
+                  <img id="display-image" style="
                         width: 35vw;
                         height: 30vw;
-                        background: url('../assets/images/sheets/81H1D7elmjL._AC_SL1500_.jpg')
-                          center / contain no-repeat;
-                      "></div>
+                      "></img>
                   <input id="image-input" type="file" accept="image/jpeg, image/png, image/jpg" style="
                         margin-top: 2vw;
                         margin-bottom: 2vw;
@@ -126,23 +124,23 @@
             </div>
             <div class="col-lg-6 text-center d-lg-flex justify-content-lg-center align-items-lg-center">
               <div class="form-check mx-auto">
-                <input id="formCheck-1" class="form-check-input" type="checkbox" /><label class="form-check-label"
+                <input id="justLanded" class="form-check-input" type="checkbox" /><label class="form-check-label"
                   for="formCheck-1">Just Landed</label>
               </div>
               <div class="form-check mx-auto">
-                <input id="formCheck-2" class="form-check-input" type="checkbox" /><label class="form-check-label"
+                <input id="fewLeft" class="form-check-input" type="checkbox" /><label class="form-check-label"
                   for="formCheck-2">Few Left</label>
               </div>
             </div>
           </div>
           <div class="d-lg-flex mx-auto justify-content-lg-center" style="align-self: center">
-            <button id="addProd" class="btn btn-primary" type="button" style="
+            <button id="saveProd" class="btn btn-primary" type="button" style="
                   margin-top: 3vw;
                   background: var(--bs-dark);
                   width: 30vw;
                   border-style: hidden;
                 ">
-              Add Product
+              Save changes
             </button>
           </div>
         </div>
