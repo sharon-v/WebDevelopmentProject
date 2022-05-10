@@ -1,146 +1,129 @@
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
-    <title>Order Summary Page</title>
-    <link rel="stylesheet" href="../components/order-summary.css" />
-  </head>
 
-  <body>
-    <script type="module" id="replace_with_navbar" src="../components/navbar.js"></script>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+  <title>Order Summary Page</title>
+  <link rel="stylesheet" href="../components/order-summary.css" />
+</head>
 
-    <main class="page shopping-cart-page">
-      <section class="clean-block clean-cart dark">
-        <div class="container">
-          <div class="block-heading">
-            <h3 class="text-center text-dark mb-4" style="font-size: calc(1.325rem + 0.9vw)">
-              Your Order
-            </h3>
-          </div>
-          <div id="spinner" class="loader"></div>
-          <div class="content">
-            <div class="row g-0">
-              <div class="col-md-12 col-lg-8">
-                <div id="productsList" class="items">
-                  <div id="product" class="product" hidden>
-                    <div class="product">
-                      <div class="row justify-content-center align-items-center" style="box-shadow: 0px 0px 6px 0px rgb(185, 191, 198); margin-bottom: 6px;"
-                      >
-                        <div class="col-lg-3">
-                          <img id="productImg"
-                            src="../assets/images/sheets/bce8bb35-8b70-40f4-b265-a8695a27ba6d.077446c4ec7c4fbd1c64b3503b7301e9.jpeg"
-                            style="width: 10vw; height: 10vw"
-                          />
+<body>
+  <script type="module" id="replace_with_navbar" src="../components/navbar.js"></script>
+
+  <main class="page shopping-cart-page">
+    <section class="clean-block clean-cart dark">
+      <div class="container">
+        <div class="block-heading">
+          <h3 class="text-center text-dark mb-4" style="font-size: calc(1.325rem + 0.9vw)">
+            Order Details
+          </h3>
+        </div>
+        <div id="spinner" class="loader"></div>
+        <div class="content">
+          <div class="row g-0">
+            <div class="col-md-12 col-lg-8">
+              <div id="productsList" class="items">
+                <div id="product" class="product" hidden>
+                  <div class="product">
+                    <div class="row justify-content-center align-items-center"
+                      style="box-shadow: 0px 0px 6px 0px rgb(185, 191, 198); margin-bottom: 6px;">
+                      <div class="col-lg-3">
+                        <img id="productImg"
+                          src="../assets/images/sheets/bce8bb35-8b70-40f4-b265-a8695a27ba6d.077446c4ec7c4fbd1c64b3503b7301e9.jpeg"
+                          style="width: 10vw; height: 10vw" />
+                      </div>
+                      <div class="col-md-5 product-info">
+                        <a id="productName" class="product-name" href="#" style="color: var(--bs-gray-800)">sheets
+                          name</a>
+                        <div class="product-specs">
+                          <div><span>SKU: </span><span id="productSKU" class="value">1265</span></div>
+                          <div><span>Unit Price: </span><span id="productPrice" class="value">129.90</span></div>
+                          <div><span>Quantity: </span><span id="productQuantity" class="value">2</span></div>
                         </div>
-                        <div class="col-md-5 product-info">
-                          <a id="productName" class="product-name" href="#" style="color: var(--bs-gray-800)"
-                            >sheets name</a
-                          >
-                          <div class="product-specs">
-                            <div><span>SKU: </span><span id = "productSKU" class="value">1265</span></div>
-                            <div><span>Unit Price: </span><span id="productPrice" class="value">129.90</span></div>
-                            <div><span>Quantity: </span><span id="productQuantity" class="value">2</span></div>
-                          </div>
-                        </div>
-                        <div class="col-6 col-md-2 col-lg-3 price"><span id ="totalProductPrice" class="value" >120₪</span></div>
+                      </div>
+                      <div class="col-6 col-md-2 col-lg-3 price"><span id="totalProductPrice" class="value">120₪</span>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div id="orderDetails" class="text-start" style="padding-left: 6vw; padding-bottom: 2vw; padding-right: 6vw; padding-top: 1.5vw;
-                    border-top: 1px outset var(--bs-gray-400);" hidden>
-                  <h3 class="text-center" style="color: var(--bs-gray-800); font-weight: bold; font-size: 20px">
-                    Order details
-                  </h3>
-                  <div class="col">
-                    <h4 style=" margin-top: 1vw; padding-top: 1vw; border-top: 1px outset var(--bs-gray-400);">
-                      <span class="text" style="margin-right: 2vw; font-size: 15px"><strong>Full Name</strong></span>
-                      <span id="fullName" class="price" style="font-size: 15px">Israel Israeli</span>
-                    </h4>
-                  </div>
-                  <div class="col">
-                    <h4>
-                      <span
-                        class="text"
-                        style="margin-right: 2vw; font-size: 15px; font-weight: bold"
-                        >Address</span
-                      ><span id="address" class="price" style="font-size: 15px">shderot 1/30, Ashdod</span>
-                    </h4>
-                  </div>
-                  <div class="col">
-                    <h4>
-                      <span
-                        class="text"
-                        style="margin-right: 2vw; font-size: 15px; font-weight: bold"
-                        >Postal code</span
-                      ><span id="postalCode" class="price" style="font-size: 15px">7707789</span>
-                    </h4>
-                  </div>
-                  <div class="col">
-                    <h4>
-                      <span
-                        class="text"
-                        style="margin-right: 2vw; font-size: 15px; font-weight: bold"
-                        >Phone number</span
-                      ><span id="phoneNumber" class="price" style="font-size: 15px">0521234567</span>
-                    </h4>
-                  </div>
-                  <div class="col">
-                    <h4>
-                      <span
-                        class="text"
-                        style="margin-right: 2vw; font-size: 15px; font-weight: bold"
-                        >Shipping Date</span
-                      ><span id="shippingDate" class="price" style="font-size: 15px">12/05/2022</span>
-                    </h4>
-                  </div>
-                  <div class="col">
-                    <h4>
-                      <span
-                        class="text"
-                        style="margin-right: 2vw; font-size: 15px; font-weight: bold"
-                        >Shipping Hours</span
-                      ><span id="shippingHours" class="price" style="font-size: 15px">12:00-14:00</span>
-                    </h4>
-                  </div>
-                  <div class="col">
-                    <h4>
-                      <span
-                        class="text"
-                        style="margin-right: 2vw; font-size: 15px; font-weight: bold"
-                        >Notes</span
-                      ><span id="notes" class="price" style="font-size: 15px">Please call befor arriving</span>
-                    </h4>
-                  </div>
-                </div>
               </div>
-              <div id="orderSummary" class="col-md-12 col-lg-4" hidden>
-                <div class="summary">
-                  <h3 style="color: var(--bs-gray-800); font-weight: bold">Summary</h3>
-                  <h4>
-                    <span class="text" style="margin-left: -14px">Total Price</span
-                    ><span id="totalOrder" class="price">779.40₪</span>
+              <div id="orderDetails" class="text-start" style="padding-left: 6vw; padding-bottom: 2vw; padding-right: 6vw; padding-top: 1.5vw;
+                    border-top: 1px outset var(--bs-gray-400);" hidden>
+                <h3 class="text-center" style="color: var(--bs-gray-800); font-weight: bold; font-size: 20px">
+                  Order details
+                </h3>
+                <div class="col">
+                  <h4 style=" margin-top: 1vw; padding-top: 1vw; border-top: 1px outset var(--bs-gray-400);">
+                    <span class="text" style="margin-right: 2vw; font-size: 15px"><strong>Full Name</strong></span>
+                    <span id="fullName" class="price" style="font-size: 15px">Israel Israeli</span>
                   </h4>
+                </div>
+                <div class="col">
                   <h4>
-                    <span class="text" style="margin-left: -14px">Total Products</span
-                    ><span id="totalProducts" class="price">0</span>
+                    <span class="text" style="margin-right: 2vw; font-size: 15px; font-weight: bold">Address</span><span
+                      id="address" class="price" style="font-size: 15px">shderot 1/30, Ashdod</span>
                   </h4>
-                  <h4 style="color: var(--bs-pink); font-weight: bold; font-size: 26px">
-                    <span class="text" style="font-weight: bold; margin-left: -14px">Total</span
-                    ><span id="totalPrice" class="price" style="font-weight: bold">360₪</span>
+                </div>
+                <div class="col">
+                  <h4>
+                    <span class="text" style="margin-right: 2vw; font-size: 15px; font-weight: bold">Postal
+                      code</span><span id="postalCode" class="price" style="font-size: 15px">7707789</span>
+                  </h4>
+                </div>
+                <div class="col">
+                  <h4>
+                    <span class="text" style="margin-right: 2vw; font-size: 15px; font-weight: bold">Phone
+                      number</span><span id="phoneNumber" class="price" style="font-size: 15px">0521234567</span>
+                  </h4>
+                </div>
+                <div class="col">
+                  <h4>
+                    <span class="text" style="margin-right: 2vw; font-size: 15px; font-weight: bold">Shipping
+                      Date</span><span id="shippingDate" class="price" style="font-size: 15px">12/05/2022</span>
+                  </h4>
+                </div>
+                <div class="col">
+                  <h4>
+                    <span class="text" style="margin-right: 2vw; font-size: 15px; font-weight: bold">Shipping
+                      Hours</span><span id="shippingHours" class="price" style="font-size: 15px">12:00-14:00</span>
+                  </h4>
+                </div>
+                <div class="col">
+                  <h4>
+                    <span class="text" style="margin-right: 2vw; font-size: 15px; font-weight: bold">Notes</span><span
+                      id="notes" class="price" style="font-size: 15px">Please call befor arriving</span>
                   </h4>
                 </div>
               </div>
             </div>
+            <div id="orderSummary" class="col-md-12 col-lg-4" hidden>
+              <div class="summary">
+                <h3 style="color: var(--bs-gray-800); font-weight: bold">Summary</h3>
+                <h4>
+                  <span class="text" style="margin-left: -14px">Total Price</span><span id="totalOrder"
+                    class="price">779.40₪</span>
+                </h4>
+                <h4>
+                  <span class="text" style="margin-left: -14px">Total Products</span><span id="totalProducts"
+                    class="price">0</span>
+                </h4>
+                <h4 style="color: var(--bs-pink); font-weight: bold; font-size: 26px">
+                  <span class="text" style="font-weight: bold; margin-left: -14px">Total</span><span id="totalPrice"
+                    class="price" style="font-weight: bold">360₪</span>
+                </h4>
+              </div>
+            </div>
           </div>
         </div>
-      </section>
-    </main>
-    <script type="module" id="replace_with_footer" src="../components/footer.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
-    <script type="module" src="../components/order-summary.js"></script>
-  </body>
+      </div>
+    </section>
+  </main>
+  <script type="module" id="replace_with_footer" src="../components/footer.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
+  <script type="module" src="../components/order-summary.js"></script>
+</body>
+
 </html>
