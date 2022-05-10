@@ -28,6 +28,8 @@ function initialization(){
             }
         })
         .catch((error) => {
+            deleteFirst();
+            spinner.style.display = 'none';
             console.log("Error getting documents: ", error);
         });
         spinner.style.display = 'none';
@@ -56,6 +58,7 @@ function changeValues(element, orderNumber, date, buyerEmail, totalAmount, order
         });
     })
     .catch((error) => {
+        buyerName.innerHTML = '******';
         console.log("Error getting documents: ", error);
     });
 

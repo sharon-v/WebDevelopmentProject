@@ -38,8 +38,7 @@ function initialization(){
                 }
             }
             else
-            {
-                
+            { 
                 let par = document.createElement("h2");
                 par.innerHTML = "Your shopping cart is empty :("
                 par.style="color: var(--bs-pink) ;text-align:center"
@@ -77,11 +76,16 @@ date.addEventListener('change', (e) => {
         hours.removeChild(hours.lastChild);
     }
     dbOrdersTimes.doc(date.options[date.selectedIndex].text).get().then((querySnapshot) => {
-        for(let index = 0; index < querySnapshot.data().hours.length; ++index){
-            var opt = document.createElement('option');
-            opt.innerHTML = querySnapshot.data().hours[index];
-            hours.appendChild(opt);
+        if(doc.exists)
+        {
+            for(let index = 0; index < querySnapshot.data().hours.length; ++index)
+            {
+                var opt = document.createElement('option');
+                opt.innerHTML = querySnapshot.data().hours[index];
+                hours.appendChild(opt);
+            }
         }
+        
     });
 })
 
@@ -153,12 +157,14 @@ var btn = document.getElementById('payment_pay_button');
                     dbShoppingCart.doc(user.email).delete().then(() => {
                         console.log("Document successfully deleted!");
                     }).catch((error) => {
+                        alert("cannot delete the user from the shopping cart");
                         console.error("Error removing document: ", error);
                     });
                     sessionStorage.setItem('orderNumber', fname + now); //moving parameters to order summery page
                     location.replace('../components/order-summary.html');
                 })
                 .catch((error) => {
+                    alert("cannot write the new document to the db");
                     console.error("Error writing document: ", error);
                 });
             })

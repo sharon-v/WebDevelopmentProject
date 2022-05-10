@@ -1,4 +1,4 @@
-import { dbProducts } from '../firebase/data.js'
+import { dbProducts, storage } from '../firebase/data.js'
 
 document.querySelector('#spinner').style.visibility = 'visible';
 
@@ -70,7 +70,7 @@ function editElement(url, Pname, price, sale, sku) {
     ele.style.visibility = "visible";
 }
 
-function changeValues(element, url, Pname, proPrice, pSale, psku) {
+function changeValues(element, urlName, Pname, proPrice, pSale, psku) {
     element.removeAttribute('hidden')
     let Proname = element.querySelector('#Pname');
     Proname.innerHTML = Pname;
@@ -86,10 +86,9 @@ function changeValues(element, url, Pname, proPrice, pSale, psku) {
     let sku = element.querySelector('#sku');
     console.log(psku);
     sku.innerHTML = psku;
-    // document.querySelector('#imageProd').style.backgroundImage = `url(${url})`;
-    // let imageProd = element.querySelector('#imageProd');
-    // imageProd.src = url;
-
+    let imageProd = element.querySelector('#imageProd');
+    console.log(urlName);
+    imageProd.src = urlName;
 
     const editProduct = element.querySelector('#editButton');
     editProduct.addEventListener('click', () => {
@@ -99,18 +98,19 @@ function changeValues(element, url, Pname, proPrice, pSale, psku) {
 
     const deleteProduct = element.querySelector('#deleteButton');
     deleteProduct.addEventListener('click', () => {
+        document.querySelector('#spinner').style.display = 'inline';
         dbProducts.doc(Pname).delete().then(() => {
             console.log("Document successfully deleted!");
             removeAllChildNodes(document.getElementById("products_list"));
-            location.replace('../components/manager-manage-items.html');
-            // try to delete image from storage
-            storage.doc(Pname + '.jpg').delete().then(() => {
-                console.log("Image successfully deleted!");
-            }).catch((error) => {
-                console.error("Error removing document: ", error);
-            });
             initialization();
+            // TODO: try to delete image from storage
+            // storage.doc(Pname + '.jpg').delete().then(() => {
+            //     console.log("Image successfully deleted!");
+            // }).catch((error) => {
+            //     console.error("Error removing document: ", error);
+            // });
         }).catch((error) => {
+            alert("Cannot delete the wanted product");
             console.error("Error removing document: ", error);
         });
     });
@@ -144,4 +144,33 @@ function removeAllChildNodes(parent) {
         console.log("delete");
         parent.removeChild(parent.lastChild);
     }
+}
+
+function downloadImage(path, img)
+{
+    // Create a reference to the file we want to download
+    var starsRef = storage.ref().child(path);
+
+// Get the download URL
+    starsRef.getDownloadURL().then((url) => {
+        img.src = url;
+    })
+    .catch((error) => {
+        switch (error.code) {
+            case 'storage/object-not-found':
+            // File doesn't exist
+            break;
+            case 'storage/unauthorized':
+            // User doesn't have permission to access the object
+            break;
+            case 'storage/canceled':
+            // User canceled the upload
+            break;
+
+            // ...
+            case 'storage/unknown':
+            // Unknown error occurred, inspect the server response
+            break;
+        }
+    });
 }

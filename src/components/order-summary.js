@@ -36,6 +36,8 @@ dbOrders.doc(orderNumber).get().then((doc) => {
     }
     else 
     {   
+        spinner.style.display = 'none';
+        alert("The order asked for isnt in the db");
         console.log("No such document!");
     }
 });

@@ -99,7 +99,8 @@ function changeValues(element, orderNumber, date, buyerEmail, totalAmount, order
             buyerName.innerHTML = String(doc.data().fname) + ' ' + String(doc.data().lname);
         });
     })
-    .catch((error) => {
+    .catch((error) => {            
+        buyerName.innerHTML = '*****';
         console.log("Error getting documents: ", error);
     });
 
