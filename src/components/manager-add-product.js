@@ -25,6 +25,9 @@ document.addEventListener('DOMContentLoaded', () => {
         var sale = document.getElementById('add_sheets_sale').value;
         if(sale != "")
             sale = parseFloat(sale);
+        else{
+            sale = 0;
+        }
         const size90x200 = document.getElementById('quantity_90x200').value;
         const size120x200 = document.getElementById('quantity_120x200').value;
         const size160x200 = document.getElementById('quantity_160x200').value;

@@ -16,11 +16,13 @@
         <div class="block-heading">
           <h1 style="font-size: calc(1.325rem + 0.9vw)">Product Page<br /></h1>
         </div>
+        <div id="spinner" class="loader"></div>
+
         <div class="block-content">
-          <div class="product-info">
+          <div hidden id="product" class="product-info">
             <div class="row">
               <div class="col-md-6 col-lg-6">
-                <img src="../assets/images/sheets/81H1D7elmjL._AC_SL1500_.jpg" style="width: 430px; height: 400px" />
+                <img id="productImage" src="../assets/images/sheets/81H1D7elmjL._AC_SL1500_.jpg" style="width: 430px; height: 400px" />
               </div>
               <div class="col-md-6 my-auto" style="padding-left: 2vw">
                 <div class="info">
@@ -31,11 +33,11 @@
                     Lovely royalty vintage style sheets, the bedding is hand-made from the softest
                     silk there is.
                   </p>
-                  <h3 id="prodPrice" style="text-decoration: line-through">139.90 ₪</h3>
-                  <h3 id="prodSale" style="color: var(--bs-red)">119.90 ₪</h3>
+                  <h3 id="prodPrice">139.90 ₪</h3>
+                  <h3 id="prodSale" style="color: var(--bs-red)">119.90 ₪</h3>
                   <label class="form-label">SKU</label><small id="prodSku" style="padding-left: 20px">5959</small>
                 </div>
-                <button class="btn d-lg-flex justify-content-lg-end align-items-lg-center" type="button" style="
+                <button id="wishListBtn" class="btn d-lg-flex justify-content-lg-end align-items-lg-center" type="button" style="
                       background: url('../assets/icons/heart-icon.svg') center / contain no-repeat;
                       width: 3vw;
                       height: 3vw;
@@ -43,22 +45,22 @@
               </div>
               <div class="col d-lg-flex justify-content-lg-end"></div>
               <div class="col-lg-4 d-lg-flex justify-content-lg-end align-items-lg-center">
-                <select class="form-select-lg" name="product_page_bed_size"
+                <select id="bedSizeOptions" class="form-select-lg" name="product_page_bed_size"
                   style="margin-left: 20vw; margin-top: 30px; margin-bottom: 30px; width: 17vw">
-                  <option value selected>Bed size</option>
-                  <option value>90 x 200</option>
-                  <option value>120 x 200</option>
-                  <option value>160 x 200</option>
-                  <option value>180 x 200</option>
+                  <option value="0" selected>Bed size</option>
+                  <option value="1" >90 x 200</option>
+                  <option value="2">120 x 200</option>
+                  <option value="3">160 x 200</option>
+                  <option value="4">180 x 200</option>
                 </select>
               </div>
               <div class="col-lg-3 d-lg-flex justify-content-lg-end align-items-lg-center">
                 <label class="form-label d-none d-md-block" for="quantity" style="width: 6vw">Quantity:</label><input
                   id="number" class="form-control quantity-input" type="number" value="1" name="product_page_quantity"
-                  placeholder="Quantity" style="width: 7vw" min="0" />
+                  placeholder="Quantity" style="width: 7vw" min="1" />
               </div>
               <div class="col d-lg-flex justify-content-lg-center">
-                <button class="btn btn-primary d-lg-flex justify-content-lg-center" type="button" style="
+                <button id="addToCartBtn" class="btn btn-primary d-lg-flex justify-content-lg-center" type="button" style="
                       margin-top: 30px;
                       background: var(--bs-dark);
                       width: 30vw;
@@ -75,13 +77,12 @@
     </section>
   </main>
 
-  <script type="module" id="replace_with_footer" src="footer.js"></script>
+  <script type="module" id="replace_with_footer" src="../components/footer.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
-
-  <!-- <script src="components/Welcome-page.js"></script> -->
+  <script type="module" src="../components/product-page.js"></script>
 </body>
 
 </html>
