@@ -34,7 +34,6 @@ function insertData(name, description, price, sale, sku, imageUrl, size90x200, s
     document.querySelector('#spinner').style.display = 'none';
 
 }
-
 //needed
 function uploadImage(Pname, description, price, sale, size90x200, size120x200, size160x200, size180x200, isJustLandedCbChecked, isFewLeftCbChecked, fabric) {
     const ref = storage.ref();
@@ -135,7 +134,7 @@ function CheckingRestrictions(Pname, description, price, sale, size90x200, size1
                 alert("You must enter quantity larger than zero");
                 return;
             }
-            uploadImage(Pname, description, price, sale, size90x200, size120x200, size160x200, size180x200, ImageRef, isJustLandedCbChecked, isFewLeftCbChecked, fabric)
+            uploadImage(Pname, description, price, sale, size90x200, size120x200, size160x200, size180x200, isJustLandedCbChecked, isFewLeftCbChecked, fabric)
 
         }
         else {
