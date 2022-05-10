@@ -1,7 +1,6 @@
 import { fbAuth, dbWishList ,dbShoppingCart, dbProducts } from '../firebase/data.js';
 
-// const productName = sessionStorage.getItem('Pname');
-const productName ='temp19';
+const productName = sessionStorage.getItem('Pname');
 dbProducts.doc(productName).get().then((doc) => {
     if (doc.exists) 
     {

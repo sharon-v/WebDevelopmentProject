@@ -11,8 +11,8 @@ dbOrders.doc(orderNumber).get().then((doc) => {
         productList.push("");
         for(let i = 0 ; i < productList.length ; ++i)
         {
-            console.log(productList[i].productName);
-            dbProducts.doc(productList[i].productName).get().then((pro) =>{
+            console.log(productList[i].name);
+            dbProducts.doc(productList[i].name).get().then((pro) =>{
                 if (pro.exists)
                 {
                     if(i == 0)
