@@ -94,6 +94,7 @@ function changeValues(element, orderNumber, date, buyerEmail, totalAmount, order
     }
     var orderPage = element.querySelector('#orderPage');
     orderPage.addEventListener('click', () => {
+        sessionStorage.setItem('orderNumber', orderNumber); //moving parameters to order summery page
         location.replace('../components/order-summary.html');
     })
 
