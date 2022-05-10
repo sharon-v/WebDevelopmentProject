@@ -42,14 +42,11 @@ function searchByInput() {
         console.log(searchInput.value);
         dbProducts.doc(searchInput.value).get().then((doc) => {
             if (doc.exists) {
-                console.log('heyyyy');
                 editElement(doc.data().imageUrl, doc.data().Pname, doc.data().price, doc.data().sale, doc.data().sku);
-                console.log('yyyy');
                 document.querySelector('#spinner').style.display = 'none';
                 return;
             }
             else {
-                console.log('beyyyy');
                 dbProducts.where('sku', '==', parseInt(searchInput.value)).get().then((querySnapshot) => {
                     if (querySnapshot.docs.length > 0) {
                         var res = querySnapshot.docs[0];
