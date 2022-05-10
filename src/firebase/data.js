@@ -1,16 +1,15 @@
 // Your web app's Firebase configuration
 export const state = {
-    firebaseConfig: {
-        apiKey: 'AIzaSyAlk5hRiLNudNrTepVbfSd5ClZVZEip2LA',
-        authDomain: 'holysheetsweb.firebaseapp.com',
-        projectId: 'holysheetsweb',
-        storageBucket: 'holysheetsweb.appspot.com',
-        messagingSenderId: '440529465617',
-        appId: '1:440529465617:web:9be0d40688f07151849cb0',
-        measurementId: 'G-MS9HPT4M16',
-    },
+  firebaseConfig: {
+    apiKey: 'AIzaSyAlk5hRiLNudNrTepVbfSd5ClZVZEip2LA',
+    authDomain: 'holysheetsweb.firebaseapp.com',
+    projectId: 'holysheetsweb',
+    storageBucket: 'holysheetsweb.appspot.com',
+    messagingSenderId: '440529465617',
+    appId: '1:440529465617:web:9be0d40688f07151849cb0',
+    measurementId: 'G-MS9HPT4M16',
+  },
 };
-
 
 firebase.initializeApp(state.firebaseConfig);
 
@@ -23,20 +22,20 @@ var dbDeveloperPasscode = database.collection('developerPasscode');
 var dbOrders = database.collection('orders');
 var dbShoppingCart = database.collection('shoppingCart');
 var dbOrdersTimes = database.collection('ordersTimes');
-var dbWishList = database.collection('wishList');
+var dbWishList = database.collection('wishlist');
 
 var storage = firebase.storage();
 var fbAuth = firebase.auth();
 
 export {
-    fbAuth,
-    dbProducts,
-    dbCustomers,
-    dbManager,
-    dbDeveloperPasscode,
-    dbOrders,
-    dbShoppingCart,
-    dbWishList,
-    dbOrdersTimes,
-    storage,
+  fbAuth,
+  dbProducts,
+  dbCustomers,
+  dbManager,
+  dbDeveloperPasscode,
+  dbOrders,
+  dbShoppingCart,
+  dbWishList,
+  dbOrdersTimes,
+  storage,
 };
