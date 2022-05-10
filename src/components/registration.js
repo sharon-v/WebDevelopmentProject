@@ -46,20 +46,8 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-/* check for invalid password or password confirmation */
-function checkPasswordConfirmation(password, passwordConfirmation) {
-  // check if the passwords are equal 
-  if (password != passwordConfirmation) {
-    alert('passwords do not match');
-    return false;
-  }
-  else {
-    return true;
-  }
-}
-
 function customerSignUp(fname, lname, birthdate, phoneNumber, email, password, passwordConfirmation) {
-  if (!checkPhoneNumber(phoneNumber)) {
+  if (!validateForm(fname, lname, birthdate, phoneNumber, password)) {
     return;
   }
   if (checkPasswordConfirmation(password, passwordConfirmation)) {
@@ -106,22 +94,20 @@ function managerSignUp(fname, lname, birthdate, phoneNumber, email, password, pa
       return;
     }
     else {
-      if (!checkPasswordConfirmation(password, passwordConfirmation)) {
+      if (!validateForm(fname, lname, birthdate, phoneNumber, password)) {
         return;
       }
-      if (!checkPhoneNumber(phoneNumber)) {
+      if (!checkPasswordConfirmation(password, passwordConfirmation)) {
         return;
       }
       // checking developer passcode
       var x = '';
-      dbDeveloperPasscode.get().then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          x = doc.data();
-        });
+      dbDeveloperPasscode.doc('passcode').get().then((querySnapshot) => {
+        x = querySnapshot.data().passcode;
         console.log('developer passcode:', x.passcode, String(x).length);
         console.log('manager passcode:', managerPasscode);
         console.log('manager passcode length:', String(managerPasscode).length);
-        if (String(managerPasscode) === String(x)) {
+        if (String(managerPasscode) != String(x)) {
           // if (String(managerPasscode).localeCompare(String(x)) != 0) {  // doesn't 
           console.log('error in matching developer passcode');
           alert('developer passcode is not correct');
@@ -183,10 +169,104 @@ function deleteUserFromAuth(user) {
 
 function checkPhoneNumber(phoneNumber) {
   if (/^[0-9]+$/.test(phoneNumber)) {
+    console.log('phone-length', phoneNumber.length);
+    if (phoneNumber.length != 10) {
+      alert('Phone number should be 10 digis long');
+      return false;
+    }
     return true;
   }
   else {
     alert('phone number should contain digits only');
     return false;
   }
+}
+
+
+/* check for invalid password or password confirmation */
+function checkPasswordConfirmation(password, passwordConfirmation) {
+  // check if the passwords are equal 
+  if (password != passwordConfirmation) {
+    alert('passwords do not match');
+    return false;
+  }
+  else {
+    return true;
+  }
+}
+
+function checkValidBirdate(birthdate) {
+  //Check whether valid dd/MM/yyyy Date Format.
+  if (birthdate > '1910-01-01') {
+    var parts = birthdate.split("-");
+    var dtYear = parts[0];
+    var dtMonth = parts[1];
+    var dtDay = parts[2];
+    console.log('date: ', dtDay, '/', dtMonth, '/', dtYear);
+    var dtCurrent = new Date();
+    console.log('current date: ', dtCurrent);
+    if (dtCurrent.getFullYear() - dtYear < 18) {
+      alert('Invalid birthdate - You need to be atleast 18 years old to sign up');
+      return false;
+    }
+
+    if (dtCurrent.getFullYear() - dtYear == 18) {
+      //CD: 11/06/2018 and DB: 15/07/2000. Will turned 18 on 15/07/2018.
+      if (dtCurrent.getMonth() < dtDOB.getMonth()) {
+        alert('Invalid birthdate - You need to be atleast 18 years old to sign up');
+        return false;
+      }
+      if (dtCurrent.getMonth() == dtMonth) {
+        //CD: 11/06/2018 and DB: 15/06/2000. Will turned 18 on 15/06/2018.
+        if (dtCurrent.getDate() < dtDOB.getDate()) {
+          alert('Invalid birtdate - You need to be atleast 18 years old to sign up');
+          return false;
+        }
+      }
+    }
+    return true;
+
+  } else {
+    alert('Invalid birthdate');
+    return false;
+  }
+}
+
+
+
+function validateForm(fname, lname, birthdate, phoneNumber, password) {
+  if (fname == null || fname == "") {
+    alert("Please Fill First Name Field");
+    return false;
+  }
+
+  if (lname == null || lname == "") {
+    alert("Please Fill Last Name Field");
+    return false;
+  }
+
+  if (birthdate == null || birthdate == "") {
+    alert("Please Fill Birthdate Field");
+    return false;
+  }
+
+  if (!checkValidBirdate(birthdate)) {
+    return false;
+  }
+
+  if (!checkPhoneNumber(phoneNumber)) {
+    return false;
+  }
+
+  if (password == null || password == "") {
+    alert("Please Fill Password Field");
+    return false;
+  }
+
+  if (password.length < 6) {
+    alert('Password should be at least 6 characters');
+    return false;
+  }
+
+  return true;
 }

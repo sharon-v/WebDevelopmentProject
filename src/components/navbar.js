@@ -117,9 +117,12 @@ function addEventListenersToNavBarButtons(isManager) {
     const nav_bed_btn = document.getElementById('nav_bed_btn');
     nav_bed_btn.addEventListener('click', () => {
         if (isManager == -1) {
-            location.replace('welcome-page.html'); // redirect a disconnected user to the home page
+            location.replace('welcome-page.html'); // redirect a disconnected user to the welcome page
         } else if (isManager == 0) {
             location.replace('home-page.html'); // redirect a connected user to the home page
+        }
+        else if (isManager == 1) {
+            location.replace('manager-manage-items.html'); // redirect a connected manager to his profile
         }
     });
 
@@ -127,7 +130,7 @@ function addEventListenersToNavBarButtons(isManager) {
     const nav_profile_btn = document.getElementById('nav_profile_btn');
     nav_profile_btn.addEventListener('click', () => {
         if (isManager == 1) {
-            location.replace('manager-manage-items.html'); // redirect a disconnected user to the home page
+            location.replace('manager-manage-items.html'); // redirect a connected manager to his profile
         } else {
             location.replace('profile.html'); // redirect a connected user to the home page
         }

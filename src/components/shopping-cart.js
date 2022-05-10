@@ -125,7 +125,7 @@ function initialization() {
 
 }
 
-
+// create that the amount of product the user want to add is available in the stock
 function checkStock() {
 
 }
