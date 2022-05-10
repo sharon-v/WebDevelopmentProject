@@ -13,8 +13,8 @@ function initialization(){
                 let userShoppingCart = querySnapshot.data().productList;
                 userShoppingCart.push(''); // makes the initialization of the fields to be latest
                 for(var i = 0; i< userShoppingCart.length; ++i){
-                    const x = userShoppingCart[i].quantity;
-                    dbProducts.doc(userShoppingCart[i].productName).get().then((pro) =>{
+                    const x = parseInt(userShoppingCart[i].quantity);
+                    dbProducts.doc(userShoppingCart[i].name).get().then((pro) =>{
                         if (pro.exists){
                             totalItems = totalItems + x;
                             if(pro.data().sale == "")
@@ -124,7 +124,7 @@ var btn = document.getElementById('payment_pay_button');
     const expirationYear = temp.options[temp.selectedIndex];
     const cardNumber = document.getElementById('card_number').value;
     const cvc = document.getElementById('cvc').value;
-    let res = checkData(fname, lname, street, streetNumber, postalCode, city, orderDate, orderHours, expirationMonth, expirationYear,  ID, cardNumber, cvc);
+    let res = checkData(fname, lname, street, streetNumber, postalCode, city, PhoneNumber, orderDate, orderHours, expirationMonth, expirationYear,  ID, cardNumber, cvc);
     if (res == true){
         console.log("true");
         fbAuth.onAuthStateChanged((user) => {
@@ -175,7 +175,7 @@ var btn = document.getElementById('payment_pay_button');
     }
 });
 
-function checkData(fname, lname, street, streetNumber, postalCode, city, orderDate, orderHours, expirationMonth, expirationYear,  ID, cardNumber, cvc)
+function checkData(fname, lname, street, streetNumber, postalCode, city, phoneNumber,  orderDate, orderHours, expirationMonth, expirationYear,  ID, cardNumber, cvc)
 {
     if(fname.length < 1){
         alert('You must enter your first name');
@@ -197,7 +197,11 @@ function checkData(fname, lname, street, streetNumber, postalCode, city, orderDa
         alert('plaese pick a city from the list');
         return false;
     }
-    if(postalCode.length != 7){
+    if(!onlyNumbers(String(phoneNumber))){
+        alert('Phone number can be only with digits');
+        return false;
+    }
+    if(postalCode.length != 7 || !onlyNumbers(String(postalCode))){
         alert('You enter invalid postal code');
         return false;
     }
@@ -209,7 +213,7 @@ function checkData(fname, lname, street, streetNumber, postalCode, city, orderDa
         alert('plaese pick a hours for the order from the list');
         return false;
     }
-    if(ID.length != 9){
+    if(ID.length != 9 || !onlyNumbers(String(ID))){
         alert('You enter invalid ID number');
         return false;
     }
@@ -229,13 +233,18 @@ function checkData(fname, lname, street, streetNumber, postalCode, city, orderDa
             return false;
         }
     }
-    if(cardNumber.length != 16){
+    if(cardNumber.length != 16 || !onlyNumbers(String(cardNumber))){
         alert('You enter invalid card number');
         return false;
     }
-    if(cvc.length != 3){
+    if(cvc.length != 3 || !onlyNumbers(String(cvc))){
         alert('You enter invalid cvc');
         return false;
     }
     return true;
 }
+
+function onlyNumbers(str) {
+    return /^[0-9]+$/.test(str);
+  }
+  

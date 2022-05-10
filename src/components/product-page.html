@@ -42,7 +42,15 @@
                       width: 3vw;
                       height: 3vw;
                     "></button>
+                    <div class="row" style="padding-top: 2vw;">
+                      <div class="col text-start">
+                        <label id="justLanded" class="form-label" style="margin-top: 5px;margin-right: 10px;padding: 2px;color: var(--bs-gray-800);background: var(--bs-white);margin-right: 1vw;border: 1px hidden var(--bs-pink);box-shadow: 0px 0px 4px var(--bs-gray-400), 0px 0px 4px var(--bs-gray-400);padding-left: 1vw;padding-right: 1vw;">Just Landed</label>
+                        <label id="fewLeft" class="form-label" style="margin-top: 5px;margin-right: 10px;box-shadow: 0px 0px 6px 0px rgb(185,191,198);padding: 2px;margin-right: 1vw;margin-left: 1vw;color: var(--bs-gray-800);background: var(--bs-white);padding-left: 1vw;padding-right: 1vw;">Few Left</label>
+                        <label id="outOfStock" class="form-label" style="margin-top: 5px;margin-right: 10px;box-shadow: 0px 0px 6px 0px rgb(185,191,198);padding: 2px;margin-right: 1vw;margin-left: 1vw;color: var(--bs-gray-800);background: var(--bs-white);padding-left: 1vw;padding-right: 1vw; display: none;">Out Of Stock</label>
+                      </div>
+                  </div>
               </div>
+
               <div class="col d-lg-flex justify-content-lg-end"></div>
               <div class="col-lg-4 d-lg-flex justify-content-lg-end align-items-lg-center">
                 <select id="bedSizeOptions" class="form-select-lg" name="product_page_bed_size"
@@ -56,7 +64,7 @@
               </div>
               <div class="col-lg-3 d-lg-flex justify-content-lg-end align-items-lg-center">
                 <label class="form-label d-none d-md-block" for="quantity" style="width: 6vw">Quantity:</label><input
-                  id="number" class="form-control quantity-input" type="number" value="1" name="product_page_quantity"
+                  id="quantity" class="form-control quantity-input" type="number" value="1" name="product_page_quantity"
                   placeholder="Quantity" style="width: 7vw" min="1" />
               </div>
               <div class="col d-lg-flex justify-content-lg-center">
