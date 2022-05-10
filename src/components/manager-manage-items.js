@@ -23,45 +23,61 @@ function initialization() {
 }
 
 
+
 var searchButtton = document.querySelector('#searchButton');
 var searchInput = document.querySelector('#searchInput');
 searchButtton.addEventListener('click', () => {
-    filterByProductId();
-})
-
+    searchByInput();
+});
 searchInput.addEventListener('keypress', function (e) {
     if (e.key === 'Enter') {
-        // code for enter
-        filterByProductId();
+        searchByInput();
     }
 });
-
-function filterByProductId() {
+function searchByInput() {
     document.querySelector('#spinner').style.display = 'inline';
     if (searchInput.value.length > 0) {
-        var container = document.querySelector('#products_list');
+        const container = document.querySelector('#products_list');
         removeAllChildNodes(container);
+        console.log(searchInput.value);
         dbProducts.doc(searchInput.value).get().then((doc) => {
             if (doc.exists) {
+                console.log('heyyyy');
                 editElement(doc.data().imageUrl, doc.data().Pname, doc.data().price, doc.data().sale, doc.data().sku);
+                console.log('yyyy');
                 document.querySelector('#spinner').style.display = 'none';
-            } else {
-                console.log("No such document!");
+                return;
+            }
+            else {
+                console.log('beyyyy');
+                dbProducts.where('sku', '==', parseInt(searchInput.value)).get().then((querySnapshot) => {
+                    if (querySnapshot.docs.length > 0) {
+                        var res = querySnapshot.docs[0];
+                        editElement(res.data().imageUrl, res.data().Pname, res.data().price, res.data().sale, res.data().sku);
+                        document.querySelector('#spinner').style.display = 'none';
+                    } else {
+                        document.querySelector('#products_list').lastElementChild.style.display = 'none';
+                        document.querySelector('#spinner').style.visibility = 'visible';
+                    }
+                }).catch((error) => {
+                    console.log('Error getting documents: ', error);
+                });
             }
         }).catch((error) => {
-            console.log("Error getting document:", error);
+            console.log('Error getting document:', error);
         });
-    }
-    else {
+
+    } else {
+        document.querySelector('#products_list').lastElementChild.style.display = 'inline';
         document.querySelector('#spinner').style.visibility = 'visible';
         initialization();
     }
 }
 
-
 function editElement(url, Pname, price, sale, sku) {
     let ele = document.querySelector('#product');
     ele = changeValues(ele, url, Pname, price, sale, sku);
+    ele.style.visibility = "visible";
 }
 
 function changeValues(element, urlName, Pname, proPrice, pSale, psku) {
@@ -127,7 +143,6 @@ function deleteFirst() {
 function removeAllChildNodes(parent) {
     document.getElementById('spinner').style.display = 'inline';
     while (parent.children.length > 1) {
-        console.log("delete");
         parent.removeChild(parent.lastChild);
     }
 }
