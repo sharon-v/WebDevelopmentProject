@@ -1,113 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
-    <title>Product - Brand</title>
-    <link rel="stylesheet" href="../components/product-page.css" />
-  </head>
 
-  <body>
-    <script type="module" id="replace_with_navbar" src="../components/navbar.js"></script>
-    <main class="page product-page">
-      <section class="clean-block clean-product dark">
-        <div class="container-xl">
-          <div class="block-heading">
-            <h1 style="font-size: calc(1.325rem + 0.9vw)">Product Page<br /></h1>
-          </div>
-          <div class="block-content">
-            <div class="product-info">
-              <div class="row">
-                <div class="col-md-6 col-lg-6">
-                  <img
-                    src="../assets/images/sheets/81H1D7elmjL._AC_SL1500_.jpg"
-                    style="width: 430px; height: 400px"
-                  />
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+  <title>Product - Brand</title>
+  <link rel="stylesheet" href="../components/product-page.css" />
+</head>
+
+<body>
+  <script type="module" id="replace_with_navbar" src="../components/navbar.js"></script>
+  <main class="page product-page">
+    <section class="clean-block clean-product dark">
+      <div class="container-xl">
+        <div class="block-heading">
+          <h1 style="font-size: calc(1.325rem + 0.9vw)">Product Page<br /></h1>
+        </div>
+        <div class="block-content">
+          <div class="product-info">
+            <div class="row">
+              <div class="col-md-6 col-lg-6">
+                <img src="../assets/images/sheets/81H1D7elmjL._AC_SL1500_.jpg" style="width: 430px; height: 400px" />
+              </div>
+              <div class="col-md-6 my-auto" style="padding-left: 2vw">
+                <div class="info">
+                  <h3 id="sheetsName" style="font-weight: bold; font-size: 27.5px">Sultan Sheets</h3>
                 </div>
-                <div class="col-md-6 my-auto" style="padding-left: 2vw">
-                  <div class="info">
-                    <h3 style="font-weight: bold; font-size: 27.5px">Sultan Sheets</h3>
-                  </div>
-                  <div class="price">
-                    <p>
-                      Lovely royalty vintage style sheets, the bedding is hand-made from the softest
-                      silk there is.
-                    </p>
-                    <h3 style="text-decoration: line-through">139.90 ₪</h3>
-                    <h3 style="color: var(--bs-red)">119.90 ₪</h3>
-                    <label class="form-label">SKU</label
-                    ><small style="padding-left: 20px">5959</small>
-                  </div>
-                  <button
-                    class="btn d-lg-flex justify-content-lg-end align-items-lg-center"
-                    type="button"
-                    style="
+                <div class="price">
+                  <p id="proDescription">
+                    Lovely royalty vintage style sheets, the bedding is hand-made from the softest
+                    silk there is.
+                  </p>
+                  <h3 id="prodPrice" style="text-decoration: line-through">139.90 ₪</h3>
+                  <h3 id="prodSale" style="color: var(--bs-red)">119.90 ₪</h3>
+                  <label class="form-label">SKU</label><small id="prodSku" style="padding-left: 20px">5959</small>
+                </div>
+                <button class="btn d-lg-flex justify-content-lg-end align-items-lg-center" type="button" style="
                       background: url('../assets/icons/heart-icon.svg') center / contain no-repeat;
                       width: 3vw;
                       height: 3vw;
-                    "
-                  ></button>
-                </div>
-                <div class="col d-lg-flex justify-content-lg-end"></div>
-                <div class="col-lg-4 d-lg-flex justify-content-lg-end align-items-lg-center">
-                  <select
-                    class="form-select-lg"
-                    name="product_page_bed_size"
-                    style="margin-left: 20vw; margin-top: 30px; margin-bottom: 30px; width: 17vw"
-                  >
-                    <option value selected>Bed size</option>
-                    <option value>90 x 200</option>
-                    <option value>120 x 200</option>
-                    <option value>160 x 200</option>
-                    <option value>180 x 200</option>
-                  </select>
-                </div>
-                <div class="col-lg-3 d-lg-flex justify-content-lg-end align-items-lg-center">
-                  <label class="form-label d-none d-md-block" for="quantity" style="width: 6vw"
-                    >Quantity:</label
-                  ><input
-                    id="number"
-                    class="form-control quantity-input"
-                    type="number"
-                    value="1"
-                    name="product_page_quantity"
-                    placeholder="Quantity"
-                    style="width: 7vw"
-                    min="0"
-                  />
-                </div>
-                <div class="col d-lg-flex justify-content-lg-center">
-                  <button
-                    class="btn btn-primary d-lg-flex justify-content-lg-center"
-                    type="button"
-                    style="
+                    "></button>
+              </div>
+              <div class="col d-lg-flex justify-content-lg-end"></div>
+              <div class="col-lg-4 d-lg-flex justify-content-lg-end align-items-lg-center">
+                <select class="form-select-lg" name="product_page_bed_size"
+                  style="margin-left: 20vw; margin-top: 30px; margin-bottom: 30px; width: 17vw">
+                  <option value selected>Bed size</option>
+                  <option value>90 x 200</option>
+                  <option value>120 x 200</option>
+                  <option value>160 x 200</option>
+                  <option value>180 x 200</option>
+                </select>
+              </div>
+              <div class="col-lg-3 d-lg-flex justify-content-lg-end align-items-lg-center">
+                <label class="form-label d-none d-md-block" for="quantity" style="width: 6vw">Quantity:</label><input
+                  id="number" class="form-control quantity-input" type="number" value="1" name="product_page_quantity"
+                  placeholder="Quantity" style="width: 7vw" min="0" />
+              </div>
+              <div class="col d-lg-flex justify-content-lg-center">
+                <button class="btn btn-primary d-lg-flex justify-content-lg-center" type="button" style="
                       margin-top: 30px;
                       background: var(--bs-dark);
                       width: 30vw;
                       border-style: hidden;
                       margin-left: 50vw;
-                    "
-                  >
-                    <img
-                      src="../assets/icons/shopping-cart-free-icon-font.svg"
-                      width="15"
-                      height="20"
-                    /> Add to Cart
-                  </button>
-                </div>
+                    ">
+                  <img src="../assets/icons/shopping-cart-free-icon-font.svg" width="15" height="20" /> Add to Cart
+                </button>
               </div>
             </div>
           </div>
         </div>
-      </section>
-    </main>
+      </div>
+    </section>
+  </main>
 
-    <script type="module" id="replace_with_footer" src="footer.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
+  <script type="module" id="replace_with_footer" src="footer.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
 
-    <!-- <script src="components/Welcome-page.js"></script> -->
-  </body>
+  <!-- <script src="components/Welcome-page.js"></script> -->
+</body>
+
 </html>

@@ -102,6 +102,7 @@ function changeValues(element, url, Pname, proPrice, pSale, psku) {
         dbProducts.doc(Pname).delete().then(() => {
             console.log("Document successfully deleted!");
             removeAllChildNodes(document.getElementById("products_list"));
+            location.replace('../components/manager-manage-items.html');
             // try to delete image from storage
             storage.doc(Pname + '.jpg').delete().then(() => {
                 console.log("Image successfully deleted!");

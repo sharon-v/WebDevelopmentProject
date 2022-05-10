@@ -113,8 +113,7 @@ function CheckingRestrictions(Pname, description, price, sale, size90x200, size1
 function uploadImage(Pname, description, price, sale, size90x200, size120x200, size160x200, size180x200, isJustLandedCbChecked, isFewLeftCbChecked, fabric, sku) {
     const ref = firebase.storage().ref();
     const file = document.querySelector("#image-input").files[0];
-    const name = 'images/' + Pname + '.jpg';  // + file.name;
-    // writeProductToDB(Pname, description, price, sale, size90x200, size120x200, size160x200, size180x200, isJustLandedCbChecked, isFewLeftCbChecked, fabric, sku, name);
+    const name = 'images/' + Pname + '.jpg';
 
     const metadata = {
         contentType: file.type
