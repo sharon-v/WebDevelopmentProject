@@ -21,14 +21,14 @@ function initialization(name, url, description, price, sale, sku, FewLeftCbCheck
     document.querySelector('#sheetsName').innerHTML = name;
     document.querySelector('#proDescription').innerHTML = description;
     let productPrice = document.querySelector('#prodPrice');
-    productPrice.innerHTML = price + "₪";
+    productPrice.innerHTML = price.toFixed(2) + "₪";
     let productsale = document.querySelector('#prodSale');
     if (sale == "") {
         productsale.innerHTML = "";
     }
     else {
         productPrice.style="text-decoration: line-through";
-        productsale.innerHTML = sale + "₪";
+        productsale.innerHTML = sale.toFixed(2) + "₪";
     }
     document.querySelector('#prodSku').innerHTML = sku;
     document.getElementById('productImage').src = url;
