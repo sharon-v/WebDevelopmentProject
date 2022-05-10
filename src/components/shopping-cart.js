@@ -2,23 +2,21 @@ import { fbAuth, dbShoppingCart, dbProducts } from '../firebase/data.js'
 
 var userShoppingCart = [];
 initialization();
-var firstProductAdded = false;
-let totalItems = 0;
-let totalAmount = 0;
-const subTotal = document.getElementById('subTotal');
-const items = document.getElementById('totalItems');
+const subTotal = document.querySelector('#subTotal');
+const totalPrice = document.querySelector('#totalPrice');
+
+// var firstProductAdded = false;
 
 
 function initialization() {
     fbAuth.onAuthStateChanged((user) => {
         dbShoppingCart.doc(user.email).get().then((querySnapshot) => {
             if (querySnapshot.exists) {
+                var totalAmount = 0;
                 userShoppingCart = querySnapshot.data().productList;
                 for (let i = 0; i < userShoppingCart.length; ++i) {
-                    console.log(userShoppingCart[i].productId);
                     dbProducts.doc(userShoppingCart[i].name).get().then((product) => {
                         if (product.exists) {
-
                             console.log('product name', product.id);
                             console.log('product sku', product.data().sku);
                             console.log('product price', product.data().price);
@@ -30,17 +28,27 @@ function initialization() {
                                 editElement(product.id, product.data().sku, product.data().price, userShoppingCart[i].quantity, product.data().imageUrl, userShoppingCart[i].size);
                             }
                             else {
-                                addElement(product.id, product.data().sku, product.price, userShoppingCart[i].quantity, product.data().imageUrl, userShoppingCart[i].size);
+                                addElement(product.id, product.data().sku, product.data().price, userShoppingCart[i].quantity, product.data().imageUrl, userShoppingCart[i].size);
                             }
-                            editOrderSummary(product.data().totalItems, doc.data().totalAmount);
+                            totalAmount += product.data().price * userShoppingCart[i].quantity;
+                            if (i == userShoppingCart.length - 1) {
+                                // let subTotal = document.querySelector('#subTotal');
+                                subTotal.innerHTML = totalAmount + '₪';
+                                // let totalPrice = document.querySelector('#totalPrice');
+                                totalPrice.innerHTML = totalAmount + '₪';
+                                console.log('added last product', totalAmount);
+                            }
                         }
                         else {
-                            console.log
-                            editOrderSummary(doc.data().totalItems, doc.data().totalAmount);
-                            spinner.style.display = 'none';
+                            alert('The product', userShoppingCart[i].name, 'is not available anymore');
+                            console.log('The product', userShoppingCart[i].name, 'is not available anymore');
                         }
                     })
                 }
+            }
+            else {
+                // need to present a message on the screen
+                alert('Shopping cart is empty');
             }
         })
     })
@@ -60,20 +68,25 @@ function changeValues(element, Name, SKU, price, quantity, url, size) {
     let productPrice = element.querySelector('#productPrice');
     productPrice.innerHTML = price + '₪';
     let productQuantity = element.querySelector('#productQuantity');
-    productQuantity.innerHTML = quantity;
+    productQuantity.value = quantity;
+
+    // add a listener for when the customer wants to update the quantity of a product in the shopping cart
+    productQuantity.addEventListener('input', () => {
+        updateQuantityInShppingCart(productName, productQuantity);
+    });
+
     let productSize = element.querySelector('#productSize');
     productSize.innerHTML = size;
-    // let totalproductPrice = element.querySelector('#totalproductPrice');
-    // totalproductPrice.innerHTML = (price * quantity) + '₪';
-    //TODO: add image ref
+    let productPicture = element.querySelector('#productPicture');
+    productPicture.src = url;
     return element;
 }
 
 function addElement(Name, SKU, price, quantity, url, size) {
     let ele = document.querySelector('#product');
     let newElement = ele.cloneNode(true);
-    newElement = changeValues(newElement, Name, SKU, price, quantity, url);
-    let currentDiv = document.getElementById("productsList");
+    newElement = changeValues(newElement, Name, SKU, price, quantity, url, size);
+    let currentDiv = document.getElementById("items");
     currentDiv.appendChild(newElement);
 }
 
@@ -106,6 +119,19 @@ function editOrderSummary(quantity, price) {
 
 }
 
+
+/* function */
+// function updateQuantityInShppingCart(productName, productQuantity) {
+//     if (productQuantity.value == 0) {
+//         // need to delete the product from shopping cart and update the stock
+//     }
+//     else if (productQuantity.value < 0) {
+//         alert('can not change the quantity of a product to a negative number');
+
+//     }
+//     // alert('Horray! Someone wrote "' + productName.innerHTML + '"!');
+
+// }
 
 // create that the amount of product the user want to add is available in the stock
 function checkStock() {

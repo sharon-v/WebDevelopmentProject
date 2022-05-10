@@ -46,7 +46,7 @@ app.use((req, res, next) => {
 // original
 app.get('/', (req, res) => {
   // res.send('<h1>The web is on the air<h1>');
-  res.sendFile('/components/user-orders.html', { root: __dirname });
+  res.sendFile('/components/shopping-cart.html', { root: __dirname });
 });
 
 // test
