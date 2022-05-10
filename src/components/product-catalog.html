@@ -51,29 +51,19 @@
             </a>
           </li>
         </ul>
-        <!-- <div class="d-lg-flex justify-content-lg-start filters" style="padding-bottom: 20px;padding-left: 5vw;"><select
-            id="sort_combo" style="padding-left: 30px;font-size: 20px;text-align: left;color:
-            var(--bs-gray-700);border-color: var(--bs-gray-400);">
-            <option value selected style="font-weight: bold">Sort by</option>
-            <option value="1">Lowest to Highest</option>
-            <option value="2">Highest to Lowest</option>
-          </select>
-        </div> -->
-        <!-- <div class="d-lg-flex justify-content-lg-start filters" style="padding-bottom: 20px; padding-left: 30px">
-          <select id="sort_combo" style="font-size: 20px; text-align: left">
-            <option value selected style="font-weight: bold">Sort by</option>
-            <option value="1">Lowest to Highest</option>
-            <option value="2">Highest to Lowest</option>
-          </select>
-        </div> -->
+
         <div class="row" style="padding-bottom: 3vw; padding-top: 3vw;">
-          <div class="col text-center"><select id="filter_size" style="padding-left: 30px;font-size: 20px;text-align: left;color:
+          <div class="col text-center"><select id="filter_combo" style="padding-left: 30px;font-size: 20px;text-align: left;color:
               var(--bs-gray-700);border-color: var(--bs-gray-400);">
-              <option value selected style="font-weight: bold">Filter By</option>
-              <option value="1">California King</option>
-              <option value="2">King</option>
-              <option value="3">Queen</option>
-              <option value="4">Twin</option>
+              <option value="0" selected style="font-weight: bold">Filter By</option>
+              <option value="1" data-bs-toggle="tooltip" data-bs-placement="bottom" title="180x200">
+                California King</option>
+              <option value="2" data-bs-toggle="tooltip" data-bs-placement="bottom" title="160x200">King
+              </option>
+              <option value="3" data-bs-toggle="tooltip" data-bs-placement="bottom" title="120x200">
+                Queen</option>
+              <option value="4" data-bs-toggle="tooltip" data-bs-placement="bottom" title="90x200">Twin
+              </option>
               <option value="5">Cotton</option>
               <option value="6">Microfiber</option>
               <option value="7">Flannel</option>
@@ -86,109 +76,12 @@
             </select></div>
           <div class="col text-center"><select id="sort_combo" style="padding-left: 30px;font-size: 20px;text-align: left;color:
             var(--bs-gray-700);border-color: var(--bs-gray-400);">
-              <option value selected style="font-weight: bold">Sort by</option>
+              <option value="0" selected style="font-weight: bold">Sort by</option>
               <option value="1">Lowest to Highest</option>
               <option value="2">Highest to Lowest</option>
             </select></div>
 
-          <!-- <div class="col text-center"><select id="filter_fabric" style="padding-left: 30px;font-size: 20px;text-align: left;color:
-              var(--bs-gray-700);border-color: var(--bs-gray-400);">
-              <option value selected style="font-weight: bold">Fabric</option>
-              <option value>Cotton</option>
-              <option value>Microfiber</option>
-              <option value>Flannel</option>
-              <option value>Satin</option>
-              <option value>Jersey</option>
-            </select></div> -->
-          <!-- <div class="col-lg-3 text-center"><select id="filter_status" style="padding-left: 30px;font-size: 20px;text-align: left;color:
-              var(--bs-gray-700);border-color: var(--bs-gray-400);">
-              <option value selected style="font-weight: bold">Product Status</option>
-              <option value>Just Landed</option>
-              <option value>Few Left</option>
-            </select>
-            <div class="d-lg-flex mx-auto justify-content-lg-end align-items-lg-end" data-bs-toggle="tooltip"
-              data-bs-placement="bottom" style="margin-top: 4vw;" title="Activate filter options"><button
-                class="btn btn-primary" type="button"
-                style="border-style: solid;border-color: var(--bs-pink);background: var(--bs-white);color: var(--bs-pink);font-size: 18px;">Filter</button>
-            </div>
-          </div> -->
         </div>
-        <!-- <div class="row" style="padding-bottom: 3vw;">
-          <div class="col text-center"><label class="col-form-label"
-              style="color: var(--bs-pink);font-weight: bold;">Filter Options:</label></div>
-          <div class="col text-center"><select
-              style="padding-left: 30px;font-size: 20px;text-align: left;color: var(--bs-pink);border-color: var(--bs-pink);">
-              <option value selected>Bed Size</option>
-              <option value>California King</option>
-              <option value>King</option>
-              <option value>Queen</option>
-              <option value>Twin</option>
-            </select></div>
-          <div class="col text-center"><select
-              style="padding-left: 30px;font-size: 20px;text-align: left;color: var(--bs-pink);border-color: var(--bs-pink);">
-              <option value selected>Fabric</option>
-              <option value>Cotton</option>
-              <option value>Microfiber</option>
-              <option value>Flannel</option>
-              <option value>Satin</option>
-              <option value>Jersey</option>
-            </select></div>
-          <div class="col-lg-3 text-center"><select
-              style="padding-left: 30px;font-size: 20px;text-align: left;color: var(--bs-pink);border-color: var(--bs-pink);">
-              <option value selected>Product Status</option>
-              <option value>Just Landed</option>
-              <option value>Few Left</option>
-            </select></div>
-        </div> -->
-        <!-- <div class="row">
-          <div class="col">
-            <div class="mx-auto filter-item" style="padding-top: 30px;padding-bottom: 40px;padding-left: 40px;">
-              <h3 style="font-weight: bold;text-decoration: underline;font-size: 20px;">Bed size</h3>
-              <div class="form-check"><input id="formCheck-2" class="form-check-input" type="radio" /><label
-                  class="form-check-label" for="formCheck-2">California King<br /></label></div>
-              <div class="form-check"><input id="formCheck-3" class="form-check-input" type="radio" /><label
-                  class="form-check-label" for="formCheck-3">King<br /></label></div>
-              <div class="form-check"><input id="formCheck-4" class="form-check-input" type="radio" /><label
-                  class="form-check-label" for="formCheck-4">Queen<br /></label></div>
-              <div class="form-check"><input id="formCheck-5" class="form-check-input" type="radio" /><label
-                  class="form-check-label" for="formCheck-5">Twin<br /></label></div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="mx-auto filter-item" style="padding-top: 30px;padding-bottom: 40px;padding-left: 40px;">
-              <h3 style="font-weight: bold;text-decoration: underline;font-size: 20px;">Fabric</h3>
-              <div class="form-check"><input id="formCheck-6" class="form-check-input" type="radio" /><label
-                  class="form-check-label" for="formCheck-6">Cotton<br /></label></div>
-              <div class="form-check"><input id="formCheck-7" class="form-check-input" type="radio" /><label
-                  class="form-check-label" for="formCheck-7">Microfiber<br /></label></div>
-              <div class="form-check"><input id="formCheck-8" class="form-check-input" type="radio" /><label
-                  class="form-check-label" for="formCheck-8">Flannel<br /></label></div>
-              <div class="form-check"><input id="formCheck-9" class="form-check-input" type="radio" /><label
-                  class="form-check-label" for="formCheck-9">Satin<br /></label></div>
-              <div class="form-check"><input id="formCheck-1" class="form-check-input" type="radio" /><label
-                  class="form-check-label" for="formCheck-1">Jersey<br /></label></div>
-            </div>
-          </div>
-          <div class="mx-auto filter-item" style="padding-top: 30px;padding-left: 40px;">
-            <h3 style="font-weight: bold;text-decoration: underline;font-size: 20px;">Product status</h3>
-            <div class="form-check"><input id="formCheck-10" class="form-check-input" type="radio" /><label
-                class="form-check-label" for="formCheck-10">Just landed<br /></label></div>
-            <div class="form-check"><input id="formCheck-11" class="form-check-input" type="radio" /><label
-                class="form-check-label" for="formCheck-11">On sale<br /></label></div>
-          </div>
-          <div class="d-lg-flex justify-content-lg-end align-items-lg-end" data-bs-toggle="tooltip"
-            data-bs-placement="bottom" style="margin-top: 4vw" title="Activate filter options">
-            <button id="filter_btn" class="btn btn-primary" type="button" style="
-                    border-style: solid;
-                    border-color: var(--bs-pink);
-                    background: var(--bs-white);
-                    color: var(--bs-pink);
-                    font-size: 18px;
-                  ">
-              Filter
-            </button>
-          </div>
-        </div> -->
       </div>
       <div class="content">
         <div class="row justify-content-center">
@@ -198,17 +91,16 @@
               <div id="spinner" class="loader"></div>
               <!-- start of list -->
               <div id="catalog_list" class="row g-0">
-                <div hidden id="product" class="col-12 col-md-6 col-lg-4">
+                <div hidden id="product" class="col-12 col-md-6 col-lg-4" style="border: 1px solid var(--bs-gray-200)">
                   <div class="clean-product-item">
                     <div id="image_field" class="image">
-                      <a href="../components/product-page.html"><img id="product_image"
-                          class="img-fluid d-block mx-auto"
+                      <a><img id="product_image" class="img-fluid d-block mx-auto"
                           src="../assets/images/sheets/1bd475a7dd51118a3db91c50d52bf519.jpg"
                           style="width: 250px; height: 300px" /></a>
                     </div>
-                    <div id="product_name" class="d-lg-flex justify-content-lg-center product-name">
-                      <a href="../components/product-page.html">sheets name</a>
-                    </div>
+                    <a id="product_name" class="d-lg-flex justify-content-lg-center product-name" href="#"
+                      style="color: var(--bs-gray-800)">sheets
+                      name</a>
                     <div id="product_sku" class="d-lg-flex justify-content-lg-center product-sku">
                       <span>sku</span>
                     </div>

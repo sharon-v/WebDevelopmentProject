@@ -645,7 +645,7 @@ button,
 }
 
 .flex-fill {
-  flex: 1 1 auto !important;
+  flex: 1 1 auto;
 }
 
 .flex-row {
@@ -876,7 +876,7 @@ body {
   }
 
   .clean-block.clean-catalog .products {
-    padding: 30px 30px 30px 0;
+    padding: 3vw 3vw 3vw 3vw;
   }
 
   .clean-block.clean-catalog .products .clean-product-item .product-name {

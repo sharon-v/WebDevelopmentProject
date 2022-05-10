@@ -41,6 +41,7 @@ function initialization() {
   });
 }
 
+// seearching
 var searchButtton = document.querySelector('#catalog_search_btn');
 var searchInput = document.querySelector('#catalog_search_input');
 // listen to search button if pressed
@@ -59,92 +60,150 @@ searchInput.addEventListener('keypress', function (e) {
   }
 });
 
+// filtering
+var filterCombo = document.querySelector('#filter_combo');
+filterCombo.addEventListener('change', (e) => {
+  // make sort combo empty 
+  sortCombo.value = 0;
 
-var filterBtn = document.querySelector('#filter_btn');
-filterBtn.addEventListener('click', (e) => {
-  // let res = sortCombo.options[sortCombo.selectedIndex].value;
-  // console.log("res = ", res)
-  // if (res == 1) {
-  //   sortLowToHigh();
-  // } else {
-  //   sortHighToLow();
-  // }
-
-  filterByFabric();
-});
-
-function filterByFabric() {
-  var ans;
-  if (document.querySelector('#cotton_cb').isChecked()) {
-
+  console.log("sort val = ", sortCombo.value)
+  removeAllChildNodes(document.getElementById('catalog_list'));
+  let res = filterCombo.options[filterCombo.selectedIndex].value;
+  var field;
+  var value;
+  var cond;
+  console.log("res = ", res)
+  if (res == 0) {
+    initialization();
+    return;
+  } else if (res == 1) {
+    // california king
+    field = 'size180x200';
+    value = '0';
+    cond = "!=";
+  } else if (res == 2) {
+    // king
+    field = 'size160x200';
+    value = '0';
+    cond = "!=";
+  } else if (res == 3) {
+    // queen
+    field = 'size120x200';
+    value = '0';
+    cond = "!=";
+  } else if (res == 4) {
+    // twin
+    field = 'size90x200';
+    value = '0';
+    cond = "!=";
+  } else if (res == 5) {
+    // cotton
+    field = 'fabric';
+    value = '1';
+    cond = "==";
+  } else if (res == 6) {
+    // microfiber
+    field = 'fabric';
+    value = '2';
+    cond = "==";
+  } else if (res == 7) {
+    // flannel
+    field = 'fabric';
+    value = '3';
+    cond = "==";
+  } else if (res == 8) {
+    // satin
+    field = 'fabric';
+    value = '4';
+    cond = "==";
+  } else if (res == 9) {
+    // jersey
+    field = 'fabric';
+    value = '5';
+    cond = "==";
+  } else if (res == 10) {
+    // just landed
+    field = 'isJustLandedCbChecked';
+    value = true;
+    cond = "==";
+  } else {
+    //few left
+    field = 'isFewLeftCbChecked';
+    value = true;
+    cond = "==";
   }
+  let elem = document.getElementById('product');
+  elem.style.display = 'inline';
 
-
-  let query = dbProducts.where()
-    .where("categoryServer", "==", categoryServerOption);
-  // if (categoryPriceOption == "high") {
-  //   query = query.orderBy('price', 'desc');
-  // } else {
-  //   query = query.orderBy('price');
-  // }
-  query
-    .get()
-    .then(function (querySnapshot) {
-      querySnapshot.forEach(function (doc) {
+  dbProducts.where(field, cond, value).get().then((querySnapshot) => {
+      var counter = 0;
+      querySnapshot.forEach((doc) => {
         console.log(doc.id, " => ", doc.data());
-      });
+
+        counter = counter + 1;
+        if (counter == 1) {
+
+          editElement(
+            doc.data().Pname,
+            doc.data().sku,
+            doc.data().price,
+            doc.data().sale,
+            doc.data().imageUrl
+          );
+          document.querySelector('#spinner').style.display = 'none';
+        } else {
+          addElement(
+            doc.data().Pname,
+            doc.data().sku,
+            doc.data().price,
+            doc.data().sale,
+            doc.data().imageUrl
+          );
+          document.querySelector('#spinner').style.display = 'none';
+
+        }
+      })
+      if (counter == 0) {
+        deleteFirst();
+      }
+
+
     })
-}
+    .catch((error) => {
+      console.log('Error getting documents: ', error);
+    });
+
+});
 
 //sorting
 var sortCombo = document.querySelector('#sort_combo');
 sortCombo.addEventListener('change', (e) => {
+  // make filter combo empty
+  filterCombo.value = 0;
+
   let res = sortCombo.options[sortCombo.selectedIndex].value;
+  let order;
   console.log("res = ", res)
-  if (res == 1) {
-    sortLowToHigh();
+  if (res == 0) {
+    initialization();
+    return;
+  } else if (res == 1) {
+    order = 'asc';
   } else {
-    sortHighToLow();
+    order = 'desc';
+
   }
-});
 
 
-function sortLowToHigh() {
-  // maybe need to limit to len of products
-  // sort by original price
-  // const sort = dbProducts.orderBy('price').limit(3);
+  dbProducts.orderBy('price', order).get().then((querySnapshot) => {
+    removeAllChildNodes(document.getElementById('catalog_list'));
+    var counter = 0;
+    querySnapshot.forEach((doc) => {
 
-  // dbProducts.orderBy('price').limit(3).onSnapshot((querySnapshot) => {
-  //   querySnapshot.forEach((prod) => {
-  //       if (prod.exists) {
+      console.log(doc.id, " => ", doc.data());
 
-  //         editElement(
-  //           prod.data().Pname,
-  //           prod.data().sku,
-  //           prod.data().price,
-  //           prod.data().sale,
-  //           prod.data().imageUrl
-  //         );
-  //         document.querySelector('#spinner').style.display = 'none';
-  //       }
-  //     })
-  //     .catch((error) => {
-  //       console.log('Error getting documents: ', error);
-  //     });
-  // })
-
-  // let query = dbProducts.orderBy('price', 'desc');
-
-
-  // if (categoryPriceOption == "high") {
-  //   query = query.orderBy('price', 'desc');
-  // } else {
-  //   query = query.orderBy('price');
-  // }
-  dbProducts.orderBy('price', 'desc').get().then(function (querySnapshot) {
-    querySnapshot.forEach(function (doc) {
-        console.log(doc.id, " => ", doc.data());
-
+      counter = counter + 1;
+      if (counter == 1) {
 
         editElement(
           doc.data().Pname,
@@ -154,22 +213,32 @@ function sortLowToHigh() {
           doc.data().imageUrl
         );
         document.querySelector('#spinner').style.display = 'none';
-
-      })
-      .catch((error) => {
-        console.log('Error getting documents: ', error);
-      });
-
+      } else {
+        addElement(
+          doc.data().Pname,
+          doc.data().sku,
+          doc.data().price,
+          doc.data().sale,
+          doc.data().imageUrl
+        );
+        document.querySelector('#spinner').style.display = 'none';
+      }
+    })
+    if (counter == 0) {
+      deleteFirst();
+    }
+  }).catch((error) => {
+    console.log('Error getting documents: ', error);
   });
-};
+});
 
-
-function sortHighToLow() {
-
-}
 
 function searchByInput() {
   document.querySelector('#spinner').style.display = 'inline';
+  // reset combos
+  sortCombo.value = 0;
+  filterCombo.value = 0;
+
   if (searchInput.value.length > 0) {
     console.log('entered filter with -> ', searchInput.value);
 
@@ -190,42 +259,46 @@ function searchByInput() {
             doc.data().imageUrl
           );
           return;
+
+        } else {
+          // SKU search
+          console.log(searchInput.value);
+
+          dbProducts
+            .where('sku', '==', parseInt(searchInput.value))
+            .get()
+            .then((querySnapshot) => {
+              console.log('entered sku search 1');
+              // console.log(querySnapshot.docs[0].data());
+              if (querySnapshot.docs.length > 0) {
+                let res = querySnapshot.docs[0];
+                console.log('entered sku search 2');
+                editElement(
+                  res.data().Pname,
+                  res.data().sku,
+                  res.data().price,
+                  res.data().sale,
+                  res.data().imageUrl
+                );
+                document.querySelector('#spinner').style.display = 'none';
+              } else {
+                console.log('no products');
+                document.querySelector('#catalog_list').lastElementChild.style.display = 'none';
+                // document.querySelector('#noOrderMessage').style.display = 'none';
+                document.querySelector('#spinner').style.visibility = 'visible';
+              }
+            })
+            .catch((error) => {
+              console.log('Error getting documents: ', error);
+            });
+
+
         }
       })
       .catch((error) => {
         console.log('Error getting document:', error);
       });
 
-    // SKU search
-    console.log(searchInput.value);
-
-    dbProducts
-      .where('sku', '==', parseInt(searchInput.value))
-      .get()
-      .then((querySnapshot) => {
-        console.log('entered sku search 1');
-        // console.log(querySnapshot.docs[0].data());
-        if (querySnapshot.docs.length > 0) {
-          let res = querySnapshot.docs[0];
-          console.log('entered sku search 2');
-          editElement(
-            res.data().Pname,
-            res.data().sku,
-            res.data().price,
-            res.data().sale,
-            res.data().imageUrl
-          );
-          document.querySelector('#spinner').style.display = 'none';
-        } else {
-          console.log('no products');
-          document.querySelector('#catalog_list').lastElementChild.style.display = 'none';
-          // document.querySelector('#noOrderMessage').style.display = 'none';
-          document.querySelector('#spinner').style.visibility = 'visible';
-        }
-      })
-      .catch((error) => {
-        console.log('Error getting documents: ', error);
-      });
   } else {
     // container.lastElementChild.style.display = 'none';
 
@@ -240,7 +313,7 @@ function searchByInput() {
 function editElement(pName, sku, price, sale, url) {
   let ele = document.querySelector('#product');
   ele = changeValues(ele, pName, sku, price, sale, url);
-  ele.style.visibility = 'visible';
+  // ele.style.visibility = 'visible';
 }
 
 function changeValues(element, pName, sku, price, sale, url) {
@@ -248,7 +321,10 @@ function changeValues(element, pName, sku, price, sale, url) {
 
   // sheets name
   let productName = element.querySelector('#product_name');
-  sessionStorage.setItem('productName', pName);
+  productName.addEventListener('click', () => {
+    sessionStorage.setItem('Pname', pName);
+    location.replace('../components/product-page.html')
+  })
   productName.style.fontSize = '20px';
   productName.innerHTML = pName;
 
@@ -282,21 +358,72 @@ function changeValues(element, pName, sku, price, sale, url) {
   let heartBtn = element.querySelector('#heart_btn');
   heartBtn.style.backgroundImage = heart;
 
-  // listen to heart button if pressed
-  heartBtn.addEventListener('click', () => {
-    if (heartBtn.style.backgroundImage == heart) {
-      // if heart is empty
-      heartBtn.style.backgroundImage = blackHeart;
-      // add to wishlist - need to implement !!!!!!!!!!!!!
-    } else {
-      // if heart is full
-      heartBtn.style.backgroundImage = "url('../assets/icons/heart-icon.svg')";
-      // remove from wishlist - need to implement !!!!!!!!!!!!!!!!
-    }
-  });
+  //   // listen to heart button if pressed
+  //   heartBtn.addEventListener('click', () => {
+  //     if (heartBtn.style.backgroundImage == heart) {
+  //       // if heart is empty
+  //       heartBtn.style.backgroundImage = blackHeart;
+  //       // add to wishlist - need to implement  ///////////////////////////////////
 
-  // check if item is in wishlist and if it is change heart btn to full
-  isProductInWishlist(pName, heartBtn);
+  //     } else {
+  //       // if heart is full
+  //       heartBtn.style.backgroundImage = "url('../assets/icons/heart-icon.svg')";
+  //       // remove from wishlist - need to implement ///////////////////////////////
+  //     }
+  //   });
+
+  //   // check if item is in wishlist and if it is change heart btn to full
+  //   isProductInWishlist(pName, heartBtn);
+  //   return element;
+  // }
+
+  heartBtn.addEventListener('click', () => {
+      fbAuth.onAuthStateChanged((user) => {
+        dbWishList.doc(user.email).get().then((querySnapshot) => {
+          if (querySnapshot.exists) {
+            if (heartBtn.style.backgroundImage == heart) {
+              // if heart is empty
+              heartBtn.style.backgroundImage = blackHeart;
+              dbWishList.doc(user.email).update({
+                  productArr: firebase.firestore.FieldValue.arrayUnion(productName)
+                })
+                .then(() => {
+                  console.log("Document successfully written!");
+                })
+                .catch((error) => {
+                  console.error("Error writing document: ", error);
+                });
+            } else {
+              // if heart is full
+              heartBtn.style.backgroundImage = heart;
+              dbWishList.doc(user.email).update({
+                  productArr: firebase.firestore.FieldValue.arrayRemove(productName)
+                })
+                .then(() => {
+                  console.log("Document successfully written!");
+                })
+                .catch((error) => {
+                  console.error("Error writing document: ", error);
+                });
+            }
+          } else {
+            //if the user dont have wish list
+            dbWishList.doc(user.email).set({
+                productArr: firebase.firestore.FieldValue.arrayUnion(productName)
+              })
+              .then(() => {
+                console.log("Document successfully written!");
+              })
+              .catch((error) => {
+                console.error("Error writing document: ", error);
+              });
+          }
+        })
+      })
+    }
+
+
+  )
   return element;
 }
 
@@ -311,7 +438,7 @@ function addElement(pName, sku, price, sale, url) {
 
 function deleteFirst() {
   let elem = document.getElementById('product');
-  elem.remove();
+  elem.style.display = 'none';
   let par = document.createElement('h2');
   par.innerHTML = 'No products found :(';
   par.style = 'color: var(--bs-pink) ;text-align:center';
