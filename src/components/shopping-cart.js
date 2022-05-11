@@ -365,6 +365,7 @@ function onlyNumbers(str) {
     return /^[0-9]+$/.test(str);
 }
 
+
 function deleteFirst() {
     let elem = document.getElementById("product");
     elem.remove();
