@@ -922,3 +922,10 @@ body {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+
+input[type="text"]::-webkit-input-placeholder {color: red;}
+input[type="tel"]::-webkit-input-placeholder {color: red;}
+
+option:checked {
+  color: black;
+}

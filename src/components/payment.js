@@ -61,6 +61,7 @@ function initialization(){
             if(Date.now() < new Date(doc.id).getTime()){ //
                 counter = counter + 1;
                 var opt = document.createElement('option');
+                opt.style.color="black";
                 opt.value = counter;
                 opt.innerHTML = doc.id;
                 date.appendChild(opt);
@@ -83,6 +84,7 @@ date.addEventListener('change', (e) => {
             for(let index = 0; index < querySnapshot.data().hours.length; ++index)
             {
                 var opt = document.createElement('option');
+                opt.style.color="black";
                 opt.innerHTML = querySnapshot.data().hours[index];
                 hours.appendChild(opt);
             }

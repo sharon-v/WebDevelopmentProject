@@ -183,6 +183,13 @@ button,
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
+input[type="text"]::-webkit-input-placeholder {color: red;}
+input[type="tel"]::-webkit-input-placeholder {color: red;}
+input[type="email"]::-webkit-input-placeholder {color: red;}
+input[type="password"]::-webkit-input-placeholder {color: red;}
+
+
+
 @media (prefers-reduced-motion: reduce) {
   .form-control {
     transition: none;
