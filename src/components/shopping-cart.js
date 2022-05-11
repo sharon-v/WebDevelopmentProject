@@ -107,6 +107,8 @@ function addElement(Name, SKU, price, quantity, url, size) {
 
 /* function */
 function updateQuantityInShoppingCart(productName, productQuantity, element, productSize) {
+    // let quantityField = element.querySelector('#productQuantity');
+    // quantityField.disabled = true;
     if (productQuantity.value >= 0) {
         // need to delete the product from shopping cart and update the stock
         updateProductInTheShoppingCart(productName, productSize, productQuantity, element)
@@ -138,8 +140,8 @@ function updateProductInTheShoppingCart(productName, productSize, productQuantit
                         }
                         if (product.id != productName.innerHTML) {
                             userShoppingCart.push(shoppingCart[i]);
-                            quantity += parseInt(userShoppingCart[i].quantity);
-                            totalAmount += finalPrice * userShoppingCart[i].quantity;
+                            quantity += parseInt(shoppingCart[i].quantity);
+                            totalAmount += finalPrice * shoppingCart[i].quantity;
                         }
                         else {
                             console.log('found the product in the product collection');
@@ -149,15 +151,9 @@ function updateProductInTheShoppingCart(productName, productSize, productQuantit
                                 let temp = shoppingCart[i];
                                 temp.quantity = parseInt(productQuantity.value);
                                 userShoppingCart.push(temp);
-                                quantity += parseInt(userShoppingCart[i].quantity);
-                                totalAmount += finalPrice * userShoppingCart[i].quantity;
+                                quantity += parseInt(temp.quantity);
+                                totalAmount += finalPrice * parseInt(temp.quantity);
                             }
-                        }
-                        if (product.data().sale == "") {
-                            finalPrice = product.data().price;
-                        }
-                        else {
-                            finalPrice = product.data().sale;
                         }
                     }
                     else {
@@ -167,6 +163,7 @@ function updateProductInTheShoppingCart(productName, productSize, productQuantit
                     }
                     if (i == shoppingCart.length - 1) {
                         console.log('last product in the cart:', shoppingCart[i].name);
+                        console.log('total: ', totalAmount, quantity);
                         updateShoppingCart(userConnected.email, userShoppingCart, element, productSize, productName, quantityToRemove, productQuantity);
                     }
                 })
