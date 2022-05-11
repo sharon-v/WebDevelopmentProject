@@ -374,6 +374,3 @@ function deleteFirst() {
     let currentDiv = document.getElementById("items");
     currentDiv.appendChild(par);
 }
-
-
-
