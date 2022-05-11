@@ -18,25 +18,24 @@
         </div>
         <ul class="nav nav-tabs d-lg-flex flex-row justify-content-lg-center align-items-lg-center">
           <li class="nav-item"></li>
-          <li class="nav-item">
-            <a class="nav-link fw-bold" href="#" style="color: var(--bs-pink)">All</a>
+          <li id="all_prod" class="nav-item">
+            <a class="nav-link" href="#" style="color: var(--bs-pink)">All</a>
           </li>
-          <li class="nav-item">
+          <li id="cotton_prod" class="nav-item">
             <a class="nav-link" href="#" style="color: var(--bs-pink)">Cotton</a>
           </li>
-          <li class="nav-item">
+          <li id="micro_prod" class="nav-item">
             <a class="nav-link" href="#" style="color: var(--bs-pink)">Microfiber</a>
           </li>
-          <li class="nav-item">
+          <li id="flannel_prod" class="nav-item">
             <a class="nav-link" href="#" style="color: var(--bs-pink)">Flannel</a>
           </li>
-          <li class="nav-item">
+          <li id="satin_prod" class="nav-item">
             <a class="nav-link" href="#" style="color: var(--bs-pink)">Satin</a>
           </li>
-          <li class="nav-item">
+          <li id="jersey_prod" class="nav-item">
             <a class="nav-link" href="#" style="color: var(--bs-pink)">Jersey<br /></a>
           </li>
-          <li class="nav-item"></li>
           <li class="nav-item">
             <a class="nav-link mx-auto" href="#">
               <button id="catalog_search_btn" class="btn btn-primary" type="button" style="
@@ -71,7 +70,7 @@
               <option value="9">Jersey</option>
               <option value="10">Just Landed</option>
               <option value="11">Few Left</option>
-
+              <option value="12">In Stock</option>
 
             </select></div>
           <div class="col text-center"><select id="sort_combo" style="padding-left: 30px;font-size: 20px;text-align: left;color:
@@ -91,6 +90,10 @@
               <div id="spinner" class="loader"></div>
               <!-- start of list -->
               <div id="catalog_list" class="row g-0">
+                <h2 id="noOrderMessage" style="color: var(--bs-pink) ;text-align:center" hidden>
+                  There is not such order :(
+                </h2>
+
                 <div hidden id="product" class="col-12 col-md-6 col-lg-4" style="border: 1px solid var(--bs-gray-200)">
                   <div class="clean-product-item">
                     <div id="image_field" class="image">
@@ -114,6 +117,18 @@
                           <span id="product_sale" class="fs-4"
                             style="color: var(--bs-red); font-size: 19.2px"><strong>109.90</strong></span>
                         </div>
+                      </div>
+                    </div>
+                    <div class="text-end" style="width: 15vw;margin-left: 10vw;margin-top: 1vw; text-align: center;">
+                      <div class="col-lg-12"><span id="just_landed" style="font-size: 13px;margin-left: 1vw;margin-right: 1vw;font-weight: bold;display:
+                          none;">Just
+                          Landed</span></div>
+                      <div class="col-lg-12"><span id="out_of_stock" style="font-size: 13px;margin-left: 1vw;margin-right: 1vw;font-weight: bold;display:
+                          none;">Out Of
+                          Stock</span></div>
+                      <div class="col-lg-12"><span id="few_left"
+                          style="font-size: 13px;margin-left: 1vw;margin-right: 1vw;font-weight: bold; display: none;">Few
+                          Left</span>
                       </div>
                     </div>
                     <button id="heart_btn" class="btn btn-primary" type="button" style="
