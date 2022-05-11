@@ -173,9 +173,10 @@ addToCart.addEventListener('click', () => {
                                     size:sizeOptions.options[sizeOptions.selectedIndex].text
                                 })
                             })
-                            .then(() => {  
-                              
+                            .then(() => {   
                                 updateSizeQuantity(sizeOptions.options[sizeOptions.selectedIndex].value, sizeQuantity, quantity);
+                                //update the quantity of the shopping cart in the nav bar
+                                location.replace('../components/product-page.html');
                                 console.log("Document successfully written!");
                             })
                             .catch((error) => {
@@ -193,6 +194,8 @@ addToCart.addEventListener('click', () => {
                                 })
                             })
                             .then(() => {
+                                updateSizeQuantity(sizeOptions.options[sizeOptions.selectedIndex].value, sizeQuantity, quantity);
+                                location.replace('../components/product-page.html');
                                 console.log("Document successfully written!");
                             })
                             .catch((error) => {
