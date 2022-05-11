@@ -5,6 +5,9 @@ initialization();
 var userConnected = null;
 const subTotal = document.querySelector('#subTotal');
 const totalPrice = document.querySelector('#totalPrice');
+const totalQuantity = document.querySelector('#totalQuantity');
+var totalAmount = 0;
+var quantity = 0;
 
 document.getElementById('checkout').addEventListener('click', (e) => {
     location.replace('payment.html');
@@ -15,7 +18,8 @@ function initialization() {
         userConnected = user;
         dbShoppingCart.doc(user.email).get().then((querySnapshot) => {
             if (querySnapshot.exists) {
-                var totalAmount = 0;
+                totalAmount = 0;
+                quantity = 0;
                 userShoppingCart = querySnapshot.data().productList;
                 for (let i = 0; i < userShoppingCart.length; ++i) {
                     dbProducts.doc(userShoppingCart[i].name).get().then((product) => {
@@ -26,17 +30,26 @@ function initialization() {
                             console.log('product quantity', userShoppingCart[i].quantity);
                             console.log('product size', userShoppingCart[i].size);
                             console.log('product url', product.data().imageUrl);
-
-                            if (i == 0) {
-                                editElement(product.id, product.data().sku, product.data().price, userShoppingCart[i].quantity, product.data().imageUrl, userShoppingCart[i].size);
+                            let finalPrice = 0;
+                            if (product.data().sale == "") {
+                                finalPrice = product.data().price;
                             }
                             else {
-                                addElement(product.id, product.data().sku, product.data().price, userShoppingCart[i].quantity, product.data().imageUrl, userShoppingCart[i].size);
+                                finalPrice = product.data().sale;
                             }
-                            totalAmount += product.data().price * userShoppingCart[i].quantity;
+
+                            if (i == 0) {
+                                editElement(product.id, product.data().sku, finalPrice, userShoppingCart[i].quantity, product.data().imageUrl, userShoppingCart[i].size);
+                            }
+                            else {
+                                addElement(product.id, product.data().sku, finalPrice, userShoppingCart[i].quantity, product.data().imageUrl, userShoppingCart[i].size);
+                            }
+                            quantity += parseInt(userShoppingCart[i].quantity);
+                            totalAmount += finalPrice * userShoppingCart[i].quantity;
                             if (i == userShoppingCart.length - 1) {
                                 subTotal.innerHTML = totalAmount.toFixed(2) + '₪';
                                 totalPrice.innerHTML = totalAmount.toFixed(2) + '₪';
+                                totalQuantity.innerHTML = quantity;
                                 console.log('added last product', totalAmount.toFixed(2));
                             }
                         }
@@ -106,17 +119,27 @@ function updateQuantityInShoppingCart(productName, productQuantity, element, pro
 function updateProductInTheShoppingCart(productName, productSize, productQuantity, element) {
     console.log('in updateProductInTheShoppingCart');
     userShoppingCart = [];
-    // let updatedShoppingCart = [];
     let quantityToRemove = 0;
     dbShoppingCart.doc(userConnected.email).get().then((querySnapshot) => {
         if (querySnapshot.exists) {
+            totalAmount = 0;
+            quantity = 0;
             let shoppingCart = querySnapshot.data().productList;
             for (let i = 0; i < shoppingCart.length; ++i) {
+                console.log('shopping cart length:', shoppingCart.length);
                 dbProducts.doc(shoppingCart[i].name).get().then((product) => {
                     if (product.exists) {
+                        let finalPrice = 0;
+                        if (product.data().sale == "") {
+                            finalPrice = product.data().price;
+                        }
+                        else {
+                            finalPrice = product.data().sale;
+                        }
                         if (product.id != productName.innerHTML) {
                             userShoppingCart.push(shoppingCart[i]);
-                            //updatedShoppingCart.push(shoppingCart[i]);
+                            quantity += parseInt(userShoppingCart[i].quantity);
+                            totalAmount += finalPrice * userShoppingCart[i].quantity;
                         }
                         else {
                             console.log('found the product in the product collection');
@@ -126,7 +149,15 @@ function updateProductInTheShoppingCart(productName, productSize, productQuantit
                                 let temp = shoppingCart[i];
                                 temp.quantity = parseInt(productQuantity.value);
                                 userShoppingCart.push(temp);
+                                quantity += parseInt(userShoppingCart[i].quantity);
+                                totalAmount += finalPrice * userShoppingCart[i].quantity;
                             }
+                        }
+                        if (product.data().sale == "") {
+                            finalPrice = product.data().price;
+                        }
+                        else {
+                            finalPrice = product.data().sale;
                         }
                     }
                     else {
@@ -156,7 +187,7 @@ function changedQuantityToInvalid(productName, productQuantity) {
             for (let i = 0; i < shoppingCart.length; ++i) {
                 dbProducts.doc(shoppingCart[i].name).get().then((product) => {
                     if (product.exists) {
-                        if (product.id == productName.innerHTML) {
+                        if (product.id == productName) {
                             productQuantity.value = shoppingCart[i].quantity;
                         }
                     }
@@ -179,13 +210,18 @@ function changedQuantityToInvalid(productName, productQuantity) {
 
 function updateShoppingCart(userEmail, productsList, element, size, productName, quantityToRemove, productQuantity) {
     console.log('in updateShoppingCart');
+    console.log('productsList length:', productsList.length);
     if (productsList.length == 0) { // need to delete the document from the collection
         console.log('shopping cart is empty');
         dbShoppingCart.doc(userEmail).delete().then(() => {
             console.log("Shopping cart deleted");
-            let currentDiv = document.getElementById("items");
-            currentDiv.removeChild(element);
-            updateProductStockInTheDB(size, productName, quantityToRemove);
+            subTotal.innerHTML = totalAmount.toFixed(2) + '₪';
+            totalPrice.innerHTML = totalAmount.toFixed(2) + '₪';
+            totalQuantity.innerHTML = quantity;
+            updateProductStockInTheDB(size, productName.innerHTML, quantityToRemove, true);
+            deleteFirst();
+            // let currentDiv = document.getElementById("items");
+            // currentDiv.removeChild(element);
         }).catch((error) => {
             console.error("failed to delete the shopping cart: ", error);
         });
@@ -198,17 +234,17 @@ function updateShoppingCart(userEmail, productsList, element, size, productName,
 }
 
 function updateProductStockInTheDB(userEmail, productsList, element, size, productName, quantityToRemove, productQuantity) {
-    console.log('in updateProductStockInTheDB the product name is:', productName.innerHTML);
+    console.log('in updateProductStockInTheDB the product name is:', productName);
     console.log('in updateProductStockInTheDB the product size is:', size);
     console.log('quantity to remove: ', quantityToRemove);
     console.log('cart: ', productsList);
 
-    dbProducts.doc(productName.innerHTML).get().then((product) => {
+    dbProducts.doc(productName).get().then((product) => {
         if (product.exists) {
             if (size == '120 x 200') {
                 if (product.data().size120x200 >= quantityToRemove) {
                     console.log('can remove', quantityToRemove, 'from size 120 x 200');
-                    dbProducts.doc(productName.innerHTML).update({
+                    dbProducts.doc(productName).update({
                         size120x200: parseInt(product.data().size120x200) - parseInt(quantityToRemove),
                     })
                         .then(() => {
@@ -226,7 +262,7 @@ function updateProductStockInTheDB(userEmail, productsList, element, size, produ
             else if (size == '160 x 200') {
                 if (product.data().size160x200 >= quantityToRemove) {
                     console.log('can remove', quantityToRemove, 'from size 160 x 200');
-                    dbProducts.doc(productName.innerHTML).update({
+                    dbProducts.doc(productName).update({
                         size160x200: parseInt(product.data().size160x200) - parseInt(quantityToRemove),
                     })
                         .then(() => {
@@ -244,7 +280,7 @@ function updateProductStockInTheDB(userEmail, productsList, element, size, produ
             else if (size == '180 x 200') {
                 if (product.data().size180x200 >= quantityToRemove) {
                     console.log('can remove', quantityToRemove, 'from size 180 x 200');
-                    dbProducts.doc(productName.innerHTML).update({
+                    dbProducts.doc(productName).update({
                         size180x200: parseInt(product.data().size180x200) - parseInt(quantityToRemove),
                     })
                         .then(() => {
@@ -263,7 +299,7 @@ function updateProductStockInTheDB(userEmail, productsList, element, size, produ
             else if (size == '90 x 200') {
                 if (product.data().size90x200 >= quantityToRemove) {
                     console.log('can remove', quantityToRemove, 'from size 90 x 200');
-                    dbProducts.doc(productName.innerHTML).update({
+                    dbProducts.doc(productName).update({
                         size90x200: parseInt(product.data().size90x200) - parseInt(quantityToRemove),
                     })
                         .then(() => {
@@ -280,9 +316,9 @@ function updateProductStockInTheDB(userEmail, productsList, element, size, produ
             }
         }
         else {
-            // maybe delete the product from the list
-            alert('The product', shoppingCart[i].name, 'is not available anymore');
-            console.log('The product', shoppingCart[i].name, 'is not available anymore');
+            // maybe deletshoppingCarte the product from the list
+            // alert('The product is not available anymore');
+            console.log('The product is not available anymore');
         }
     })
 }
@@ -299,7 +335,9 @@ function writeShoppingCartToTheDB(userEmail, productsList, element, size, produc
                 let currentDiv = document.getElementById("items");
                 currentDiv.removeChild(element);
             }
-
+            subTotal.innerHTML = totalAmount.toFixed(2) + '₪';
+            totalPrice.innerHTML = totalAmount.toFixed(2) + '₪';
+            totalQuantity.innerHTML = quantity;
         })
         .catch((error) => {
             // success in saving the user to Auth but failed to save him in the collection
@@ -322,18 +360,5 @@ function deleteFirst() {
     currentDiv.appendChild(par);
 }
 
-// function deleteShoppingCart() {
-//     dbShoppingCart.doc(userEmail).delete().then(() => {
-//         console.log("Shopping cart deleted");
-//         deleteFirst();
-//         addDeletedQuantitiesToProductsDB();
-//     }).catch((error) => {
-//         console.error("failed to delete the shopping cart: ", error);
-//     });
-// }
-
-// function addDeletedQuantitiesToProductsDB() {
-//     ;
-// }
 
 
