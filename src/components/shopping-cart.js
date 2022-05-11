@@ -107,14 +107,14 @@ function addElement(Name, SKU, price, quantity, url, size) {
 
 /* function */
 function updateQuantityInShoppingCart(productName, productQuantity, element, productSize) {
-    // let quantityField = element.querySelector('#productQuantity');
-    // quantityField.disabled = true;
+    let quantityField = element.querySelector('#productQuantity');
+    quantityField.disabled = true;
     if (productQuantity.value >= 0) {
         // need to delete the product from shopping cart and update the stock
         updateProductInTheShoppingCart(productName, productSize, productQuantity, element)
     }
     else if (productQuantity.value < 0 || onlyNumbers(String(productQuantity.value)) == false) {
-        changedQuantityToInvalid(productName, productQuantity);
+        changedQuantityToInvalid(productName, productQuantity, element);
     }
 }
 
@@ -171,16 +171,21 @@ function updateProductInTheShoppingCart(productName, productSize, productQuantit
         }
         else {
             // need to present a message on the screen
-            alert('Shopping cart is empty');
+            let quantityField = element.querySelector('#productQuantity');
+            quantityField.disabled = false;
+            deleteFirst();
+            console.log('Shopping cart is empty');
         }
     })
 }
 
-function changedQuantityToInvalid(productName, productQuantity) {
+function changedQuantityToInvalid(productName, productQuantity, element) {
     alert('Invalid quantity');
     console.log('user connected', userConnected.email);
     dbShoppingCart.doc(userConnected.email).get().then((querySnapshot) => {
         if (querySnapshot.exists) {
+            let quantityField = element.querySelector('#productQuantity');
+            quantityField.disabled = false;
             let shoppingCart = querySnapshot.data().productList;
             for (let i = 0; i < shoppingCart.length; ++i) {
                 dbProducts.doc(shoppingCart[i].name).get().then((product) => {
@@ -200,7 +205,10 @@ function changedQuantityToInvalid(productName, productQuantity) {
         else {
             // need to present a message on the screen
             console.log('could not open the shopping cart');
-            alert('Shopping cart is empty');
+            let quantityField = element.querySelector('#productQuantity');
+            quantityField.disabled = false;
+            deleteFirst();
+            // alert('Shopping cart is empty');
             location.replace('shopping-cart.html');   // refresh the page
         }
     })
@@ -213,6 +221,8 @@ function updateShoppingCart(userEmail, productsList, element, size, productName,
     console.log('connected email:', userEmail);
     if (productsList.length == 0) { // need to delete the document from the collection
         console.log('shopping cart is empty');
+        let quantityField = element.querySelector('#productQuantity');
+        quantityField.disabled = false;
         dbShoppingCart.doc(userConnected.email).delete().then(() => {
             console.log("Shopping cart deleted");
             subTotal.innerHTML = totalAmount.toFixed(2) + '₪';
@@ -239,6 +249,8 @@ function updateProductStockInTheDB(userEmail, productsList, element, size, produ
 
     dbProducts.doc(productName.innerHTML).get().then((product) => {
         if (product.exists) {
+            let quantityField = element.querySelector('#productQuantity');
+            quantityField.disabled = false;
             if (size == '120 x 200') {
                 if (product.data().size120x200 >= quantityToRemove) {
                     console.log('can remove', quantityToRemove, 'from size 120 x 200');
@@ -254,7 +266,7 @@ function updateProductStockInTheDB(userEmail, productsList, element, size, produ
                         });
                 }
                 else {
-                    changedQuantityToInvalid(productName, productQuantity);
+                    changedQuantityToInvalid(productName, productQuantity, element);
                 }
             }
             else if (size == '160 x 200') {
@@ -272,7 +284,7 @@ function updateProductStockInTheDB(userEmail, productsList, element, size, produ
                         });
                 }
                 else {
-                    changedQuantityToInvalid(productName, productQuantity);
+                    changedQuantityToInvalid(productName, productQuantity, element);
                 }
             }
             else if (size == '180 x 200') {
@@ -291,7 +303,7 @@ function updateProductStockInTheDB(userEmail, productsList, element, size, produ
                         });
                 }
                 else {
-                    changedQuantityToInvalid(productName, productQuantity);
+                    changedQuantityToInvalid(productName, productQuantity, element);
                 }
             }
             else if (size == '90 x 200') {
@@ -309,12 +321,14 @@ function updateProductStockInTheDB(userEmail, productsList, element, size, produ
                         });
                 }
                 else {
-                    changedQuantityToInvalid(productName, productQuantity);
+                    changedQuantityToInvalid(productName, productQuantity, element);
                 }
             }
         }
         else {
             // maybe delete the product from the list
+            let quantityField = element.querySelector('#productQuantity');
+            quantityField.disabled = false;
             alert('The product', shoppingCart[i].name, 'is not available anymore');
             console.log('The product', shoppingCart[i].name, 'is not available anymore');
         }
