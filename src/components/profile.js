@@ -33,12 +33,12 @@ function insertData(Fname, Lname, phone, Bday, email) {
     document.getElementById('Birthday').value = email;
     document.getElementById('username').value = Fname;
 }
-function setDetailsOnDB(Fname, Lname, phone) {
+function setDetailsOnDB(fname, lname, phoneNumber) {
 
     dbCustomers.doc(userName).update({
-        Fname: Fname,
-        Lname: Lname,
-        phone: phone,
+        fname: fname,
+        lname: lname,
+        phoneNumber: phoneNumber,
     }).then(() => {
         console.log('Document successfully added');
         location.replace('../components/profile.html');
@@ -56,10 +56,10 @@ document.addEventListener('DOMContentLoaded', () => {
         // document.querySelector('#spinner').style.display = 'inline';
 
         e.preventDefault();
-        var Fname = document.getElementById('first_name').value;
-        var Lname = document.getElementById('last_name').value;
-        var phone = document.getElementById('phone_number').value;
-        setDetailsOnDB(Fname, Lname, phone);
+        var fname = document.getElementById('first_name').value;
+        var lname = document.getElementById('last_name').value;
+        var phoneNumber = document.getElementById('phone_number').value;
+        setDetailsOnDB(fname, lname, phoneNumber);
         //document.querySelector('#spinner').style.display = 'none';
 
     });
