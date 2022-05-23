@@ -128,11 +128,16 @@ function addEventListenersToNavBarButtons(isManager) {
   // function to send user to right profile page -> profile icon
   const nav_profile_btn = document.getElementById('nav_profile_btn');
   nav_profile_btn.addEventListener('click', () => {
-    if (isManager == 1) {
-      location.replace('manager-manage-items.html'); // redirect a connected manager to his profile
-    } else {
-      location.replace('profile.html'); // redirect a connected user to the home page
-    }
+    fbAuth.onAuthStateChanged((user) => {
+      if (isManager == 1) {
+        //sessionStorage.setItem('email', user.email);
+        location.replace('manager-manage-items.html'); // redirect a connected manager to his profile
+      } else {
+        console.log(user.email);
+        sessionStorage.setItem('email', user.email);
+        location.replace('profile.html'); // redirect a connected user to the home page
+      }
+    });
   });
 
   var catalogIcon = document.querySelector('#nav_catalog_btn');

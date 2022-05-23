@@ -1,4 +1,4 @@
-import { dbProducts, storage } from '../firebase/data.js'
+import { dbProducts, fbAuth } from '../firebase/data.js'
 
 document.querySelector('#spinner').style.visibility = 'visible';
 
@@ -143,3 +143,12 @@ function removeAllChildNodes(parent) {
         parent.removeChild(parent.lastChild);
     }
 }
+
+const nav_profile_btn = document.getElementById('profile_btn');
+nav_profile_btn.addEventListener('click', () => {
+    fbAuth.onAuthStateChanged((user) => {
+        console.log(user.email);
+        sessionStorage.setItem('email', user.email);
+        location.replace('profile.html');
+    });
+});
