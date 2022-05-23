@@ -1,0 +1,130 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+    <title>Shopping Cart - Brand</title>
+    <link rel="stylesheet" href="../components/cart.css" />
+  </head>
+
+  <body>
+    <script type="module" id="replace_with_navbar" src="../components/navbar.js"></script>
+    <main class="page shopping-cart-page">
+      <section class="clean-block clean-cart dark">
+        <div id="mainContainer" class="container d-xxl-flex my-auto">
+          <div class="block-heading">
+            <h1 style="font-size: calc(1.325rem + 0.9vw)">Shopping Cart<br /></h1>
+          </div>
+          <div class="d-xxl-inline-flex content">
+            <div class="row g-0 d-flex">
+              <div class="col-md-12 col-lg-8">
+                <div id="items" class="items" style="padding: 30px">
+                  <div id="product" class="product" style="margin-bottom: 2vw; margin-top: 2vw">
+                    <div
+                      class="row d-lg-flex justify-content-center align-items-center justify-content-lg-start"
+                    >
+                      <div class="col-lg-3">
+                        <img
+                          id="productPicture"
+                          src="../assets/images/sheets/bce8bb35-8b70-40f4-b265-a8695a27ba6d.077446c4ec7c4fbd1c64b3503b7301e9.jpeg"
+                          style="width: 10vw; height: 10vw"
+                        />
+                      </div>
+                      <div class="col-md-5 col-lg-4 text-start product-info">
+                        <a
+                          id="productName"
+                          class="product-name"
+                          href="#"
+                          style="color: var(--bs-gray-800)"
+                          >sheets name</a
+                        >
+                        <div class="product-specs">
+                          <div>
+                            <span style="margin-right: 1vw">Bed Size: </span
+                            ><span id="productSize" class="value">size</span>
+                          </div>
+                          <div>
+                            <span style="margin-right: 1vw">SKU: </span
+                            ><span id="productSKU" class="value">sku</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-6 col-md-2 col-lg-2 quantity">
+                        <label class="form-label d-none d-md-block" for="quantity">Quantity</label
+                        ><input
+                          id="productQuantity"
+                          class="form-control quantity-input"
+                          type="number"
+                          value="1"
+                        />
+                      </div>
+                      <div
+                        class="col-6 col-md-2 col-lg-3 d-lg-flex my-auto justify-content-lg-end align-items-lg-center price"
+                      >
+                        <span id="productPrice">120₪</span
+                        ><button
+                          id="trashBtn"
+                          class="btn btn-primary"
+                          data-bs-toggle="tooltip"
+                          data-bs-placement="bottom"
+                          type="button"
+                          style="
+                            background: url('../assets/icons/trash-free-icon-font.svg') center /
+                              contain no-repeat;
+                            width: 1.7vw;
+                            height: 1.7vw;
+                            border-style: hidden;
+                            margin-left: 1vw;
+                          "
+                          title="Remove from cart"
+                        ></button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12 col-lg-4">
+                <div class="summary">
+                  <h3 style="color: var(--bs-gray-800); font-weight: bold">Summary</h3>
+                  <h4>
+                    <span class="text">Subtotal</span><span id="subTotal" class="price">0₪</span>
+                  </h4>
+                  <h4>
+                    <span class="text">Discount</span><span id="discount" class="price">0₪</span>
+                  </h4>
+                  <h4 style="font-size: 26px">
+                    <span class="text" style="font-weight: bold">Total Quantity</span
+                    ><span id="totalQuantity" class="price">0</span>
+                  </h4>
+                  <h4 style="color: var(--bs-pink); font-size: 26px; font-weight: bold">
+                    <span class="text" style="font-weight: bold">Total</span
+                    ><span id="totalPrice" class="price" style="font-weight: bold"
+                      ><strong>0₪</strong></span
+                    >
+                  </h4>
+                  <button
+                    id="checkout"
+                    class="btn btn-primary btn-lg d-block w-100"
+                    type="button"
+                    style="
+                      color: var(--bs-light);
+                      background: var(--bs-gray-800);
+                      border-style: hidden;
+                    "
+                  >
+                    Checkout
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <script type="module" id="replace_with_footer" src="../components/footer.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
+    <script type="module" src="../components/shopping-cart.js"></script>
+  </body>
+</html>
