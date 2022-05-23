@@ -153,10 +153,15 @@ addToCart.addEventListener('click', () => {
             console.log(quantity.value);
 
             //check if the wanted quantity is valid
-            if(quantity.value > sizeQuantity)
+            if(quantity.value < 1)
+            {
+                alert("Invalid quantity");
+            }
+            else if(quantity.value > sizeQuantity)
             {
                 alert("The quantity you want is not avialible, please try again.\nThe availiable quantity for that size is " + sizeQuantity);
-            }else
+            }
+            else
             {
                 fbAuth.onAuthStateChanged((user) => {
                     dbShoppingCart.doc(user.email).get().then((querySnapshot) => {
