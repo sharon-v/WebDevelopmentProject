@@ -8,6 +8,7 @@ const totalPrice = document.querySelector('#totalPrice');
 const totalQuantity = document.querySelector('#totalQuantity');
 var totalAmount = 0;
 var quantity = 0;
+var isFirstInTheCart = true;
 
 document.getElementById('checkout').addEventListener('click', (e) => {
     location.replace('payment.html');
@@ -24,6 +25,8 @@ function initialization() {
                 for (let i = 0; i < userShoppingCart.length; ++i) {
                     dbProducts.doc(userShoppingCart[i].name).get().then((product) => {
                         if (product.exists) {
+                            // the product still exist in the products list
+                            console.log("in initialization, found the product in the products list");
                             console.log('product name', product.id);
                             console.log('product sku', product.data().sku);
                             console.log('product price', product.data().price);
@@ -38,12 +41,13 @@ function initialization() {
                                 finalPrice = product.data().sale;
                             }
 
-                            if (i == 0) {
+                            if (isFirstInTheCart == 0) {
                                 editElement(product.id, product.data().sku, finalPrice, userShoppingCart[i].quantity, product.data().imageUrl, userShoppingCart[i].size);
                             }
                             else {
                                 addElement(product.id, product.data().sku, finalPrice, userShoppingCart[i].quantity, product.data().imageUrl, userShoppingCart[i].size);
                             }
+                            isFirstInTheCart = false;
                             quantity += parseInt(userShoppingCart[i].quantity);
                             totalAmount += finalPrice * userShoppingCart[i].quantity;
                             if (i == userShoppingCart.length - 1) {
@@ -54,6 +58,7 @@ function initialization() {
                             }
                         }
                         else {
+                            // need to delete the product from the shopping cart!!!!!!!!!!!!!!
                             alert('The product', userShoppingCart[i].name, 'is not available anymore');
                             console.log('The product', userShoppingCart[i].name, 'is not available anymore');
                         }
