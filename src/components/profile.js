@@ -6,7 +6,7 @@ console.log(userName);
 if (userName == 'mani@gmail.com') {
     dbManager.doc(userName).get().then((doc) => {
         if (doc.exists) {
-            insertData(doc.id, doc.data().fname, doc.data().lname, doc.data().phoneNumber, doc.data().birthdate, doc.data().email);
+            insertData(doc.data().fname, doc.data().lname, doc.data().phoneNumber, doc.data().birthdate, doc.data().email);
         }
         else {
             alert("Cannot find this user");
@@ -17,7 +17,7 @@ if (userName == 'mani@gmail.com') {
 else {
     dbCustomers.doc(userName).get().then((doc) => {
         if (doc.exists) {
-            insertData(doc.id, doc.data().fname, doc.data().lname, doc.data().phoneNumber, doc.data().birthdate, doc.data().email);
+            insertData(doc.data().fname, doc.data().lname, doc.data().phoneNumber, doc.data().birthdate, doc.data().email);
         }
         else {
             alert("Cannot find this user");
@@ -27,11 +27,11 @@ else {
 }
 function insertData(Fname, Lname, phone, Bday, email) {
     // there is something strange with the names of the labals but its work well 
-    document.getElementById('first_name').value = Lname;
-    document.getElementById('last_name').value = phone;
-    document.getElementById('phone_number').value = Bday;
-    document.getElementById('Birthday').value = email;
-    document.getElementById('username').value = Fname;
+    document.getElementById('first_name').value = Fname;
+    document.getElementById('last_name').value = Lname;
+    document.getElementById('phone_number').value = phone;
+    document.getElementById('Birthday').value = Bday;
+    document.getElementById('username').value = email;
 }
 function setDetailsOnDB(fname, lname, phoneNumber) {
 
