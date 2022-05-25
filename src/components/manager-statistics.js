@@ -1,9 +1,8 @@
-import { createIndexes } from 'moongose/models/user_model';
 import { dbOrders, dbCustomers, fbAuth } from '../firebase/data.js'
 
 howManyCusInLastYear();
 function howManyCusInLastYear() {
-    fbAuth.get().then((querySnapshot) => {
+    fbAuth.then((querySnapshot) => {
         var countCus = 0;
         querySnapshot.forEach((doc) => {
             if (querySnapshot.userRecord.metadata.creationTime.year == new Date().getFullYear) {
@@ -16,8 +15,23 @@ function howManyCusInLastYear() {
 }
 
 
+whichProdIsbestceller();
+function whichProdIsbestceller() {
+    dbCustomers.get().then((querySnapshot) => {
+        var bestCeller = 0;
+        querySnapshot.forEach((doc) => {
+            if (amountSold > bestCeller) {
+                bestCeller = amountSold;
+            }
+        });
+    });
+    console.log(bestCeller);
+    // put the counter value in the box of the answer
+}
 
-howManyProdInMonth(05);
+
+
+//howManyProdInMonth('05');
 function howManyProdInMonth(month) {
     dbOrders.get().then((querySnapshot) => {
         var countPro = 0;
