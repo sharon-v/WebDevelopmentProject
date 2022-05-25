@@ -168,7 +168,8 @@ function writeProductToDB(Pname, description, price, sale, size90x200, size120x2
         isFewLeftCbChecked: isFewLeftCbChecked,
         fabric: fabric,
         sku: sku,
-        imageUrl: url
+        imageUrl: url,
+        amountSold: 0
     }).then(() => {
         // spinner.style.display = 'none';
         console.log('Document successfully added');
