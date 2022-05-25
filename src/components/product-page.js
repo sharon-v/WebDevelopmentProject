@@ -165,28 +165,22 @@ addToCart.addEventListener('click', () => {
             {
                 fbAuth.onAuthStateChanged((user) => {
                     dbShoppingCart.doc(user.email).get().then((querySnapshot) => {
-                        if(querySnapshot.exists)
+                        if(querySnapshot.exists) //if the user have document in the shopping cart
                         {
-                            //if the user have document in the shopping cart
-                            console.log(productName);
-                            console.log(quantity.value);
-                            console.log(sizeOptions.options[sizeOptions.selectedIndex].text);
-                            dbShoppingCart.doc(user.email).update({
-                                productList: firebase.firestore.FieldValue.arrayUnion({
-                                    name:productName,
-                                    quantity:quantity.value,
-                                    size:sizeOptions.options[sizeOptions.selectedIndex].text
-                                })
-                            })
-                            .then(() => {   
-                                updateSizeQuantity(sizeOptions.options[sizeOptions.selectedIndex].value, sizeQuantity, quantity);
-                                //update the quantity of the shopping cart in the nav bar
-                                location.replace('../components/product-page.html');
-                                console.log("Document successfully written!");
-                            })
-                            .catch((error) => {
-                                console.error("Error writing document: ", error);
-                            });
+                            var flag = false;
+                            for(var i=0; i < querySnapshot.data().productList.length; ++i) //if the product is allraedy in the db
+                            {
+                                console.log(querySnapshot.data().productList.length);
+                                if((querySnapshot.data().productList)[i]["name"] == productName && (querySnapshot.data().productList)[i]["size"] == sizeOptions.options[sizeOptions.selectedIndex].text)
+                                {
+                                    flag = true;
+                                    //implement deleting the pro, and create new
+                                }
+                            }
+                            if(flag == false)
+                            {
+                                addNewProductToShoppingCart(sizeOptions, user, sizeQuantity);
+                            }
                         }
                         else
                         {
@@ -194,7 +188,7 @@ addToCart.addEventListener('click', () => {
                             dbShoppingCart.doc(user.email).set({
                                 productList: firebase.firestore.FieldValue.arrayUnion({
                                     name:productName,
-                                    quantity:quantity.value,
+                                    quantity:(quantity.value).toString(),
                                     size:sizeOptions.options[sizeOptions.selectedIndex].text
                                 })
                             })
@@ -227,7 +221,7 @@ function updateSizeQuantity(size, sizeQuantity, quantity)
     if(size == 1)
     {
         dbProducts.doc(productName).update({
-            size90x200: sizeQuantity - quantity.value
+            size90x200: (sizeQuantity - quantity.value).toString()
         })
         .then(() => {
             console.log("Document successfully written!");
@@ -239,7 +233,7 @@ function updateSizeQuantity(size, sizeQuantity, quantity)
     else if(size == 2)
     {
         dbProducts.doc(productName).update({
-            size120x200: sizeQuantity - quantity.value
+            size120x200: (sizeQuantity - quantity.value).toString()
         })
         .then(() => {
             console.log("Document successfully written!");
@@ -251,7 +245,7 @@ function updateSizeQuantity(size, sizeQuantity, quantity)
     else if(size == 3)
     {
         dbProducts.doc(productName).update({
-            size160x200: sizeQuantity - quantity.value
+            size160x200: (sizeQuantity - quantity.value).toString()
         })
         .then(() => {
             console.log("Document successfully written!");
@@ -263,7 +257,7 @@ function updateSizeQuantity(size, sizeQuantity, quantity)
     else if(size == 4)
     {
         dbProducts.doc(productName).update({
-            size180x200: sizeQuantity - quantity.value
+            size180x200: (sizeQuantity - quantity.value).toString()
         })
         .then(() => {
             console.log("Document successfully written!");
@@ -273,4 +267,27 @@ function updateSizeQuantity(size, sizeQuantity, quantity)
         });    
     }
     
+}
+
+function addNewProductToShoppingCart(sizeOptions, user, sizeQuantity)
+{
+    console.log(productName);
+    console.log(quantity.value);
+    console.log(sizeOptions.options[sizeOptions.selectedIndex].text);
+    dbShoppingCart.doc(user.email).update({
+        productList: firebase.firestore.FieldValue.arrayUnion({
+            name:productName,
+            quantity:(quantity.value).toString(),
+            size:sizeOptions.options[sizeOptions.selectedIndex].text
+        })
+    })
+    .then(() => {   
+        updateSizeQuantity(sizeOptions.options[sizeOptions.selectedIndex].value, sizeQuantity, quantity);
+        //update the quantity of the shopping cart in the nav bar
+        location.replace('../components/product-page.html');
+        console.log("Document successfully written!");
+    })
+    .catch((error) => {
+        console.error("Error writing document: ", error);
+    });
 }

@@ -1,4 +1,5 @@
 import {fbAuth,dbOrders, dbShoppingCart,dbOrdersTimes, dbProducts} from '../firebase/data.js'
+var productAmount = {};
 initialization();
 
 function initialization(){
@@ -17,10 +18,10 @@ function initialization(){
                     dbProducts.doc(userShoppingCart[i].name).get().then((pro) =>{
                         if (pro.exists){
                             totalItems = totalItems + x;
+                            productAmount[pro.id] = x;
                             if(pro.data().sale == "")
                             {
                                 console.log(pro.data().price);
-
                                 totalAmount = totalAmount + (pro.data().price*x);
                             }
                             else
@@ -157,15 +158,16 @@ var btn = document.getElementById('payment_pay_button');
                 })
                 .then(() => {
                     console.log("Document successfully written!");
+                    changeAmountToAllProduct(productsList);
                     //delete the user document from the shopping cart db
                     sessionStorage.setItem('orderNumber', fname + now); //moving parameters to order summery page
                     dbShoppingCart.doc(user.email).delete().then(() => {
+                        location.replace('../components/order-summary.html');
                         console.log("Document successfully deleted!");
                     }).catch((error) => {
                         alert("cannot delete the user from the shopping cart");
                         console.error("Error removing document: ", error);
                     });
-                    location.replace('../components/order-summary.html');
                 })
                 .catch((error) => {
                     alert("cannot write the new document to the db");
@@ -248,5 +250,32 @@ function checkData(fname, lname, street, streetNumber, postalCode, city, phoneNu
 
 function onlyNumbers(str) {
     return /^[0-9]+$/.test(str);
-  }
-  
+}
+
+function changeAmountToAllProduct(productsList)
+{
+ 
+    for(let i = 0; i< productsList.length ; ++i)
+    {
+        dbProducts.doc(productsList[i].name).get().then((doc) => {
+            if (doc.exists) {
+                dbProducts.doc(productsList[i]['name']).update({
+                    amountSold: doc.data().amountSold + productAmount[productsList[i].name]
+                })
+                .then(() => {
+                    console.log("Document successfully written!");
+                })
+                .catch((error) => {
+                    console.error("Error writing document: ", error);
+                });      
+            } else {
+                // doc.data() will be undefined in this case
+                console.log("No such document!");
+            }
+        }).catch((error) => {
+                    console.log("Error getting document:", error);
+        });   
+                
+    }
+
+}
