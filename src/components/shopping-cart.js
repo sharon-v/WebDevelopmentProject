@@ -22,6 +22,7 @@ function initialization() {
                 totalAmount = 0;
                 quantity = 0;
                 userShoppingCart = querySnapshot.data().productList;
+                // isFirstInTheCart = true;
                 for (let i = 0; i < userShoppingCart.length; ++i) {
                     dbProducts.doc(userShoppingCart[i].name).get().then((product) => {
                         if (product.exists) {
@@ -41,7 +42,9 @@ function initialization() {
                                 finalPrice = product.data().sale;
                             }
 
-                            if (isFirstInTheCart == 0) {
+                            console.log
+                            if (isFirstInTheCart == true) {
+                                console.log('in first in the cart');
                                 editElement(product.id, product.data().sku, finalPrice, userShoppingCart[i].quantity, product.data().imageUrl, userShoppingCart[i].size);
                             }
                             else {
@@ -58,6 +61,7 @@ function initialization() {
                             }
                         }
                         else {
+                            deleteProFromShoppingCart(userShoppingCart[i].name);
                             // need to delete the product from the shopping cart!!!!!!!!!!!!!!
                             alert('The product', userShoppingCart[i].name, 'is not available anymore');
                             console.log('The product', userShoppingCart[i].name, 'is not available anymore');
@@ -74,6 +78,7 @@ function initialization() {
 }
 
 function editElement(name, SKU, price, quantity, url, size) {
+    console.log('editing current element');
     let ele = document.querySelector('#product');
     ele = changeValues(ele, name, SKU, price, quantity, url, size);
 }
@@ -102,6 +107,7 @@ function changeValues(element, Name, SKU, price, quantity, url, size) {
 }
 
 function addElement(Name, SKU, price, quantity, url, size) {
+    console.log('adding new element');
     let ele = document.querySelector('#product');
     let newElement = ele.cloneNode(true);
     newElement = changeValues(newElement, Name, SKU, price, quantity, url, size);
@@ -112,14 +118,16 @@ function addElement(Name, SKU, price, quantity, url, size) {
 
 /* function */
 function updateQuantityInShoppingCart(productName, productQuantity, element, productSize) {
+    // disabling changing the rest of the fields when a user changed the field of a product
     let quantityField = element.querySelector('#productQuantity');
     quantityField.disabled = true;
-    if (productQuantity.value >= 0) {
-        // need to delete the product from shopping cart and update the stock
-        updateProductInTheShoppingCart(productName, productSize, productQuantity, element)
-    }
-    else if (productQuantity.value < 0 || onlyNumbers(String(productQuantity.value)) == false) {
+    if (productQuantity.value < 0 || onlyNumbers(String(productQuantity.value)) == false) {
+        // invalid quantity
+        console.log('changes to invalid quantity');
         changedQuantityToInvalid(productName, productQuantity, element);
+    }
+    else if (productQuantity.value >= 0) {
+        updateProductInTheShoppingCart(productName, productSize, productQuantity, element)
     }
 }
 
@@ -196,6 +204,7 @@ function changedQuantityToInvalid(productName, productQuantity, element) {
                 dbProducts.doc(shoppingCart[i].name).get().then((product) => {
                     if (product.exists) {
                         if (product.id == productName.innerHTML) {
+                            console.log('in invalid quantity, the cuurent quantity in the cart is:', shoppingCart[i].quantity);
                             productQuantity.value = shoppingCart[i].quantity;
                         }
                     }
