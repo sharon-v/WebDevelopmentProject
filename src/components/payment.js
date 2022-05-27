@@ -19,7 +19,7 @@ function initialization(){
                         if (pro.exists){
                             totalItems = totalItems + x;
                             productAmount[pro.id] = x;
-                            if(pro.data().sale == "")
+                            if(pro.data().sale == 0)
                             {
                                 console.log(pro.data().price);
                                 totalAmount = totalAmount + (pro.data().price*x);

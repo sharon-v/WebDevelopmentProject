@@ -15,18 +15,34 @@ dbOrders.doc(orderNumber).get().then((doc) => {
             dbProducts.doc(productList[i].name).get().then((pro) =>{
                 if (pro.exists)
                 {
+                    let actualPrice;
                     if(i == 0)
                     {
-
-                        editElement(pro.id, pro.data().sku, pro.data().price, productList[i].quantity, pro.data().imageUrl);
+                        if(pro.data().sale == 0 )
+                        {
+                            actualPrice = pro.data().price;
+                        }
+                        else
+                        {
+                            actualPrice = pro.data().sale;
+                        }
+                        editElement(pro.id, pro.data().sku, actualPrice, productList[i].quantity, pro.data().imageUrl);
                     }
                     else
                     {
-                        addElement(pro.id, pro.data().sku, pro.data().price, productList[i].quantity, pro.data().imageUrl);
+                        if(pro.data().sale == 0 )
+                        {
+                            actualPrice = pro.data().price;
+                        }
+                        else
+                        {
+                            actualPrice = pro.data().sale;
+                        }
+                        addElement(pro.id, pro.data().sku, actualPrice, productList[i].quantity, pro.data().imageUrl);
                     }
                     editOrderDetails(doc.data().firstName, doc.data().lastName, doc.data().street, doc.data().streetNumber, doc.data().apartmentNumber, doc.data().city
                         , doc.data().postalCode, doc.data().phoneNumber, doc.data().shippingDate, doc.data().shippingHours, doc.data().notes);
-                    }
+                }
                 else
                 {
                     editOrderSummary(doc.data().totalItems, doc.data().totalAmount);
