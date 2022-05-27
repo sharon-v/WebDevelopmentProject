@@ -20,7 +20,7 @@ dbOrders.doc(orderNumber).get().then((doc) => {
                         addElement(productList[i].name, productList[i].sku, productList[i].price, productList[i].quantity, productList[i].url);
                     }
                     editOrderDetails(doc.data().firstName, doc.data().lastName, doc.data().street, doc.data().streetNumber, doc.data().apartmentNumber, doc.data().city
-                        , doc.data().postalCode, doc.data().phoneNumber, doc.data().shippingDate, doc.data().shippingHours, doc.data().notes);
+                        , doc.data().postalCode, doc.data().phoneNumber, doc.data().shippingDate, doc.data().shippingHours, doc.data().notes, doc.data().orderStatus);
               
                     editOrderSummary(doc.data().totalItems, doc.data().totalAmount);
                     spinner.style.display = 'none';
@@ -66,7 +66,7 @@ function addElement (Name, SKU, price, quantity, url) {
     currentDiv.appendChild(newElement);
 }
 
-function editOrderDetails(firstName, lastName, street, streetNumber, apartmentNumber, city ,postalCode, phoneNumber, shippingDate, shippingHours, notes)
+function editOrderDetails(firstName, lastName, street, streetNumber, apartmentNumber, city ,postalCode, phoneNumber, shippingDate, shippingHours, notes, status)
 {
     var element = document.querySelector('#orderDetails');
     element.removeAttribute('hidden');
@@ -87,6 +87,8 @@ function editOrderDetails(firstName, lastName, street, streetNumber, apartmentNu
         element.querySelector('#notes').innerHTML = 'The costumer didn`t enter any notes';
     else
         element.querySelector('#notes').innerHTML = notes;
+    element.querySelector('#status').innerHTML = status;
+
 }
 
 function editOrderSummary(quantity, price)

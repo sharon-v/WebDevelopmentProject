@@ -111,10 +111,10 @@ function changeValues(element, orderNumber, date, buyerEmail, totalAmount, order
     let differ = Date.now() - date ;
     let Difference_In_hours =Math.ceil(differ / (1000 * 3600 * 24));
     if (Difference_In_hours > 1){
-        selectOp.disabled = false;
+        selectOp.disabled = true;
     }
     else{
-        selectOp.disabled = true;
+        selectOp.disabled = false;
     }
     console.log(orderStatus);
     const options = Array.from(selectOp.options);
