@@ -62,7 +62,8 @@ function customerSignUp(fname, lname, birthdate, phoneNumber, email, password, p
           lname: lname,
           birthdate: birthdate,
           phoneNumber: phoneNumber,
-          email: email   // need to consider removing it
+          email: email,   // need to consider removing it
+          regisrationYear:new Date().getFullYear()
         })
           .then(() => {
             console.log('Document successfully written!');
