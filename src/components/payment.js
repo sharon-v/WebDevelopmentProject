@@ -1,10 +1,12 @@
 import {fbAuth,dbOrders, dbShoppingCart,dbOrdersTimes, dbProducts} from '../firebase/data.js'
 var productAmount = {};
+var newList=[];
+var totalItems = 0;
+var totalAmount = 0;
 initialization();
 
 function initialization(){
-    let totalItems = 0;
-    let totalAmount = 0;
+
     const amount = document.getElementById('totalPrice');
     const items = document.getElementById('totalItems');
     fbAuth.onAuthStateChanged((user) => {
@@ -13,7 +15,8 @@ function initialization(){
             {
                 let userShoppingCart = querySnapshot.data().productList;
                 userShoppingCart.push(''); // makes the initialization of the fields to be latest
-                for(var i = 0; i< userShoppingCart.length; ++i){
+                newList = userShoppingCart;
+                for(let i = 0; i< userShoppingCart.length; ++i){
                     const x = parseInt(userShoppingCart[i].quantity);
                     dbProducts.doc(userShoppingCart[i].name).get().then((pro) =>{
                         if (pro.exists){
@@ -23,11 +26,17 @@ function initialization(){
                             {
                                 console.log(pro.data().price);
                                 totalAmount = totalAmount + (pro.data().price*x);
+                                newList[i].price=pro.data().price;
                             }
                             else
                             {
                                 totalAmount = totalAmount + (pro.data().sale*x);
+                                newList[i].price = pro.data().sale;
                             }
+                            newList[i].url = pro.data().imageUrl;
+                            newList[i].sku = pro.data().sku;
+
+
                         }
                         else
                         {
@@ -129,20 +138,17 @@ var btn = document.getElementById('payment_pay_button');
     const cvc = document.getElementById('cvc').value;
     let res = checkData(fname, lname, street, streetNumber, postalCode, city, PhoneNumber, orderDate, orderHours, expirationMonth, expirationYear,  ID, cardNumber, cvc);
     if (res == true){
-        console.log("true");
         fbAuth.onAuthStateChanged((user) => {
             // Add a new document in collection "orders"
-            let productsList;
-            dbShoppingCart.doc(user.email).get().then((doc) => {
-                productsList = doc.data().productList;
-                const now = new Date(Date.now()).getTime();
+            newList.pop();
+            const now = new Date(Date.now()).getTime();
                 dbOrders.doc(fname + now).set({
                     buyerEmail: user.email,
                     orderStatus: "Aprroved",
                     purchaseDate: now,
-                    totalAmount: document.getElementById('totalPrice').textContent,
-                    totalItems: document.getElementById('totalItems').textContent,
-                    productsList: productsList,
+                    totalAmount: totalAmount,
+                    totalItems: totalItems,
+                    productsList: newList,
                     //to check if needed
                     firstName: fname,
                     lastName: lname,
@@ -158,7 +164,7 @@ var btn = document.getElementById('payment_pay_button');
                 })
                 .then(() => {
                     console.log("Document successfully written!");
-                    changeAmountToAllProduct(productsList);
+                    changeAmountToAllProduct(newList);
                     //delete the user document from the shopping cart db
                     sessionStorage.setItem('orderNumber', fname + now); //moving parameters to order summery page
                     dbShoppingCart.doc(user.email).delete().then(() => {
@@ -173,7 +179,6 @@ var btn = document.getElementById('payment_pay_button');
                     alert("cannot write the new document to the db");
                     console.error("Error writing document: ", error);
                 });
-            })
         })
         
     }

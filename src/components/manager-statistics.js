@@ -19,9 +19,9 @@ function howManyCusInThisYear() {
 
 whichProdIsbestseller();
 function whichProdIsbestseller() {
-    dbProducts.get().then((querySnapshot) => {
-        var bestSeller = 0;
-        var prodName = '';
+    var bestSeller = 0;
+    var prodName = '';
+    dbProducts.get().then((querySnapshot) => { 
         querySnapshot.forEach((doc) => {
             if (doc.data().amountSold > bestSeller) {
                 bestSeller = doc.data().amountSold;
@@ -33,36 +33,20 @@ function whichProdIsbestseller() {
     });
 }
 
-// var Combo = document.querySelector('#month');
-// Combo.addEventListener('month', (e) => {
-//     // make filter combo empty
-//     var month = document.getElementById('month').value;
-//     console.log(month);
-//     // howManyProdInMonth(document.getElementById('month').value);
-//     // function howManyProdInMonth(month) {
-//     dbOrders.get().then((querySnapshot) => {
-//         var countPro = 0;
-//         querySnapshot.forEach((doc) => {
-//             var parts = doc.data().shippingDate.split("-");
-//             var dtMonth = parts[1];
-//             if (parseInt(dtMonth) == month) {
-//                 countPro += parseInt(doc.data().totalItems);
-//             }
-//         });
-//         console.log(countPro);
-//         document.getElementById('prodMonth').innerHTML = countPro;
-//     });
-// });
+var Combo = document.querySelector('#month');
+Combo.addEventListener('change', (e) => {
+    howManyProdInMonth();
+});
 
-howManyProdInMonth(document.getElementById('month').value);
-function howManyProdInMonth(month) {
+howManyProdInMonth();
+function howManyProdInMonth() {
+    var month = document.getElementById('month').value;
     console.log(month);
     dbOrders.get().then((querySnapshot) => {
         var countPro = 0;
         querySnapshot.forEach((doc) => {
-            var parts = doc.data().shippingDate.split("-");
-            var dtMonth = parts[1];
-            if (parseInt(dtMonth) == month) {
+            var parts = new Date(doc.data().purchaseDate).getMonth() + 1;
+            if (parseInt(parts) == month) {
                 countPro += parseInt(doc.data().totalItems);
             }
         });
@@ -112,10 +96,10 @@ function howManyIncomeInYear(year) {
             var parts = doc.data().shippingDate.split("-");
             var dtYear = parts[0];
             if (dtYear == year) {
-                countInc += parseFloat(doc.data().totalAmount).toFixed(2);
+                countInc += doc.data().totalAmount;
             }
         });
         console.log(countInc);
-        document.getElementById('income').innerHTML = countInc + "₪";
+        document.getElementById('income').innerHTML = countInc.toFixed(2) + "₪";
     });
 }

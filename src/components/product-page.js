@@ -192,7 +192,7 @@ addToCart.addEventListener('click', () => {
                             }
                             if(flag == false)
                             {
-                                addNewProductToShoppingCart(sizeOptions, user, sizeQuantity);
+                                addNewProductToShoppingCart(sizeOptions, user, sizeQuantity, doc.data().imageUrl, doc.data().sku);
                             }
                         }
                         else
@@ -282,7 +282,7 @@ function updateSizeQuantity(size, sizeQuantity, quantity)
     
 }
 
-function addNewProductToShoppingCart(sizeOptions, user, sizeQuantity)
+function addNewProductToShoppingCart(sizeOptions, user, sizeQuantity, proUrl, sku)
 {
     console.log(productName);
     console.log(quantity.value);
@@ -291,7 +291,9 @@ function addNewProductToShoppingCart(sizeOptions, user, sizeQuantity)
         productList: firebase.firestore.FieldValue.arrayUnion({
             name:productName,
             quantity:(quantity.value).toString(),
-            size:sizeOptions.options[sizeOptions.selectedIndex].text
+            size:sizeOptions.options[sizeOptions.selectedIndex].text,
+            url: proUrl,
+            SKU: sku
         })
     })
     .then(() => {   

@@ -62,7 +62,7 @@ function changeValues(element, orderNumber, date, buyerEmail, totalAmount, order
     });
 
     let amount = element.querySelector('#totalAmount');
-    amount.innerHTML = parseInt(totalAmount).toFixed(2);
+    amount.innerHTML = totalAmount.toFixed(2)  + ' ₪';
 
     let status = element.querySelector('#orderStatus');
     status.innerHTML = orderStatus;
@@ -82,15 +82,23 @@ function changeValues(element, orderNumber, date, buyerEmail, totalAmount, order
                 console.log("Document successfully deleted!");
                 for(let i=0; i<proList.length; ++i)
                 {
-                    dbProducts.doc(proList[i]['name']).update({
-                        amountSold: firebase.firestore.FieldValue.increment(-1*parseInt(proList[i]['quantity']))
+                    var pro = dbProducts.doc(proList[i]['name']);
+                    pro.get().then((doc) => {
+                        console.log(doc.exists);
+                        if (doc.exists) {
+                            pro.update({
+                                amountSold: firebase.firestore.FieldValue.increment(-1*parseInt(proList[i]['quantity']))
+                            })
+                            .then(() => {
+                                console.log("Document successfully written!");
+                            })
+                            .catch((error) => {
+                                console.error("Error writing document: ", error);
+                            });  
+                        }
+                        
                     })
-                    .then(() => {
-                        console.log("Document successfully written!");
-                    })
-                    .catch((error) => {
-                        console.error("Error writing document: ", error);
-                    });  
+                    
                 }
                 removeAllChildNodes(document.getElementById("products_list"));
                 //reloaded the page

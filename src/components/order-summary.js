@@ -8,48 +8,23 @@ console.log(orderNumber);
 dbOrders.doc(orderNumber).get().then((doc) => {
     if (doc.exists){
         var productList = doc.data().productsList;
-        productList.push("");
         for(let i = 0 ; i < productList.length ; ++i)
         {
-            console.log(productList[i].name);
-            dbProducts.doc(productList[i].name).get().then((pro) =>{
-                if (pro.exists)
-                {
-                    let actualPrice;
                     if(i == 0)
                     {
-                        if(pro.data().sale == 0 )
-                        {
-                            actualPrice = pro.data().price;
-                        }
-                        else
-                        {
-                            actualPrice = pro.data().sale;
-                        }
-                        editElement(pro.id, pro.data().sku, actualPrice, productList[i].quantity, pro.data().imageUrl);
+                        editElement(productList[i].name, productList[i].sku, productList[i].price, productList[i].quantity, productList[i].url);
                     }
                     else
                     {
-                        if(pro.data().sale == 0 )
-                        {
-                            actualPrice = pro.data().price;
-                        }
-                        else
-                        {
-                            actualPrice = pro.data().sale;
-                        }
-                        addElement(pro.id, pro.data().sku, actualPrice, productList[i].quantity, pro.data().imageUrl);
+                        
+                        addElement(productList[i].name, productList[i].sku, productList[i].price, productList[i].quantity, productList[i].url);
                     }
                     editOrderDetails(doc.data().firstName, doc.data().lastName, doc.data().street, doc.data().streetNumber, doc.data().apartmentNumber, doc.data().city
                         , doc.data().postalCode, doc.data().phoneNumber, doc.data().shippingDate, doc.data().shippingHours, doc.data().notes);
-                }
-                else
-                {
+              
                     editOrderSummary(doc.data().totalItems, doc.data().totalAmount);
                     spinner.style.display = 'none';
                     console.log("product not found");
-                }
-            })
         }
     }
     else 
@@ -118,8 +93,8 @@ function editOrderSummary(quantity, price)
 {
     var element = document.querySelector('#orderSummary');
     element.removeAttribute('hidden');
-    element.querySelector('#totalOrder').innerHTML = price;
+    element.querySelector('#totalOrder').innerHTML = price.toFixed(2) +'₪';
     element.querySelector('#totalProducts').innerHTML = quantity;
-    element.querySelector('#totalPrice').innerHTML = price;
+    element.querySelector('#totalPrice').innerHTML = price.toFixed(2) +'₪';
 
 }

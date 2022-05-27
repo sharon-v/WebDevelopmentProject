@@ -105,7 +105,7 @@ function changeValues(element, orderNumber, date, buyerEmail, totalAmount, order
     });
 
     let amount = element.querySelector('#orderAmount');
-    amount.innerHTML = parseInt(totalAmount).toFixed(2);
+    amount.innerHTML = totalAmount.toFixed(2) + ' ₪';
     let selectOp = element.querySelector('#selectOp');
     let currentTime = Date.now();
     let differ = Date.now() - date ;
