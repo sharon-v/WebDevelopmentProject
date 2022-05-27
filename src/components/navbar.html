@@ -1,217 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Our Website</title>
-    <link rel="stylesheet" href="../components/navbar.css" />
-    <!-- <link
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Our Website</title>
+  <link rel="stylesheet" href="../components/navbar.css" />
+  <!-- <link
       rel="stylesheet"
       href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
       integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc"
       crossorigin="anonymous"
     /> -->
-  </head>
+</head>
 
-  <body>
-    <!-- Navbar Section -->
-    <nav
-      class="navbar navbar-dark navbar-expand-lg fixed-top bg-dark clean-navbar"
-      style="color: rgb(33, 37, 41)"
-    >
-      <div class="container">
-        <a
-          id="nav_bed_btn"
-          class="btn d-lg-flex mx-auto"
-          role="button"
-          style="
+<body>
+  <!-- Navbar Section -->
+  <nav class="navbar navbar-dark navbar-expand-lg fixed-top bg-dark clean-navbar" style="color: rgb(33, 37, 41)">
+    <div class="container">
+      <a id="nav_bed_btn" class="btn d-lg-flex mx-auto" role="button" style="
             background: url('../assets/icons/bed-free-icon-font.svg') center / contain no-repeat;
             border-style: hidden;
             width: 3.5vw;
             height: 3vw;
             padding-right: 5vw;
-          "
-        ></a>
-        <a
-          class="navbar-brand link-light d-lg-flex justify-content-lg-center logo"
-          href="#"
-          style="color: var(--bs-white)"
-        >
-          <strong>Holy Sheets</strong>
-        </a>
-        <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navcol-1">
-          <span class="visually-hidden">Toggle navigation</span>
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div id="navcol-1" class="collapse navbar-collapse">
-          <ul id="list" class="navbar-nav ms-auto">
-            <li
-              id="nav_item_home"
-              class="nav-item d-lg-flex justify-content-lg-start justify-content-xxl-center align-items-xxl-center"
-              style="display: none; width: initial; height: 2vw"
-            >
-              <i
-                class="fi fi-rs-home fs-2 text-white d-lg-flex align-items-lg-center"
-                data-bs-toggle="tooltip"
-                data-bs-placement="bottom"
-                title="Home"
-              ></i>
-              <a
-                id="nav_home_btn"
-                class="btn mx-auto"
-                role="button"
-                data-bs-toggle="tooltip"
-                data-bs-placement="bottom"
-                style="
+          "></a>
+      <a class="navbar-brand link-light d-lg-flex justify-content-lg-center logo" href="#"
+        style="color: var(--bs-white)">
+        <strong>Holy Sheets</strong>
+      </a>
+      <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navcol-1">
+        <span class="visually-hidden">Toggle navigation</span>
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div id="navcol-1" class="collapse navbar-collapse">
+        <ul id="list" class="navbar-nav ms-auto">
+          <li id="nav_item_home"
+            class="nav-item d-lg-flex justify-content-lg-start justify-content-xxl-center align-items-xxl-center"
+            style="display: none; width: initial; height: 2vw">
+            <i class="fi fi-rs-home fs-2 text-white d-lg-flex align-items-lg-center" data-bs-toggle="tooltip"
+              data-bs-placement="bottom" title="Home"></i>
+            <a id="nav_home_btn" class="btn mx-auto" role="button" data-bs-toggle="tooltip" data-bs-placement="bottom"
+              style="
                   background: url('../assets/icons/home-free-icon-font.svg') center / contain
                     no-repeat;
                   border-style: hidden;
                   width: 2.1vw;
                   height: 2.1vw;
-                "
-                title="Home"
-                href="../components/home-page.html"
-              ></a>
-            </li>
-            <li
-              id="nav_item_catalog"
-              class="nav-item d-lg-flex justify-content-lg-start justify-content-xxl-center align-items-xxl-center"
-              style="display: none; width: initial; height: 2vw"
-            >
-              <i
-                class="fi fi-rs-home fs-2 text-white d-lg-flex align-items-lg-center"
-                data-bs-toggle="tooltip"
-                data-bs-placement="bottom"
-                title="Home"
-              ></i>
-              <a
-                id="nav_catalog_btn"
-                class="btn mx-auto"
-                role="button"
-                data-bs-toggle="tooltip"
-                data-bs-placement="bottom"
-                style="
+                " title="Home" href="../components/home-page.html"></a>
+          </li>
+          <li id="nav_item_catalog"
+            class="nav-item d-lg-flex justify-content-lg-start justify-content-xxl-center align-items-xxl-center"
+            style="display: none; width: initial; height: 2vw">
+            <i class="fi fi-rs-home fs-2 text-white d-lg-flex align-items-lg-center" data-bs-toggle="tooltip"
+              data-bs-placement="bottom" title="Home"></i>
+            <a id="nav_catalog_btn" class="btn mx-auto" role="button" data-bs-toggle="tooltip"
+              data-bs-placement="bottom" style="
                   background: url('../assets/icons/book-alt-free-icon-font.svg') center / contain
                     no-repeat;
                   border-style: hidden;
                   width: 2.1vw;
                   height: 2.1vw;
-                "
-                title="Catalog"
-              ></a>
-            </li>
-            <li
-              id="nav_item_cart_and_badge"
-              class="nav-item d-sm-flex justify-content-lg-start justify-content-xxl-center align-items-xxl-center"
-              style="display: none; width: initial; height: 2vw"
-            >
-              <a
-                id="nav_cart_btn"
-                class="btn mx-auto"
-                role="button"
-                data-bs-toggle="tooltip"
-                data-bs-placement="bottom"
-                style="
+                " title="Catalog"></a>
+          </li>
+          <li id="nav_item_cart_and_badge"
+            class="nav-item d-sm-flex justify-content-lg-start justify-content-xxl-center align-items-xxl-center"
+            style="display: none; width: initial; height: 2vw">
+            <a id="nav_cart_btn" class="btn mx-auto" role="button" data-bs-toggle="tooltip" data-bs-placement="bottom"
+              style="
                   background: url('../assets/icons/shopping-cart-free-icon-font.svg') center /
                     contain no-repeat;
                   border-style: hidden;
                   width: 2.3vw;
                   height: 2.3vw;
-                "
-                title="Shopping Cart"
-                href="../components/shopping-cart.html"
-              >
-                <span
-                  id="nav_cart_badge"
-                  class="badge rounded-pill bg-secondary d-lg-start justify-content-lg-center align-items-lg-start"
-                  data-bs-toggle="tooltip"
-                  title="Items in cart"
-                  style="height: 20px; margin-left: 20px; margin-bottom: 50px"
-                ></span>
-              </a>
-            </li>
-            <li
-              id="nav_item_wishlist"
-              class="nav-item d-lg-flex justify-content-lg-start justify-content-xxl-center align-items-xxl-center"
-              style="display: none; width: initial; height: 2vw"
-            >
-              <i
-                class="fi fi-rs-home fs-2 text-white d-lg-flex align-items-lg-center"
-                data-bs-toggle="tooltip"
-                data-bs-placement="bottom"
-                title="Home"
-              ></i>
-              <a
-                id="nav_wishlist_btn"
-                class="btn mx-auto"
-                role="button"
-                data-bs-toggle="tooltip"
-                data-bs-placement="bottom"
-                style="
+                " title="Shopping Cart" href="../components/cart.html">
+              <span id="nav_cart_badge"
+                class="badge rounded-pill bg-secondary d-lg-start justify-content-lg-center align-items-lg-start"
+                data-bs-toggle="tooltip" title="Items in cart"
+                style="height: 20px; margin-left: 20px; margin-bottom: 50px"></span>
+            </a>
+          </li>
+          <li id="nav_item_wishlist"
+            class="nav-item d-lg-flex justify-content-lg-start justify-content-xxl-center align-items-xxl-center"
+            style="display: none; width: initial; height: 2vw">
+            <i class="fi fi-rs-home fs-2 text-white d-lg-flex align-items-lg-center" data-bs-toggle="tooltip"
+              data-bs-placement="bottom" title="Home"></i>
+            <a id="nav_wishlist_btn" class="btn mx-auto" role="button" data-bs-toggle="tooltip"
+              data-bs-placement="bottom" style="
                   background: url('../assets/icons/heart-free-icon-font.svg') center / contain
                     no-repeat;
                   border-style: hidden;
                   width: 2.1vw;
                   height: 2.1vw;
-                "
-                title="Wishlist"
-                href="../components/wishlist.html"
-              ></a>
-            </li>
-            <li
-              id="nav_item_profile"
-              class="nav-item d-lg-flex justify-content-xxl-center align-items-xxl-center"
-              style="display: none; width: initial; height: 2vw"
-            >
-              <i
-                class="fi fi-rs-home fs-2 text-white d-lg-flex align-items-lg-center"
-                data-bs-toggle="tooltip"
-                data-bs-placement="bottom"
-                title="Home"
-              ></i>
-              <a
-                id="nav_profile_btn"
-                class="btn mx-auto"
-                role="button"
-                data-bs-toggle="tooltip"
-                data-bs-placement="bottom"
-                style="
+                " title="Wishlist" href="../components/wishlist.html"></a>
+          </li>
+          <li id="nav_item_profile" class="nav-item d-lg-flex justify-content-xxl-center align-items-xxl-center"
+            style="display: none; width: initial; height: 2vw">
+            <i class="fi fi-rs-home fs-2 text-white d-lg-flex align-items-lg-center" data-bs-toggle="tooltip"
+              data-bs-placement="bottom" title="Home"></i>
+            <a id="nav_profile_btn" class="btn mx-auto" role="button" data-bs-toggle="tooltip"
+              data-bs-placement="bottom" style="
                   background: url('../assets/icons/user-free-icon-font.svg') center / contain
                     no-repeat;
                   border-style: hidden;
                   width: 2.1vw;
                   height: 2.1vw;
-                "
-                title="My Account"
-              ></a>
-            </li>
-            <li
-              id="nav_item_username"
-              class="nav-item"
-              class="nav-item d-lg-flex justify-content-xxl-center align-items-xxl-center"
-              style="width: initial; height: 2vw"
-            >
-              <i
-                class="fi fi-rs-home fs-2 text-white d-lg-flex align-items-lg-center"
-                data-bs-toggle="tooltip"
-                data-bs-placement="bottom"
-                title="Home"
-              ></i
-              ><label
-                id="helloMessage"
-                class="form-label"
-                style="
+                " title="My Account"></a>
+          </li>
+          <li id="nav_item_username" class="nav-item"
+            class="nav-item d-lg-flex justify-content-xxl-center align-items-xxl-center"
+            style="width: initial; height: 2vw">
+            <i class="fi fi-rs-home fs-2 text-white d-lg-flex align-items-lg-center" data-bs-toggle="tooltip"
+              data-bs-placement="bottom" title="Home"></i><label id="helloMessage" class="form-label" style="
                   color: var(--bs-white);
                   margin-left: 1vw;
                   font-size: 13px;
                   text-align: center;
                   margin-top: 0.5vw;
                   display: flex;
-                "
-                >Hello, Stranger</label
-              >
-            </li>
-            <!-- <li class="nav-item">
+                ">Hello, Stranger</label>
+          </li>
+          <!-- <li class="nav-item">
               <a id="nav_item_username">
                 <label
                   class="form-label"
@@ -229,57 +138,41 @@
               </a>
             </li> -->
 
-            <li id="nav_item_login" class="nav-item" style="display: none">
-              <a id="nav_login_link" class="nav-link d-lg-flex" href="../components/login.html">
-                LOGIN
-              </a>
-            </li>
-            <li id="nav_item_register" class="nav-item" style="display: none">
-              <a
-                id="nav_register_link"
-                class="nav-link d-lg-flex align-items-lg-center"
-                href="../components/registration.html"
-              >
-                Register
-              </a>
-            </li>
-            <li
-              id="nav_item_logout"
-              class="nav-item d-lg-flex justify-content-lg-start justify-content-xxl-center align-items-xxl-center"
-              style="display: none; width: initial; height: 2vw"
-            >
-              <i
-                class="fi fi-rs-home fs-2 text-white d-lg-flex align-items-lg-center"
-                data-bs-toggle="tooltip"
-                data-bs-placement="bottom"
-                title="Home"
-              ></i>
-              <a
-                id="nav_logout_btn"
-                class="btn mx-auto"
-                role="button"
-                data-bs-toggle="tooltip"
-                data-bs-placement="bottom"
-                style="
+          <li id="nav_item_login" class="nav-item" style="display: none">
+            <a id="nav_login_link" class="nav-link d-lg-flex" href="../components/login.html">
+              LOGIN
+            </a>
+          </li>
+          <li id="nav_item_register" class="nav-item" style="display: none">
+            <a id="nav_register_link" class="nav-link d-lg-flex align-items-lg-center"
+              href="../components/registration.html">
+              Register
+            </a>
+          </li>
+          <li id="nav_item_logout"
+            class="nav-item d-lg-flex justify-content-lg-start justify-content-xxl-center align-items-xxl-center"
+            style="display: none; width: initial; height: 2vw">
+            <i class="fi fi-rs-home fs-2 text-white d-lg-flex align-items-lg-center" data-bs-toggle="tooltip"
+              data-bs-placement="bottom" title="Home"></i>
+            <a id="nav_logout_btn" class="btn mx-auto" role="button" data-bs-toggle="tooltip" data-bs-placement="bottom"
+              style="
                   background: url('../assets/icons/sign-out-free-icon-font.svg') center / contain
                     no-repeat;
                   border-style: hidden;
                   width: 2.1vw;
                   height: 2.1vw;
-                "
-                title="Log Out"
-                href="../components/welcome-page.html"
-              ></a>
-            </li>
-          </ul>
-        </div>
+                " title="Log Out" href="../components/welcome-page.html"></a>
+          </li>
+        </ul>
       </div>
-    </nav>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
+    </div>
+  </nav>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
 
-    <script type="module" src="navbar.js"></script>
-  </body>
+  <script type="module" src="navbar.js"></script>
+</body>
+
 </html>

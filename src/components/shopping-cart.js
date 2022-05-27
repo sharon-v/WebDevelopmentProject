@@ -22,7 +22,10 @@ function initialization() {
                 totalAmount = 0;
                 quantity = 0;
                 userShoppingCart = querySnapshot.data().productList;
-                // isFirstInTheCart = true;
+                if (userShoppingCart.length == 0) {
+                    deleteFirst();
+                    return;
+                }
                 for (let i = 0; i < userShoppingCart.length; ++i) {
                     dbProducts.doc(userShoppingCart[i].name).get().then((product) => {
                         if (product.exists) {
@@ -61,10 +64,9 @@ function initialization() {
                             }
                         }
                         else {
-                            deleteProFromShoppingCart(userShoppingCart[i].name);
-                            // need to delete the product from the shopping cart!!!!!!!!!!!!!!
-                            alert('The product', userShoppingCart[i].name, 'is not available anymore');
                             console.log('The product', userShoppingCart[i].name, 'is not available anymore');
+                            alert('The product ' + userShoppingCart[i].name + ' is not available anymore');
+                            deleteProFromShoppingCart(userShoppingCart[i].name);
                         }
                     })
                 }
@@ -99,6 +101,12 @@ function changeValues(element, Name, SKU, price, quantity, url, size) {
         updateQuantityInShoppingCart(productName, productQuantity, element, size);
     });
 
+    element.querySelector('#trashBtn').addEventListener('click', (e) => {
+        e.preventDefault();
+        productQuantity.value = '0';
+        updateQuantityInShoppingCart(productName, productQuantity, element, size);
+    });
+
     let productSize = element.querySelector('#productSize');
     productSize.innerHTML = size;
     let productPicture = element.querySelector('#productPicture');
@@ -124,7 +132,7 @@ function updateQuantityInShoppingCart(productName, productQuantity, element, pro
     if (productQuantity.value < 0 || onlyNumbers(String(productQuantity.value)) == false) {
         // invalid quantity
         console.log('changes to invalid quantity');
-        changedQuantityToInvalid(productName, productQuantity, element);
+        changedQuantityToInvalid(productName, productQuantity, element, productSize);
     }
     else if (productQuantity.value >= 0) {
         updateProductInTheShoppingCart(productName, productSize, productQuantity, element)
@@ -151,7 +159,7 @@ function updateProductInTheShoppingCart(productName, productSize, productQuantit
                         else {
                             finalPrice = product.data().sale;
                         }
-                        if (product.id != productName.innerHTML) {
+                        if ((product.id != productName.innerHTML) || shoppingCart[i].size != productSize) {
                             userShoppingCart.push(shoppingCart[i]);
                             quantity += parseInt(shoppingCart[i].quantity);
                             totalAmount += finalPrice * shoppingCart[i].quantity;
@@ -170,9 +178,9 @@ function updateProductInTheShoppingCart(productName, productSize, productQuantit
                         }
                     }
                     else {
-                        // maybe delete the product from the list
-                        alert('The product', shoppingCart[i].name, 'is not available anymore');
-                        console.log('The product', shoppingCart[i].name, 'is not available anymore');
+                        console.log('The product', userShoppingCart[i].name, 'is not available anymore');
+                        alert('The product ' + userShoppingCart[i].name + ' is not available anymore');
+                        deleteProFromShoppingCart(userShoppingCart[i].name);
                     }
                     if (i == shoppingCart.length - 1) {
                         console.log('last product in the cart:', shoppingCart[i].name);
@@ -192,7 +200,7 @@ function updateProductInTheShoppingCart(productName, productSize, productQuantit
     })
 }
 
-function changedQuantityToInvalid(productName, productQuantity, element) {
+function changedQuantityToInvalid(productName, productQuantity, element, productSize) {
     alert('Invalid quantity');
     console.log('user connected', userConnected.email);
     dbShoppingCart.doc(userConnected.email).get().then((querySnapshot) => {
@@ -203,15 +211,15 @@ function changedQuantityToInvalid(productName, productQuantity, element) {
             for (let i = 0; i < shoppingCart.length; ++i) {
                 dbProducts.doc(shoppingCart[i].name).get().then((product) => {
                     if (product.exists) {
-                        if (product.id == productName.innerHTML) {
+                        if (product.id == productName.innerHTML && shoppingCart[i].size == productSize) {
                             console.log('in invalid quantity, the cuurent quantity in the cart is:', shoppingCart[i].quantity);
                             productQuantity.value = shoppingCart[i].quantity;
                         }
                     }
                     else {
-                        // maybe delete the product from the list
-                        alert('The product', shoppingCart[i].name, 'is not available anymore');
-                        console.log('The product', shoppingCart[i].name, 'is not available anymore');
+                        console.log('The product', userShoppingCart[i].name, 'is not available anymore');
+                        alert('The product ' + userShoppingCart[i].name + ' is not available anymore');
+                        deleteProFromShoppingCart(userShoppingCart[i].name);
                     }
                 })
             }
@@ -222,8 +230,7 @@ function changedQuantityToInvalid(productName, productQuantity, element) {
             let quantityField = element.querySelector('#productQuantity');
             quantityField.disabled = false;
             deleteFirst();
-            // alert('Shopping cart is empty');
-            location.replace('shopping-cart.html');   // refresh the page
+            location.replace('cart.html');   // refresh the page
         }
     })
 }
@@ -280,7 +287,7 @@ function updateProductStockInTheDB(userEmail, productsList, element, size, produ
                         });
                 }
                 else {
-                    changedQuantityToInvalid(productName, productQuantity, element);
+                    changedQuantityToInvalid(productName, productQuantity, element, size);
                 }
             }
             else if (size == '160 x 200') {
@@ -298,7 +305,7 @@ function updateProductStockInTheDB(userEmail, productsList, element, size, produ
                         });
                 }
                 else {
-                    changedQuantityToInvalid(productName, productQuantity, element);
+                    changedQuantityToInvalid(productName, productQuantity, element, size);
                 }
             }
             else if (size == '180 x 200') {
@@ -317,7 +324,7 @@ function updateProductStockInTheDB(userEmail, productsList, element, size, produ
                         });
                 }
                 else {
-                    changedQuantityToInvalid(productName, productQuantity, element);
+                    changedQuantityToInvalid(productName, productQuantity, element, size);
                 }
             }
             else if (size == '90 x 200') {
@@ -335,11 +342,12 @@ function updateProductStockInTheDB(userEmail, productsList, element, size, produ
                         });
                 }
                 else {
-                    changedQuantityToInvalid(productName, productQuantity, element);
+                    changedQuantityToInvalid(productName, productQuantity, element, size);
                 }
             }
         }
         else {
+            // The product does not exist in the collection anymore
             // maybe delete the product from the list
             let quantityField = element.querySelector('#productQuantity');
             quantityField.disabled = false;
@@ -388,4 +396,32 @@ function deleteFirst() {
     par.style = "color: var(--bs-pink) ;text-align:center"
     let currentDiv = document.getElementById("items");
     currentDiv.appendChild(par);
+}
+
+function deleteProFromShoppingCart(productName) {
+    fbAuth.onAuthStateChanged((user) => {
+        userConnected = user;
+        let cart = []
+        dbShoppingCart.doc(user.email).get().then((querySnapshot) => {
+            let shoppingCart = querySnapshot.data().productList;
+            for (let i = 0; i < shoppingCart.length; ++i) {
+                if (shoppingCart[i].name != productName) {
+                    cart.push(userShoppingCart[i]);
+                }
+            }
+            dbShoppingCart.doc(user.email).set({
+                productList: cart,
+            })
+                .then(() => {
+                    console.log('succeded in deleting the unvalid product in the cart');
+                    if (cart.length == 0) {
+                        location.replace('cart.html');
+                    }
+                })
+                .catch((error) => {
+                    alert('failed to delete the product from the shopping cart,', error.message);
+                });
+
+        });
+    });
 }
