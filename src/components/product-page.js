@@ -168,13 +168,26 @@ addToCart.addEventListener('click', () => {
                         if(querySnapshot.exists) //if the user have document in the shopping cart
                         {
                             var flag = false;
-                            for(var i=0; i < querySnapshot.data().productList.length; ++i) //if the product is allraedy in the db
+                            var ListOfPro = querySnapshot.data().productList;
+                            for(var i=0; i < ListOfPro.length; ++i) 
                             {
-                                console.log(querySnapshot.data().productList.length);
-                                if((querySnapshot.data().productList)[i]["name"] == productName && (querySnapshot.data().productList)[i]["size"] == sizeOptions.options[sizeOptions.selectedIndex].text)
-                                {
+                                console.log(ListOfPro.length);
+                                if((ListOfPro)[i]["name"] == productName && (ListOfPro)[i]["size"] == sizeOptions.options[sizeOptions.selectedIndex].text)
+                                {   //if the product is allready in the db
                                     flag = true;
-                                    //implement deleting the pro, and create new
+                                    ListOfPro[i]["quantity"] = (parseInt(ListOfPro[i]["quantity"]) + parseInt(quantity.value)).toString();
+                                    dbShoppingCart.doc(user.email).update({
+                                        productList: ListOfPro
+                                    }).then(() => {
+                                        console.log("The product's quantity was updated in the db");
+                                        updateSizeQuantity(sizeOptions.options[sizeOptions.selectedIndex].value, sizeQuantity, quantity);
+                                        location.replace('../components/product-page.html');
+                                        console.log("Document successfully written!");
+                                    })
+                                    .catch((error) => {
+                                        console.error("Error updating the product's quantity in the db: ", error);
+                                    });
+                                    break;
                                 }
                             }
                             if(flag == false)
