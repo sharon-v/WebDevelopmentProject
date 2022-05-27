@@ -8,11 +8,9 @@ function howManyCusInThisYear() {
         querySnapshot.forEach((doc) => {
             console.log(new Date().getFullYear);
             if (doc.data().regisrationYear == parseInt(correntYear)) {
-                // console.log(doc.data().regisrationYear);
                 countCus += 1;
             }
         });
-        // console.log(countCus);
         document.getElementById('newUsers').innerHTML = countCus + " users";
     });
 }
@@ -21,7 +19,7 @@ whichProdIsbestseller();
 function whichProdIsbestseller() {
     var bestSeller = 0;
     var prodName = '';
-    dbProducts.get().then((querySnapshot) => { 
+    dbProducts.get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
             if (doc.data().amountSold > bestSeller) {
                 bestSeller = doc.data().amountSold;
