@@ -21,7 +21,15 @@ function initialization(){
                     dbProducts.doc(userShoppingCart[i].name).get().then((pro) =>{
                         if (pro.exists){
                             totalItems = totalItems + x;
-                            productAmount[pro.id] = x;
+                            if(pro.id in productAmount)
+                            {
+                                productAmount[pro.id] = productAmount[pro.id] + x;
+
+                            }
+                            else{
+                                productAmount[pro.id] = x;
+                            }
+
                             if(pro.data().sale == 0)
                             {
                                 console.log(pro.data().price);
