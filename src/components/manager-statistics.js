@@ -1,85 +1,121 @@
-import { dbOrders, dbCustomers, fbAuth } from '../firebase/data.js'
+import { dbOrders, dbCustomers, fbAuth, dbProducts } from '../firebase/data.js'
 
-howManyCusInLastYear();
-function howManyCusInLastYear() {
-    fbAuth.then((querySnapshot) => {
+howManyCusInThisYear();
+function howManyCusInThisYear() {
+    dbCustomers.get().then((querySnapshot) => {
         var countCus = 0;
+        var correntYear = new Date().getFullYear()
         querySnapshot.forEach((doc) => {
-            if (querySnapshot.userRecord.metadata.creationTime.year == new Date().getFullYear) {
+            console.log(new Date().getFullYear);
+            if (doc.data().regisrationYear == parseInt(correntYear)) {
+                // console.log(doc.data().regisrationYear);
                 countCus += 1;
             }
         });
+        // console.log(countCus);
+        document.getElementById('newUsers').innerHTML = countCus + " users";
     });
-    console.log(countCus);
-    // put the counter value in the box of the answer
 }
 
-
-whichProdIsbestceller();
-function whichProdIsbestceller() {
-    dbCustomers.get().then((querySnapshot) => {
-        var bestCeller = 0;
+whichProdIsbestseller();
+function whichProdIsbestseller() {
+    dbProducts.get().then((querySnapshot) => {
+        var bestSeller = 0;
+        var prodName = '';
         querySnapshot.forEach((doc) => {
-            if (amountSold > bestCeller) {
-                bestCeller = amountSold;
+            if (doc.data().amountSold > bestSeller) {
+                bestSeller = doc.data().amountSold;
+                prodName = doc.data().Pname;
             }
         });
+        console.log(prodName);
+        document.getElementById('bestSeller').innerHTML = prodName;
     });
-    console.log(bestCeller);
-    // put the counter value in the box of the answer
 }
 
+// var Combo = document.querySelector('#month');
+// Combo.addEventListener('month', (e) => {
+//     // make filter combo empty
+//     var month = document.getElementById('month').value;
+//     console.log(month);
+//     // howManyProdInMonth(document.getElementById('month').value);
+//     // function howManyProdInMonth(month) {
+//     dbOrders.get().then((querySnapshot) => {
+//         var countPro = 0;
+//         querySnapshot.forEach((doc) => {
+//             var parts = doc.data().shippingDate.split("-");
+//             var dtMonth = parts[1];
+//             if (parseInt(dtMonth) == month) {
+//                 countPro += parseInt(doc.data().totalItems);
+//             }
+//         });
+//         console.log(countPro);
+//         document.getElementById('prodMonth').innerHTML = countPro;
+//     });
+// });
 
-
-//howManyProdInMonth('05');
+howManyProdInMonth(document.getElementById('month').value);
 function howManyProdInMonth(month) {
+    console.log(month);
     dbOrders.get().then((querySnapshot) => {
         var countPro = 0;
         querySnapshot.forEach((doc) => {
-            if (shippingDate.month == month) {
-                countPro += totalItems;
+            var parts = doc.data().shippingDate.split("-");
+            var dtMonth = parts[1];
+            if (parseInt(dtMonth) == month) {
+                countPro += parseInt(doc.data().totalItems);
             }
         });
+        console.log(countPro);
+        document.getElementById('prodMonth').innerHTML = countPro + " products";
     });
-    console.log(countOrd);
-    // put the counter value in the box of the answer
 }
-howManyProdInYear(2022);
+
+howManyProdInYear(document.getElementById('Pyear').value);
 function howManyProdInYear(year) {
+    console.log(year);
     dbOrders.get().then((querySnapshot) => {
         var countPro = 0;
         querySnapshot.forEach((doc) => {
-            if (shippingDate.year == year) {
-                countPro += totalItems;
+            var parts = doc.data().shippingDate.split("-");
+            var dtYear = parts[0];
+            if (dtYear == year) {
+                countPro += parseInt(doc.data().totalItems);
             }
         });
+        console.log(countPro);
+        document.getElementById('prodYear').innerHTML = countPro + " products";
     });
-    console.log(countOrd);
-    // put the counter value in the box of the answer
 }
-howManyOrdersInYear(2022);
+
+howManyOrdersInYear(document.getElementById('Oyear').value);
 function howManyOrdersInYear(year) {
     dbOrders.get().then((querySnapshot) => {
         var countOrd = 0;
         querySnapshot.forEach((doc) => {
-            if (shippingDate.year == year) {
-                countOrd += 1;
+            var parts = doc.data().shippingDate.split("-");
+            var dtYear = parts[0];
+            if (dtYear == year) {
+                countOrd++;
             }
         });
+        console.log(countOrd);
+        document.getElementById('orders').innerHTML = countOrd + " orders";
     });
-    console.log(countOrd);
-    // put the counter value in the box of the answer
 }
-howManyIncomeInYear(2022);
+
+howManyIncomeInYear(document.getElementById('incomeY').value);
 function howManyIncomeInYear(year) {
     dbOrders.get().then((querySnapshot) => {
         var countInc = 0;
         querySnapshot.forEach((doc) => {
-            if (shippingDate.year == year) {
-                countInc += totalAmount;
+            var parts = doc.data().shippingDate.split("-");
+            var dtYear = parts[0];
+            if (dtYear == year) {
+                countInc += parseFloat(doc.data().totalAmount).toFixed(2);
             }
         });
+        console.log(countInc);
+        document.getElementById('income').innerHTML = countInc + "₪";
     });
-    console.log(countInc);
-    // put the counter value in the box of the answer
 }

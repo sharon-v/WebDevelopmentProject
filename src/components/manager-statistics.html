@@ -1,302 +1,230 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
     <title>Product - Brand</title>
-  </head>
+</head>
 
-  <html>
-    <head>
-      <meta charset="utf-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
-      <title>Shopping Cart - Brand</title>
-      <link rel="stylesheet" href="../components/manager-statistics.css" />
-    </head>
+<html>
 
-    <body>
-      <script type="module" id="replace_with_navbar" src="../components/navbar.js"></script>
-      <main class="page shopping-cart-page">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+    <title>Shopping Cart - Brand</title>
+    <link rel="stylesheet" href="../components/manager-statistics.css" />
+</head>
+
+<body>
+    <script type="module" id="replace_with_navbar" src="../components/navbar.js"></script>
+    <main class="page shopping-cart-page">
         <section class="bg-light clean-block clean-cart dark">
-          <div class="container">
-            <div class="block-heading">
-              <h1 style="font-size: calc(1.325rem + 0.9vw)">Manager Zone</h1>
-              <ul
-                class="nav nav-tabs d-lg-flex flex-row justify-content-lg-center align-items-lg-center"
-              >
-                <li class="nav-item">
-                  <a class="nav-link" href="profile.html" style="color: var(--bs-pink)">Profile</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="manager-manage-items.html" style="color: var(--bs-pink)"
-                    >Manage items</a
-                  >
-                </li>
-                <li class="nav-item">
-                  <a
-                    class="nav-link"
-                    href="manager-manage-orders.html"
-                    style="color: var(--bs-pink)"
-                    >Manage orders</a
-                  >
-                </li>
-                <li class="nav-item">
-                  <a
-                    class="nav-link"
-                    href="manager-delivery-times.html"
-                    style="color: var(--bs-pink)"
-                    >Update delivery times</a
-                  >
-                </li>
-                <li class="nav-item">
-                  <a
-                    class="nav-link"
-                    href="manager-statistics.html"
-                    style="font-weight: bold; color: var(--bs-dark)"
-                    >Statistical Information</a
-                  >
-                </li>
-              </ul>
+            <div class="container">
+                <div class="block-heading">
+                    <h1 style="font-size: calc(1.325rem + 0.9vw)">Manager Zone</h1>
+                    <ul class="nav nav-tabs d-lg-flex flex-row justify-content-lg-center align-items-lg-center">
+                        <li class="nav-item">
+                            <a class="nav-link" href="profile.html" style="color: var(--bs-pink)">Profile</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="manager-manage-items.html" style="color: var(--bs-pink)">Manage
+                                items</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="manager-manage-orders.html" style="color: var(--bs-pink)">Manage
+                                orders</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="manager-delivery-times.html" style="color: var(--bs-pink)">Update
+                                delivery times</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="manager-statistics.html"
+                                style="font-weight: bold; color: var(--bs-dark)">Statistical Information</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="text-center d-lg-flex mx-auto justify-content-lg-center align-items-lg-center content"
+                    style="width: 40vw; padding: 2vw">
+                    <div class="row d-lg-flex my-auto justify-content-lg-center" style="width: 40vw">
+                        <div class="col-lg-11 d-lg-flex my-auto justify-content-lg-center"
+                            style="border: 1px solid var(--bs-gray-200)">
+                            <div class="text-center">
+                                <label class="form-label" style="
+                        margin-top: 2vw;
+                        color: var(--bs-pink);
+                        font-weight: bold;
+                        font-size: 16px;
+                      ">Total income in a year</label><img src="../assets/icons/chart-histogram-free-icon-font.svg"
+                                    style="width: 2vw; height: 2vw; margin-left: 1vw; margin-bottom: 1vw" />
+                                <div class="col text-start" style="padding-left: 1vw">
+                                    <span>Select year: </span><select style="
+                          margin-left: 2vw;
+                          text-align: left;
+                          color: var(--bs-gray-700);
+                          border-color: var(--bs-gray-400);
+                        ">
+                                        <optgroup label="YEAR">
+                                            <option id="incomeY" value="2022" selected>2022</option>
+                                        </optgroup>
+                                    </select>
+                                </div>
+                                <div class="col text-start"
+                                    style="margin-top: 1vw; margin-bottom: 2vw; padding-left: 1vw">
+                                    <span>Total amount: </span><span id="income" style="margin-left: 2vw">result
+                                        here</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-11 d-lg-flex my-auto justify-content-lg-center"
+                            style="border: 1px solid var(--bs-gray-200)">
+                            <div class="text-center">
+                                <label class="form-label" style="
+                        margin-top: 2vw;
+                        color: var(--bs-pink);
+                        font-weight: bold;
+                        font-size: 16px;
+                      ">Best selling product</label><img src="../assets/icons/chart-pie-alt-free-icon-font.svg"
+                                    style="width: 2vw; height: 2vw; margin-left: 1vw" />
+                                <div class="col text-start"
+                                    style="margin-top: 1vw; margin-bottom: 2vw; padding-left: 1vw">
+                                    <span>Total amount: </span><span id="bestSeller" style="margin-left: 2vw">result
+                                        here</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-11 d-lg-flex my-auto justify-content-lg-center"
+                            style="border: 1px solid var(--bs-gray-200)">
+                            <div class="text-center">
+                                <label class="form-label" style="
+                        margin-top: 2vw;
+                        color: var(--bs-pink);
+                        font-weight: bold;
+                        font-size: 16px;
+                      ">Amount of new users this year<img src="../assets/icons/users-free-icon-font.svg"
+                                        style="width: 2vw; height: 2vw; margin-left: 1vw" /></label>
+                                <div class="col text-start"
+                                    style="margin-top: 1vw; margin-bottom: 2vw; padding-left: 1vw">
+                                    <span>Total amount: </span><span id="newUsers" style="margin-left: 2vw">result
+                                        here</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-11 d-lg-flex my-auto justify-content-lg-center"
+                            style="border: 1px solid var(--bs-gray-200)">
+                            <div class="text-center">
+                                <label class="form-label" style="
+                        margin-top: 2vw;
+                        color: var(--bs-pink);
+                        font-weight: bold;
+                        font-size: 16px;
+                      ">Amount of products sold in a
+                                    <span style="text-decoration: underline">month</span></label>
+                                <div class="col-lg-12 text-start" style="padding-left: 1vw">
+                                    <span>Select month: </span><select id="month" style="
+                          margin-left: 2vw;
+
+                          text-align: left;
+                          color: var(--bs-gray-700);
+                          border-color: var(--bs-gray-400);
+                        ">
+                                        <optgroup label="MONTH">
+                                            <option value="1">January</option>
+                                            <option value="2">February</option>
+                                            <option value="3">March</option>
+                                            <option value="4">April</option>
+                                            <option value="5" selected>May</option>
+                                            <option value="6">June</option>
+                                            <option value="7">July</option>
+                                            <option value="8">August</option>
+                                            <option value="9">September</option>
+                                            <option value="10">October</option>
+                                            <option value="11">November</option>
+                                            <option value="12">December</option>
+                                        </optgroup>
+                                    </select>
+                                </div>
+                                <div class="col text-start"
+                                    style="margin-top: 1vw; margin-bottom: 2vw; padding-left: 1vw">
+                                    <span>Amount sold: </span><span id="prodMonth" style="margin-left: 2vw">result
+                                        here</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-11 text-center d-lg-flex my-auto justify-content-lg-center"
+                            style="border: 1px solid var(--bs-gray-200)">
+                            <div class="text-center">
+                                <label class="form-label" style="
+                        margin-top: 2vw;
+                        color: var(--bs-pink);
+                        font-weight: bold;
+                        font-size: 16px;
+                      ">Amount of products sold in a
+                                    <span style="text-decoration: underline">year</span></label>
+                                <div class="col text-start" style="padding-left: 1vw">
+                                    <span>Select year: </span><select style="
+                          margin-left: 2vw;
+
+                          text-align: left;
+                          color: var(--bs-gray-700);
+                          border-color: var(--bs-gray-400);
+                        ">
+                                        <optgroup label="YEAR">
+                                            <option id="Pyear" value="2022" selected>2022</option>
+                                        </optgroup>
+                                    </select>
+                                </div>
+                                <div class="col text-start"
+                                    style="margin-top: 1vw; margin-bottom: 2vw; padding-left: 1vw">
+                                    <span>Amount sold: </span><span id="prodYear" style="margin-left: 2vw">result
+                                        here</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-11 d-lg-flex my-auto justify-content-lg-center"
+                            style="border: 1px solid var(--bs-gray-200)">
+                            <div class="text-center">
+                                <label class="form-label" style="
+                        margin-top: 2vw;
+                        color: var(--bs-pink);
+                        font-weight: bold;
+                        font-size: 16px;
+                      ">Amount of orders in a year</label>
+                                <div class="col text-start" style="padding-left: 1vw">
+                                    <span>Select year: </span><select style="
+                          margin-left: 2vw;
+
+                          text-align: left;
+                          color: var(--bs-gray-700);
+                          border-color: var(--bs-gray-400);
+                        ">
+                                        <optgroup label="YEAR">
+                                            <option id="Oyear" value="2022" selected>2022</option>
+                                        </optgroup>
+                                    </select>
+                                </div>
+                                <div class="col text-start"
+                                    style="margin-top: 1vw; margin-bottom: 2vw; padding-left: 1vw">
+                                    <span>Orders amount: </span><span id="orders" style="margin-left: 2vw">result
+                                        here</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div
-              class="text-center d-lg-flex mx-auto justify-content-lg-center align-items-lg-center content"
-              style="width: 40vw; padding: 2vw"
-            >
-              <div class="row d-lg-flex my-auto justify-content-lg-center" style="width: 40vw">
-                <div
-                  class="col-lg-11 d-lg-flex my-auto justify-content-lg-center"
-                  style="border: 1px solid var(--bs-gray-200)"
-                >
-                  <div class="text-center">
-                    <label
-                      class="form-label"
-                      style="
-                        margin-top: 2vw;
-                        color: var(--bs-pink);
-                        font-weight: bold;
-                        font-size: 16px;
-                      "
-                      >Total income in a year</label
-                    ><img
-                      src="../assets/icons/chart-histogram-free-icon-font.svg"
-                      style="width: 2vw; height: 2vw; margin-left: 1vw; margin-bottom: 1vw"
-                    />
-                    <div class="col text-start" style="padding-left: 1vw">
-                      <span>Select year: </span
-                      ><select
-                        style="
-                          margin-left: 2vw;
-                          text-align: left;
-                          color: var(--bs-gray-700);
-                          border-color: var(--bs-gray-400);
-                        "
-                      >
-                        <optgroup label="YEAR">
-                          <option value="0" selected>2022</option>
-                        </optgroup>
-                      </select>
-                    </div>
-                    <div
-                      class="col text-start"
-                      style="margin-top: 1vw; margin-bottom: 2vw; padding-left: 1vw"
-                    >
-                      <span>Total amount: </span><span style="margin-left: 2vw">result here</span>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  class="col-lg-11 d-lg-flex my-auto justify-content-lg-center"
-                  style="border: 1px solid var(--bs-gray-200)"
-                >
-                  <div class="text-center">
-                    <label
-                      class="form-label"
-                      style="
-                        margin-top: 2vw;
-                        color: var(--bs-pink);
-                        font-weight: bold;
-                        font-size: 16px;
-                      "
-                      >Best selling product</label
-                    ><img
-                      src="../assets/icons/chart-pie-alt-free-icon-font.svg"
-                      style="width: 2vw; height: 2vw; margin-left: 1vw"
-                    />
-                    <div
-                      class="col text-start"
-                      style="margin-top: 1vw; margin-bottom: 2vw; padding-left: 1vw"
-                    >
-                      <span>Total amount: </span><span style="margin-left: 2vw">result here</span>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  class="col-lg-11 d-lg-flex my-auto justify-content-lg-center"
-                  style="border: 1px solid var(--bs-gray-200)"
-                >
-                  <div class="text-center">
-                    <label
-                      class="form-label"
-                      style="
-                        margin-top: 2vw;
-                        color: var(--bs-pink);
-                        font-weight: bold;
-                        font-size: 16px;
-                      "
-                      >Amount of new users this year<img
-                        src="../assets/icons/users-free-icon-font.svg"
-                        style="width: 2vw; height: 2vw; margin-left: 1vw"
-                    /></label>
-                    <div
-                      class="col text-start"
-                      style="margin-top: 1vw; margin-bottom: 2vw; padding-left: 1vw"
-                    >
-                      <span>Total amount: </span><span style="margin-left: 2vw">result here</span>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  class="col-lg-11 d-lg-flex my-auto justify-content-lg-center"
-                  style="border: 1px solid var(--bs-gray-200)"
-                >
-                  <div class="text-center">
-                    <label
-                      class="form-label"
-                      style="
-                        margin-top: 2vw;
-                        color: var(--bs-pink);
-                        font-weight: bold;
-                        font-size: 16px;
-                      "
-                      >Amount of products sold in a
-                      <span style="text-decoration: underline">month</span></label
-                    >
-                    <div class="col-lg-12 text-start" style="padding-left: 1vw">
-                      <span>Select month: </span
-                      ><select
-                        style="
-                          margin-left: 2vw;
-
-                          text-align: left;
-                          color: var(--bs-gray-700);
-                          border-color: var(--bs-gray-400);
-                        "
-                      >
-                        <optgroup label="MONTH">
-                          <option value="1" selected>January</option>
-                          <option value="2">February</option>
-                          <option value="3">March</option>
-                          <option value="4">April</option>
-                          <option value="5">May</option>
-                          <option value="6">June</option>
-                          <option value="7">July</option>
-                          <option value="8">August</option>
-                          <option value="9">September</option>
-                          <option value="10">October</option>
-                          <option value="11">November</option>
-                          <option value="12">December</option>
-                        </optgroup>
-                      </select>
-                    </div>
-                    <div
-                      class="col text-start"
-                      style="margin-top: 1vw; margin-bottom: 2vw; padding-left: 1vw"
-                    >
-                      <span>Amount sold: </span><span style="margin-left: 2vw">result here</span>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  class="col-lg-11 text-center d-lg-flex my-auto justify-content-lg-center"
-                  style="border: 1px solid var(--bs-gray-200)"
-                >
-                  <div class="text-center">
-                    <label
-                      class="form-label"
-                      style="
-                        margin-top: 2vw;
-                        color: var(--bs-pink);
-                        font-weight: bold;
-                        font-size: 16px;
-                      "
-                      >Amount of products sold in a
-                      <span style="text-decoration: underline">year</span></label
-                    >
-                    <div class="col text-start" style="padding-left: 1vw">
-                      <span>Select year: </span
-                      ><select
-                        style="
-                          margin-left: 2vw;
-
-                          text-align: left;
-                          color: var(--bs-gray-700);
-                          border-color: var(--bs-gray-400);
-                        "
-                      >
-                        <optgroup label="YEAR">
-                          <option value="0" selected>2022</option>
-                        </optgroup>
-                      </select>
-                    </div>
-                    <div
-                      class="col text-start"
-                      style="margin-top: 1vw; margin-bottom: 2vw; padding-left: 1vw"
-                    >
-                      <span>Amount sold: </span><span style="margin-left: 2vw">result here</span>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  class="col-lg-11 d-lg-flex my-auto justify-content-lg-center"
-                  style="border: 1px solid var(--bs-gray-200)"
-                >
-                  <div class="text-center">
-                    <label
-                      class="form-label"
-                      style="
-                        margin-top: 2vw;
-                        color: var(--bs-pink);
-                        font-weight: bold;
-                        font-size: 16px;
-                      "
-                      >Amount of orders in a year</label
-                    >
-                    <div class="col text-start" style="padding-left: 1vw">
-                      <span>Select year: </span
-                      ><select
-                        style="
-                          margin-left: 2vw;
-
-                          text-align: left;
-                          color: var(--bs-gray-700);
-                          border-color: var(--bs-gray-400);
-                        "
-                      >
-                        <optgroup label="YEAR">
-                          <option value="0" selected>2022</option>
-                        </optgroup>
-                      </select>
-                    </div>
-                    <div
-                      class="col text-start"
-                      style="margin-top: 1vw; margin-bottom: 2vw; padding-left: 1vw"
-                    >
-                      <span>Orders amount: </span><span style="margin-left: 2vw">result here</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
         </section>
-      </main>
+    </main>
 
-      <script type="module" id="replace_with_footer" src="../components/footer.js"></script>
-      <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-      <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
-      <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
-      <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
-      <script type="module" src="../components/manager-statistics.js"></script>
-    </body>
-  </html>
+    <script type="module" id="replace_with_footer" src="../components/footer.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
+    <script type="module" src="../components/manager-statistics.js"></script>
+</body>
+
+</html>
+
 </html>
