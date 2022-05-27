@@ -1,6 +1,8 @@
 import { dbProducts, dbWishList, fbAuth } from '../firebase/data.js';
 
-// document.querySelector('#spinner').style.visibility = 'visible';
+const spinner = document.querySelector('#spinner');
+spinner.style.visibility='visible';
+
 initialization();
 
 // function initialization() {
@@ -63,6 +65,10 @@ function editElement(pName, sku, price, sale, url, s90, s120, s160, s180, fl, jl
 }
 
 function changeValues(element, pName, sku, price, sale, url, s90, s120, s160, s180, fl, jl) {
+  // change heart btn to empty and remove element from wishlist collection
+  var heart = 'url("../assets/icons/heart-icon.svg")';
+  var blackHeart = 'url("../assets/icons/black-heart.svg")';
+
   // check if item is in wishlist
   let heartBtn = element.querySelector('#heart_btn');
   heartBtn.style.backgroundImage = blackHeart;
@@ -111,10 +117,6 @@ function changeValues(element, pName, sku, price, sale, url, s90, s120, s160, s1
   let productImage = element.querySelector('#product_image');
   productImage.src = url;
 
-  // change heart btn to empty and remove element from wishlist collection
-  var heart = 'url("../assets/icons/heart-icon.svg")';
-  var blackHeart = 'url("../assets/icons/black-heart.svg")';
-
   // listen to heartBtn
   heartBtn.addEventListener('click', () => {
     fbAuth.onAuthStateChanged((user) => {
@@ -123,22 +125,6 @@ function changeValues(element, pName, sku, price, sale, url, s90, s120, s160, s1
         .get()
         .then((querySnapshot) => {
           if (querySnapshot.exists) {
-            if (heartBtn.style.backgroundImage == heart) {
-              // if heart is empty
-              heartBtn.style.backgroundImage = blackHeart;
-              dbWishList
-                .doc(user.email)
-                .update({
-                  productArr: firebase.firestore.FieldValue.arrayUnion(pName),
-                })
-                .then(() => {
-                  console.log('Document successfully written!');
-                })
-                .catch((error) => {
-                  console.error('Error writing document: ', error);
-                });
-            } else {
-              // if heart is full
               heartBtn.style.backgroundImage = heart;
               dbWishList
                 .doc(user.email)
@@ -146,25 +132,59 @@ function changeValues(element, pName, sku, price, sale, url, s90, s120, s160, s1
                   productArr: firebase.firestore.FieldValue.arrayRemove(pName),
                 })
                 .then(() => {
-                  console.log('Document successfully written!');
+                  console.log('from full to not - Document successfully written!');
+                  removeAllChildNodes(document.getElementById("wishlist"));
+                  //reloaded the page
+                  initialization();
                 })
                 .catch((error) => {
                   console.error('Error writing document: ', error);
                 });
-            }
+            // if (heartBtn.style.backgroundImage == heart) {
+            //   // if heart is empty
+            //   heartBtn.style.backgroundImage = blackHeart;
+            //   dbWishList
+            //     .doc(user.email)
+            //     .update({
+            //       productArr: firebase.firestore.FieldValue.arrayUnion(pName),
+            //     })
+            //     .then(() => {
+            //       console.log('from empty to not - Document successfully written!');
+            //     })
+            //     .catch((error) => {
+            //       console.error('Error writing document: ', error);
+            //     });
+            // } else {
+            //   // if heart is full
+            //   heartBtn.style.backgroundImage = heart;
+            //   dbWishList
+            //     .doc(user.email)
+            //     .update({
+            //       productArr: firebase.firestore.FieldValue.arrayRemove(pName),
+            //     })
+            //     .then(() => {
+            //       console.log('from full to not - Document successfully written!');
+            //       removeAllChildNodes(document.getElementById("wishlist"));
+            //       //reloaded the page
+            //       initialization();
+            //     })
+            //     .catch((error) => {
+            //       console.error('Error writing document: ', error);
+            //     });
+            // }
           } else {
             //if the user dont have wish list
-            dbWishList
-              .doc(user.email)
-              .set({
-                productArr: firebase.firestore.FieldValue.arrayUnion(pName),
-              })
-              .then(() => {
-                console.log('Document successfully written!');
-              })
-              .catch((error) => {
-                console.error('Error writing document: ', error);
-              });
+            // dbWishList
+            //   .doc(user.email)
+            //   .set({
+            //     productArr: firebase.firestore.FieldValue.arrayUnion(pName),
+            //   })
+            //   .then(() => {
+            //     console.log('Document successfully written!');
+            //   })
+            //   .catch((error) => {
+            //     console.error('Error writing document: ', error);
+            //   });
           }
         });
     });
@@ -227,7 +247,8 @@ function deleteFirst() {
 }
 
 function removeAllChildNodes(parent) {
-  while (parent.children.length > 2) {
+  document.getElementById('spinner').style.display='inline';
+  while (parent.children.length > 1) {
     console.log('delete');
     parent.removeChild(parent.lastChild);
   }
@@ -244,11 +265,12 @@ function initialization() {
           let myWishlist = querySnapshot.data().productArr;
           if (myWishlist.length == 0) {
             deleteFirst();
+            spinner.style.display = 'none';
             return;
           }
           console.log('mywishlist = ', myWishlist);
+          var counter = 0;
           myWishlist.forEach((name) => {
-            var counter = 0;
             dbProducts
               .doc(name)
               .get()
@@ -298,6 +320,11 @@ function initialization() {
                 }
               });
           });
+          spinner.style.display = 'none';
+        }
+        else{
+          spinner.style.display = 'none';
+          deleteFirst();
         }
       });
   });
