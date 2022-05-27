@@ -1,4 +1,8 @@
-import { dbProducts, dbWishList, fbAuth } from '../firebase/data.js';
+import {
+  dbProducts,
+  dbWishList,
+  fbAuth
+} from '../firebase/data.js';
 
 document.querySelector('#spinner').style.visibility = 'visible';
 initialization(sessionStorage.getItem('filter'));
@@ -419,7 +423,7 @@ function searchByInput() {
                 console.log('no products');
                 // deleteFirst();
                 document.querySelector('#catalog_list').lastElementChild.style.display = 'none';
-                document.querySelector('#noOrderMessage').style.display = 'inline';
+                document.querySelector('#noItemMessage').style.display = 'inline';
                 document.querySelector('#spinner').style.visibility = 'visible';
               }
             })
@@ -435,7 +439,7 @@ function searchByInput() {
     // container.lastElementChild.style.display = 'none';
 
     document.querySelector('#catalog_list').lastElementChild.style.display = 'inline';
-    document.querySelector('#noOrderMessage').style.display = 'none';
+    document.querySelector('#noItemMessage').style.display = 'none';
     console.log('no products');
     document.querySelector('#spinner').style.visibility = 'visible';
     initialization('0');
