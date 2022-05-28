@@ -44,7 +44,7 @@ function howManyProdInMonth() {
         var countPro = 0;
         querySnapshot.forEach((doc) => {
             var parts = new Date(doc.data().purchaseDate).getMonth() + 1;
-            if (parseInt(parts) == month) {
+            if (parseInt(parts) == month && doc.data().orderStatus == 'Aprroved') {
                 countPro += parseInt(doc.data().totalItems);
             }
         });
@@ -59,9 +59,8 @@ function howManyProdInYear(year) {
     dbOrders.get().then((querySnapshot) => {
         var countPro = 0;
         querySnapshot.forEach((doc) => {
-            var parts = doc.data().shippingDate.split("-");
-            var dtYear = parts[0];
-            if (dtYear == year) {
+            var dtYear = new Date(doc.data().purchaseDate).getFullYear();
+            if (parseInt(dtYear) == year && doc.data().orderStatus == 'Aprroved') {
                 countPro += parseInt(doc.data().totalItems);
             }
         });
@@ -75,9 +74,8 @@ function howManyOrdersInYear(year) {
     dbOrders.get().then((querySnapshot) => {
         var countOrd = 0;
         querySnapshot.forEach((doc) => {
-            var parts = doc.data().shippingDate.split("-");
-            var dtYear = parts[0];
-            if (dtYear == year) {
+            var dtYear = new Date(doc.data().purchaseDate).getFullYear();
+            if (parseInt(dtYear) == year && doc.data().orderStatus == 'Aprroved') {
                 countOrd++;
             }
         });
@@ -91,9 +89,8 @@ function howManyIncomeInYear(year) {
     dbOrders.get().then((querySnapshot) => {
         var countInc = 0;
         querySnapshot.forEach((doc) => {
-            var parts = doc.data().shippingDate.split("-");
-            var dtYear = parts[0];
-            if (dtYear == year) {
+            var dtYear = new Date(doc.data().purchaseDate).getFullYear();
+            if (parseInt(dtYear) == year && doc.data().orderStatus == 'Aprroved') {
                 countInc += doc.data().totalAmount;
             }
         });

@@ -1,4 +1,4 @@
-import {dbOrders, dbCustomers } from '../firebase/data.js'
+import {dbOrders, dbCustomers, dbProducts } from '../firebase/data.js'
 
 document.querySelector('#spinner').style.visibility='visible';
 
@@ -9,11 +9,11 @@ function initialization(){
         querySnapshot.forEach((doc) => {
             counter = counter + 1;
             if(counter == 1){
-                editElement(doc.id, doc.data().purchaseDate, doc.data().buyerEmail , doc.data().totalAmount, doc.data().orderStatus);
+                editElement(doc.id, doc.data().purchaseDate, doc.data().buyerEmail , doc.data().totalAmount, doc.data().orderStatus, doc.data().productsList);
                 document.querySelector('#product').style.visibility='visible';
             }
             else{
-                addElement(doc.id, doc.data().purchaseDate, doc.data().buyerEmail , doc.data().totalAmount, doc.data().orderStatus);
+                addElement(doc.id, doc.data().purchaseDate, doc.data().buyerEmail , doc.data().totalAmount, doc.data().orderStatus, doc.data().productsList);
                 document.querySelector('#product').style.visibility='visible';
             }
         });
@@ -48,7 +48,7 @@ function filterByOrderId(){
         removeAllChildNodes(container);
         dbOrders.doc(searchInput.value).get().then((doc) => {
             if (doc.exists){
-                editElement(doc.id, doc.data().purchaseDate, doc.data().buyerEmail , doc.data().totalAmount, doc.data().orderStatus);
+                editElement(doc.id, doc.data().purchaseDate, doc.data().buyerEmail , doc.data().totalAmount, doc.data().orderStatus, doc.data().productsList);
                 document.querySelector('#spinner').style.display = 'none';
             } else 
             {
@@ -70,22 +70,22 @@ function filterByOrderId(){
 }
 
 
-function editElement(orderNumber, date, buyerEmail, totalAmount, orderStatus){
+function editElement(orderNumber, date, buyerEmail, totalAmount, orderStatus, proList){
     let ele = document.querySelector('#product')
-    ele = changeValues(ele,orderNumber, date, buyerEmail, totalAmount, orderStatus)
+    ele = changeValues(ele,orderNumber, date, buyerEmail, totalAmount, orderStatus, proList)
     ele.style.visibility="visible";
 }
 
-function addElement (orderNumber, date, buyerEmail, totalAmount, orderStatus) {
+function addElement (orderNumber, date, buyerEmail, totalAmount, orderStatus, proList) {
     let ele = document.querySelector('#product')
     let newElement = ele.cloneNode(true);
-    newElement = changeValues(newElement, orderNumber, date, buyerEmail, totalAmount, orderStatus)
+    newElement = changeValues(newElement, orderNumber, date, buyerEmail, totalAmount, orderStatus, proList)
     let currentDiv = document.getElementById("orders_list");
     currentDiv.appendChild(newElement);
     newElement.style.visibility="visible"; 
 }
 
-function changeValues(element, orderNumber, date, buyerEmail, totalAmount, orderStatus){
+function changeValues(element, orderNumber, date, buyerEmail, totalAmount, orderStatus, proList){
     element.removeAttribute('hidden')
     let Number = element.querySelector('#orderNumber');
     Number.innerHTML = orderNumber;
@@ -122,7 +122,7 @@ function changeValues(element, orderNumber, date, buyerEmail, totalAmount, order
     selectOp.value = optionToSelect.value;
 
     selectOp.addEventListener('change', () => {
-        updateOrderStatus(selectOp.options[ selectOp.selectedIndex ].value, orderNumber);
+        updateOrder(selectOp.options[ selectOp.selectedIndex ].value, orderNumber, proList);
     })
 
     var orderPage = element.querySelector('#orderPage');
@@ -144,13 +144,53 @@ function deleteFirst(){
 }
 
 
-function updateOrderStatus(value, orderId){  
+function updateOrder(value, orderId, proList){  
     var order = dbOrders.doc(orderId);
+    // if(value == 1){
+    //     order.update({"orderStatus" : 'Aprroved'});
+    // }
+    // else if (value == 2){
+    //     order.update({"orderStatus" : 'Canceled'});
+    // }
+    var orderStat; 
     if(value == 1){
-        order.update({"orderStatus" : 'Aprroved'});
+        orderStat = 'Aprroved';
     }
     else if (value == 2){
-        order.update({"orderStatus" : 'Canceled'});
+        orderStat = 'Canceled';
+    }
+    for(let i = 0 ; i< proList.length ; ++i)
+    {
+        var pro = dbProducts.doc(proList[i]['name']);
+        pro.get().then((doc) => {
+            console.log(doc.exists);
+            var incrementValue;
+            var multi;
+            if (doc.exists) {
+                if(value == 1){
+                    incrementValue = parseInt(proList[i]['quantity']);
+                    multi = 1;
+                }
+                else if (value == 2){
+                    incrementValue = -1*parseInt(proList[i]['quantity']);
+                    multi = -1;
+                }
+                pro.update({
+                    amountSold: firebase.firestore.FieldValue.increment(incrementValue)
+                })
+                .then(() => {
+                    //needs to update the quantity of the size
+                    updateSizeQuantity(proList[i]['size'], pro, doc, multi * parseInt(proList[i]['quantity']));
+                    order.update({"orderStatus" : orderStat});
+                    console.log("Document successfully written!");
+                })
+                .catch((error) => {
+                    console.error("Error writing document: ", error);
+                });  
+            }
+            
+        })
+
     }
 }
 
@@ -159,4 +199,62 @@ function removeAllChildNodes(parent) {
         console.log("delete");
         parent.removeChild(parent.lastChild);
     }
+}
+
+function updateSizeQuantity(size, product, document, quantity)
+{
+    var oldQuantity;
+    if(size == '90 x 200')
+    {
+        oldQuantity = document.data().size90x200;
+        product.update({
+            size90x200: (parseInt(oldQuantity) + quantity).toString()
+        })
+        .then(() => {
+            console.log("Document successfully written!");
+        })
+        .catch((error) => {
+            console.error("Error writing document: ", error);
+        });    
+    }
+    else if(size == '120 x 200')
+    {
+        oldQuantity = document.data().size120x200;
+        product.update({
+            size120x200: (parseInt(oldQuantity) + quantity).toString()
+        })
+        .then(() => {
+            console.log("Document successfully written!");
+        })
+        .catch((error) => {
+            console.error("Error writing document: ", error);
+        });    
+    }
+    else if(size == "160 x 200")
+    {
+        oldQuantity = document.data().size160x200;
+        product.update({
+            size160x200: (parseInt(oldQuantity) + quantity).toString()
+        })
+        .then(() => {
+            console.log("Document successfully written!");
+        })
+        .catch((error) => {
+            console.error("Error writing document: ", error);
+        });    
+    }
+    else if(size == '180 x 200')
+    {
+        oldQuantity = document.data().size180x200;
+        product.update({
+            size180x200: (parseInt(oldQuantity) + quantity).toString()
+        })
+        .then(() => {
+            console.log("Document successfully written!");
+        })
+        .catch((error) => {
+            console.error("Error writing document: ", error);
+        });    
+    }
+    
 }
