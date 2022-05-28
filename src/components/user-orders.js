@@ -83,6 +83,7 @@ function changeValues(element, orderNumber, date, buyerEmail, totalAmount, order
                 for(let i=0; i<proList.length; ++i)
                 {
                     var pro = dbProducts.doc(proList[i]['name']);
+                    console.log("proList[i]['name'] " + proList[i]['name']);
                     pro.get().then((doc) => {
                         console.log(doc.exists);
                         if (doc.exists) {
@@ -90,6 +91,8 @@ function changeValues(element, orderNumber, date, buyerEmail, totalAmount, order
                                 amountSold: firebase.firestore.FieldValue.increment(-1*parseInt(proList[i]['quantity']))
                             })
                             .then(() => {
+                                //needs to update the quantity of the size
+                                updateSizeQuantity(proList[i]['size'], pro, doc, proList[i]['quantity'] )
                                 console.log("Document successfully written!");
                             })
                             .catch((error) => {
@@ -145,4 +148,62 @@ function removeAllChildNodes(parent) {
         console.log("delete");
         parent.removeChild(parent.lastChild);
     }
+}
+
+function updateSizeQuantity(size, product, document, quantity)
+{
+    var oldQuantity;
+    if(size == '90 x 200')
+    {
+        oldQuantity = document.data().size90x200;
+        product.update({
+            size90x200: (parseInt(oldQuantity) + parseInt(quantity)).toString()
+        })
+        .then(() => {
+            console.log("Document successfully written!");
+        })
+        .catch((error) => {
+            console.error("Error writing document: ", error);
+        });    
+    }
+    else if(size == '120 x 200')
+    {
+        oldQuantity = document.data().size120x200;
+        product.update({
+            size120x200: (parseInt(oldQuantity) + parseInt(quantity)).toString()
+        })
+        .then(() => {
+            console.log("Document successfully written!");
+        })
+        .catch((error) => {
+            console.error("Error writing document: ", error);
+        });    
+    }
+    else if(size == "160 x 200")
+    {
+        oldQuantity = document.data().size160x200;
+        product.update({
+            size160x200: (parseInt(oldQuantity) + parseInt(quantity)).toString()
+        })
+        .then(() => {
+            console.log("Document successfully written!");
+        })
+        .catch((error) => {
+            console.error("Error writing document: ", error);
+        });    
+    }
+    else if(size == '180 x 200')
+    {
+        oldQuantity = document.data().size180x200;
+        product.update({
+            size180x200: (parseInt(oldQuantity) + parseInt(quantity)).toString()
+        })
+        .then(() => {
+            console.log("Document successfully written!");
+        })
+        .catch((error) => {
+            console.error("Error writing document: ", error);
+        });    
+    }
+    
 }
