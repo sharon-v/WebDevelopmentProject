@@ -2,7 +2,6 @@ import {fbAuth, dbOrders, dbCustomers, dbProducts} from '../firebase/data.js'
 
 const spinner = document.querySelector('#spinner');
 spinner.style.visibility='visible';
-
 initialization();
 
 function initialization(){
@@ -13,10 +12,7 @@ function initialization(){
             var counter = 0;
             querySnapshot.forEach((doc) => {
                 counter = counter + 1;
-                if(counter == 1)
-                    editElement(doc.id, doc.data().purchaseDate, doc.data().buyerEmail , doc.data().totalAmount, doc.data().orderStatus, doc.data().productsList);
-                else
-                    addElement(doc.id, doc.data().purchaseDate, doc.data().buyerEmail , doc.data().totalAmount, doc.data().orderStatus, doc.data().productsList);
+                editElement(doc.id, doc.data().purchaseDate, doc.data().buyerEmail , doc.data().totalAmount, doc.data().orderStatus, doc.data().productsList);
             });
             if(counter == 0)
             {
@@ -37,8 +33,11 @@ function initialization(){
 
 
 function editElement(orderNumber, date, buyerEmail, totalAmount, orderStatus, proList){
-    let ele = document.querySelector('#product')
-    ele = changeValues(ele,orderNumber, date, buyerEmail, totalAmount, orderStatus, proList)
+    let ele = document.querySelector('#product');
+    let newElement = ele.cloneNode(true);
+    let currentDiv = document.getElementById("products_list");
+    newElement = changeValues(newElement,orderNumber, date, buyerEmail, totalAmount, orderStatus, proList);
+    currentDiv.appendChild(newElement);
 }
 
 function changeValues(element, orderNumber, date, buyerEmail, totalAmount, orderStatus, proList)
@@ -76,6 +75,8 @@ function changeValues(element, orderNumber, date, buyerEmail, totalAmount, order
     else{
         cancleBtn.style.visibility = 'visible';
         cancleBtn.addEventListener('click', () => {
+            console.log("clicked");
+
              //delete the item from the db
              console.log(orderNumber);
              dbOrders.doc(orderNumber).delete().then(() => {
@@ -121,15 +122,6 @@ function changeValues(element, orderNumber, date, buyerEmail, totalAmount, order
     })
 
     return element;
-}
-
-function addElement (orderNumber, date, buyerEmail, totalAmount, orderStatus, proList, sold) {
-    let ele = document.querySelector('#product')
-    let newElement = ele.cloneNode(true);
-    newElement = changeValues(newElement, orderNumber, date, buyerEmail, totalAmount, orderStatus, proList, sold)
-    let currentDiv = document.getElementById("products_list");
-
-    currentDiv.appendChild(newElement);
 }
       
 function deleteFirst(){

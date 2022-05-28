@@ -8,14 +8,8 @@ function initialization(){
         var counter = 0;
         querySnapshot.forEach((doc) => {
             counter = counter + 1;
-            if(counter == 1){
-                editElement(doc.id, doc.data().purchaseDate, doc.data().buyerEmail , doc.data().totalAmount, doc.data().orderStatus, doc.data().productsList);
-                document.querySelector('#product').style.visibility='visible';
-            }
-            else{
-                addElement(doc.id, doc.data().purchaseDate, doc.data().buyerEmail , doc.data().totalAmount, doc.data().orderStatus, doc.data().productsList);
-                document.querySelector('#product').style.visibility='visible';
-            }
+            addElement(doc.id, doc.data().purchaseDate, doc.data().buyerEmail , doc.data().totalAmount, doc.data().orderStatus, doc.data().productsList);
+            document.querySelector('#product').style.visibility='visible';
         });
         if(counter == 0)
         {
@@ -67,13 +61,6 @@ function filterByOrderId(){
         document.querySelector('#spinner').style.visibility='visible';
         initialization();
     }
-}
-
-
-function editElement(orderNumber, date, buyerEmail, totalAmount, orderStatus, proList){
-    let ele = document.querySelector('#product')
-    ele = changeValues(ele,orderNumber, date, buyerEmail, totalAmount, orderStatus, proList)
-    ele.style.visibility="visible";
 }
 
 function addElement (orderNumber, date, buyerEmail, totalAmount, orderStatus, proList) {
@@ -139,19 +126,13 @@ function deleteFirst(){
     let par = document.createElement("h2");
     par.innerHTML = "No orders have been made :("
     par.style="color: var(--bs-pink) ;text-align:center"
-    let currentDiv = document.getElementById("products_list");
+    let currentDiv = document.getElementById("orders_list");
     currentDiv.appendChild(par);
 }
 
 
 function updateOrder(value, orderId, proList){  
     var order = dbOrders.doc(orderId);
-    // if(value == 1){
-    //     order.update({"orderStatus" : 'Aprroved'});
-    // }
-    // else if (value == 2){
-    //     order.update({"orderStatus" : 'Canceled'});
-    // }
     var orderStat; 
     if(value == 1){
         orderStat = 'Aprroved';

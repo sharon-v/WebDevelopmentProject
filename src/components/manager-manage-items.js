@@ -8,12 +8,7 @@ function initialization() {
         var counter = 0;
         querySnapshot.forEach((doc) => {
             counter = counter + 1;
-            if (counter == 1) {
-                editElement(doc.data().imageUrl, doc.data().Pname, doc.data().price, doc.data().sale, doc.data().sku);
-            }
-            else {
-                addElement(doc.data().imageUrl, doc.data().Pname, doc.data().price, doc.data().sale, doc.data().sku);
-            }
+            addElement(doc.data().imageUrl, doc.data().Pname, doc.data().price, doc.data().sale, doc.data().sku);
         });
         if (counter == 0) {
             deleteFirst();
@@ -71,11 +66,6 @@ function searchByInput() {
     }
 }
 
-function editElement(url, Pname, price, sale, sku) {
-    let ele = document.querySelector('#product');
-    ele = changeValues(ele, url, Pname, price, sale, sku);
-    ele.style.visibility = "visible";
-}
 
 function changeValues(element, urlName, Pname, proPrice, pSale, psku) {
     element.removeAttribute('hidden');
@@ -99,12 +89,15 @@ function changeValues(element, urlName, Pname, proPrice, pSale, psku) {
 
     const editProduct = element.querySelector('#editButton');
     editProduct.addEventListener('click', () => {
+        console.log("clicked");
         sessionStorage.setItem('Pname', Pname);
         location.replace('../components/manager-edit-product.html');
     });
 
     const deleteProduct = element.querySelector('#deleteButton');
     deleteProduct.addEventListener('click', () => {
+        console.log("clicked2");
+
         document.querySelector('#spinner').style.display = 'inline';
         dbProducts.doc(Pname).delete().then(() => {
             console.log("Document successfully deleted!");
@@ -124,7 +117,6 @@ function addElement(url, Pname, price, sale, sku) {
     newElement = changeValues(newElement, url, Pname, price, sale, sku);
     let currentDiv = document.getElementById("products_list");
     currentDiv.appendChild(newElement);
-    // newElement.style.visibility = "visible";
 }
 
 function deleteFirst() {

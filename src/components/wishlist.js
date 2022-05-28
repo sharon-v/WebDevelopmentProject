@@ -58,13 +58,20 @@ initialization();
 //   });
 // }
 
-function editElement(pName, sku, price, sale, url, s90, s120, s160, s180, fl, jl) {
-  let ele = document.querySelector('#product');
-  ele = changeValues(ele, pName, sku, price, sale, url, s90, s120, s160, s180, fl, jl);
-  // ele.style.visibility = 'visible';
-}
+// function editElement(pName, sku, price, sale, url, s90, s120, s160, s180, fl, jl) {
+//   let ele = document.querySelector('#product');
+//   if(numOfInit == 1)
+//   {
+//     ele = changeValues(ele, pName, sku, price, sale, url, s90, s120, s160, s180, fl, jl, ONE);
+//   }
+//   else
+//   {
+//     ele = changeValues(ele, pName, sku, price, sale, url, s90, s120, s160, s180, fl, jl, ZERO);
+//   }
+// }
 
-function changeValues(element, pName, sku, price, sale, url, s90, s120, s160, s180, fl, jl) {
+function changeValues(element, pName, sku, price, sale, url, s90, s120, s160, s180, fl, jl, num) {
+  
   // change heart btn to empty and remove element from wishlist collection
   var heart = 'url("../assets/icons/heart-icon.svg")';
   var blackHeart = 'url("../assets/icons/black-heart.svg")';
@@ -119,76 +126,28 @@ function changeValues(element, pName, sku, price, sale, url, s90, s120, s160, s1
 
   // listen to heartBtn
   heartBtn.addEventListener('click', () => {
+    console.log("clickded");
     fbAuth.onAuthStateChanged((user) => {
-      dbWishList
-        .doc(user.email)
-        .get()
-        .then((querySnapshot) => {
-          if (querySnapshot.exists) {
-              heartBtn.style.backgroundImage = heart;
-              dbWishList
-                .doc(user.email)
-                .update({
-                  productArr: firebase.firestore.FieldValue.arrayRemove(pName),
-                })
-                .then(() => {
-                  console.log('from full to not - Document successfully written!');
-                  removeAllChildNodes(document.getElementById("wishlist"));
-                  //reloaded the page
-                  initialization();
-                })
-                .catch((error) => {
-                  console.error('Error writing document: ', error);
-                });
-            // if (heartBtn.style.backgroundImage == heart) {
-            //   // if heart is empty
-            //   heartBtn.style.backgroundImage = blackHeart;
-            //   dbWishList
-            //     .doc(user.email)
-            //     .update({
-            //       productArr: firebase.firestore.FieldValue.arrayUnion(pName),
-            //     })
-            //     .then(() => {
-            //       console.log('from empty to not - Document successfully written!');
-            //     })
-            //     .catch((error) => {
-            //       console.error('Error writing document: ', error);
-            //     });
-            // } else {
-            //   // if heart is full
-            //   heartBtn.style.backgroundImage = heart;
-            //   dbWishList
-            //     .doc(user.email)
-            //     .update({
-            //       productArr: firebase.firestore.FieldValue.arrayRemove(pName),
-            //     })
-            //     .then(() => {
-            //       console.log('from full to not - Document successfully written!');
-            //       removeAllChildNodes(document.getElementById("wishlist"));
-            //       //reloaded the page
-            //       initialization();
-            //     })
-            //     .catch((error) => {
-            //       console.error('Error writing document: ', error);
-            //     });
-            // }
-          } else {
-            //if the user dont have wish list
-            // dbWishList
-            //   .doc(user.email)
-            //   .set({
-            //     productArr: firebase.firestore.FieldValue.arrayUnion(pName),
-            //   })
-            //   .then(() => {
-            //     console.log('Document successfully written!');
-            //   })
-            //   .catch((error) => {
-            //     console.error('Error writing document: ', error);
-            //   });
-          }
-        });
+      heartBtn.style.backgroundImage = heart;
+        dbWishList
+          .doc(user.email)
+          .update({
+            productArr: firebase.firestore.FieldValue.arrayRemove(pName),
+          })
+          .then(() => {
+            console.log('from full to not - Document successfully written!');
+            spinner.style.display = 'inline';
+            document.getElementById('wishlist').display='none';
+            removeAllChildNodes(document.getElementById("wishlist"));
+            //reloaded the page
+            initialization();
+          })
+          .catch((error) => {
+            console.error('Error writing document: ', error);
+          });
     });
   });
+
 
   let justLanded = element.querySelector('#just_landed');
   if (jl) {
@@ -232,7 +191,6 @@ function addElement(pName, sku, price, sale, url, s90, s120, s160, s180, fl, jl)
   );
   let currentDiv = document.getElementById('wishlist');
   currentDiv.appendChild(newElement);
-  newElement.style.visibility = 'visible';
 }
 
 function deleteFirst() {
@@ -269,7 +227,6 @@ function initialization() {
             return;
           }
           console.log('mywishlist = ', myWishlist);
-          var counter = 0;
           myWishlist.forEach((name) => {
             dbProducts
               .doc(name)
@@ -280,39 +237,55 @@ function initialization() {
                   console.log('in initialization, found the product in the products list');
                   console.log('product name', product.id);
 
-                  counter = counter + 1;
-                  if (counter == 1) {
-                    console.log('in first in the cart');
-                    editElement(
-                      product.data().Pname,
-                      product.data().sku,
-                      product.data().price,
-                      product.data().sale,
-                      product.data().imageUrl,
-                      product.data().size90x200,
-                      product.data().size120x200,
-                      product.data().size160x200,
-                      product.data().size180x200,
-                      product.data().isFewLeftCbChecked,
-                      product.data().isJustLandedCbChecked
-                    );
-                    document.querySelector('#product').style.visibility = 'visible';
-                  } else {
-                    addElement(
-                      product.data().Pname,
-                      product.data().sku,
-                      product.data().price,
-                      product.data().sale,
-                      product.data().imageUrl,
-                      product.data().size90x200,
-                      product.data().size120x200,
-                      product.data().size160x200,
-                      product.data().size180x200,
-                      product.data().isFewLeftCbChecked,
-                      product.data().isJustLandedCbChecked
-                    );
-                    document.querySelector('#product').style.visibility = 'visible';
-                  }
+                  addElement(
+                        product.data().Pname,
+                        product.data().sku,
+                        product.data().price,
+                        product.data().sale,
+                        product.data().imageUrl,
+                        product.data().size90x200,
+                        product.data().size120x200,
+                        product.data().size160x200,
+                        product.data().size180x200,
+                        product.data().isFewLeftCbChecked,
+                        product.data().isJustLandedCbChecked
+                      );
+
+                  // if (counter == 1) {
+                  //   console.log('in first in the cart');
+                  //   editElement(
+                  //     product.data().Pname,
+                  //     product.data().sku,
+                  //     product.data().price,
+                  //     product.data().sale,
+                  //     product.data().imageUrl,
+                  //     product.data().size90x200,
+                  //     product.data().size120x200,
+                  //     product.data().size160x200,
+                  //     product.data().size180x200,
+                  //     product.data().isFewLeftCbChecked,
+                  //     product.data().isJustLandedCbChecked
+                  //   );
+                  //   document.querySelector('#product').style.visibility = 'visible';
+                  // } else {
+                  //   addElement(
+                  //     product.data().Pname,
+                  //     product.data().sku,
+                  //     product.data().price,
+                  //     product.data().sale,
+                  //     product.data().imageUrl,
+                  //     product.data().size90x200,
+                  //     product.data().size120x200,
+                  //     product.data().size160x200,
+                  //     product.data().size180x200,
+                  //     product.data().isFewLeftCbChecked,
+                  //     product.data().isJustLandedCbChecked
+                  //   );
+                  //   document.querySelector('#product').style.visibility = 'visible';
+                  // }
+                  document.getElementById('wishlist').display='inline';
+                  spinner.style.display = 'none';
+
                 } else {
                   console.log('The product', name, 'is not available anymore');
                   alert('The product ' + name + ' is not available anymore');
