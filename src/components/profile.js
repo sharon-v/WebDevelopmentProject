@@ -4,6 +4,7 @@ var userName = sessionStorage.getItem('email');
 console.log(userName);
 // take care about manager
 if (userName == 'mani@gmail.com') {
+    document.getElementById("viewMyOrdersBtn").hidden = true;
     dbManager.doc(userName).get().then((doc) => {
         if (doc.exists) {
             insertData(doc.data().fname, doc.data().lname, doc.data().phoneNumber, doc.data().birthdate, doc.data().email);
