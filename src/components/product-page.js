@@ -1,6 +1,8 @@
 import { fbAuth, dbWishList ,dbShoppingCart, dbProducts } from '../firebase/data.js';
+import {CustomerNavbar} from '../components/navbar.js'
 
 const productName = sessionStorage.getItem('Pname');
+var connectedUser;
 dbProducts.doc(productName).get().then((doc) => {
     if (doc.exists) 
     {
@@ -35,6 +37,7 @@ function initialization(name, url, description, price, sale, sku, FewLeftCbCheck
     const wishListBtn = document.querySelector('#wishListBtn');
     wishListBtn.style.backgroundImage = 'url("../assets/icons/heart-icon.svg")';
     fbAuth.onAuthStateChanged((user) => {
+        connectedUser = user;
         dbWishList.doc(user.email).get().then((querySnapshot) => {
             if(querySnapshot.exists)
             {
@@ -181,7 +184,6 @@ addToCart.addEventListener('click', () => {
                                     }).then(() => {
                                         console.log("The product's quantity was updated in the db");
                                         updateSizeQuantity(sizeOptions.options[sizeOptions.selectedIndex].value, sizeQuantity, quantity);
-                                        location.replace('../components/product-page.html');
                                         console.log("Document successfully written!");
                                     })
                                     .catch((error) => {
@@ -206,8 +208,9 @@ addToCart.addEventListener('click', () => {
                                 })
                             })
                             .then(() => {
+                                // CustomerNavbar(connectedUser.email);
+                                location.replace('product-page.html');
                                 updateSizeQuantity(sizeOptions.options[sizeOptions.selectedIndex].value, sizeQuantity, quantity);
-                                location.replace('../components/product-page.html');
                                 console.log("Document successfully written!");
                             })
                             .catch((error) => {
@@ -237,6 +240,7 @@ function updateSizeQuantity(size, sizeQuantity, quantity)
             size90x200: (sizeQuantity - quantity.value).toString()
         })
         .then(() => {
+            
             console.log("Document successfully written!");
         })
         .catch((error) => {
@@ -297,9 +301,9 @@ function addNewProductToShoppingCart(sizeOptions, user, sizeQuantity, proUrl, sk
         })
     })
     .then(() => {   
+        CustomerNavbar(connectedUser.email);
         updateSizeQuantity(sizeOptions.options[sizeOptions.selectedIndex].value, sizeQuantity, quantity);
         //update the quantity of the shopping cart in the nav bar
-        location.replace('../components/product-page.html');
         console.log("Document successfully written!");
     })
     .catch((error) => {

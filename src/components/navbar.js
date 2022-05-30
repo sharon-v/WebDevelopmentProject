@@ -152,7 +152,7 @@ function ManagerNavbar() {
   document.getElementById('nav_item_logout').style.display = 'block';
 }
 
-function CustomerNavbar(email) {
+export function CustomerNavbar(email) {
   // login and logout already hidden
   document.getElementById('nav_item_home').style.display = 'block';
   document.getElementById('nav_item_catalog').style.display = 'block';

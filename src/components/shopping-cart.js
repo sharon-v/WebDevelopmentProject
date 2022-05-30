@@ -1,4 +1,5 @@
 import { fbAuth, dbShoppingCart, dbProducts } from '../firebase/data.js'
+import {CustomerNavbar} from '../components/navbar.js'
 
 var userShoppingCart = [];
 initialization();
@@ -68,6 +69,11 @@ function initialization() {
                             console.log('The product', userShoppingCart[i].name, 'is not available anymore');
                             alert('The product ' + userShoppingCart[i].name + ' is not available anymore');
                             deleteProFromShoppingCart(userShoppingCart[i].name);
+                            if (userShoppingCart.length == 0) {
+                                document.getElementById('checkout').disabled = true;
+                                deleteFirst();
+                                return;
+                            }
                         }
                     })
                 }
@@ -269,6 +275,7 @@ function updateProductStockInTheDB(userEmail, productsList, element, size, produ
     console.log('in updateProductStockInTheDB the product size is:', size);
     console.log('quantity to remove: ', quantityToRemove);
     console.log('cart: ', productsList);
+    CustomerNavbar(userConnected.email);
 
     dbProducts.doc(productName.innerHTML).get().then((product) => {
         if (product.exists) {
@@ -371,6 +378,7 @@ function writeShoppingCartToTheDB(userEmail, productsList, element, size, produc
         .then(() => {
             if (productQuantity.value == 0) {
                 console.log('deleted the product from the cart');
+                // location.replace('cart.html');
                 let currentDiv = document.getElementById("items");
                 currentDiv.removeChild(element);
             }
@@ -416,9 +424,10 @@ function deleteProFromShoppingCart(productName) {
             })
                 .then(() => {
                     console.log('succeded in deleting the unvalid product in the cart');
-                    if (cart.length == 0) {
-                        location.replace('cart.html');
-                    }
+                    CustomerNavbar(userConnected.email);
+                    // if (cart.length == 0) {
+                    //     location.replace('cart.html');
+                    // }
                 })
                 .catch((error) => {
                     alert('failed to delete the product from the shopping cart,', error.message);
