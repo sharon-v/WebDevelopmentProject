@@ -12,41 +12,24 @@ function initialization(filterNum) {
   if (filterNum != '0') {
     filter('fabric', '==', filterNum);
   } else {
+    removeAllChildNodes(document.getElementById('catalog_list'));
     dbProducts.get().then((querySnapshot) => {
       var counter = 0;
       querySnapshot.forEach((doc) => {
         counter = counter + 1;
-        if (counter == 1) {
-          editElement(
-            doc.data().Pname,
-            doc.data().sku,
-            doc.data().price,
-            doc.data().sale,
-            doc.data().imageUrl,
-            doc.data().size90x200,
-            doc.data().size120x200,
-            doc.data().size160x200,
-            doc.data().size180x200,
-            doc.data().isFewLeftCbChecked,
-            doc.data().isJustLandedCbChecked
+        addElement(
+          doc.data().Pname,
+          doc.data().sku,
+          doc.data().price,
+          doc.data().sale,
+          doc.data().imageUrl,
+          doc.data().size90x200,
+          doc.data().size120x200,
+          doc.data().size160x200,
+          doc.data().size180x200,
+          doc.data().isFewLeftCbChecked,
+          doc.data().isJustLandedCbChecked
           );
-          document.querySelector('#product').style.visibility = 'visible';
-        } else {
-          addElement(
-            doc.data().Pname,
-            doc.data().sku,
-            doc.data().price,
-            doc.data().sale,
-            doc.data().imageUrl,
-            doc.data().size90x200,
-            doc.data().size120x200,
-            doc.data().size160x200,
-            doc.data().size180x200,
-            doc.data().isFewLeftCbChecked,
-            doc.data().isJustLandedCbChecked
-          );
-          document.querySelector('#product').style.visibility = 'visible';
-        }
       });
       if (counter == 0) {
         //delete the first element if there are no products
@@ -104,50 +87,30 @@ jerseyProd.addEventListener('click', (e) => {
 });
 
 function filter(field, cond, value) {
-  removeAllChildNodes(document.getElementById('catalog_list'));
-  let elem = document.getElementById('product');
-  elem.style.display = 'inline';
 
   dbProducts
     .where(field, cond, value)
     .get()
     .then((querySnapshot) => {
+      removeAllChildNodes(document.getElementById('catalog_list'));
       var counter = 0;
       querySnapshot.forEach((doc) => {
         console.log(doc.id, ' => ', doc.data());
 
         counter = counter + 1;
-        if (counter == 1) {
-          editElement(
-            doc.data().Pname,
-            doc.data().sku,
-            doc.data().price,
-            doc.data().sale,
-            doc.data().imageUrl,
-            doc.data().size90x200,
-            doc.data().size120x200,
-            doc.data().size160x200,
-            doc.data().size180x200,
-            doc.data().isFewLeftCbChecked,
-            doc.data().isJustLandedCbChecked
-          );
-          document.querySelector('#spinner').style.display = 'none';
-        } else {
-          addElement(
-            doc.data().Pname,
-            doc.data().sku,
-            doc.data().price,
-            doc.data().sale,
-            doc.data().imageUrl,
-            doc.data().size90x200,
-            doc.data().size120x200,
-            doc.data().size160x200,
-            doc.data().size180x200,
-            doc.data().isFewLeftCbChecked,
-            doc.data().isJustLandedCbChecked
-          );
-          document.querySelector('#spinner').style.display = 'none';
-        }
+        addElement(
+          doc.data().Pname,
+          doc.data().sku,
+          doc.data().price,
+          doc.data().sale,
+          doc.data().imageUrl,
+          doc.data().size90x200,
+          doc.data().size120x200,
+          doc.data().size160x200,
+          doc.data().size180x200,
+          doc.data().isFewLeftCbChecked,
+          doc.data().isJustLandedCbChecked
+        );
       });
       if (counter == 0) {
         deleteFirst();
@@ -161,7 +124,6 @@ var filterCombo = document.querySelector('#filter_combo');
 filterCombo.addEventListener('change', (e) => {
   // make sort combo empty
   sortCombo.value = 0;
-
   console.log('sort val = ', sortCombo.value);
   let res = filterCombo.options[filterCombo.selectedIndex].value;
   var field;
@@ -238,43 +200,25 @@ filterCombo.addEventListener('change', (e) => {
           console.log(doc.id, ' => ', doc.data());
 
           if (
-            parseInt(doc.data().size90x200) != 0 ||
-            parseInt(doc.data().size120x200) != 0 ||
-            parseInt(doc.data().size160x200) != 0 ||
-            parseInt(doc.data().size180x200) != 0
+            parseInt(doc.data().size90x200)  != '0' ||
+            parseInt(doc.data().size120x200) != '0' ||
+            parseInt(doc.data().size160x200) != '0' ||
+            parseInt(doc.data().size180x200) != '0'
           ) {
             counter = counter + 1;
-            if (counter == 1) {
-              editElement(
-                doc.data().Pname,
-                doc.data().sku,
-                doc.data().price,
-                doc.data().sale,
-                doc.data().imageUrl,
-                doc.data().size90x200,
-                doc.data().size120x200,
-                doc.data().size160x200,
-                doc.data().size180x200,
-                doc.data().isFewLeftCbChecked,
-                doc.data().isJustLandedCbChecked
-              );
-              document.querySelector('#spinner').style.display = 'none';
-            } else {
-              addElement(
-                doc.data().Pname,
-                doc.data().sku,
-                doc.data().price,
-                doc.data().sale,
-                doc.data().imageUrl,
-                doc.data().size90x200,
-                doc.data().size120x200,
-                doc.data().size160x200,
-                doc.data().size180x200,
-                doc.data().isFewLeftCbChecked,
-                doc.data().isJustLandedCbChecked
-              );
-              document.querySelector('#spinner').style.display = 'none';
-            }
+            addElement(
+              doc.data().Pname,
+              doc.data().sku,
+              doc.data().price,
+              doc.data().sale,
+              doc.data().imageUrl,
+              doc.data().size90x200,
+              doc.data().size120x200,
+              doc.data().size160x200,
+              doc.data().size180x200,
+              doc.data().isFewLeftCbChecked,
+              doc.data().isJustLandedCbChecked
+              ); 
           }
         });
         if (counter == 0) {
@@ -285,6 +229,7 @@ filterCombo.addEventListener('change', (e) => {
       .catch((error) => {
         console.log('Error getting documents: ', error);
       });
+      return;
   }
 
   filter(field, cond, value);
@@ -318,37 +263,21 @@ sortCombo.addEventListener('change', (e) => {
         console.log(doc.id, ' => ', doc.data());
 
         counter = counter + 1;
-        if (counter == 1) {
-          editElement(
-            doc.data().Pname,
-            doc.data().sku,
-            doc.data().price,
-            doc.data().sale,
-            doc.data().imageUrl,
-            doc.data().size90x200,
-            doc.data().size120x200,
-            doc.data().size160x200,
-            doc.data().size180x200,
-            doc.data().isFewLeftCbChecked,
-            doc.data().isJustLandedCbChecked
-          );
+
+        addElement(
+          doc.data().Pname,
+          doc.data().sku,
+          doc.data().price,
+          doc.data().sale,
+          doc.data().imageUrl,
+          doc.data().size90x200,
+          doc.data().size120x200,
+          doc.data().size160x200,
+          doc.data().size180x200,
+          doc.data().isFewLeftCbChecked,
+          doc.data().isJustLandedCbChecked
+        );
           document.querySelector('#spinner').style.display = 'none';
-        } else {
-          addElement(
-            doc.data().Pname,
-            doc.data().sku,
-            doc.data().price,
-            doc.data().sale,
-            doc.data().imageUrl,
-            doc.data().size90x200,
-            doc.data().size120x200,
-            doc.data().size160x200,
-            doc.data().size180x200,
-            doc.data().isFewLeftCbChecked,
-            doc.data().isJustLandedCbChecked
-          );
-          document.querySelector('#spinner').style.display = 'none';
-        }
       });
       if (counter == 0) {
         deleteFirst();
@@ -410,13 +339,13 @@ function searchByInput() {
                   res.data().sku,
                   res.data().price,
                   res.data().sale,
-                  doc.data().imageUrl,
-                  doc.data().size90x200,
-                  doc.data().size120x200,
-                  doc.data().size160x200,
-                  doc.data().size180x200,
-                  doc.data().isFewLeftCbChecked,
-                  doc.data().isJustLandedCbChecked
+                  res.data().imageUrl,
+                  res.data().size90x200,
+                  res.data().size120x200,
+                  res.data().size160x200,
+                  res.data().size180x200,
+                  res.data().isFewLeftCbChecked,
+                  res.data().isJustLandedCbChecked
                 );
                 document.querySelector('#spinner').style.display = 'none';
               } else {
@@ -592,14 +521,14 @@ function addElement(pName, sku, price, sale, url, s90, s120, s160, s180, fl, jl)
     fl,
     jl
   );
+
   let currentDiv = document.getElementById('catalog_list');
   currentDiv.appendChild(newElement);
-  newElement.style.visibility = 'visible';
+  console.log("len " + currentDiv.children.length);
+  // currentDiv.style.visibility = 'visible';
 }
 
 function deleteFirst() {
-  let elem = document.getElementById('product');
-  elem.style.display = 'none';
   let par = document.createElement('h2');
   par.innerHTML = 'No products found :(';
   par.style = 'color: var(--bs-pink) ;text-align:center';
@@ -609,7 +538,7 @@ function deleteFirst() {
 }
 
 function removeAllChildNodes(parent) {
-  while (parent.children.length > 2) {
+  while (parent.children.length > 1) {
     console.log('delete');
     parent.removeChild(parent.lastChild);
   }
