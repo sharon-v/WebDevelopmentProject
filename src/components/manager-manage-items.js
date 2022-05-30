@@ -37,7 +37,7 @@ function searchByInput() {
         console.log(searchInput.value);
         dbProducts.doc(searchInput.value).get().then((doc) => {
             if (doc.exists) {
-                editElement(doc.data().imageUrl, doc.data().Pname, doc.data().price, doc.data().sale, doc.data().sku);
+                addElement(doc.data().imageUrl, doc.data().Pname, doc.data().price, doc.data().sale, doc.data().sku);
                 document.querySelector('#spinner').style.display = 'none';
                 return;
             }
@@ -45,11 +45,12 @@ function searchByInput() {
                 dbProducts.where('sku', '==', parseInt(searchInput.value)).get().then((querySnapshot) => {
                     if (querySnapshot.docs.length > 0) {
                         var res = querySnapshot.docs[0];
-                        editElement(res.data().imageUrl, res.data().Pname, res.data().price, res.data().sale, res.data().sku);
+                        addElement(res.data().imageUrl, res.data().Pname, res.data().price, res.data().sale, res.data().sku);
                         document.querySelector('#spinner').style.display = 'none';
                     } else {
-                        document.querySelector('#products_list').lastElementChild.style.display = 'none';
-                        document.querySelector('#spinner').style.visibility = 'visible';
+                        // document.querySelector('#products_list').lastElementChild.style.display = 'none';
+                        document.querySelector('#spinner').style.display = 'none';
+                        deleteFirst();
                     }
                 }).catch((error) => {
                     console.log('Error getting documents: ', error);
@@ -60,7 +61,8 @@ function searchByInput() {
         });
 
     } else {
-        document.querySelector('#products_list').lastElementChild.style.display = 'inline';
+        removeAllChildNodes(document.querySelector('#products_list'));
+        // document.querySelector('#products_list').lastElementChild.style.display = 'inline';
         document.querySelector('#spinner').style.visibility = 'visible';
         initialization();
     }
@@ -120,8 +122,8 @@ function addElement(url, Pname, price, sale, sku) {
 }
 
 function deleteFirst() {
-    let elem = document.getElementById("product");
-    elem.remove();
+    // let elem = document.getElementById("product");
+    // elem.remove();
     let par = document.createElement("h2");
     par.innerHTML = "No products :("
     par.style = "color: var(--bs-pink) ;text-align:center"
@@ -131,6 +133,7 @@ function deleteFirst() {
 
 function removeAllChildNodes(parent) {
     document.getElementById('spinner').style.display = 'inline';
+    console.log("parent.children.length " + parent.children.length);
     while (parent.children.length > 1) {
         parent.removeChild(parent.lastChild);
     }

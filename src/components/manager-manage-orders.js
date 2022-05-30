@@ -42,13 +42,14 @@ function filterByOrderId(){
         removeAllChildNodes(container);
         dbOrders.doc(searchInput.value).get().then((doc) => {
             if (doc.exists){
-                editElement(doc.id, doc.data().purchaseDate, doc.data().buyerEmail , doc.data().totalAmount, doc.data().orderStatus, doc.data().productsList);
+                console.log("yes");
+                addElement(doc.id, doc.data().purchaseDate, doc.data().buyerEmail , doc.data().totalAmount, doc.data().orderStatus, doc.data().productsList);
                 document.querySelector('#spinner').style.display = 'none';
+                return;
             } else 
-            {
-                container.lastElementChild.style.display = "none";
-                document.querySelector('#noOrderMessage').style.display = "inline";
+            {//TODO
                 document.querySelector('#spinner').style.display = 'none';
+                deleteFirst();
                 console.log("No such document!");
             }
         }).catch((error) => {
@@ -56,9 +57,9 @@ function filterByOrderId(){
         });
     }
     else{
-        document.querySelector('#orders_list').lastElementChild.style.display = "inline";
-        document.querySelector('#noOrderMessage').style.display = "none";
         document.querySelector('#spinner').style.visibility='visible';
+        const container = document.querySelector('#orders_list');
+        removeAllChildNodes(container);
         initialization();
     }
 }
@@ -121,10 +122,10 @@ function changeValues(element, orderNumber, date, buyerEmail, totalAmount, order
 }
       
 function deleteFirst(){
-    let elem = document.getElementById("product");
-    elem.remove();
+    // let elem = document.getElementById("product");
+    // elem.remove();
     let par = document.createElement("h2");
-    par.innerHTML = "No orders have been made :("
+    par.innerHTML = "No orders :("
     par.style="color: var(--bs-pink) ;text-align:center"
     let currentDiv = document.getElementById("orders_list");
     currentDiv.appendChild(par);
@@ -176,7 +177,7 @@ function updateOrder(value, orderId, proList){
 }
 
 function removeAllChildNodes(parent) {
-    while(parent.children.length > 2){
+    while(parent.children.length > 1){
         console.log("delete");
         parent.removeChild(parent.lastChild);
     }

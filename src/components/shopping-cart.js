@@ -23,6 +23,7 @@ function initialization() {
                 quantity = 0;
                 userShoppingCart = querySnapshot.data().productList;
                 if (userShoppingCart.length == 0) {
+                    document.getElementById('checkout').disabled = true;
                     deleteFirst();
                     return;
                 }
@@ -73,6 +74,7 @@ function initialization() {
             }
             else {
                 // need to present a message on the screen
+                document.getElementById('checkout').disabled = true;
                 deleteFirst();
             }
         })

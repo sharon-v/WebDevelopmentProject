@@ -35,20 +35,42 @@ function insertData(Fname, Lname, phone, Bday, email) {
 }
 function setDetailsOnDB(fname, lname, phoneNumber) {
 
-    dbCustomers.doc(userName).update({
-        fname: fname,
-        lname: lname,
-        phoneNumber: phoneNumber,
-    }).then(() => {
-        console.log('Document successfully added');
-        location.replace('../components/profile.html');
-    })
-        .catch((error) => {
-            console.error('Error writing document: ', error);
-            console.log('fail');
-            var errorMessage = error.message;
-            alert(errorMessage);
-        });
+    if (userName == 'mani@gmail.com')
+    {
+        dbManager.doc(userName).update({
+            fname: fname,
+            lname: lname,
+            phoneNumber: phoneNumber,
+        }).then(() => {
+            console.log('Document successfully added');
+            location.replace('../components/profile.html');
+        })
+            .catch((error) => {
+                console.error('Error writing document: ', error);
+                console.log('fail');
+                var errorMessage = error.message;
+                alert(errorMessage);
+            });
+    }
+    else
+    {
+        dbCustomers.doc(userName).update({
+            fname: fname,
+            lname: lname,
+            phoneNumber: phoneNumber,
+        }).then(() => {
+            console.log('Document successfully added');
+            location.replace('../components/profile.html');
+        })
+            .catch((error) => {
+                console.error('Error writing document: ', error);
+                console.log('fail');
+                var errorMessage = error.message;
+                alert(errorMessage);
+            });
+    }
+
+    
 }
 document.addEventListener('DOMContentLoaded', () => {
     var btn = document.getElementById('save_btn');
