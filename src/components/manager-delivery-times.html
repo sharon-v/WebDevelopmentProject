@@ -1,133 +1,133 @@
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
-    <title>Shopping Cart - Brand</title>
-    <link rel="stylesheet" href="../components/manager-delivery-times.css" />
-  </head>
 
-  <body>
-    <script type="module" id="replace_with_navbar" src="../components/navbar.js"></script>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+  <title>Shopping Cart - Brand</title>
+  <link rel="stylesheet" href="../components/manager-delivery-times.css" />
+</head>
 
-    <main class="page shopping-cart-page">
-      <section class="bg-light clean-block clean-cart dark">
-        <div class="container" style="text-align: center">
-          <div class="block-heading">
-            <h1 style="font-size: calc(1.325rem + 0.9vw)">Manager Zone</h1>
-            <ul
-              class="nav nav-tabs d-lg-flex flex-row justify-content-lg-center align-items-lg-center"
-            >
-              <li class="nav-item">
-                <a class="nav-link" href="profile.html" style="color: var(--bs-pink)">Profile</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="manager-manage-items.html" style="color: var(--bs-pink)"
-                  >Manage items</a
-                >
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="manager-manage-orders.html" style="color: var(--bs-pink)"
-                  >Manage orders</a
-                >
-              </li>
-              <li class="nav-item">
-                <a
-                  class="nav-link"
-                  href="manager-delivery-times.html"
-                  style="font-weight: bold; color: var(--bs-dark)"
-                  >Update delivery times</a
-                >
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="manager-statistics.html" style="color: var(--bs-pink)"
-                  >Statistical Information</a
-                >
-              </li>
-              <li class="nav-item"></li>
-              <li class="nav-item"></li>
-              <li class="nav-item"></li>
-              <li class="nav-item"></li>
-            </ul>
+<body>
+  <script type="module" id="replace_with_navbar" src="../components/navbar.js"></script>
+
+  <main class="page shopping-cart-page">
+    <section class="bg-light clean-block clean-cart dark">
+      <div class="container" style="text-align: center">
+        <div class="block-heading">
+          <h1 style="font-size: calc(1.325rem + 0.9vw)">Manager Zone</h1>
+          <ul class="nav nav-tabs d-lg-flex flex-row justify-content-lg-center align-items-lg-center">
+            <li class="nav-item">
+              <a class="nav-link" href="profile.html" style="color: var(--bs-pink)">Profile</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="manager-manage-items.html" style="color: var(--bs-pink)">Manage items</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="manager-manage-orders.html" style="color: var(--bs-pink)">Manage orders</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="manager-delivery-times.html"
+                style="font-weight: bold; color: var(--bs-dark)">Delivery times</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="manager-statistics.html" style="color: var(--bs-pink)">Statistical
+                Information</a>
+            </li>
+          </ul>
+        </div>
+        <div class="align-content-center mx-auto content" style="width: 50vw; padding-bottom: 2vw; padding-top: 2vw">
+          <div class="row">
+            <div class="col d-lg-flex justify-content-lg-center">
+              <span>Select Date: </span><input id="selectedDate" type="date" style="margin-left: 20px"
+                name="update_times_date" />
+            </div>
           </div>
-          <div
-            class="align-content-center mx-auto content"
-            style="width: 50vw; padding-bottom: 2vw; padding-top: 2vw"
-          >
-            <div class="row">
-              <div class="col d-lg-flex justify-content-lg-center">
-                <span>Select Date: </span
-                ><input id="selectedDate" type="date" style="margin-left: 20px" name="update_times_date" />
+          <div class="row d-lg-flex my-auto justify-content-lg-center">
+            <div class="col">
+              <label class="col-form-label text-center d-lg-flex justify-content-lg-center"
+                style="margin-top: 2vw">Choose unavailable hours:</label>
+            </div>
+          </div>
+          <div class="row d-lg-flex my-auto justify-content-lg-center" style="margin-top: 1vw">
+            <div id="hoursList" class="col-lg-4 text-center" style="margin-top: 1vw">
+              <div class="form-check">
+                <input id="hourCheckBok" class="form-check-input" type="checkbox" />
+                <label id="hourString" class="form-check-label" for="formCheck-6">08:00 - 10:00</label>
+              </div>
+              <div class="form-check">
+                <input id="hourCheckBok" class="form-check-input" type="checkbox" />
+                <label id="hourString" class="form-check-label" for="formCheck-7">10:00 - 12:00</label>
+              </div>
+              <div class="form-check">
+                <input id="hourCheckBok" class="form-check-input" type="checkbox" /><label id="hourString"
+                  class="form-check-label" for="formCheck-8">12:00 - 14:00</label>
+              </div>
+              <div class="form-check">
+                <input id="hourCheckBok" class="form-check-input" type="checkbox" /><label id="hourString"
+                  class="form-check-label" for="formCheck-9">14:00 - 16:00</label>
+              </div>
+              <div class="form-check">
+                <input id="hourCheckBok" class="form-check-input" type="checkbox" /><label id="hourString"
+                  class="form-check-label" for="formCheck-10">16:00 - 18:00</label>
               </div>
             </div>
-            <div class="row d-lg-flex my-auto justify-content-lg-center">
-              <div class="col">
-                <label
-                  class="col-form-label text-center d-lg-flex justify-content-lg-center"
-                  style="margin-top: 2vw"
-                  >Choose unavailable hours:</label
-                >
+            <!-- <div>
+                <select style="color: red;" id="dateSelect" class="form-select" style="margin: 3px"
+                  onChange="this.style.color='black';">
+                  <option style="color: black;" value="0" selected>Choose date *</option>
+                </select><select style="color: red;" id="hourSelect" class="form-select" style="margin: 3px"
+                  onChange="this.style.color='black';">
+                  <option style="color: black;" value="0" selected>Choose hours *</option>
+                </select>
+              </div> -->
+            <div class="col d-lg-flex justify-content-lg-center align-items-lg-center" style="padding-top: 2vw">
+              <label class="col-form-label text-center d-lg-flex justify-content-lg-center" style="
+                    margin-top: 3vw;
+                    margin-bottom: 1vw;
+                    padding-top: 1vw;
+
+                    width: 40vw;
+                    border-top: 1px solid var(--bs-gray-300);
+                  ">Available Times:</label>
+            </div>
+            <div class="col text-center">
+              <div class="col text-center" style="padding-bottom: 1vw">
+                <select style="width: 15vw; height: 2vw" id="dateSelect" class="form-select" style="margin: 3px"
+                  onChange="this.style.color='black';">
+                  <option style="width: 15vw; height: 2vw" value="0" selected>Dates</option>
+                </select>
+              </div>
+              <div class="col text-center" style="padding-bottom: 1vw">
+                <select style="width: 15vw; height: 2vw" id="hourSelect" class="form-select" style="margin: 3px"
+                  onChange="this.style.color='black';">
+                  <option value="0" selected>Hours</option>
+                  <option disabled value="1">1</option>
+                </select>
               </div>
             </div>
-            <div class="row d-lg-flex my-auto justify-content-lg-center" style="margin-top: 1vw">
-              <div id="hoursList" class="col-lg-4 text-center" style="margin-top: 1vw">
-                <div class="form-check">
-                  <input id="hourCheckBok" class="form-check-input" type="checkbox" />
-                  <label id="hourString" class="form-check-label" for="formCheck-6">08:00 - 10:00</label>
-                </div>
-                <div class="form-check">
-                  <input id="hourCheckBok" class="form-check-input" type="checkbox" />
-                  <label id="hourString" class="form-check-label"
-                    for="formCheck-7"
-                    >10:00 - 12:00</label
-                  >
-                </div>
-                <div class="form-check">
-                  <input id="hourCheckBok" class="form-check-input" type="checkbox" /><label id="hourString"
-                    class="form-check-label"
-                    for="formCheck-8"
-                    >12:00 - 14:00</label
-                  >
-                </div>
-                <div class="form-check">
-                  <input id="hourCheckBok" class="form-check-input" type="checkbox" /><label id="hourString"
-                    class="form-check-label"
-                    for="formCheck-9"
-                    >14:00 - 16:00</label
-                  >
-                </div>
-                <div class="form-check">
-                  <input id="hourCheckBok" class="form-check-input" type="checkbox" /><label id="hourString"
-                    class="form-check-label"
-                    for="formCheck-10"
-                    >16:00 - 18:00</label
-                  >
-                </div>
-              </div>
-            </div>
-            <button id = "saveChanges"
-              class="btn btn-primary text-center d-inline-flex d-lg-flex align-self-center mx-auto justify-content-lg-center"
-              type="button"
-              style="
+          </div>
+          <button id="saveChanges"
+            class="btn btn-primary text-center d-inline-flex d-lg-flex align-self-center mx-auto justify-content-lg-center"
+            type="button" style="
                 color: var(--bs-white);
                 background: var(--bs-gray-800);
                 margin-top: 3vw;
                 border-style: hidden;
                 border-color: var(--bs-pink);
                 width: 20vw;
-              "
-            >
-              Save Changes
-            </button>
-          </div>
+              ">
+            Save Changes
+          </button>
         </div>
-      </section>
-    </main>
-    <script type="module" id="replace_with_footer" src="footer.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
-    <script type="module" src="../components/manager-delivery-times.js"></script>
+      </div>
+    </section>
+  </main>
+  <script type="module" id="replace_with_footer" src="footer.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
+  <script type="module" src="../components/manager-delivery-times.js"></script>
+</body>
 
-  </body>
 </html>
