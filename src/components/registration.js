@@ -168,6 +168,20 @@ function deleteUserFromAuth(user) {
   });
 }
 
+function checkUserFirstLastName(name)
+{
+  if(/^[0-9]+$/.test(name))
+  {
+    alert('First name and last name should not be with digits');
+    return false;
+  }
+  else if (name == null || name == "") {
+    alert("Please Fill First Name Field");
+    return false;
+  }
+  return true;
+}
+
 function checkPhoneNumber(phoneNumber) {
   if (/^[0-9]+$/.test(phoneNumber)) {
     console.log('phone-length', phoneNumber.length);
@@ -236,13 +250,23 @@ function checkValidBirdate(birthdate) {
 
 
 function validateForm(fname, lname, birthdate, phoneNumber, password) {
-  if (fname == null || fname == "") {
-    alert("Please Fill First Name Field");
+  // if (fname == null || fname == "") {
+  //   alert("Please Fill First Name Field");
+  //   return false;
+  // }
+
+  // if (lname == null || lname == "") {
+  //   alert("Please Fill Last Name Field");
+  //   return false;
+  // }
+  
+  if(!checkUserFirstLastName(fname))
+  {
     return false;
   }
 
-  if (lname == null || lname == "") {
-    alert("Please Fill Last Name Field");
+  if(!checkUserFirstLastName(lname))
+  {
     return false;
   }
 
