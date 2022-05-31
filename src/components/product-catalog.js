@@ -29,7 +29,7 @@ function initialization(filterNum) {
           doc.data().size180x200,
           doc.data().isFewLeftCbChecked,
           doc.data().isJustLandedCbChecked
-          );
+        );
       });
       if (counter == 0) {
         //delete the first element if there are no products
@@ -200,7 +200,7 @@ filterCombo.addEventListener('change', (e) => {
           console.log(doc.id, ' => ', doc.data());
 
           if (
-            parseInt(doc.data().size90x200)  != '0' ||
+            parseInt(doc.data().size90x200) != '0' ||
             parseInt(doc.data().size120x200) != '0' ||
             parseInt(doc.data().size160x200) != '0' ||
             parseInt(doc.data().size180x200) != '0'
@@ -218,7 +218,7 @@ filterCombo.addEventListener('change', (e) => {
               doc.data().size180x200,
               doc.data().isFewLeftCbChecked,
               doc.data().isJustLandedCbChecked
-              ); 
+            );
           }
         });
         if (counter == 0) {
@@ -229,7 +229,7 @@ filterCombo.addEventListener('change', (e) => {
       .catch((error) => {
         console.log('Error getting documents: ', error);
       });
-      return;
+    return;
   }
 
   filter(field, cond, value);
@@ -277,7 +277,7 @@ sortCombo.addEventListener('change', (e) => {
           doc.data().isFewLeftCbChecked,
           doc.data().isJustLandedCbChecked
         );
-          document.querySelector('#spinner').style.display = 'none';
+        document.querySelector('#spinner').style.display = 'none';
       });
       if (counter == 0) {
         deleteFirst();
@@ -483,20 +483,20 @@ function changeValues(element, pName, sku, price, sale, url, s90, s120, s160, s1
 
   let justLanded = element.querySelector('#just_landed');
   if (jl) {
-    justLanded.style.display = 'block';
+    justLanded.style.visibility = 'visible';
   }
 
   let outOfStock = element.querySelector('#out_of_stock');
   let fewLeft = element.querySelector('#few_left');
 
   if (parseInt(s90) == 0 && parseInt(s120) == 0 && parseInt(s160) == 0 && parseInt(s180) == 0) {
-    outOfStock.style.display = 'block';
-    fewLeft.style.display = 'none';
+    outOfStock.style.visibility = 'visible';
+    fewLeft.style.visibility = 'hidden';
   }
 
   if (fl) {
-    fewLeft.style.display = 'block';
-    outOfStock.style.display = 'none';
+    fewLeft.style.visibility = 'visible';
+    outOfStock.style.visibility = 'hidden';
   }
 
   isProductInWishlist(pName, heartBtn);

@@ -1,77 +1,17 @@
-import { dbProducts, dbWishList, fbAuth } from '../firebase/data.js';
+import {
+  dbProducts,
+  dbWishList,
+  fbAuth
+} from '../firebase/data.js';
 
 const spinner = document.querySelector('#spinner');
-spinner.style.visibility='visible';
+spinner.style.visibility = 'visible';
 
 initialization();
 
-// function initialization() {
-//   dbProducts.get().then((querySnapshot) => {
-//     var counter = 0;
-//     querySnapshot.forEach((doc) => {
-//       if (!isProductInWishlist(doc.data().Pname)) {
-//         console.log('pname= ', doc.data().Pname);
-//         console.log('item not in wishlist');
-//         return null;
-//       }
-
-//       counter = counter + 1;
-//       if (counter == 1) {
-//         editElement(
-//           doc.data().Pname,
-//           doc.data().sku,
-//           doc.data().price,
-//           doc.data().sale,
-//           doc.data().imageUrl,
-//           doc.data().size90x200,
-//           doc.data().size120x200,
-//           doc.data().size160x200,
-//           doc.data().size180x200,
-//           doc.data().isFewLeftCbChecked,
-//           doc.data().isJustLandedCbChecked
-//         );
-
-//         document.querySelector('#product').style.visibility = 'visible';
-//       } else {
-//         addElement(
-//           doc.data().Pname,
-//           doc.data().sku,
-//           doc.data().price,
-//           doc.data().sale,
-//           doc.data().imageUrl,
-//           doc.data().size90x200,
-//           doc.data().size120x200,
-//           doc.data().size160x200,
-//           doc.data().size180x200,
-//           doc.data().isFewLeftCbChecked,
-//           doc.data().isJustLandedCbChecked
-//         );
-
-//         document.querySelector('#product').style.visibility = 'visible';
-//       }
-//     });
-//     if (counter == 0) {
-//       //delete the first element if there are no products
-//       deleteFirst();
-//     }
-//     // document.querySelector('#spinner').style.display = 'none';
-//   });
-// }
-
-// function editElement(pName, sku, price, sale, url, s90, s120, s160, s180, fl, jl) {
-//   let ele = document.querySelector('#product');
-//   if(numOfInit == 1)
-//   {
-//     ele = changeValues(ele, pName, sku, price, sale, url, s90, s120, s160, s180, fl, jl, ONE);
-//   }
-//   else
-//   {
-//     ele = changeValues(ele, pName, sku, price, sale, url, s90, s120, s160, s180, fl, jl, ZERO);
-//   }
-// }
 
 function changeValues(element, pName, sku, price, sale, url, s90, s120, s160, s180, fl, jl, num) {
-  
+
   // change heart btn to empty and remove element from wishlist collection
   var heart = 'url("../assets/icons/heart-icon.svg")';
   var blackHeart = 'url("../assets/icons/black-heart.svg")';
@@ -129,42 +69,42 @@ function changeValues(element, pName, sku, price, sale, url, s90, s120, s160, s1
     console.log("clickded");
     fbAuth.onAuthStateChanged((user) => {
       heartBtn.style.backgroundImage = heart;
-        dbWishList
-          .doc(user.email)
-          .update({
-            productArr: firebase.firestore.FieldValue.arrayRemove(pName),
-          })
-          .then(() => {
-            console.log('from full to not - Document successfully written!');
-            spinner.style.display = 'inline';
-            document.getElementById('wishlist').display='none';
-            removeAllChildNodes(document.getElementById("wishlist"));
-            //reloaded the page
-            initialization();
-          })
-          .catch((error) => {
-            console.error('Error writing document: ', error);
-          });
+      dbWishList
+        .doc(user.email)
+        .update({
+          productArr: firebase.firestore.FieldValue.arrayRemove(pName),
+        })
+        .then(() => {
+          console.log('from full to not - Document successfully written!');
+          spinner.style.display = 'inline';
+          document.getElementById('wishlist').display = 'none';
+          removeAllChildNodes(document.getElementById("wishlist"));
+          //reloaded the page
+          initialization();
+        })
+        .catch((error) => {
+          console.error('Error writing document: ', error);
+        });
     });
   });
 
 
   let justLanded = element.querySelector('#just_landed');
   if (jl) {
-    justLanded.style.display = 'hidden';
+    justLanded.style.visibility = 'visible';
   }
 
   let outOfStock = element.querySelector('#out_of_stock');
   let fewLeft = element.querySelector('#few_left');
 
   if (parseInt(s90) == 0 && parseInt(s120) == 0 && parseInt(s160) == 0 && parseInt(s180) == 0) {
-    outOfStock.style.display = 'hidden';
-    fewLeft.style.display = 'none';
+    outOfStock.style.visibility = 'visible';
+    fewLeft.style.visibility = 'hidden';
   }
 
   if (fl) {
-    fewLeft.style.display = 'hidden';
-    outOfStock.style.display = 'none';
+    fewLeft.style.visibility = 'visible';
+    outOfStock.style.visibility = 'hidden';
   }
 
   // isProductInWishlist(pName, heartBtn);
@@ -205,7 +145,7 @@ function deleteFirst() {
 }
 
 function removeAllChildNodes(parent) {
-  document.getElementById('spinner').style.display='inline';
+  document.getElementById('spinner').style.display = 'inline';
   while (parent.children.length > 1) {
     console.log('delete');
     parent.removeChild(parent.lastChild);
@@ -238,64 +178,36 @@ function initialization() {
                   console.log('product name', product.id);
 
                   addElement(
-                        product.data().Pname,
-                        product.data().sku,
-                        product.data().price,
-                        product.data().sale,
-                        product.data().imageUrl,
-                        product.data().size90x200,
-                        product.data().size120x200,
-                        product.data().size160x200,
-                        product.data().size180x200,
-                        product.data().isFewLeftCbChecked,
-                        product.data().isJustLandedCbChecked
-                      );
+                    product.data().Pname,
+                    product.data().sku,
+                    product.data().price,
+                    product.data().sale,
+                    product.data().imageUrl,
+                    product.data().size90x200,
+                    product.data().size120x200,
+                    product.data().size160x200,
+                    product.data().size180x200,
+                    product.data().isFewLeftCbChecked,
+                    product.data().isJustLandedCbChecked
+                  );
 
-                  // if (counter == 1) {
-                  //   console.log('in first in the cart');
-                  //   editElement(
-                  //     product.data().Pname,
-                  //     product.data().sku,
-                  //     product.data().price,
-                  //     product.data().sale,
-                  //     product.data().imageUrl,
-                  //     product.data().size90x200,
-                  //     product.data().size120x200,
-                  //     product.data().size160x200,
-                  //     product.data().size180x200,
-                  //     product.data().isFewLeftCbChecked,
-                  //     product.data().isJustLandedCbChecked
-                  //   );
-                  //   document.querySelector('#product').style.visibility = 'visible';
-                  // } else {
-                  //   addElement(
-                  //     product.data().Pname,
-                  //     product.data().sku,
-                  //     product.data().price,
-                  //     product.data().sale,
-                  //     product.data().imageUrl,
-                  //     product.data().size90x200,
-                  //     product.data().size120x200,
-                  //     product.data().size160x200,
-                  //     product.data().size180x200,
-                  //     product.data().isFewLeftCbChecked,
-                  //     product.data().isJustLandedCbChecked
-                  //   );
-                  //   document.querySelector('#product').style.visibility = 'visible';
-                  // }
-                  document.getElementById('wishlist').display='inline';
+                  document.getElementById('wishlist').display = 'inline';
                   spinner.style.display = 'none';
 
                 } else {
                   console.log('The product', name, 'is not available anymore');
                   alert('The product ' + name + ' is not available anymore');
                   deleteProFromwidbWishList(name);
+                  if (myWishlist.length == 0) {
+                    document.getElementById('checkout').disabled = true;
+                    deleteFirst();
+                    return;
+                  }
                 }
               });
           });
           spinner.style.display = 'none';
-        }
-        else{
+        } else {
           spinner.style.display = 'none';
           deleteFirst();
         }
@@ -304,31 +216,17 @@ function initialization() {
 }
 //////////////////////////////////////////////////////
 
-// function isProductInWishlist(pName) {
-//   // get user email
-//   fbAuth.onAuthStateChanged((user) => {
-//     // checks if the product is in this wishlist
-//     dbWishList
-//       .doc(user.email)
-//       .get()
-//       .then((querySnapshot) => {
-//         if (querySnapshot.exists) {
-//           let myWishlist = querySnapshot.data().productArr;
-//           console.log('mywishlist = ', myWishlist);
-//           myWishlist.forEach((name) => {
-//             console.log('comaper names + ', pName);
-//             if (name == pName) {
-//               // it is in wishlist so we make the heart full on first display
-//               console.log('pname= ', pName, 'compare name= ', name);
-//               // heartBtn.style.backgroundImage = 'url("../assets/icons/black-heart.svg")';
-//               // return to finish looking since there can only be one match
-//               return true;
-//             }
-//           });
-//           return false;
-//         } else {
-//           console.log('no snapshot');
-//         }
-//       });
-//   });
-// }
+function deleteProFromwidbWishList(productName) {
+  fbAuth.onAuthStateChanged((user) => {
+
+    //   dbWishList.doc(user.email).get().then((querySnapshot) => {
+    // let mywishlist = querySnapshot.data().productArr;
+    dbWishList
+      .doc(user.email)
+      .update({
+        productArr: firebase.firestore.FieldValue.arrayRemove(productName),
+      })
+    console.log('succeded in deleting the unvalid product in the wishlist');
+  });
+  // });
+}
