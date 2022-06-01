@@ -9,8 +9,8 @@ datesInit();
 
 function datesInit() {
     var date = document.getElementById('dateSelect');
-    while (date.options.length > 1) {
-        date.remove(0);
+    while (date.options.length > 2) {
+        date.remove(date.options.length-1);
     }
     //Initialization of the unavailable dates
     dbOrdersTimes.get().then((querySnapshot) => {
@@ -49,8 +49,6 @@ save_changes_btn.addEventListener('click', () => {
             alert("The selected date in invalid");
         }
     }
-
-
 });
 
 
@@ -82,11 +80,22 @@ function addHour(hour, hoursList) {
         })
         .then(() => {
             datesInit();
+            resertChoice();
+            alert("Date saved");
             console.log("Document successfully written!");
         })
         .catch((error) => {
             console.error("Error writing document: ", error);
         });
+}
+
+function resertChoice()
+{
+    document.getElementById('selectedDate').value = "";
+    var listOfHours = document.getElementsByClassName('form-check');
+    for (var i = 0; i < listOfHours.length; i++) {
+        listOfHours[i].querySelector('#hourCheckBok').checked = false;
+    }
 }
 
 function checkDate(now, selected) {

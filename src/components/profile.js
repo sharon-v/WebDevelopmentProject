@@ -21,6 +21,8 @@ function insertData(Fname, Lname, phone, Bday, email) {
     document.getElementById('phone_number').value = phone;
     document.getElementById('Birthday').value = Bday;
     document.getElementById('username').value = email;
+    document.querySelector('#spinner').style.display = 'none';
+
 }
 
 function setDetailsOnDB(fname, lname, phoneNumber) {

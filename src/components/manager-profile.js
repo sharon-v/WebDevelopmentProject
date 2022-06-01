@@ -5,6 +5,8 @@ import {
 var userName = sessionStorage.getItem('email');
 console.log(userName);
 
+document.getElementById('detailsContainer').style.visibility = "hidden";
+
 dbManager.doc(userName).get().then((doc) => {
     if (doc.exists) {
         insertData(doc.data().fname, doc.data().lname, doc.data().phoneNumber, doc.data().birthdate, doc.data().email);
@@ -22,6 +24,10 @@ function insertData(Fname, Lname, phone, Bday, email) {
     document.getElementById('phone_number').value = phone;
     document.getElementById('Birthday').value = Bday;
     document.getElementById('username').value = email;
+    document.querySelector('#spinner').style.display = 'none';
+    document.getElementById('detailsContainer').style.visibility = "visible";
+
+
 }
 
 function setDetailsOnDB(fname, lname, phoneNumber) {
