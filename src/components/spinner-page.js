@@ -5,6 +5,10 @@ fbAuth.onAuthStateChanged((user) => {
     {   
         checkUserConnected(user);
     }
+    else
+    {
+        location.replace('welcome-page.html');
+    }
 });
 
 function checkUserConnected(user) {

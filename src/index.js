@@ -45,7 +45,7 @@ app.use((req, res, next) => {
 // original
 app.get('/', (req, res) => {
   // res.send('<h1>The web is on the air<h1>');
-  res.sendFile('/components/welcome-page.html', { root: __dirname });
+  res.sendFile('/components/spinner-page.html', { root: __dirname });
 });
 
 // test

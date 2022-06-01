@@ -134,6 +134,7 @@ function addElement(pName, sku, price, sale, url, s90, s120, s160, s180, fl, jl)
 }
 
 function deleteFirst() {
+  console.log("in");
   let elem = document.getElementById('product');
   elem.style.display = 'none';
   let par = document.createElement('h2');
@@ -198,8 +199,8 @@ function initialization() {
                   console.log('The product', name, 'is not available anymore');
                   alert('The product ' + name + ' is not available anymore');
                   deleteProFromwidbWishList(name);
-                  if (myWishlist.length == 0) {
-                    document.getElementById('checkout').disabled = true;
+                  console.log("myWishlist.length" + myWishlist.length);
+                  if (myWishlist.length == 1) {
                     deleteFirst();
                     return;
                   }
