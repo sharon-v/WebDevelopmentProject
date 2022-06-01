@@ -16,13 +16,14 @@
         <div class="block-heading">
           <h1 style="font-size: calc(1.325rem + 0.9vw)">Product Page<br /></h1>
         </div>
-        <div id="spinner" class="loader"></div>
+        <div id="spinner" class="loader" style="margin-left: 37vw;"></div>
 
         <div class="block-content">
           <div hidden id="product" class="product-info">
             <div class="row">
               <div class="col-md-6 col-lg-6">
-                <img id="productImage" src="../assets/images/sheets/81H1D7elmjL._AC_SL1500_.jpg" style="width: 430px; height: 400px" />
+                <img id="productImage" src="../assets/images/sheets/81H1D7elmjL._AC_SL1500_.jpg"
+                  style="width: 430px; height: 400px" />
               </div>
               <div class="col-md-6 my-auto" style="padding-left: 2vw">
                 <div class="info">
@@ -37,18 +38,25 @@
                   <h3 id="prodSale" style="color: var(--bs-red)">119.90 ₪</h3>
                   <label class="form-label">SKU</label><small id="prodSku" style="padding-left: 20px">5959</small>
                 </div>
-                <button id="wishListBtn" class="btn d-lg-flex justify-content-lg-end align-items-lg-center" type="button" style="
+                <button id="wishListBtn" class="btn d-lg-flex justify-content-lg-end align-items-lg-center"
+                  type="button" style="
                       background: url('../assets/icons/heart-icon.svg') center / contain no-repeat;
                       width: 3vw;
                       height: 3vw;
                     "></button>
-                    <div class="row" style="padding-top: 2vw;">
-                      <div class="col text-start">
-                        <label id="justLanded" class="form-label" style="margin-top: 5px;margin-right: 10px;padding: 2px;color: var(--bs-gray-800);background: var(--bs-white);margin-right: 1vw;border: 1px hidden var(--bs-pink);box-shadow: 0px 0px 4px var(--bs-gray-400), 0px 0px 4px var(--bs-gray-400);padding-left: 1vw;padding-right: 1vw;">Just Landed</label>
-                        <label id="fewLeft" class="form-label" style="margin-top: 5px;margin-right: 10px;box-shadow: 0px 0px 6px 0px rgb(185,191,198);padding: 2px;margin-right: 1vw;margin-left: 1vw;color: var(--bs-gray-800);background: var(--bs-white);padding-left: 1vw;padding-right: 1vw;">Few Left</label>
-                        <label id="outOfStock" class="form-label" style="margin-top: 5px;margin-right: 10px;box-shadow: 0px 0px 6px 0px rgb(185,191,198);padding: 2px;margin-right: 1vw;margin-left: 1vw;color: var(--bs-gray-800);background: var(--bs-white);padding-left: 1vw;padding-right: 1vw; display: none;">Out Of Stock</label>
-                      </div>
+                <div class="row" style="padding-top: 2vw;">
+                  <div class="col text-start">
+                    <label id="justLanded" class="form-label"
+                      style="margin-top: 5px;margin-right: 10px;padding: 2px;color: var(--bs-gray-800);background: var(--bs-white);margin-right: 1vw;border: 1px hidden var(--bs-pink);box-shadow: 0px 0px 4px var(--bs-gray-400), 0px 0px 4px var(--bs-gray-400);padding-left: 1vw;padding-right: 1vw;">Just
+                      Landed</label>
+                    <label id="fewLeft" class="form-label"
+                      style="margin-top: 5px;margin-right: 10px;box-shadow: 0px 0px 6px 0px rgb(185,191,198);padding: 2px;margin-right: 1vw;margin-left: 1vw;color: var(--bs-gray-800);background: var(--bs-white);padding-left: 1vw;padding-right: 1vw;">Few
+                      Left</label>
+                    <label id="outOfStock" class="form-label"
+                      style="margin-top: 5px;margin-right: 10px;box-shadow: 0px 0px 6px 0px rgb(185,191,198);padding: 2px;margin-right: 1vw;margin-left: 1vw;color: var(--bs-gray-800);background: var(--bs-white);padding-left: 1vw;padding-right: 1vw; display: none;">Out
+                      Of Stock</label>
                   </div>
+                </div>
               </div>
 
               <div class="col d-lg-flex justify-content-lg-end"></div>
@@ -56,7 +64,7 @@
                 <select id="bedSizeOptions" class="form-select-lg" name="product_page_bed_size"
                   style="margin-left: 20vw; margin-top: 30px; margin-bottom: 30px; width: 17vw">
                   <option value="0" selected>Bed size</option>
-                  <option value="1" >90 x 200</option>
+                  <option value="1">90 x 200</option>
                   <option value="2">120 x 200</option>
                   <option value="3">160 x 200</option>
                   <option value="4">180 x 200</option>
@@ -68,7 +76,8 @@
                   placeholder="Quantity" style="width: 7vw" min="1" />
               </div>
               <div class="col d-lg-flex justify-content-lg-center">
-                <button id="addToCartBtn" class="btn btn-primary d-lg-flex justify-content-lg-center" type="button" style="
+                <button id="addToCartBtn" class="btn btn-primary d-lg-flex justify-content-lg-center" type="button"
+                  style="
                       margin-top: 30px;
                       background: var(--bs-dark);
                       width: 30vw;

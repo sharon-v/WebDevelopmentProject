@@ -1,11 +1,11 @@
 import {
-    dbCustomers
+    dbManager
 } from '../firebase/data.js';
 
 var userName = sessionStorage.getItem('email');
 console.log(userName);
 
-dbCustomers.doc(userName).get().then((doc) => {
+dbManager.doc(userName).get().then((doc) => {
     if (doc.exists) {
         insertData(doc.data().fname, doc.data().lname, doc.data().phoneNumber, doc.data().birthdate, doc.data().email);
     } else {
@@ -13,7 +13,8 @@ dbCustomers.doc(userName).get().then((doc) => {
         console.log("No such document!");
     }
 });
-// }
+
+
 function insertData(Fname, Lname, phone, Bday, email) {
     // there is something strange with the names of the labals but its work well 
     document.getElementById('first_name').value = Fname;
@@ -24,13 +25,15 @@ function insertData(Fname, Lname, phone, Bday, email) {
 }
 
 function setDetailsOnDB(fname, lname, phoneNumber) {
-    dbCustomers.doc(userName).update({
+
+
+    dbManager.doc(userName).update({
             fname: fname,
             lname: lname,
             phoneNumber: phoneNumber,
         }).then(() => {
             console.log('Document successfully added');
-            location.replace('../components/profile.html');
+            location.replace('../components/manager-profile.html');
         })
         .catch((error) => {
             console.error('Error writing document: ', error);
@@ -39,7 +42,7 @@ function setDetailsOnDB(fname, lname, phoneNumber) {
             alert(errorMessage);
         });
 }
-
+// }
 document.addEventListener('DOMContentLoaded', () => {
     var btn = document.getElementById('save_btn');
     btn.addEventListener('click', (e) => {
