@@ -257,6 +257,7 @@ function updateShoppingCart(userEmail, productsList, element, size, productName,
             subTotal.innerHTML = totalAmount.toFixed(2) + '₪';
             totalPrice.innerHTML = totalAmount.toFixed(2) + '₪';
             totalQuantity.innerHTML = quantity;
+            CustomerNavbar(userEmail);
             updateProductStockInTheDB(userEmail, productsList, element, size, productName, quantityToRemove, productQuantity);
             deleteFirst();
         }).catch((error) => {
@@ -377,6 +378,7 @@ function writeShoppingCartToTheDB(userEmail, productsList, element, size, produc
     })
         .then(() => {
             if (productQuantity.value == 0) {
+                CustomerNavbar(userEmail);
                 console.log('deleted the product from the cart');
                 // location.replace('cart.html');
                 let currentDiv = document.getElementById("items");
@@ -406,6 +408,8 @@ function deleteFirst() {
     par.style = "color: var(--bs-pink) ;text-align:center"
     let currentDiv = document.getElementById("items");
     currentDiv.appendChild(par);
+    document.getElementById('checkout').disabled = true;
+
 }
 
 function deleteProFromShoppingCart(productName) {
