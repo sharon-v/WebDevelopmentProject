@@ -62,12 +62,23 @@ date.addEventListener('change', (e) => {
     }
     dbOrdersTimes.doc(date.options[date.selectedIndex].text).get().then((querySnapshot) => {
         if (querySnapshot.exists) {
-            for (let index = 0; index < querySnapshot.data().hours.length; ++index) {
+            if(querySnapshot.data().hours.length == 0)
+            {
                 var opt = document.createElement('option');
                 opt.style.color = "black";
                 opt.setAttribute('disabled', 'disabled');
-                opt.innerHTML = querySnapshot.data().hours[index];
+                opt.innerHTML = "There is not available hours";
                 hours.appendChild(opt);
+            }
+            else
+            {
+                for (let index = 0; index < querySnapshot.data().hours.length; ++index) {
+                    var opt = document.createElement('option');
+                    opt.style.color = "black";
+                    opt.setAttribute('disabled', 'disabled');
+                    opt.innerHTML = querySnapshot.data().hours[index];
+                    hours.appendChild(opt);
+                }
             }
         }
 

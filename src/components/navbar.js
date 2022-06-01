@@ -168,6 +168,7 @@ export function CustomerNavbar(email) {
         var productQuantity = doc.data().productList.length;
         if (productQuantity != 0) {
           document.getElementById('nav_cart_badge').innerHTML = productQuantity;
+          document.getElementById('nav_cart_badge').style.display = 'inline';
         } else {
           document.getElementById('nav_cart_badge').style.display = 'none';
         }

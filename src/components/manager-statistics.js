@@ -27,7 +27,14 @@ function whichProdIsbestseller() {
             }
         });
         console.log(prodName);
-        document.getElementById('bestSeller').innerHTML = prodName;
+        if(bestSeller == 0)
+        {
+            document.getElementById('bestSeller').innerHTML = "No sells this month :(";
+        }
+        else
+        {
+            document.getElementById('bestSeller').innerHTML = prodName;
+        }
     });
 }
 

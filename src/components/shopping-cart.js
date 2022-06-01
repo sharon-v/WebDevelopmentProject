@@ -285,7 +285,7 @@ function updateProductStockInTheDB(userEmail, productsList, element, size, produ
                 if (product.data().size120x200 >= quantityToRemove) {
                     console.log('can remove', quantityToRemove, 'from size 120 x 200');
                     dbProducts.doc(productName.innerHTML).update({
-                        size120x200: parseInt(product.data().size120x200) - parseInt(quantityToRemove),
+                        size120x200: (parseInt(product.data().size120x200) - parseInt(quantityToRemove)).toString(),
                     })
                         .then(() => {
                             console.log("The product's quantity was updated in the db");
@@ -303,7 +303,7 @@ function updateProductStockInTheDB(userEmail, productsList, element, size, produ
                 if (product.data().size160x200 >= quantityToRemove) {
                     console.log('can remove', quantityToRemove, 'from size 160 x 200');
                     dbProducts.doc(productName.innerHTML).update({
-                        size160x200: parseInt(product.data().size160x200) - parseInt(quantityToRemove),
+                        size160x200: (parseInt(product.data().size160x200) - parseInt(quantityToRemove)).toString(),
                     })
                         .then(() => {
                             console.log("The product's quantity was updated in the db");
@@ -321,7 +321,7 @@ function updateProductStockInTheDB(userEmail, productsList, element, size, produ
                 if (product.data().size180x200 >= quantityToRemove) {
                     console.log('can remove', quantityToRemove, 'from size 180 x 200');
                     dbProducts.doc(productName.innerHTML).update({
-                        size180x200: parseInt(product.data().size180x200) - parseInt(quantityToRemove),
+                        size180x200: (parseInt(product.data().size180x200) - parseInt(quantityToRemove)).toString(),
                     })
                         .then(() => {
                             console.log("The product's quantity was updated in the db");
@@ -340,7 +340,7 @@ function updateProductStockInTheDB(userEmail, productsList, element, size, produ
                 if (product.data().size90x200 >= quantityToRemove) {
                     console.log('can remove', quantityToRemove, 'from size 90 x 200');
                     dbProducts.doc(productName.innerHTML).update({
-                        size90x200: parseInt(product.data().size90x200) - parseInt(quantityToRemove),
+                        size90x200: (parseInt(product.data().size90x200) - parseInt(quantityToRemove)).toString(),
                     })
                         .then(() => {
                             console.log("The product's quantity was updated in the db");
@@ -425,9 +425,9 @@ function deleteProFromShoppingCart(productName) {
                 .then(() => {
                     console.log('succeded in deleting the unvalid product in the cart');
                     CustomerNavbar(userConnected.email);
-                    // if (cart.length == 0) {
-                    //     location.replace('cart.html');
-                    // }
+                    if (cart.length == 0) {
+                        deleteFirst();
+                    }
                 })
                 .catch((error) => {
                     alert('failed to delete the product from the shopping cart,', error.message);

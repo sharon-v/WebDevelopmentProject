@@ -70,42 +70,13 @@ function initialization(name, url, description, price, sale, sku, FewLeftCbCheck
 
 var heartBtn =document.querySelector('#wishListBtn'); 
 heartBtn.addEventListener('click', () => {
-    fbAuth.onAuthStateChanged((user) => {
-        dbWishList.doc(user.email).get().then((querySnapshot) => {
-            if(querySnapshot.exists)
-            {
-                if (heartBtn.style.backgroundImage == 'url("../assets/icons/heart-icon.svg")') {
-                    // if heart is empty
-                    heartBtn.style.backgroundImage = 'url("../assets/icons/black-heart.svg")';
-                    dbWishList.doc(user.email).update({
-                        productArr: firebase.firestore.FieldValue.arrayUnion(productName)
-                    })
-                    .then(() => {
-                        console.log("Document successfully written!");
-                    })
-                    .catch((error) => {
-                        console.error("Error writing document: ", error);
-                    });
-                }
-                else
-                {
-                     // if heart is full
-                    heartBtn.style.backgroundImage = "url('../assets/icons/heart-icon.svg')";
-                    dbWishList.doc(user.email).update({
-                        productArr: firebase.firestore.FieldValue.arrayRemove(productName)
-                    })
-                    .then(() => {
-                        console.log("Document successfully written!");
-                    })
-                    .catch((error) => {
-                        console.error("Error writing document: ", error);
-                    });
-                }                
-            }
-            else
-            {
-               //if the user dont have wish list
-               dbWishList.doc(user.email).set({
+    dbWishList.doc(connectedUser.email).get().then((querySnapshot) => {
+        if(querySnapshot.exists)
+        {
+            if (heartBtn.style.backgroundImage == 'url("../assets/icons/heart-icon.svg")') {
+                // if heart is empty
+                heartBtn.style.backgroundImage = 'url("../assets/icons/black-heart.svg")';
+                dbWishList.doc(connectedUser.email).update({
                     productArr: firebase.firestore.FieldValue.arrayUnion(productName)
                 })
                 .then(() => {
@@ -115,7 +86,34 @@ heartBtn.addEventListener('click', () => {
                     console.error("Error writing document: ", error);
                 });
             }
-        })
+            else
+            {
+                 // if heart is full
+                heartBtn.style.backgroundImage = "url('../assets/icons/heart-icon.svg')";
+                dbWishList.doc(connectedUser.email).update({
+                    productArr: firebase.firestore.FieldValue.arrayRemove(productName)
+                })
+                .then(() => {
+                    console.log("Document successfully written!");
+                })
+                .catch((error) => {
+                    console.error("Error writing document: ", error);
+                });
+            }                
+        }
+        else
+        {
+           //if the user dont have wish list
+           dbWishList.doc(connectedUser.email).set({
+                productArr: firebase.firestore.FieldValue.arrayUnion(productName)
+            })
+            .then(() => {
+                console.log("Document successfully written!");
+            })
+            .catch((error) => {
+                console.error("Error writing document: ", error);
+            });
+        }
     })
     
 
@@ -166,58 +164,56 @@ addToCart.addEventListener('click', () => {
             }
             else
             {
-                fbAuth.onAuthStateChanged((user) => {
-                    dbShoppingCart.doc(user.email).get().then((querySnapshot) => {
-                        if(querySnapshot.exists) //if the user have document in the shopping cart
+                dbShoppingCart.doc(connectedUser.email).get().then((querySnapshot) => {
+                    if(querySnapshot.exists) //if the user have document in the shopping cart
+                    {
+                        var flag = false;
+                        var ListOfPro = querySnapshot.data().productList;
+                        for(var i=0; i < ListOfPro.length; ++i) 
                         {
-                            var flag = false;
-                            var ListOfPro = querySnapshot.data().productList;
-                            for(var i=0; i < ListOfPro.length; ++i) 
-                            {
-                                console.log(ListOfPro.length);
-                                if((ListOfPro)[i]["name"] == productName && (ListOfPro)[i]["size"] == sizeOptions.options[sizeOptions.selectedIndex].text)
-                                {   //if the product is allready in the db
-                                    flag = true;
-                                    ListOfPro[i]["quantity"] = (parseInt(ListOfPro[i]["quantity"]) + parseInt(quantity.value)).toString();
-                                    dbShoppingCart.doc(user.email).update({
-                                        productList: ListOfPro
-                                    }).then(() => {
-                                        console.log("The product's quantity was updated in the db");
-                                        updateSizeQuantity(sizeOptions.options[sizeOptions.selectedIndex].value, sizeQuantity, quantity);
-                                        console.log("Document successfully written!");
-                                    })
-                                    .catch((error) => {
-                                        console.error("Error updating the product's quantity in the db: ", error);
-                                    });
-                                    break;
-                                }
-                            }
-                            if(flag == false)
-                            {
-                                addNewProductToShoppingCart(sizeOptions, user, sizeQuantity, doc.data().imageUrl, doc.data().sku);
-                            }
-                        }
-                        else
-                        {
-                            //if the user dont have document in the shopping cart
-                            dbShoppingCart.doc(user.email).set({
-                                productList: firebase.firestore.FieldValue.arrayUnion({
-                                    name:productName,
-                                    quantity:(quantity.value).toString(),
-                                    size:sizeOptions.options[sizeOptions.selectedIndex].text
+                            console.log(ListOfPro.length);
+                            if((ListOfPro)[i]["name"] == productName && (ListOfPro)[i]["size"] == sizeOptions.options[sizeOptions.selectedIndex].text)
+                            {   //if the product is allready in the db
+                                flag = true;
+                                ListOfPro[i]["quantity"] = (parseInt(ListOfPro[i]["quantity"]) + parseInt(quantity.value)).toString();
+                                dbShoppingCart.doc(connectedUser.email).update({
+                                    productList: ListOfPro
+                                }).then(() => {
+                                    console.log("The product's quantity was updated in the db");
+                                    updateSizeQuantity(sizeOptions.options[sizeOptions.selectedIndex].value, sizeQuantity, quantity);
+                                    console.log("Document successfully written!");
                                 })
-                            })
-                            .then(() => {
-                                // CustomerNavbar(connectedUser.email);
-                                location.replace('product-page.html');
-                                updateSizeQuantity(sizeOptions.options[sizeOptions.selectedIndex].value, sizeQuantity, quantity);
-                                console.log("Document successfully written!");
-                            })
-                            .catch((error) => {
-                                console.error("Error writing document: ", error);
-                            });
+                                .catch((error) => {
+                                    console.error("Error updating the product's quantity in the db: ", error);
+                                });
+                                break;
+                            }
                         }
-                    })
+                        if(flag == false)
+                        {
+                            addNewProductToShoppingCart(sizeOptions, connectedUser, sizeQuantity, doc.data().imageUrl, doc.data().sku);
+                        }
+                    }
+                    else
+                    {
+                        //if the user dont have document in the shopping cart
+                        dbShoppingCart.doc(connectedUser.email).set({
+                            productList: firebase.firestore.FieldValue.arrayUnion({
+                                name:productName,
+                                quantity:(quantity.value).toString(),
+                                size:sizeOptions.options[sizeOptions.selectedIndex].text
+                            })
+                        })
+                        .then(() => {
+                            CustomerNavbar(connectedUser.email);
+                            // location.replace('product-page.html');
+                            updateSizeQuantity(sizeOptions.options[sizeOptions.selectedIndex].value, sizeQuantity, quantity);
+                            console.log("Document successfully written!");
+                        })
+                        .catch((error) => {
+                            console.error("Error writing document: ", error);
+                        });
+                    }
                 })
             }
         } 
