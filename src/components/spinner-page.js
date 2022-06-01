@@ -7,7 +7,7 @@ fbAuth.onAuthStateChanged((user) => {
     }
     else
     {
-        location.replace('welcome-page.html');
+        location.replace('../components/welcome-page.html');
     }
 });
 
@@ -22,7 +22,7 @@ function checkUserConnected(user) {
       .then((doc) => {
         if (doc.exists) {
           console.log('The manager', user.email, 'is connnected');
-          location.replace('manager-manage-items.html');
+          location.replace('../components/manager-manage-items.html');
         }
         // check if the user is a customer
         else {
@@ -36,19 +36,21 @@ function checkUserConnected(user) {
               }
               else {
                 // failed to identify user
-                alert('failed to identify user');
+                location.replace('../components/welcome-page.html');
                 signOutUser();
               }
             })
             .catch((error) => {
               console.log('failed to read from customers collection:', error.message);
-              alert(error.message);
+              location.replace('../components/welcome-page.html');
+
             });
         }
       })
       .catch((error) => {
         console.log('failed to read from manager collection:', error.message);
-        alert(error.message);
+        location.replace('../components/welcome-page.html');
+
       });
   }
   
