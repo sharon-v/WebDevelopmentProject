@@ -242,26 +242,81 @@ sortCombo.addEventListener('change', (e) => {
   filterCombo.value = 0;
 
   let res = sortCombo.options[sortCombo.selectedIndex].value;
-  let order;
+  let func;
   console.log('res = ', res);
   if (res == 0) {
     initialization('0');
     return;
   } else if (res == 1) {
-    order = 'asc';
+    func = asc;
   } else {
-    order = 'desc';
+    func = desc;
   }
 
-  dbProducts
-    .orderBy('price', order)
-    .get()
-    .then((querySnapshot) => {
-      removeAllChildNodes(document.getElementById('catalog_list'));
-      var counter = 0;
-      querySnapshot.forEach((doc) => {
-        console.log(doc.id, ' => ', doc.data());
+  // dbProducts
+  //   .orderBy('price', order).orderBy('sale', order)
+  //   .get()
+  //   .then((querySnapshot) => {
+  //     removeAllChildNodes(document.getElementById('catalog_list'));
+  //     var counter = 0;
+  //     querySnapshot.forEach((doc) => {
+  //       console.log(doc.id, ' => ', doc.data());
 
+  //       counter = counter + 1;
+
+  //       addElement(
+  //         doc.data().Pname,
+  //         doc.data().sku,
+  //         doc.data().price,
+  //         doc.data().sale,
+  //         doc.data().imageUrl,
+  //         doc.data().size90x200,
+  //         doc.data().size120x200,
+  //         doc.data().size160x200,
+  //         doc.data().size180x200,
+  //         doc.data().isFewLeftCbChecked,
+  //         doc.data().isJustLandedCbChecked
+  //       );
+  //       document.querySelector('#spinner').style.display = 'none';
+  //     });
+  //     if (counter == 0) {
+  //       deleteFirst();
+  //     }
+  //   })
+  //   .catch((error) => {
+  //     console.log('Error getting documents: ', error);
+  //   });
+  removeAllChildNodes(document.getElementById('catalog_list'));
+
+  var listPro = [];
+  var dicPro ={};
+  dbProducts.get().then((querySnapshot) => {
+    querySnapshot.forEach((doc) => {
+      if(doc.data().sale != 0)
+      {
+
+        dicPro["price"] = doc.data().sale;
+        dicPro["id"] = doc;
+        listPro.push(dicPro);
+
+
+      }
+      else{
+        dicPro["price"] = doc.data().price;
+        dicPro["id"] = doc;
+        listPro.push(dicPro);
+
+      }
+      dicPro={};
+      
+    })
+
+    var sorted = listPro.sort(func);
+    var counter = 0;
+    for(let i =0 ;i <sorted.length;++i)
+    {
+      var doc = sorted[i]["id"];
+        console.log(doc.id, ' => ', doc.data());
         counter = counter + 1;
 
         addElement(
@@ -278,15 +333,21 @@ sortCombo.addEventListener('change', (e) => {
           doc.data().isJustLandedCbChecked
         );
         document.querySelector('#spinner').style.display = 'none';
-      });
-      if (counter == 0) {
-        deleteFirst();
-      }
+    }
+    if (counter == 0) {
+      deleteFirst();
+    }
     })
-    .catch((error) => {
-      console.log('Error getting documents: ', error);
-    });
+
 });
+
+function asc(a,b) {
+  return parseInt(a.price, 10) - parseInt(b.price, 10);
+}
+
+function desc(a,b) {
+  return parseInt(b.price, 10) - parseInt(a.price, 10);
+}
 
 function searchByInput() {
   document.querySelector('#spinner').style.display = 'inline';
