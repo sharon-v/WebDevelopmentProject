@@ -411,9 +411,7 @@ function searchByInput() {
                 document.querySelector('#spinner').style.display = 'none';
               } else {
                 console.log('no products');
-                // deleteFirst();
-                document.querySelector('#catalog_list').lastElementChild.style.display = 'none';
-                document.querySelector('#noItemMessage').style.display = 'inline';
+                deleteFirst();
                 document.querySelector('#spinner').style.visibility = 'visible';
               }
             })
@@ -429,7 +427,6 @@ function searchByInput() {
     // container.lastElementChild.style.display = 'none';
 
     document.querySelector('#catalog_list').lastElementChild.style.display = 'inline';
-    document.querySelector('#noItemMessage').style.display = 'none';
     console.log('no products');
     document.querySelector('#spinner').style.visibility = 'visible';
     initialization('0');
@@ -590,6 +587,7 @@ function addElement(pName, sku, price, sale, url, s90, s120, s160, s180, fl, jl)
 }
 
 function deleteFirst() {
+  console.log("inside");
   let par = document.createElement('h2');
   par.innerHTML = 'No products found :(';
   par.style = 'color: var(--bs-pink) ;text-align:center';
