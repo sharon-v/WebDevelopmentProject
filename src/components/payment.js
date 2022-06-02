@@ -194,16 +194,13 @@ var btn = document.getElementById('payment_pay_button');
 
 function checkData(fname, lname, street, streetNumber, postalCode, city, phoneNumber,  orderDate, orderHours, expirationMonth, expirationYear,  ID, cardNumber, cvc)
 {
-    if(fname.length < 1){
-        alert('You must enter your first name');
+    if(!checkUserFirstLastName(fname)){
         return false;
     }
-    if(lname.length < 1){
-        alert('You must enter your last name');
+    if(!checkUserFirstLastName(lname)){
         return false;
     }
-    if(street.length < 1){
-        alert('You must enter your street address');
+    if(!checkAddress(street)){
         return false;
     }
     if(streetNumber.length < 1){
@@ -214,12 +211,10 @@ function checkData(fname, lname, street, streetNumber, postalCode, city, phoneNu
         alert('plaese pick a city from the list');
         return false;
     }
-    if(!onlyNumbers(String(phoneNumber))){
-        alert('Phone number can be only with digits');
+    if(!checkPhoneNumber(String(phoneNumber))){
         return false;
     }
-    if(postalCode.length != 7 || !onlyNumbers(String(postalCode))){
-        alert('You enter invalid postal code');
+    if(!checkPostalCode(String(postalCode))){
         return false;
     }
     if(orderDate.value == 0){
@@ -230,8 +225,7 @@ function checkData(fname, lname, street, streetNumber, postalCode, city, phoneNu
         alert('plaese pick a hours for the order from the list');
         return false;
     }
-    if(ID.length != 9 || !onlyNumbers(String(ID))){
-        alert('You enter invalid ID number');
+    if(!checkId(String(ID))){
         return false;
     }
     if(expirationMonth.value == 0){
@@ -261,8 +255,53 @@ function checkData(fname, lname, street, streetNumber, postalCode, city, phoneNu
     return true;
 }
 
-function onlyNumbers(str) {
-    return /^[0-9]+$/.test(str);
+function onlyNumbers(number)
+{
+    return (/^[0-9]+$/.test(number)) 
+
+}
+
+function checkPhoneNumber(phoneNumber) {
+    if (/^[0-9]+$/.test(phoneNumber)) {
+        console.log('phone-length', phoneNumber.length);
+        if (phoneNumber.length != 10) {
+          alert('Phone number should be 10 digis long');
+          return false;
+        }
+        return true;
+      }
+      else {
+        alert('phone number should contain digits only');
+        return false;
+      }
+}
+
+function checkPostalCode(pc) {
+    if (/^[0-9]+$/.test(pc)) {
+        if (pc.length != 7) {
+          alert('Postal code should be 7 digis long');
+          return false;
+        }
+        return true;
+      }
+      else {
+        alert('Postal code should contain digits only');
+        return false;
+      }
+}
+
+function checkId(id) {
+    if (/^[0-9]+$/.test(id)) {
+        if (id.length != 9) {
+          alert('ID should be 9 digis long');
+          return false;
+        }
+        return true;
+      }
+      else {
+        alert('ID should contain digits only');
+        return false;
+      }
 }
 
 function changeAmountToAllProduct(productsList)
@@ -291,4 +330,33 @@ function changeAmountToAllProduct(productsList)
                 
     }
 
+}
+
+function checkUserFirstLastName(name)
+{
+  if(/^[0-9]+$/.test(name))
+  {
+    alert('First name and last name should not be with digits');
+    return false;
+  }
+  else if (name == null || name == "") {
+    alert("Please Fill First Name Field");
+    return false;
+  }
+  return true;
+}
+
+
+function checkAddress(name)
+{
+  if(/^[0-9]+$/.test(name))
+  {
+    alert('Adrress should not be with digits');
+    return false;
+  }
+  else if (name == null || name == "") {
+    alert("Please Fill First Name Field");
+    return false;
+  }
+  return true;
 }
