@@ -1,7 +1,7 @@
 import { fbAuth, dbCustomers, dbManager, dbDeveloperPasscode } from '../firebase/data.js'
 
 console.log('enter');
-
+document.getElementById('registerManagerPasscode').style.display='none';
 document.addEventListener('DOMContentLoaded', () => {
   console.log('in');
 
@@ -45,6 +45,14 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+document.getElementById('registerManagerCheckBox').addEventListener('click', ()=>{
+  if(document.getElementById('registerManagerCheckBox').checked)
+    document.getElementById('registerManagerPasscode').style.display='inline';
+  else
+    document.getElementById('registerManagerPasscode').style.display='none';
+
+
+})
 
 function customerSignUp(fname, lname, birthdate, phoneNumber, email, password, passwordConfirmation) {
   if (!validateForm(fname, lname, birthdate, phoneNumber, password)) {
