@@ -51,8 +51,63 @@ document.addEventListener('DOMContentLoaded', () => {
         var fname = document.getElementById('first_name').value;
         var lname = document.getElementById('last_name').value;
         var phoneNumber = document.getElementById('phone_number').value;
-        setDetailsOnDB(fname, lname, phoneNumber);
+        if(!checkConditions(fname, lname, phoneNumber))
+        {
+            document.querySelector('#spinner').style.display = 'none';
+            return;
+        }
+        else
+        {
+            setDetailsOnDB(fname, lname, phoneNumber);
+        }
         document.querySelector('#spinner').style.display = 'none';
 
     });
 });
+
+
+function checkConditions(fname, lname, phone_number)
+{
+    if(!checkUserFirstLastName(fname))
+  {
+    return false;
+  }
+
+  if(!checkUserFirstLastName(lname))
+  {
+    return false;
+  }
+  if (!checkPhoneNumber(phone_number)) {
+    return false;
+  }
+  return true;
+}
+
+function checkUserFirstLastName(name)
+{
+  if(/^[0-9]+$/.test(name))
+  {
+    alert('First name and last name should not be with digits');
+    return false;
+  }
+  else if (name == null || name == "") {
+    alert("Please Fill First Name Field");
+    return false;
+  }
+  return true;
+}
+
+function checkPhoneNumber(phoneNumber) {
+  if (/^[0-9]+$/.test(phoneNumber)) {
+    console.log('phone-length', phoneNumber.length);
+    if (phoneNumber.length != 10) {
+      alert('Phone number should be 10 digis long');
+      return false;
+    }
+    return true;
+  }
+  else {
+    alert('phone number should contain digits only');
+    return false;
+  }
+}
