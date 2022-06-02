@@ -21,9 +21,9 @@
   },
   "homepage": "https://github.com/sharon-v/WebDevelopmentProject#readme",
   "dependencies": {
+    "@lottiefiles/lottie-interactivity": "^1.5.2",
     "body-parser": "^1.20.0",
     "express": "^4.17.3",
-    "moongose": "^1.0.0",
     "morgan": "^1.10.0",
     "nodemon": "^2.0.15"
   },

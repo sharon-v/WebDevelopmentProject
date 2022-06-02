@@ -4,8 +4,12 @@ import {
   fbAuth
 } from '../firebase/data.js';
 
-const spinner = document.querySelector('#spinner');
-spinner.style.visibility = 'visible';
+// const spinner = document.querySelector('#spinner');
+// spinner.style.visibility = 'visible';
+
+const loader = document.querySelector('#modal');
+loader.style.display = 'block';
+
 
 initialization();
 
@@ -76,7 +80,9 @@ function changeValues(element, pName, sku, price, sale, url, s90, s120, s160, s1
         })
         .then(() => {
           console.log('from full to not - Document successfully written!');
-          spinner.style.display = 'inline';
+          // spinner.style.display = 'inline';
+          loader.style.display = 'block';
+
           document.getElementById('wishlist').display = 'none';
           removeAllChildNodes(document.getElementById("wishlist"));
           //reloaded the page
@@ -146,7 +152,9 @@ function deleteFirst() {
 }
 
 function removeAllChildNodes(parent) {
-  document.getElementById('spinner').style.display = 'inline';
+  // document.getElementById('spinner').style.display = 'inline';
+  loader.style.display = 'block';
+
   while (parent.children.length > 1) {
     console.log('delete');
     parent.removeChild(parent.lastChild);
@@ -164,7 +172,9 @@ function initialization() {
           let myWishlist = querySnapshot.data().productArr;
           if (myWishlist.length == 0) {
             deleteFirst();
-            spinner.style.display = 'none';
+            // spinner.style.display = 'none';
+            loader.style.display = 'none';
+
             return;
           }
           console.log('mywishlist = ', myWishlist);
@@ -193,7 +203,9 @@ function initialization() {
                   );
 
                   document.getElementById('wishlist').display = 'inline';
-                  spinner.style.display = 'none';
+                  // spinner.style.display = 'none';
+                  loader.style.display = 'none';
+
 
                 } else {
                   console.log('The product', name, 'is not available anymore');
@@ -207,9 +219,13 @@ function initialization() {
                 }
               });
           });
-          spinner.style.display = 'none';
+          // spinner.style.display = 'none';
+          loader.style.display = 'none';
+
         } else {
-          spinner.style.display = 'none';
+          // spinner.style.display = 'none';
+          loader.style.display = 'none';
+
           deleteFirst();
         }
       });
