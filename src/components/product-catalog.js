@@ -15,6 +15,7 @@ function initialization(filterNum) {
   if (filterNum != '0') {
     filter('fabric', '==', filterNum);
   } else {
+    document.getElementById("filter_combo").selectedIndex = 0;
     removeAllChildNodes(document.getElementById('catalog_list'));
     dbProducts.get().then((querySnapshot) => {
       var counter = 0;
@@ -92,7 +93,11 @@ jerseyProd.addEventListener('click', (e) => {
 });
 
 function filter(field, cond, value) {
+  if(field =='fabric')
+  {
+    document.getElementById("filter_combo").selectedIndex = parseInt(value) +4;
 
+  }
   dbProducts
     .where(field, cond, value)
     .get()
