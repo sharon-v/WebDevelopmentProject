@@ -97,7 +97,7 @@ function filter(field, cond, value) {
   {
     document.getElementById("filter_combo").selectedIndex = parseInt(value) +4;
   }
-  sortCombo.value = 0;
+  document.querySelector('#sort_combo').value = 0;
 
 
   dbProducts
