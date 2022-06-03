@@ -1,6 +1,10 @@
 import { fbAuth, dbManager, dbCustomers } from '../firebase/data.js';
 
+const loader = document.querySelector('#modal');
+
 document.addEventListener('DOMContentLoaded', () => {
+  loader.style.display = 'block';
+  loader.style.display = 'none';
   console.log('in');
 
   var btn = document.getElementById('loginBtn');
@@ -17,6 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function login(email, password) {
+  loader.style.display = 'block';
   fbAuth
     .signInWithEmailAndPassword(email, password)
     .then((userCredential) => {
@@ -28,6 +33,7 @@ function login(email, password) {
     .catch((error) => {
       console.log('fail to login');
       let errorMessage = error.message;
+      loader.style.display = 'none';
       alert(errorMessage);
     });
 }
@@ -58,10 +64,12 @@ function checkUserConnected(user) {
             else {
               // failed to identify user
               alert('failed to identify user');
+              // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
               signOutUser();
             }
           })
           .catch((error) => {
+            loader.style.display = 'none';
             console.log('failed to read from customers collection:', error.message);
             alert(error.message);
           });
@@ -77,9 +85,10 @@ function signOutUser() {
   fbAuth
     .signOut()
     .then(() => {
-
+      loader.style.display = 'none';
     })
     .catch((error) => {
+      loader.style.display = 'none';
       console.log('Logout err: ', error);
     });
 }
