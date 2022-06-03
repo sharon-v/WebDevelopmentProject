@@ -36,7 +36,6 @@ function insertData(name, description, price, sale, sku, imageUrl, size90x200, s
     document.getElementById('fewLeft').checked = isFewLeftCbChecked;
     document.getElementById('display-image').src = imageUrl;
     document.querySelector('#form').removeAttribute('hidden');
-    // document.querySelector('#spinner').style.display = 'none';
     loader.style.display = 'none';
 
 
@@ -155,7 +154,6 @@ function onlyNumbers(str) {
 document.addEventListener('DOMContentLoaded', () => {
     var btn = document.getElementById('saveProd');
     btn.addEventListener('click', (e) => {
-        // document.querySelector('#spinner').style.display = 'inline';
         loader.style.display = 'block';
 
 
@@ -186,7 +184,6 @@ document.addEventListener('DOMContentLoaded', () => {
             ImageRef, isJustLandedCbChecked, isFewLeftCbChecked,
             fabric);
 
-        // document.querySelector('#spinner').style.display = 'none';
         loader.style.display = 'none';
 
 

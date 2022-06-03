@@ -20,7 +20,6 @@ function initialization() {
         if (counter == 0) {
             deleteFirst();
         }
-        // document.querySelector('#spinner').style.display = 'none';
         loader.style.display = 'none';
 
     });
@@ -40,7 +39,6 @@ searchInput.addEventListener('keypress', function (e) {
 });
 
 function searchByInput() {
-    // document.querySelector('#spinner').style.display = 'inline';
     loader.style.display = 'block';
 
     if (searchInput.value.length > 0) {
@@ -50,7 +48,6 @@ function searchByInput() {
         dbProducts.doc(searchInput.value).get().then((doc) => {
             if (doc.exists) {
                 addElement(doc.data().imageUrl, doc.data().Pname, doc.data().price, doc.data().sale, doc.data().sku);
-                // document.querySelector('#spinner').style.display = 'none';
                 loader.style.display = 'none';
 
                 return;
@@ -59,12 +56,10 @@ function searchByInput() {
                     if (querySnapshot.docs.length > 0) {
                         var res = querySnapshot.docs[0];
                         addElement(res.data().imageUrl, res.data().Pname, res.data().price, res.data().sale, res.data().sku);
-                        // document.querySelector('#spinner').style.display = 'none';
                         loader.style.display = 'none';
 
                     } else {
-                        // document.querySelector('#products_list').lastElementChild.style.display = 'none';
-                        // document.querySelector('#spinner').style.display = 'none';
+
                         loader.style.display = 'none';
 
                         deleteFirst();
@@ -142,8 +137,6 @@ function addElement(url, Pname, price, sale, sku) {
 }
 
 function deleteFirst() {
-    // let elem = document.getElementById("product");
-    // elem.remove();
     let par = document.createElement("h2");
     par.innerHTML = "No products :("
     par.style = "color: var(--bs-pink) ;text-align:center"
@@ -152,7 +145,6 @@ function deleteFirst() {
 }
 
 function removeAllChildNodes(parent) {
-    // document.getElementById('spinner').style.display = 'inline';
     loader.style.display = 'block';
 
     console.log("parent.children.length " + parent.children.length);

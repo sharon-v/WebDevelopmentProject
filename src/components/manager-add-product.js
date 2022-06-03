@@ -4,7 +4,6 @@ const image_input = document.querySelector('#image-input');
 const loader = document.querySelector('#modal');
 
 image_input.addEventListener('change', function () {
-    loader.style.display = 'block';
     const reader = new FileReader();
     reader.addEventListener('load', () => {
         const uploaded_image = reader.result;
@@ -12,7 +11,6 @@ image_input.addEventListener('change', function () {
         document.querySelector('#display-image').style.backgroundImage = `url(${uploaded_image})`;
     });
     reader.readAsDataURL(this.files[0]);
-    loader.style.display = 'none';
 });
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -64,7 +62,6 @@ document.addEventListener('DOMContentLoaded', () => {
             ImageRef, isJustLandedCbChecked, isFewLeftCbChecked,
             fabric);
     });
-    loader.style.display = 'none';
 
 });
 
@@ -142,10 +139,10 @@ function onlyNumbers(str) {
 
 
 function uploadImage(Pname, description, price, sale, size90x200, size120x200, size160x200, size180x200, isJustLandedCbChecked, isFewLeftCbChecked, fabric, sku) {
+    loader.style.display = 'block';
     const ref = storage.ref();
     const file = document.querySelector("#image-input").files[0];
     const name = 'images/' + Pname + '.jpg';
-    // spinner.style.display='inline';
     const metadata = {
         contentType: file.type
     };
@@ -156,7 +153,6 @@ function uploadImage(Pname, description, price, sale, size90x200, size120x200, s
             console.log(url);
             const image = document.querySelector("#image-input")
             image.src = url;
-            // spinner.style.display = 'none';
             writeProductToDB(Pname, description, price, sale, size90x200, size120x200, size160x200, size180x200, isJustLandedCbChecked, isFewLeftCbChecked, fabric, sku, url);
         })
         .catch(console.error);
@@ -172,7 +168,7 @@ function addProduct(Pname, description, price, sale, size90x200, size120x200, si
 }
 
 function writeProductToDB(Pname, description, price, sale, size90x200, size120x200, size160x200, size180x200, isJustLandedCbChecked, isFewLeftCbChecked, fabric, sku, url) {
-    // spinner.style.display='inline';
+    loader.style.display = 'block';
 
     dbProducts.doc(Pname).set({
         Pname: Pname,
@@ -190,7 +186,6 @@ function writeProductToDB(Pname, description, price, sale, size90x200, size120x2
         imageUrl: url,
         amountSold: 0
     }).then(() => {
-        // spinner.style.display = 'none';
         console.log('Document successfully added');
         location.replace('../components/manager-manage-items.html');
     })
