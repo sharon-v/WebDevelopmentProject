@@ -1,9 +1,10 @@
 import { dbProducts, storage } from '../firebase/data.js';
 
-// const spinner = document.querySelector('#spinner');
 const image_input = document.querySelector('#image-input');
+const loader = document.querySelector('#modal');
 
 image_input.addEventListener('change', function () {
+    loader.style.display = 'block';
     const reader = new FileReader();
     reader.addEventListener('load', () => {
         const uploaded_image = reader.result;
@@ -11,12 +12,14 @@ image_input.addEventListener('change', function () {
         document.querySelector('#display-image').style.backgroundImage = `url(${uploaded_image})`;
     });
     reader.readAsDataURL(this.files[0]);
+    loader.style.display = 'none';
 });
 
 document.addEventListener('DOMContentLoaded', () => {
     console.log('in');
     var btn = document.getElementById('add_product');
     btn.addEventListener('click', (e) => {
+        loader.style.display = 'block';
         e.preventDefault();
         console.log('clicked on Add product');
         const Pname = document.getElementById('add_sheets_name').value;
@@ -61,41 +64,57 @@ document.addEventListener('DOMContentLoaded', () => {
             ImageRef, isJustLandedCbChecked, isFewLeftCbChecked,
             fabric);
     });
+    loader.style.display = 'none';
+
 });
 
 function CheckingRestrictions(Pname, description, price, sale, size90x200, size120x200, size160x200, size180x200, ImageRef, isJustLandedCbChecked, isFewLeftCbChecked, fabric) {
+    if(Pname == '')
+    {
+        alert("please enter product name");
+        loader.style.display = 'none';
+        return;
+    }
     dbProducts.doc(Pname).get().then((doc) => {
         if (doc.exists) {
             alert("This name is alredy exist");
+            loader.style.display = 'none';
             return;
         }
         else {
             if (Pname.length == 0) {
                 alert("You must enter product name");
+                loader.style.display = 'none';
                 return;
             }
             if (description.length == 0) {
                 alert("You must enter product description");
+                loader.style.display = 'none';
                 return;
             }
             if (price.length == 0 || price < 0) {
                 alert("You must enter product price larger than zero");
+                loader.style.display = 'none';
                 return;
             }
             if (sale < 0 || sale > price) {
                 alert("The discount price must be smaller than the original price, and larger than zero");
+                loader.style.display = 'none';
                 return;
             }
             if (onlyNumbers(size90x200) == false || onlyNumbers(size120x200) == false || onlyNumbers(size160x200) == false || onlyNumbers(size180x200) == false) {
                 alert("You must enter integer quantity");
+                loader.style.display = 'none';
                 return;
             }
             if (size90x200 < 0 || size120x200 < 0 || size160x200 < 0 || size180x200 < 0) {
                 alert("You must enter quantity larger than zero");
+                loader.style.display = 'none';
                 return;
             }
             if (ImageRef.length == 0) {
                 alert("You must enter product Image");
+                loader.style.display = 'none';
                 return;
             }
             addProduct(
