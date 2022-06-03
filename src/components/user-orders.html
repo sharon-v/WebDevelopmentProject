@@ -1,109 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
-    />
-    <title>Shopping Cart - Brand</title>
-    <link rel="stylesheet" href="../components/user-orders.css" />
-  </head>
 
-  <body>
-    <script id="replace_with_navbar" type="module" src="../components/navbar.js"></script>
-    <main class="page shopping-cart-page">
-      <section class="clean-block clean-cart dark">
-        <div class="container" style="width: 80vw">
-          <div class="block-heading">
-            <h1 style="font-size: calc(1.325rem + 0.9vw)">Your Orders<br /></h1>
-          </div>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+  <title>Shopping Cart - Brand</title>
+  <link rel="stylesheet" href="../components/user-orders.css" />
+</head>
+
+<body>
+  <script id="replace_with_navbar" type="module" src="../components/navbar.js"></script>
+  <main class="page shopping-cart-page">
+    <section class="clean-block clean-cart dark">
+      <div class="container" style="width: 80vw">
+        <div class="block-heading">
+          <h1 style="font-size: calc(1.325rem + 0.9vw)">Your Orders<br /></h1>
         </div>
-        <a href="../components/profile.html"
-          ><button
-            class="btn btn-primary"
-            type="button"
-            style="margin-left: 5vw; color: var(--bs-pink); background: var(--bs-white); border-color: var(--bs-pink); ">
-            My Profile
-          </button>
-          </a>
-      <div id="spinner" class="loader"></div>
-        <div id="list"
-          class="container d-lg-flex justify-content-lg-center"
-          style="margin-top: 1vw; border-top: 1px solid var(--bs-gray-300)">
-          <div id="products_list"
-            class="bg-white border rounded items"
-            style="width: 60vw; background: #00000000; margin-top: 3vw">
-            <div id= "product" class="product" hidden>
-              <div
-                class="row d-lg-flex justify-content-lg-center align-items-lg-center"
-                style="box-shadow: 0px 0px 6px 0px rgb(185, 191, 198)"
-              >
-                <div class="col-lg-6">
-                  <div style="padding-top: 10px; padding-bottom: 10px">
-                    <div class="d-lg-flex justify-content-lg-start">
-                      <span style="margin-right: 1vw">Order Number:<br /></span
-                      ><span id = "orderNumber" class="value">1111<br /></span>
-                    </div>
-                    <div class="d-lg-flex justify-content-lg-start">
-                      <span style="margin-right: 1vw">Date :<br /></span
-                      ><span id="orderDate" class="value">31/03/2022<br /></span>
-                    </div>
-                    <div class="d-lg-flex justify-content-lg-start">
-                      <span style="margin-right: 1vw">Send to:<br /></span
-                      ><span id="buyerName" class="value">Israel Israeli<br /></span>
-                    </div>
-                    <div class="d-lg-flex justify-content-lg-start">
-                      <span style="margin-right: 1vw">Total amount :<br /></span
-                      ><span id="totalAmount" class="value">129.90 ₪<br /></span>
-                    </div>
-                    <div class="d-lg-flex justify-content-lg-start">
-                      <span style="margin-right: 1vw">Order Status:<br /></span
-                      ><span id = "orderStatus" class="value">Approved<br /></span>
-                    </div>
+      </div>
+      <a href="../components/profile.html"><button class="btn btn-primary" type="button"
+          style="margin-left: 5vw; color: var(--bs-pink); background: var(--bs-white); border-color: var(--bs-pink); ">
+          My Profile
+        </button>
+      </a>
+      <!-- <div id="spinner" class="loader"></div> -->
+      <div id="modal" class="modal"></div>
+
+      <div id="list" class="container d-lg-flex justify-content-lg-center"
+        style="margin-top: 1vw; border-top: 1px solid var(--bs-gray-300)">
+        <div id="products_list" class="bg-white border rounded items"
+          style="width: 60vw; background: #00000000; margin-top: 3vw">
+          <div id="product" class="product" hidden>
+            <div class="row d-lg-flex justify-content-lg-center align-items-lg-center"
+              style="box-shadow: 0px 0px 6px 0px rgb(185, 191, 198)">
+              <div class="col-lg-6">
+                <div style="padding-top: 10px; padding-bottom: 10px">
+                  <div class="d-lg-flex justify-content-lg-start">
+                    <span style="margin-right: 1vw">Order Number:<br /></span><span id="orderNumber"
+                      class="value">1111<br /></span>
+                  </div>
+                  <div class="d-lg-flex justify-content-lg-start">
+                    <span style="margin-right: 1vw">Date :<br /></span><span id="orderDate"
+                      class="value">31/03/2022<br /></span>
+                  </div>
+                  <div class="d-lg-flex justify-content-lg-start">
+                    <span style="margin-right: 1vw">Send to:<br /></span><span id="buyerName" class="value">Israel
+                      Israeli<br /></span>
+                  </div>
+                  <div class="d-lg-flex justify-content-lg-start">
+                    <span style="margin-right: 1vw">Total amount :<br /></span><span id="totalAmount"
+                      class="value">129.90 ₪<br /></span>
+                  </div>
+                  <div class="d-lg-flex justify-content-lg-start">
+                    <span style="margin-right: 1vw">Order Status:<br /></span><span id="orderStatus"
+                      class="value">Approved<br /></span>
                   </div>
                 </div>
-                <div class="col-lg-6 text-end my-auto">
-                  <button
-                    id="orderPage"
-                    class="btn btn-primary"
-                    type="button"
-                    style="
+              </div>
+              <div class="col-lg-6 text-end my-auto">
+                <button id="orderPage" class="btn btn-primary" type="button" style="
                       color: var(--bs-white);
                       background: var(--bs-gray-800);
                       border-style: hidden;
                       border-color: var(--bs-pink);
                       margin-bottom: 1vw;
-                    "
-                  >
-                    Go to the order page</button
-                  ><button
-                    id="cancelOrderBtn"
-                    class="btn btn-primary"
-                    type="button"
-                    style="
+                    ">
+                  Go to the order page</button><button id="cancelOrderBtn" class="btn btn-primary" type="button" style="
                       margin-left: 20px;
                       margin-bottom: 15px;
                       color: var(--bs-white);
                       background: var(--bs-gray-800);
                       border-style: hidden;
                       border-color: var(--bs-pink);
-                    "
-                  >
-                    Cancel order
-                  </button>
-                </div>
+                    ">
+                  Cancel order
+                </button>
               </div>
             </div>
           </div>
         </div>
-      </section>
-    </main>
-    <script id="replace_with_footer" type="module" src="../components/footer.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script> 
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
-    <script type="module" src="../components/user-orders.js"></script>
-  </body>
+      </div>
+    </section>
+  </main>
+  <script id="replace_with_footer" type="module" src="../components/footer.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
+  <script type="module" src="../components/user-orders.js"></script>
+</body>
+
 </html>

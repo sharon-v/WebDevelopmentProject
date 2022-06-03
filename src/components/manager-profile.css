@@ -1368,9 +1368,9 @@ body {
     box-sizing: border-box;
 }
 
-.loader {
-    border: 16px solid #f3f3f3; /* Light grey */
-    border-top: 16px solid #3498db; /* Blue */
+/* .loader {
+    border: 16px solid #f3f3f3;
+    border-top: 16px solid #3498db;
     border-radius: 50%;
     width: 120px;
     height: 120px;
@@ -1381,8 +1381,32 @@ body {
   @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
-  }
-  
-  option:checked {
+  } */
+
+option:checked {
     color: black;
-  }
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(255, 255, 255, .8) url('../assets/gifs/spinner.gif') 50% 50% no-repeat;
+}
+
+/* https://i.stack.imgur.com/FhHRx.gif */
+body.loading {
+    overflow: hidden;
+}
+
+body.loading .modal {
+    display: block;
+}
+
+body {
+    background-color: #e1e1e1;
+}

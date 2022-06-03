@@ -1,4 +1,10 @@
-import { dbProducts, storage } from '../firebase/data.js';
+import {
+    dbProducts,
+    storage
+} from '../firebase/data.js';
+
+const loader = document.querySelector('#modal');
+loader.style.display = 'block';
 
 var productName = sessionStorage.getItem('Pname');
 console.log(productName);
@@ -7,8 +13,7 @@ dbProducts.doc(productName).get().then((doc) => {
     if (doc.exists) {
         insertData(doc.id, doc.data().description, doc.data().price, doc.data().sale, doc.data().sku, doc.data().imageUrl, doc.data().size90x200,
             doc.data().size120x200, doc.data().size160x200, doc.data().size180x200, doc.data().fabric, doc.data().isFewLeftCbChecked, doc.data().isJustLandedCbChecked);
-    }
-    else {
+    } else {
         alert("Cannot find the wanted product");
         console.log("No such document!");
     }
@@ -31,7 +36,9 @@ function insertData(name, description, price, sale, sku, imageUrl, size90x200, s
     document.getElementById('fewLeft').checked = isFewLeftCbChecked;
     document.getElementById('display-image').src = imageUrl;
     document.querySelector('#form').removeAttribute('hidden');
-    document.querySelector('#spinner').style.display = 'none';
+    // document.querySelector('#spinner').style.display = 'none';
+    loader.style.display = 'none';
+
 
 }
 //needed
@@ -55,8 +62,7 @@ function uploadImage(Pname, description, price, sale, size90x200, size120x200, s
                 setProductOnDB(Pname, description, price, sale, size90x200, size120x200, size160x200, size180x200, isJustLandedCbChecked, isFewLeftCbChecked, fabric, url);
             })
             .catch(console.error);
-    }
-    else {
+    } else {
         setProductOnDB(Pname, description, price, sale, size90x200, size120x200, size160x200, size180x200, isJustLandedCbChecked, isFewLeftCbChecked, fabric, null);
     }
 }
@@ -65,37 +71,36 @@ function uploadImage(Pname, description, price, sale, size90x200, size120x200, s
 function setProductOnDB(Pname, description, price, sale, size90x200, size120x200, size160x200, size180x200, isJustLandedCbChecked, isFewLeftCbChecked, fabric, url) {
 
     dbProducts.doc(Pname).update({
-        Pname: Pname,
-        description: description,
-        price: price,
-        sale: sale,
-        size90x200: size90x200,
-        size120x200: size120x200,
-        size160x200: size160x200,
-        size180x200: size180x200,
-        isJustLandedCbChecked: isJustLandedCbChecked,
-        isFewLeftCbChecked: isFewLeftCbChecked,
-        fabric: fabric,
-    }).then(() => {
-        if (url != null) {
-            dbProducts.doc(Pname).update({
-                imageUrl: url
-            }).then(() => {
+            Pname: Pname,
+            description: description,
+            price: price,
+            sale: sale,
+            size90x200: size90x200,
+            size120x200: size120x200,
+            size160x200: size160x200,
+            size180x200: size180x200,
+            isJustLandedCbChecked: isJustLandedCbChecked,
+            isFewLeftCbChecked: isFewLeftCbChecked,
+            fabric: fabric,
+        }).then(() => {
+            if (url != null) {
+                dbProducts.doc(Pname).update({
+                        imageUrl: url
+                    }).then(() => {
+                        console.log('Document successfully added');
+                        location.replace('../components/manager-manage-items.html');
+                    })
+                    .catch((error) => {
+                        console.error('Error writing document: ', error);
+                        console.log('fail');
+                        var errorMessage = error.message;
+                        alert(errorMessage);
+                    });
+            } else {
                 console.log('Document successfully added');
                 location.replace('../components/manager-manage-items.html');
-            })
-                .catch((error) => {
-                    console.error('Error writing document: ', error);
-                    console.log('fail');
-                    var errorMessage = error.message;
-                    alert(errorMessage);
-                });
-        }
-        else {
-            console.log('Document successfully added');
-            location.replace('../components/manager-manage-items.html');
-        }
-    })
+            }
+        })
         .catch((error) => {
             console.error('Error writing document: ', error);
             console.log('fail');
@@ -136,13 +141,13 @@ function CheckingRestrictions(Pname, description, price, sale, size90x200, size1
             }
             uploadImage(Pname, description, price, sale, size90x200, size120x200, size160x200, size180x200, isJustLandedCbChecked, isFewLeftCbChecked, fabric)
 
-        }
-        else {
+        } else {
             alert("The product isnt in the list");
 
         }
     });
 }
+
 function onlyNumbers(str) {
     return /^[0-9]+$/.test(str);
 }
@@ -150,7 +155,9 @@ function onlyNumbers(str) {
 document.addEventListener('DOMContentLoaded', () => {
     var btn = document.getElementById('saveProd');
     btn.addEventListener('click', (e) => {
-        document.querySelector('#spinner').style.display = 'inline';
+        // document.querySelector('#spinner').style.display = 'inline';
+        loader.style.display = 'block';
+
 
         e.preventDefault();
         var Pname = document.getElementById('edit_sheets_name').value;
@@ -179,7 +186,9 @@ document.addEventListener('DOMContentLoaded', () => {
             ImageRef, isJustLandedCbChecked, isFewLeftCbChecked,
             fabric);
 
-        document.querySelector('#spinner').style.display = 'none';
+        // document.querySelector('#spinner').style.display = 'none';
+        loader.style.display = 'none';
+
 
     });
 });

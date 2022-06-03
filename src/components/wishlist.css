@@ -994,11 +994,9 @@ body {
   box-sizing: border-box;
 }
 
-.loader {
+/* .loader {
   border: 16px solid #f3f3f3;
-  /* Light grey */
   border-top: 16px solid #3498db;
-  /* Blue */
   border-radius: 50%;
   width: 120px;
   height: 120px;
@@ -1014,7 +1012,7 @@ body {
   100% {
     transform: rotate(360deg);
   }
-}
+} */
 
 .modal {
   display: none;
@@ -1024,7 +1022,7 @@ body {
   left: 0;
   height: 100%;
   width: 100%;
-  background: rgba(255, 255, 255, .8) url('../assets/gifs/Spinner-1s-200px.gif') 50% 50% no-repeat;
+  background: rgba(255, 255, 255, .8) url('../assets/gifs/spinner.gif') 50% 50% no-repeat;
 }
 
 /* https://i.stack.imgur.com/FhHRx.gif */

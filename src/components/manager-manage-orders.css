@@ -167,7 +167,7 @@ button,
   margin-left: calc(-0.5 * var(--bs-gutter-x));
 }
 
-.row > * {
+.row>* {
   flex-shrink: 0;
   width: 100%;
   max-width: 100%;
@@ -180,7 +180,7 @@ button,
   flex: 1 0 0%;
 }
 
-.row-cols-4 > * {
+.row-cols-4>* {
   flex: 0 0 auto;
   width: 25%;
 }
@@ -190,6 +190,7 @@ button,
     flex: 0 0 auto;
     width: 16.66666667%;
   }
+
   .col-lg-6 {
     flex: 0 0 auto;
     width: 50%;
@@ -413,17 +414,21 @@ button,
     flex-wrap: nowrap;
     justify-content: flex-start;
   }
+
   .navbar-expand-lg .navbar-nav {
     flex-direction: row;
   }
+
   .navbar-expand-lg .navbar-nav .nav-link {
     padding-right: 0.5rem;
     padding-left: 0.5rem;
   }
+
   .navbar-expand-lg .navbar-collapse {
     display: flex !important;
     flex-basis: auto;
   }
+
   .navbar-expand-lg .navbar-toggler {
     display: none;
   }
@@ -561,15 +566,19 @@ button,
   .d-lg-flex {
     display: flex;
   }
+
   .justify-content-lg-start {
     justify-content: flex-start !important;
   }
+
   .justify-content-lg-center {
     justify-content: center !important;
   }
+
   .align-items-lg-end {
     align-items: flex-end !important;
   }
+
   .align-items-lg-center {
     align-items: center !important;
   }
@@ -579,6 +588,7 @@ button,
   .justify-content-xxl-center {
     justify-content: center !important;
   }
+
   .align-items-xxl-center {
     align-items: center !important;
   }
@@ -630,6 +640,7 @@ body {
   .clean-block {
     padding-bottom: 100px;
   }
+
   .clean-block .block-heading {
     padding-top: 80px;
   }
@@ -640,6 +651,7 @@ body {
     padding: 0;
     text-align: left;
   }
+
   .clean-block.clean-cart .items .product:not(:last-child) {
     padding-top: 0;
     padding-bottom: 25px;
@@ -664,7 +676,7 @@ body {
   font-size: 1.5rem;
 }
 
-.clean-navbar.fixed-top + .page {
+.clean-navbar.fixed-top+.page {
   padding-top: 62px;
 }
 
@@ -673,93 +685,10 @@ body {
     padding-top: 1.2rem;
     padding-bottom: 1.2rem;
   }
-  .clean-navbar.fixed-top + .page {
+
+  .clean-navbar.fixed-top+.page {
     padding-top: 5rem;
   }
-}
-
-/* .page-footer {
-  background-color: #fff;
-  padding-top: 30px;
-  text-align: center;
-}
-.page-footer.dark {
-  background-color: #2b2f31;
-}
-.page-footer .footer-copyright {
-  background-color: #fff;
-  padding-top: 3px;
-  padding-bottom: 3px;
-  text-align: center;
-  margin-top: 50px;
-  border: 1px solid #ededed;
-}
-.page-footer.dark .footer-copyright {
-  background-color: #222425;
-  border-color: #222425;
-}
-.page-footer .footer-copyright p {
-  margin: 10px;
-  color: #7d8288;
-}
-.page-footer.dark .footer-copyright p {
-  color: #ccc;
-}
-.page-footer a {
-  color: #53595f;
-  text-decoration: none;
-}
-.page-footer.dark a {
-  color: #d2d1d1;
-}
-.page-footer a:hover,
-.page-footer a:focus {
-  text-decoration: none;
-  color: #1d2125;
-}
-.page-footer.dark a:hover,
-.page-footer.dark a:focus {
-  color: #fff;
-}
-@media (min-width: 576px) {
-  .page-footer {
-    text-align: left;
-  }
-} */
-
-.fa {
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-  display: inline-block;
-  font-style: normal;
-  font-variant: normal;
-  text-rendering: auto;
-  line-height: 1;
-}
-
-.fa-star:before {
-  content: '\f005';
-}
-
-.fa {
-  font-family: 'Font Awesome 5 Free';
-}
-
-.fa {
-  font-weight: 900;
-}
-
-.fa {
-  display: inline-block;
-  font: normal normal normal 14px/1 FontAwesome;
-  font-size: inherit;
-  text-rendering: auto;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-.fa-star:before {
-  content: '\f005';
 }
 
 body {
@@ -840,9 +769,9 @@ body {
   box-sizing: border-box;
 }
 
-.loader {
-  border: 16px solid #f3f3f3; /* Light grey */
-  border-top: 16px solid #3498db; /* Blue */
+/* .loader {
+  border: 16px solid #f3f3f3; 
+  border-top: 16px solid #3498db; 
   border-radius: 50%;
   width: 120px;
   height: 120px;
@@ -853,4 +782,28 @@ body {
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+} */
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(255, 255, 255, .8) url('../assets/gifs/spinner.gif') 50% 50% no-repeat;
+}
+
+/* https://i.stack.imgur.com/FhHRx.gif */
+body.loading {
+  overflow: hidden;
+}
+
+body.loading .modal {
+  display: block;
+}
+
+body {
+  background-color: #e1e1e1;
 }

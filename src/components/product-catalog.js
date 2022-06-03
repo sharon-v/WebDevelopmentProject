@@ -4,7 +4,10 @@ import {
   fbAuth
 } from '../firebase/data.js';
 
-document.querySelector('#spinner').style.visibility = 'visible';
+// document.querySelector('#spinner').style.visibility = 'visible';
+const loader = document.querySelector('#modal');
+loader.style.display = 'block';
+
 initialization(sessionStorage.getItem('filter'));
 
 function initialization(filterNum) {
@@ -35,7 +38,9 @@ function initialization(filterNum) {
         //delete the first element if there are no products
         deleteFirst();
       }
-      document.querySelector('#spinner').style.display = 'none';
+      // document.querySelector('#spinner').style.display = 'none';
+      loader.style.display = 'none';
+
     });
   }
 }
@@ -253,104 +258,73 @@ sortCombo.addEventListener('change', (e) => {
     func = desc;
   }
 
-  // dbProducts
-  //   .orderBy('price', order).orderBy('sale', order)
-  //   .get()
-  //   .then((querySnapshot) => {
-  //     removeAllChildNodes(document.getElementById('catalog_list'));
-  //     var counter = 0;
-  //     querySnapshot.forEach((doc) => {
-  //       console.log(doc.id, ' => ', doc.data());
 
-  //       counter = counter + 1;
-
-  //       addElement(
-  //         doc.data().Pname,
-  //         doc.data().sku,
-  //         doc.data().price,
-  //         doc.data().sale,
-  //         doc.data().imageUrl,
-  //         doc.data().size90x200,
-  //         doc.data().size120x200,
-  //         doc.data().size160x200,
-  //         doc.data().size180x200,
-  //         doc.data().isFewLeftCbChecked,
-  //         doc.data().isJustLandedCbChecked
-  //       );
-  //       document.querySelector('#spinner').style.display = 'none';
-  //     });
-  //     if (counter == 0) {
-  //       deleteFirst();
-  //     }
-  //   })
-  //   .catch((error) => {
-  //     console.log('Error getting documents: ', error);
-  //   });
   removeAllChildNodes(document.getElementById('catalog_list'));
 
   var listPro = [];
-  var dicPro ={};
+  var dicPro = {};
   dbProducts.get().then((querySnapshot) => {
     querySnapshot.forEach((doc) => {
-      if(doc.data().sale != 0)
-      {
+      if (doc.data().sale != 0) {
 
         dicPro["price"] = doc.data().sale;
         dicPro["id"] = doc;
         listPro.push(dicPro);
 
 
-      }
-      else{
+      } else {
         dicPro["price"] = doc.data().price;
         dicPro["id"] = doc;
         listPro.push(dicPro);
 
       }
-      dicPro={};
-      
+      dicPro = {};
+
     })
 
     var sorted = listPro.sort(func);
     var counter = 0;
-    for(let i =0 ;i <sorted.length;++i)
-    {
+    for (let i = 0; i < sorted.length; ++i) {
       var doc = sorted[i]["id"];
-        console.log(doc.id, ' => ', doc.data());
-        counter = counter + 1;
+      console.log(doc.id, ' => ', doc.data());
+      counter = counter + 1;
 
-        addElement(
-          doc.data().Pname,
-          doc.data().sku,
-          doc.data().price,
-          doc.data().sale,
-          doc.data().imageUrl,
-          doc.data().size90x200,
-          doc.data().size120x200,
-          doc.data().size160x200,
-          doc.data().size180x200,
-          doc.data().isFewLeftCbChecked,
-          doc.data().isJustLandedCbChecked
-        );
-        document.querySelector('#spinner').style.display = 'none';
+      addElement(
+        doc.data().Pname,
+        doc.data().sku,
+        doc.data().price,
+        doc.data().sale,
+        doc.data().imageUrl,
+        doc.data().size90x200,
+        doc.data().size120x200,
+        doc.data().size160x200,
+        doc.data().size180x200,
+        doc.data().isFewLeftCbChecked,
+        doc.data().isJustLandedCbChecked
+      );
+      // document.querySelector('#spinner').style.display = 'none';
+      loader.style.display = 'none';
+
     }
     if (counter == 0) {
       deleteFirst();
     }
-    })
+  })
 
 });
 
-function asc(a,b) {
+function asc(a, b) {
   return parseInt(a.price, 10) - parseInt(b.price, 10);
 }
 
-function desc(a,b) {
+function desc(a, b) {
   return parseInt(b.price, 10) - parseInt(a.price, 10);
 }
 
 function searchByInput() {
-  document.querySelector('#spinner').style.display = 'inline';
+  // document.querySelector('#spinner').style.display = 'inline';
+  loader.style.display = 'block';
+
   // reset combos
   sortCombo.value = 0;
   filterCombo.value = 0;
@@ -408,11 +382,16 @@ function searchByInput() {
                   res.data().isFewLeftCbChecked,
                   res.data().isJustLandedCbChecked
                 );
-                document.querySelector('#spinner').style.display = 'none';
+                // document.querySelector('#spinner').style.display = 'none';
+                loader.style.display = 'none';
+
+
               } else {
                 console.log('no products');
                 deleteFirst();
-                document.querySelector('#spinner').style.visibility = 'visible';
+                // document.querySelector('#spinner').style.visibility = 'visible';
+                loader.style.display = 'block';
+
               }
             })
             .catch((error) => {
@@ -428,7 +407,9 @@ function searchByInput() {
 
     document.querySelector('#catalog_list').lastElementChild.style.display = 'inline';
     console.log('no products');
-    document.querySelector('#spinner').style.visibility = 'visible';
+    // document.querySelector('#spinner').style.visibility = 'visible';
+    loader.style.display = 'block';
+
     initialization('0');
   }
 }

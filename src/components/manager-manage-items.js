@@ -1,8 +1,15 @@
-import { dbProducts, fbAuth } from '../firebase/data.js'
+import {
+    dbProducts,
+    fbAuth
+} from '../firebase/data.js'
 
-document.querySelector('#spinner').style.visibility = 'visible';
+// document.querySelector('#spinner').style.visibility = 'visible';
+const loader = document.querySelector('#modal');
+loader.style.display = 'block';
+
 
 initialization();
+
 function initialization() {
     dbProducts.get().then((querySnapshot) => {
         var counter = 0;
@@ -13,7 +20,9 @@ function initialization() {
         if (counter == 0) {
             deleteFirst();
         }
-        document.querySelector('#spinner').style.display = 'none';
+        // document.querySelector('#spinner').style.display = 'none';
+        loader.style.display = 'none';
+
     });
 }
 
@@ -29,8 +38,11 @@ searchInput.addEventListener('keypress', function (e) {
         searchByInput();
     }
 });
+
 function searchByInput() {
-    document.querySelector('#spinner').style.display = 'inline';
+    // document.querySelector('#spinner').style.display = 'inline';
+    loader.style.display = 'block';
+
     if (searchInput.value.length > 0) {
         const container = document.querySelector('#products_list');
         removeAllChildNodes(container);
@@ -38,18 +50,23 @@ function searchByInput() {
         dbProducts.doc(searchInput.value).get().then((doc) => {
             if (doc.exists) {
                 addElement(doc.data().imageUrl, doc.data().Pname, doc.data().price, doc.data().sale, doc.data().sku);
-                document.querySelector('#spinner').style.display = 'none';
+                // document.querySelector('#spinner').style.display = 'none';
+                loader.style.display = 'none';
+
                 return;
-            }
-            else {
+            } else {
                 dbProducts.where('sku', '==', parseInt(searchInput.value)).get().then((querySnapshot) => {
                     if (querySnapshot.docs.length > 0) {
                         var res = querySnapshot.docs[0];
                         addElement(res.data().imageUrl, res.data().Pname, res.data().price, res.data().sale, res.data().sku);
-                        document.querySelector('#spinner').style.display = 'none';
+                        // document.querySelector('#spinner').style.display = 'none';
+                        loader.style.display = 'none';
+
                     } else {
                         // document.querySelector('#products_list').lastElementChild.style.display = 'none';
-                        document.querySelector('#spinner').style.display = 'none';
+                        // document.querySelector('#spinner').style.display = 'none';
+                        loader.style.display = 'none';
+
                         deleteFirst();
                     }
                 }).catch((error) => {
@@ -63,7 +80,9 @@ function searchByInput() {
     } else {
         removeAllChildNodes(document.querySelector('#products_list'));
         // document.querySelector('#products_list').lastElementChild.style.display = 'inline';
-        document.querySelector('#spinner').style.visibility = 'visible';
+        // document.querySelector('#spinner').style.visibility = 'visible';
+        loader.style.display = 'block';
+
         initialization();
     }
 }
@@ -78,8 +97,7 @@ function changeValues(element, urlName, Pname, proPrice, pSale, psku) {
     let sale = element.querySelector('#sale');
     if (pSale == "") {
         sale.innerHTML = "no sale";
-    }
-    else {
+    } else {
         sale.innerHTML = parseFloat(pSale).toFixed(2) + "₪";
     }
     let sku = element.querySelector('#sku');
@@ -100,7 +118,9 @@ function changeValues(element, urlName, Pname, proPrice, pSale, psku) {
     deleteProduct.addEventListener('click', () => {
         console.log("clicked2");
 
-        document.querySelector('#spinner').style.display = 'inline';
+        // document.querySelector('#spinner').style.display = 'inline';
+        loader.style.display = 'block';
+
         dbProducts.doc(Pname).delete().then(() => {
             console.log("Document successfully deleted!");
             removeAllChildNodes(document.getElementById("products_list"));
@@ -132,7 +152,9 @@ function deleteFirst() {
 }
 
 function removeAllChildNodes(parent) {
-    document.getElementById('spinner').style.display = 'inline';
+    // document.getElementById('spinner').style.display = 'inline';
+    loader.style.display = 'block';
+
     console.log("parent.children.length " + parent.children.length);
     while (parent.children.length > 1) {
         parent.removeChild(parent.lastChild);

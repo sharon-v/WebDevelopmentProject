@@ -1,73 +1,76 @@
-import {fbAuth,dbOrders, dbShoppingCart,dbOrdersTimes, dbProducts} from '../firebase/data.js'
+import {
+    fbAuth,
+    dbOrders,
+    dbShoppingCart,
+    dbOrdersTimes,
+    dbProducts
+} from '../firebase/data.js'
 var productAmount = {};
-var newList=[];
+var newList = [];
 var totalItems = 0;
 var totalAmount = 0;
+
+const loader = document.querySelector('#modal');
+loader.style.display = 'block';
+
 initialization();
 
-function initialization(){
+function initialization() {
 
     const amount = document.getElementById('totalPrice');
     const items = document.getElementById('totalItems');
     fbAuth.onAuthStateChanged((user) => {
         dbShoppingCart.doc(user.email).get().then((querySnapshot) => {
-            if(querySnapshot.exists)
-            {
+            if (querySnapshot.exists) {
                 let userShoppingCart = querySnapshot.data().productList;
                 userShoppingCart.push(''); // makes the initialization of the fields to be latest
                 newList = userShoppingCart;
-                for(let i = 0; i< userShoppingCart.length; ++i){
+                for (let i = 0; i < userShoppingCart.length; ++i) {
                     const x = parseInt(userShoppingCart[i].quantity);
-                    dbProducts.doc(userShoppingCart[i].name).get().then((pro) =>{
-                        if (pro.exists){
+                    dbProducts.doc(userShoppingCart[i].name).get().then((pro) => {
+                        if (pro.exists) {
                             totalItems = totalItems + x;
-                            if(pro.id in productAmount)
-                            {
+                            if (pro.id in productAmount) {
                                 productAmount[pro.id] = productAmount[pro.id] + x;
 
-                            }
-                            else{
+                            } else {
                                 productAmount[pro.id] = x;
                             }
 
-                            if(pro.data().sale == 0)
-                            {
+                            if (pro.data().sale == 0) {
                                 console.log(pro.data().price);
-                                totalAmount = totalAmount + (pro.data().price*x);
-                                newList[i].price=pro.data().price;
-                            }
-                            else
-                            {
-                                totalAmount = totalAmount + (pro.data().sale*x);
+                                totalAmount = totalAmount + (pro.data().price * x);
+                                newList[i].price = pro.data().price;
+                            } else {
+                                totalAmount = totalAmount + (pro.data().sale * x);
                                 newList[i].price = pro.data().sale;
                             }
                             newList[i].url = pro.data().imageUrl;
                             newList[i].sku = pro.data().sku;
 
 
-                        }
-                        else
-                        {
+                        } else {
                             items.innerHTML = totalItems;
                             amount.innerHTML = totalAmount.toFixed(2) + '₪';
-                            document.getElementById('mainElement').style.display='inline';
-                            document.getElementById('spinner').style.display='none';
+                            document.getElementById('mainElement').style.display = 'inline';
+                            // document.getElementById('spinner').style.display='none';
+                            loader.style.display = 'none';
                             console.log("in shopping cart list -payment page - No such document!");
                         }
                     })
                 }
-            }
-            else
-            { 
+            } else {
                 let par = document.createElement("h2");
                 par.innerHTML = "Your shopping cart is empty :("
-                par.style="color: var(--bs-pink) ;text-align:center"
+                par.style = "color: var(--bs-pink) ;text-align:center"
                 let currentDiv = document.getElementById("mainElement");
                 let elem = currentDiv.querySelector("#child");
                 elem.remove();
                 currentDiv.appendChild(par);
-                document.getElementById('mainElement').style.display='inline';
-                document.getElementById('spinner').style.display='none';
+                document.getElementById('mainElement').style.display = 'inline';
+                // document.getElementById('spinner').style.display = 'none';
+                loader.style.display = 'none';
+
 
             }
         })
@@ -76,10 +79,10 @@ function initialization(){
         var counter = 0;
         querySnapshot.forEach((doc) => {
             var date = document.getElementById('dateSelect');
-            if(Date.now() < new Date(doc.id).getTime()){ //
+            if (Date.now() < new Date(doc.id).getTime()) { //
                 counter = counter + 1;
                 var opt = document.createElement('option');
-                opt.style.color="black";
+                opt.style.color = "black";
                 opt.value = counter;
                 opt.innerHTML = doc.id;
                 date.appendChild(opt);
@@ -97,25 +100,23 @@ date.addEventListener('change', (e) => {
         hours.removeChild(hours.lastChild);
     }
     dbOrdersTimes.doc(date.options[date.selectedIndex].text).get().then((querySnapshot) => {
-        if(querySnapshot.exists)
-        {
-            for(let index = 0; index < querySnapshot.data().hours.length; ++index)
-            {
+        if (querySnapshot.exists) {
+            for (let index = 0; index < querySnapshot.data().hours.length; ++index) {
                 var opt = document.createElement('option');
-                opt.style.color="black";
+                opt.style.color = "black";
                 opt.innerHTML = querySnapshot.data().hours[index];
                 hours.appendChild(opt);
             }
         }
-        
+
     });
 })
 
 
 var btn = document.getElementById('payment_pay_button');
-  // when press on sign up button
-  btn.addEventListener('click', (e) => {
-    e.preventDefault();  // IMPORTANT! so the db functions could work, DO NOT REMOVE
+// when press on sign up button
+btn.addEventListener('click', (e) => {
+    e.preventDefault(); // IMPORTANT! so the db functions could work, DO NOT REMOVE
     console.log('clicked on pay');
 
     // getting the order personal details from the html
@@ -124,33 +125,33 @@ var btn = document.getElementById('payment_pay_button');
     const street = document.getElementById('orderStreet').value;
     const streetNumber = document.getElementById('orderStreetNumber').value;
     const apartment = document.getElementById('orderApartment');
-    if(apartment.length == 0)
+    if (apartment.length == 0)
         apartment.value = 0;
-    let temp =  document.getElementById('city');
+    let temp = document.getElementById('city');
     const city = temp.options[temp.selectedIndex];
     const postalCode = document.getElementById('postalCode').value;
     const PhoneNumber = document.getElementById('PhoneNumber').value;
     const notes = document.getElementById('notes');
-    if(notes.length == 0)
+    if (notes.length == 0)
         notes.value = '';
     const orderDate = date.options[date.selectedIndex];
     const orderHours = hours.options[hours.selectedIndex];
-    temp =  document.getElementById('numberOfPayments');
+    temp = document.getElementById('numberOfPayments');
     const numOfPayments = temp.options[temp.selectedIndex];
     const ID = document.getElementById('Card_owner`s_ID').value;
-    temp =  document.getElementById('expirationMonth');
+    temp = document.getElementById('expirationMonth');
     const expirationMonth = temp.options[temp.selectedIndex];
-    temp =  document.getElementById('expirationYear');
+    temp = document.getElementById('expirationYear');
     const expirationYear = temp.options[temp.selectedIndex];
     const cardNumber = document.getElementById('card_number').value;
     const cvc = document.getElementById('cvc').value;
-    let res = checkData(fname, lname, street, streetNumber, postalCode, city, PhoneNumber, orderDate, orderHours, expirationMonth, expirationYear,  ID, cardNumber, cvc);
-    if (res == true){
+    let res = checkData(fname, lname, street, streetNumber, postalCode, city, PhoneNumber, orderDate, orderHours, expirationMonth, expirationYear, ID, cardNumber, cvc);
+    if (res == true) {
         fbAuth.onAuthStateChanged((user) => {
             // Add a new document in collection "orders"
             newList.pop();
             const now = new Date(Date.now()).getTime();
-                dbOrders.doc(fname + now).set({
+            dbOrders.doc(fname + now).set({
                     buyerEmail: user.email,
                     orderStatus: "Aprroved",
                     purchaseDate: now,
@@ -188,76 +189,73 @@ var btn = document.getElementById('payment_pay_button');
                     console.error("Error writing document: ", error);
                 });
         })
-        
+
     }
 });
 
-function checkData(fname, lname, street, streetNumber, postalCode, city, phoneNumber,  orderDate, orderHours, expirationMonth, expirationYear,  ID, cardNumber, cvc)
-{
-    if(!checkUserFirstLastName(fname)){
+function checkData(fname, lname, street, streetNumber, postalCode, city, phoneNumber, orderDate, orderHours, expirationMonth, expirationYear, ID, cardNumber, cvc) {
+    if (!checkUserFirstLastName(fname)) {
         return false;
     }
-    if(!checkUserFirstLastName(lname)){
+    if (!checkUserFirstLastName(lname)) {
         return false;
     }
-    if(!checkAddress(street)){
+    if (!checkAddress(street)) {
         return false;
     }
-    if(streetNumber.length < 1){
+    if (streetNumber.length < 1) {
         alert('You must enter your street number');
         return false;
     }
-    if(city.value == 0){
+    if (city.value == 0) {
         alert('plaese pick a city from the list');
         return false;
     }
-    if(!checkPhoneNumber(String(phoneNumber))){
+    if (!checkPhoneNumber(String(phoneNumber))) {
         return false;
     }
-    if(!checkPostalCode(String(postalCode))){
+    if (!checkPostalCode(String(postalCode))) {
         return false;
     }
-    if(orderDate.value == 0){
+    if (orderDate.value == 0) {
         alert('plaese pick a date for the order from the list');
         return false;
     }
-    if(orderHours.value == 0){
+    if (orderHours.value == 0) {
         alert('plaese pick a hours for the order from the list');
         return false;
     }
-    if(!checkId(String(ID))){
+    if (!checkId(String(ID))) {
         return false;
     }
-    if(expirationMonth.value == 0){
+    if (expirationMonth.value == 0) {
         alert('plaese pick a expiration month from the list');
         return false;
     }
-    if(expirationYear.value == 0){
+    if (expirationYear.value == 0) {
         alert('plaese pick a expiration year from the list');
         return false;
     }
     const now = new Date(Date.now());
-    if(expirationYear.value == now.getFullYear())
-    {
-        if((now.getMonth() +1) > parseInt(expirationMonth.value)){
+    if (expirationYear.value == now.getFullYear()) {
+        if ((now.getMonth() + 1) > parseInt(expirationMonth.value)) {
             alert('The expiration date that you enter is invalid');
             return false;
         }
     }
-    if(cardNumber.length != 16 || !onlyNumbers(String(cardNumber))){
+    if (cardNumber.length != 16 || !onlyNumbers(String(cardNumber))) {
         alert('You enter invalid card number');
         return false;
     }
-    if(cvc.length != 3 || !onlyNumbers(String(cvc))){
+    if (cvc.length != 3 || !onlyNumbers(String(cvc))) {
         alert('You enter invalid cvc');
         return false;
     }
     return true;
 }
 
-function onlyNumbers(number)
-{
-    return (/^[0-9]+$/.test(number)) 
+function onlyNumbers(number) {
+    return (/^[0-9]+$/.test(number))
 
 }
 
@@ -265,98 +263,87 @@ function checkPhoneNumber(phoneNumber) {
     if (/^[0-9]+$/.test(phoneNumber)) {
         console.log('phone-length', phoneNumber.length);
         if (phoneNumber.length != 10) {
-          alert('Phone number should be 10 digis long');
-          return false;
+            alert('Phone number should be 10 digis long');
+            return false;
         }
         return true;
-      }
-      else {
+    } else {
         alert('phone number should contain digits only');
         return false;
-      }
+    }
 }
 
 function checkPostalCode(pc) {
     if (/^[0-9]+$/.test(pc)) {
         if (pc.length != 7) {
-          alert('Postal code should be 7 digis long');
-          return false;
+            alert('Postal code should be 7 digis long');
+            return false;
         }
         return true;
-      }
-      else {
+    } else {
         alert('Postal code should contain digits only');
         return false;
-      }
+    }
 }
 
 function checkId(id) {
     if (/^[0-9]+$/.test(id)) {
         if (id.length != 9) {
-          alert('ID should be 9 digis long');
-          return false;
+            alert('ID should be 9 digis long');
+            return false;
         }
         return true;
-      }
-      else {
+    } else {
         alert('ID should contain digits only');
         return false;
-      }
+    }
 }
 
-function changeAmountToAllProduct(productsList)
-{
- 
-    for(let i = 0; i< productsList.length ; ++i)
-    {
+function changeAmountToAllProduct(productsList) {
+
+    for (let i = 0; i < productsList.length; ++i) {
         dbProducts.doc(productsList[i].name).get().then((doc) => {
             if (doc.exists) {
                 dbProducts.doc(productsList[i]['name']).update({
-                    amountSold: doc.data().amountSold + productAmount[productsList[i].name]
-                })
-                .then(() => {
-                    console.log("Document successfully written!");
-                })
-                .catch((error) => {
-                    console.error("Error writing document: ", error);
-                });      
+                        amountSold: doc.data().amountSold + productAmount[productsList[i].name]
+                    })
+                    .then(() => {
+                        console.log("Document successfully written!");
+                    })
+                    .catch((error) => {
+                        console.error("Error writing document: ", error);
+                    });
             } else {
                 // doc.data() will be undefined in this case
                 console.log("No such document!");
             }
         }).catch((error) => {
-                    console.log("Error getting document:", error);
-        });   
-                
+            console.log("Error getting document:", error);
+        });
+
     }
 
 }
 
-function checkUserFirstLastName(name)
-{
-  if(/^[0-9]+$/.test(name))
-  {
-    alert('First name and last name should not be with digits');
-    return false;
-  }
-  else if (name == null || name == "") {
-    alert("Please Fill First Name Field");
-    return false;
-  }
-  return true;
+function checkUserFirstLastName(name) {
+    if (/^[0-9]+$/.test(name)) {
+        alert('First name and last name should not be with digits');
+        return false;
+    } else if (name == null || name == "") {
+        alert("Please Fill First Name Field");
+        return false;
+    }
+    return true;
 }
 
 
-function checkAddress(name)
-{
-  if(/^[0-9]+$/.test(name))
-  {
-    alert('Adrress should not be with digits');
-    return false;
-  }
-  else if (name == null || name == "") {
-    alert("Please Fill First Name Field");
-    return false;
-  }
-  return true;
+function checkAddress(name) {
+    if (/^[0-9]+$/.test(name)) {
+        alert('Adrress should not be with digits');
+        return false;
+    } else if (name == null || name == "") {
+        alert("Please Fill First Name Field");
+        return false;
+    }
+    return true;
 }
