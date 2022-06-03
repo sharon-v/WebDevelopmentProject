@@ -1,5 +1,9 @@
 import { fbAuth, dbShoppingCart, dbProducts } from '../firebase/data.js'
-import {CustomerNavbar} from '../components/navbar.js'
+import { CustomerNavbar } from '../components/navbar.js'
+
+
+const loader = document.querySelector('#modal');
+loader.style.display = 'block';
 
 var userShoppingCart = [];
 initialization();
@@ -63,6 +67,7 @@ function initialization() {
                                 totalPrice.innerHTML = totalAmount.toFixed(2) + '₪';
                                 totalQuantity.innerHTML = quantity;
                                 console.log('added last product', totalAmount.toFixed(2));
+                                loader.style.display = 'none';
                             }
                         }
                         else {
@@ -82,6 +87,7 @@ function initialization() {
                 // need to present a message on the screen
                 document.getElementById('checkout').disabled = true;
                 deleteFirst();
+                loader.style.display = 'none';
             }
         })
     })
@@ -111,6 +117,7 @@ function changeValues(element, Name, SKU, price, quantity, url, size) {
 
     element.querySelector('#trashBtn').addEventListener('click', (e) => {
         e.preventDefault();
+        loader.style.display = 'block';
         productQuantity.value = '0';
         updateQuantityInShoppingCart(productName, productQuantity, element, size);
     });
@@ -262,6 +269,7 @@ function updateShoppingCart(userEmail, productsList, element, size, productName,
             deleteFirst();
         }).catch((error) => {
             console.error("failed to delete the shopping cart: ", error);
+            loader.style.display = 'none';
         });
     }
     else {
@@ -363,6 +371,7 @@ function updateProductStockInTheDB(userEmail, productsList, element, size, produ
             quantityField.disabled = false;
             alert('The product', shoppingCart[i].name, 'is not available anymore');
             console.log('The product', shoppingCart[i].name, 'is not available anymore');
+            loader.style.display = 'none';
         }
     })
 }
@@ -371,6 +380,7 @@ function writeShoppingCartToTheDB(userEmail, productsList, element, size, produc
     console.log('in writeShoppindCartToTheDB');
     console.log('cart: ', productsList);
     if (productsList.length == 0) {
+        loader.style.display = 'none';
         return;
     }
     dbShoppingCart.doc(userEmail).set({
@@ -387,10 +397,12 @@ function writeShoppingCartToTheDB(userEmail, productsList, element, size, produc
             subTotal.innerHTML = totalAmount.toFixed(2) + '₪';
             totalPrice.innerHTML = totalAmount.toFixed(2) + '₪';
             totalQuantity.innerHTML = quantity;
+            loader.style.display = 'none';
         })
         .catch((error) => {
             // success in saving the user to Auth but failed to save him in the collection
             // so we need to delete user from authentication
+            loader.style.display = 'none';
             alert('failed to delete the product from the shopping cart,', error.message);
         });
 }
@@ -409,7 +421,7 @@ function deleteFirst() {
     let currentDiv = document.getElementById("items");
     currentDiv.appendChild(par);
     document.getElementById('checkout').disabled = true;
-
+    loader.style.display = 'none';
 }
 
 function deleteProFromShoppingCart(productName) {
@@ -432,9 +444,11 @@ function deleteProFromShoppingCart(productName) {
                     if (cart.length == 0) {
                         deleteFirst();
                     }
+                    loader.style.display = 'none';
                 })
                 .catch((error) => {
                     alert('failed to delete the product from the shopping cart,', error.message);
+                    loader.style.display = 'none';
                 });
 
         });
