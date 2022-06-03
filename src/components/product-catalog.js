@@ -96,8 +96,10 @@ function filter(field, cond, value) {
   if(field =='fabric')
   {
     document.getElementById("filter_combo").selectedIndex = parseInt(value) +4;
-
   }
+  sortCombo.value = 0;
+
+
   dbProducts
     .where(field, cond, value)
     .get()
