@@ -151,7 +151,7 @@ button,
   margin-left: calc(-0.5 * var(--bs-gutter-x));
 }
 
-.row > * {
+.row>* {
   flex-shrink: 0;
   width: 100%;
   max-width: 100%;
@@ -164,7 +164,7 @@ button,
   flex: 1 0 0%;
 }
 
-.row-cols-4 > * {
+.row-cols-4>* {
   flex: 0 0 auto;
   width: 25%;
 }
@@ -174,6 +174,7 @@ button,
     flex: 0 0 auto;
     width: 16.66666667%;
   }
+
   .col-lg-4 {
     flex: 0 0 auto;
     width: 33.33333333%;
@@ -217,8 +218,6 @@ button,
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  -webkit-print-color-adjust: exact;
-  color-adjust: exact;
 }
 
 .form-check-input[type='checkbox'] {
@@ -250,7 +249,7 @@ button,
   opacity: 0.5;
 }
 
-.form-check-input:disabled ~ .form-check-label {
+.form-check-input:disabled~.form-check-label {
   opacity: 0.5;
 }
 
@@ -467,17 +466,21 @@ button,
     flex-wrap: nowrap;
     justify-content: flex-start;
   }
+
   .navbar-expand-lg .navbar-nav {
     flex-direction: row;
   }
+
   .navbar-expand-lg .navbar-nav .nav-link {
     padding-right: 0.5rem;
     padding-left: 0.5rem;
   }
+
   .navbar-expand-lg .navbar-collapse {
     display: flex !important;
     flex-basis: auto;
   }
+
   .navbar-expand-lg .navbar-toggler {
     display: none;
   }
@@ -632,12 +635,15 @@ button,
   .d-lg-flex {
     display: flex;
   }
+
   .justify-content-lg-start {
     justify-content: flex-start !important;
   }
+
   .justify-content-lg-center {
     justify-content: center !important;
   }
+
   .align-items-lg-center {
     align-items: center !important;
   }
@@ -647,6 +653,7 @@ button,
   .justify-content-xxl-center {
     justify-content: center !important;
   }
+
   .align-items-xxl-center {
     align-items: center !important;
   }
@@ -690,6 +697,7 @@ body {
   .clean-block {
     padding-bottom: 100px;
   }
+
   .clean-block .block-heading {
     padding-top: 80px;
   }
@@ -713,7 +721,7 @@ body {
   font-size: 1.5rem;
 }
 
-.clean-navbar.fixed-top + .page {
+.clean-navbar.fixed-top+.page {
   padding-top: 62px;
 }
 
@@ -722,7 +730,8 @@ body {
     padding-top: 1.2rem;
     padding-bottom: 1.2rem;
   }
-  .clean-navbar.fixed-top + .page {
+
+  .clean-navbar.fixed-top+.page {
     padding-top: 5rem;
   }
 }
@@ -897,4 +906,28 @@ body {
 *::before,
 *::after {
   box-sizing: border-box;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(255, 255, 255, .8) url('../assets/gifs/spinner.gif') 50% 50% no-repeat;
+}
+
+/* https://i.stack.imgur.com/FhHRx.gif */
+body.loading {
+  overflow: hidden;
+}
+
+body.loading .modal {
+  display: block;
+}
+
+body {
+  background-color: #e1e1e1;
 }

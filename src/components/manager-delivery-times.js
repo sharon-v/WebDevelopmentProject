@@ -2,6 +2,8 @@ import {
     dbOrdersTimes
 } from '../firebase/data.js';
 
+const loader = document.querySelector('#modal');
+loader.style.display = 'block';
 
 const save_changes_btn = document.getElementById('saveChanges');
 
@@ -10,7 +12,7 @@ datesInit();
 function datesInit() {
     var date = document.getElementById('dateSelect');
     while (date.options.length > 2) {
-        date.remove(date.options.length-1);
+        date.remove(date.options.length - 1);
     }
     //Initialization of the unavailable dates
     dbOrdersTimes.get().then((querySnapshot) => {
@@ -25,12 +27,14 @@ function datesInit() {
                 date.appendChild(opt);
             }
         });
+        loader.style.display = 'none';
     });
 }
 
 
 
 save_changes_btn.addEventListener('click', () => {
+    loader.style.display = 'block';
     var listOfHours = document.getElementsByClassName('form-check');
     var unavailable = [];
     for (var i = 0; i < listOfHours.length; i++) {
@@ -40,12 +44,15 @@ save_changes_btn.addEventListener('click', () => {
     }
     const selectedDate = document.getElementById('selectedDate').value;
     if (selectedDate == "") {
+        loader.style.display = 'none';
         alert("Please choose date");
-    } else {
+    }
+    else {
         var now = new Date();
         if (checkDate(now, selectedDate) > 0) {
             addHour(selectedDate, unavailable);
         } else {
+            loader.style.display = 'none';
             alert("The selected date in invalid");
         }
     }
@@ -60,18 +67,17 @@ date.addEventListener('change', (e) => {
     while (hours.children.length > 1) {
         hours.removeChild(hours.lastChild);
     }
+    loader.style.display = 'block';
     dbOrdersTimes.doc(date.options[date.selectedIndex].text).get().then((querySnapshot) => {
         if (querySnapshot.exists) {
-            if(querySnapshot.data().hours.length == 0)
-            {
+            if (querySnapshot.data().hours.length == 0) {
                 var opt = document.createElement('option');
                 opt.style.color = "black";
                 opt.setAttribute('disabled', 'disabled');
                 opt.innerHTML = "There is not available hours";
                 hours.appendChild(opt);
             }
-            else
-            {
+            else {
                 for (let index = 0; index < querySnapshot.data().hours.length; ++index) {
                     var opt = document.createElement('option');
                     opt.style.color = "black";
@@ -81,27 +87,28 @@ date.addEventListener('change', (e) => {
                 }
             }
         }
-
+        loader.style.display = 'none';
     });
 })
 
 function addHour(hour, hoursList) {
     dbOrdersTimes.doc(hour).set({
-            hours: hoursList
-        })
+        hours: hoursList
+    })
         .then(() => {
             datesInit();
             resertChoice();
+            loader.style.display = 'none';
             alert("Date saved");
             console.log("Document successfully written!");
         })
         .catch((error) => {
+            loader.style.display = 'none';
             console.error("Error writing document: ", error);
         });
 }
 
-function resertChoice()
-{
+function resertChoice() {
     document.getElementById('selectedDate').value = "";
     var listOfHours = document.getElementsByClassName('form-check');
     for (var i = 0; i < listOfHours.length; i++) {
