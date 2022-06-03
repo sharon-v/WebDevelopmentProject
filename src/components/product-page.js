@@ -122,6 +122,7 @@ heartBtn.addEventListener('click', () => {
 
 var addToCart = document.querySelector('#addToCartBtn');
 addToCart.addEventListener('click', () => {
+    loader.style.display = 'block';
     const sizeOptions = document.querySelector('#bedSizeOptions');
     const quantity = document.querySelector('#quantity');
     if (sizeOptions.value == 0) {
@@ -163,6 +164,7 @@ addToCart.addEventListener('click', () => {
                                         }).then(() => {
                                             console.log("The product's quantity was updated in the db");
                                             updateSizeQuantity(sizeOptions.options[sizeOptions.selectedIndex].value, sizeQuantity, quantity);
+                                            loader.style.display = 'none';
                                             console.log("Document successfully written!");
                                         })
                                         .catch((error) => {
@@ -173,6 +175,7 @@ addToCart.addEventListener('click', () => {
                             }
                             if (flag == false) {
                                 addNewProductToShoppingCart(sizeOptions, connectedUser, sizeQuantity, doc.data().imageUrl, doc.data().sku);
+                                loader.style.display = 'none';
                             }
                         } else {
                             //if the user dont have document in the shopping cart
@@ -187,10 +190,12 @@ addToCart.addEventListener('click', () => {
                                     CustomerNavbar(connectedUser.email);
                                     // location.replace('product-page.html');
                                     updateSizeQuantity(sizeOptions.options[sizeOptions.selectedIndex].value, sizeQuantity, quantity);
+                                    loader.style.display = 'none';
                                     console.log("Document successfully written!");
                                 })
                                 .catch((error) => {
                                     console.error("Error writing document: ", error);
+                                    loader.style.display = 'none';
                                 });
                         }
                     })

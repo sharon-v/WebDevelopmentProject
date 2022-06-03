@@ -1,5 +1,9 @@
 import { dbOrders, dbCustomers, fbAuth, dbProducts } from '../firebase/data.js'
 
+
+const loader = document.querySelector('#modal');
+loader.style.display = 'block'; 
+
 howManyCusInThisYear();
 function howManyCusInThisYear() {
     dbCustomers.get().then((querySnapshot) => {
@@ -103,5 +107,6 @@ function howManyIncomeInYear(year) {
         });
         console.log(countInc);
         document.getElementById('income').innerHTML = countInc.toFixed(2) + "₪";
+        loader.style.display = 'none'; 
     });
 }

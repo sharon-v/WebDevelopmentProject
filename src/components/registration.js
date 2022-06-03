@@ -2,6 +2,9 @@ import { fbAuth, dbCustomers, dbManager, dbDeveloperPasscode } from '../firebase
 
 console.log('enter');
 document.getElementById('registerManagerPasscode').style.display='none';
+
+const loader = document.querySelector('#modal');
+
 document.addEventListener('DOMContentLoaded', () => {
   console.log('in');
 
@@ -9,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
   var btn = document.getElementById('submit');
   // when press on sign up button
   btn.addEventListener('click', (e) => {
+    loader.style.display = 'block';
     e.preventDefault();  // IMPORTANT! so the db functions could work, DO NOT REMOVE
     console.log('clicked on register');
 
@@ -41,8 +45,8 @@ document.addEventListener('DOMContentLoaded', () => {
     else {
       customerSignUp(fname, lname, birthdate, phoneNumber, email, password, passwordConfirmation);
     }
-
   });
+
 });
 
 document.getElementById('registerManagerCheckBox').addEventListener('click', ()=>{
@@ -56,6 +60,7 @@ document.getElementById('registerManagerCheckBox').addEventListener('click', ()=
 
 function customerSignUp(fname, lname, birthdate, phoneNumber, email, password, passwordConfirmation) {
   if (!validateForm(fname, lname, birthdate, phoneNumber, password)) {
+    loader.style.display = 'none';
     return;
   }
   if (checkPasswordConfirmation(password, passwordConfirmation)) {
@@ -84,13 +89,19 @@ function customerSignUp(fname, lname, birthdate, phoneNumber, email, password, p
             var errorMessage = error.message;
             alert(errorMessage);
             deleteUserFromAuth(user);
+            loader.style.display = 'none';
           });
       })
       .catch((error) => {
         console.log('fail');
         var errorMessage = error.message;
         alert(errorMessage);
+        loader.style.display = 'none';
       });
+  }
+  else
+  {
+    loader.style.display = 'none';
   }
 }
 
@@ -100,13 +111,16 @@ function managerSignUp(fname, lname, birthdate, phoneNumber, email, password, pa
   dbManager.get().then(function (querySnapshot) {
     if (!querySnapshot.empty) {
       alert('A manager is already signed up to the website');
+      loader.style.display = 'none';
       return;
     }
     else {
       if (!validateForm(fname, lname, birthdate, phoneNumber, password)) {
+        loader.style.display = 'none';
         return;
       }
       if (!checkPasswordConfirmation(password, passwordConfirmation)) {
+        loader.style.display = 'none';
         return;
       }
       // checking developer passcode
@@ -120,6 +134,7 @@ function managerSignUp(fname, lname, birthdate, phoneNumber, email, password, pa
           // if (String(managerPasscode).localeCompare(String(x)) != 0) {  // doesn't 
           console.log('error in matching developer passcode');
           alert('developer passcode is not correct');
+          loader.style.display = 'none';
         }
         else {
           // creating the manager user in the DB
